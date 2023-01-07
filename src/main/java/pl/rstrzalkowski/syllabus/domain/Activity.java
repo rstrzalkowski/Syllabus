@@ -25,6 +25,8 @@ public class Activity extends AbstractEntity {
     private Course course;
 
     private String name;
+    
+    private int weight;
 
     private String description;
 }

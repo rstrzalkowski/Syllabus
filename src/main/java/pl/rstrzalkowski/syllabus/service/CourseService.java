@@ -43,14 +43,18 @@ public class CourseService {
     }
 
     public void deleteById(Long id) {
-        courseRepository.deleteById(id);
+        try {
+            Course course = getById(id);
+            courseRepository.delete(course);
+        } catch (CourseNotFoundException ignored) {
+        }
     }
 
-    public void addStudentsToCourse(AddStudentsDTO dto) {
-        Course course = getById(dto.getCourseId());
-        dto.getStudentIds().forEach((id) -> {
+    public void addStudentsToCourse(Long id, AddStudentsDTO dto) {
+        Course course = getById(id);
+        dto.getStudentIds().forEach((studentId) -> {
             try {
-                Student student = (Student) userRepository.findById(id)
+                Student student = (Student) userRepository.findById(studentId)
                         .orElseThrow(UserNotFoundException::new);
                 course.addStudent(student);
             } catch (ClassCastException e) {
@@ -60,11 +64,11 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    public void addTeachersToCourse(AddTeachersDTO dto) {
-        Course course = getById(dto.getCourseId());
-        dto.getTeacherIds().forEach((id) -> {
+    public void addTeachersToCourse(Long id, AddTeachersDTO dto) {
+        Course course = getById(id);
+        dto.getTeacherIds().forEach((teacherId) -> {
             try {
-                Teacher teacher = (Teacher) userRepository.findById(id)
+                Teacher teacher = (Teacher) userRepository.findById(teacherId)
                         .orElseThrow(UserNotFoundException::new);
                 course.addTeacher(teacher);
             } catch (ClassCastException e) {

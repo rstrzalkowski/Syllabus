@@ -52,7 +52,11 @@ public class UserService {
     }
 
     public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        try {
+            User user = getById(id);
+            userRepository.delete(user);
+        } catch (UserNotFoundException ignored) {
+        }
     }
 
     public List<User> getAllStudents() {

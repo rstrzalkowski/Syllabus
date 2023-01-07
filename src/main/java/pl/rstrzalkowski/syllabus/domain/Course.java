@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,12 @@ public class Course extends AbstractEntity {
 
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    private Set<Post> posts = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    private Set<Activity> activities = new LinkedHashSet<>();
 
     public void addStudent(Student student) {
         students.add(student);

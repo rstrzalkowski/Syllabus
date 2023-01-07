@@ -1,9 +1,7 @@
 package pl.rstrzalkowski.syllabus.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -18,15 +16,12 @@ import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 @NoArgsConstructor
 public class Post extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @JsonIgnore
     @ManyToOne
     private Course course;
 
-    private String content;
-
     @ManyToOne
     private Teacher teacher;
+
+    private String content;
 }
