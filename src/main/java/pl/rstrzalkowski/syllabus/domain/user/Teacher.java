@@ -18,16 +18,16 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Student extends User {
-    public Student(String email, String password) {
-        super(email, password, Role.STUDENT);
+public class Teacher extends User {
+    public Teacher(String email, String password) {
+        super(email, password, Role.TEACHER);
     }
 
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "course_students",
-            joinColumns = {@JoinColumn(name = "student_id")},
+            name = "course_teachers",
+            joinColumns = {@JoinColumn(name = "teacher_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
     private Set<Course> courses = new LinkedHashSet<>();

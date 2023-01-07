@@ -3,8 +3,9 @@ package pl.rstrzalkowski.syllabus.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.rstrzalkowski.syllabus.domain.user.Course;
-import pl.rstrzalkowski.syllabus.domain.user.User;
+import pl.rstrzalkowski.syllabus.domain.Course;
+import pl.rstrzalkowski.syllabus.domain.user.Student;
+import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 import pl.rstrzalkowski.syllabus.dto.AddStudentsDTO;
 import pl.rstrzalkowski.syllabus.dto.AddTeachersDTO;
 import pl.rstrzalkowski.syllabus.dto.CreateCourseDTO;
@@ -48,12 +49,13 @@ public class CourseService {
     public void addStudentsToCourse(AddStudentsDTO dto) {
         Course course = getById(dto.getCourseId());
         dto.getStudentIds().forEach((id) -> {
-            User user = userRepository.findById(id)
-                    .orElseThrow(UserNotFoundException::new);
-            if (user.getRole() != User.Role.STUDENT) {
+            try {
+                Student student = (Student) userRepository.findById(id)
+                        .orElseThrow(UserNotFoundException::new);
+                course.addStudent(student);
+            } catch (ClassCastException e) {
                 throw new RoleMismatchException();
             }
-            course.addStudent(user);
         });
         courseRepository.save(course);
     }
@@ -61,12 +63,13 @@ public class CourseService {
     public void addTeachersToCourse(AddTeachersDTO dto) {
         Course course = getById(dto.getCourseId());
         dto.getTeacherIds().forEach((id) -> {
-            User user = userRepository.findById(id)
-                    .orElseThrow(UserNotFoundException::new);
-            if (user.getRole() != User.Role.TEACHER) {
+            try {
+                Teacher teacher = (Teacher) userRepository.findById(id)
+                        .orElseThrow(UserNotFoundException::new);
+                course.addTeacher(teacher);
+            } catch (ClassCastException e) {
                 throw new RoleMismatchException();
             }
-            course.addTeacher(user);
         });
         courseRepository.save(course);
     }

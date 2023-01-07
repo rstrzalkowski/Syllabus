@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.rstrzalkowski.syllabus.domain.user.Course;
+import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.dto.AddStudentsDTO;
 import pl.rstrzalkowski.syllabus.dto.AddTeachersDTO;
 import pl.rstrzalkowski.syllabus.dto.CreateCourseDTO;
@@ -48,5 +49,10 @@ public class CourseController {
     @PutMapping("/teachers")
     public void addTeachers(@Valid @RequestBody AddTeachersDTO dto) {
         courseService.addTeachersToCourse(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Long id) {
+        courseService.deleteById(id);
     }
 }
