@@ -19,10 +19,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class Student extends User {
-    public Student(String email, String password) {
-        super(email, password, Role.STUDENT);
-    }
-
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -31,6 +27,10 @@ public class Student extends User {
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
     private Set<Course> courses = new LinkedHashSet<>();
+
+    public Student(String email, String password) {
+        super(email, password, Role.STUDENT);
+    }
 
     public void addCourse(Course course) {
         courses.add(course);

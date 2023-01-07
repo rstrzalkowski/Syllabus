@@ -21,9 +21,12 @@ import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 @NoArgsConstructor
 public abstract class User extends AbstractEntity {
 
-    public enum Role {
-        STUDENT, TEACHER, ADMIN
-    }
+    @Column(unique = true)
+    private String email;
+    @JsonIgnore
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User(String email, String password, Role role) {
         this.email = email;
@@ -31,12 +34,7 @@ public abstract class User extends AbstractEntity {
         this.role = role;
     }
 
-    @Column(unique = true)
-    private String email;
-
-    @JsonIgnore
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    public enum Role {
+        STUDENT, TEACHER, ADMIN
+    }
 }
