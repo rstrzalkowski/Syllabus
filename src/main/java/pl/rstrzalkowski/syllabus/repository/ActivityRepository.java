@@ -2,11 +2,11 @@ package pl.rstrzalkowski.syllabus.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.rstrzalkowski.syllabus.domain.Post;
+import pl.rstrzalkowski.syllabus.domain.Activity;
 
 import java.util.List;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findByCourseId(Long courseId);
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
+    List<Activity> findByCourseId(Long courseId);
 }

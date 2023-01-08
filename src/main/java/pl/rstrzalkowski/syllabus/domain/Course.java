@@ -24,6 +24,8 @@ public class Course extends AbstractEntity {
 
     private String description;
 
+    private boolean archived;
+
     @ManyToMany(mappedBy = "courses")
     private Set<Teacher> teachers = new LinkedHashSet<>();
 

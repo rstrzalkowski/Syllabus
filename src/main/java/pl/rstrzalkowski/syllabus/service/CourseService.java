@@ -16,6 +16,7 @@ import pl.rstrzalkowski.syllabus.repository.CourseRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +26,12 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
 
-    public List<Course> getAll() {
-        return courseRepository.findAll();
+    public List<Course> getAllActive() {
+        return courseRepository.findAllByArchivedIsFalse();
+    }
+
+    public List<Course> getAllArchived() {
+        return courseRepository.findAllByArchivedIsTrue();
     }
 
     public Course getById(Long id) {
@@ -45,7 +50,8 @@ public class CourseService {
     public void deleteById(Long id) {
         try {
             Course course = getById(id);
-            courseRepository.delete(course);
+            course.setArchived(true);
+            courseRepository.save(course);
         } catch (CourseNotFoundException ignored) {
         }
     }
@@ -77,4 +83,15 @@ public class CourseService {
         });
         courseRepository.save(course);
     }
+
+    public Set<Student> getStudentsByCourseId(Long courseId) {
+        Course course = getById(courseId);
+        return course.getStudents();
+    }
+
+    public Set<Teacher> getTeachersByCourseId(Long courseId) {
+        Course course = getById(courseId);
+        return course.getTeachers();
+    }
+
 }
