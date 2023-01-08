@@ -6,9 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.user.Student;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
-import pl.rstrzalkowski.syllabus.dto.AddStudentsDTO;
-import pl.rstrzalkowski.syllabus.dto.AddTeachersDTO;
-import pl.rstrzalkowski.syllabus.dto.CreateCourseDTO;
+import pl.rstrzalkowski.syllabus.dto.add.AddStudentsDTO;
+import pl.rstrzalkowski.syllabus.dto.add.AddTeachersDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreateCourseDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdateCourseDTO;
 import pl.rstrzalkowski.syllabus.exception.CourseNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.RoleMismatchException;
 import pl.rstrzalkowski.syllabus.exception.UserNotFoundException;
@@ -44,6 +45,13 @@ public class CourseService {
         course.setName(dto.getName());
         course.setDescription(dto.getDescription());
 
+        return courseRepository.save(course);
+    }
+
+    public Course update(Long id, UpdateCourseDTO dto) {
+        Course course = getById(id);
+        course.setName(dto.getName() == null ? course.getName() : dto.getName());
+        course.setDescription(dto.getDescription() == null ? course.getDescription() : dto.getDescription());
         return courseRepository.save(course);
     }
 

@@ -1,16 +1,16 @@
-package pl.rstrzalkowski.syllabus.dto;
+package pl.rstrzalkowski.syllabus.dto.add;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-public class AddStudentsDTO {
+@NoArgsConstructor
+@Data
+public class AddTeachersDTO {
     @NotNull
-    private List<Long> studentIds;
+    private List<Long> teacherIds;
 }

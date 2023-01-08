@@ -32,7 +32,7 @@ public class Activity extends AbstractEntity {
 
     private String name;
 
-    private int weight;
+    private Integer weight;
 
     private String description;
 }

@@ -8,7 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.Post;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
-import pl.rstrzalkowski.syllabus.dto.CreatePostDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdatePostDTO;
 import pl.rstrzalkowski.syllabus.exception.CourseNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.RoleMismatchException;
@@ -56,6 +57,12 @@ public class PostService {
         }
         post.setTeacher(teacher);
         post.setCourse(course);
+        return postRepository.save(post);
+    }
+
+    public Post update(Long id, UpdatePostDTO dto) {
+        Post post = getById(id);
+        post.setContent(dto.getContent() == null ? post.getContent() : dto.getContent());
         return postRepository.save(post);
     }
 

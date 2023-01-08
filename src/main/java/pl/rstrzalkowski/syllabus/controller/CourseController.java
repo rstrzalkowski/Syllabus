@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.rstrzalkowski.syllabus.domain.Activity;
 import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.Post;
 import pl.rstrzalkowski.syllabus.domain.user.Student;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
-import pl.rstrzalkowski.syllabus.dto.AddStudentsDTO;
-import pl.rstrzalkowski.syllabus.dto.AddTeachersDTO;
-import pl.rstrzalkowski.syllabus.dto.CreateActivityDTO;
-import pl.rstrzalkowski.syllabus.dto.CreateCourseDTO;
-import pl.rstrzalkowski.syllabus.dto.CreatePostDTO;
+import pl.rstrzalkowski.syllabus.dto.add.AddStudentsDTO;
+import pl.rstrzalkowski.syllabus.dto.add.AddTeachersDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreateActivityDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreateCourseDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdateCourseDTO;
 import pl.rstrzalkowski.syllabus.service.ActivityService;
 import pl.rstrzalkowski.syllabus.service.CourseService;
 import pl.rstrzalkowski.syllabus.service.PostService;
@@ -65,8 +67,8 @@ public class CourseController {
     }
 
     @GetMapping("/{id}/activities")
-    public List<Post> getAllCourseActivities(@PathVariable("id") Long id) {
-        return postService.getByCourseId(id);
+    public List<Activity> getAllCourseActivities(@PathVariable("id") Long id) {
+        return activityService.getByCourseId(id);
     }
 
     @GetMapping("/{id}/students")
@@ -99,6 +101,11 @@ public class CourseController {
     @PutMapping("/{id}/activities")
     public void addActivity(@PathVariable("id") Long id, @Valid @RequestBody CreateActivityDTO dto) {
         activityService.create(id, dto);
+    }
+
+    @PutMapping("/{id}")
+    public Course updateCourse(@PathVariable("id") Long id, @Valid @RequestBody UpdateCourseDTO dto) {
+        return courseService.update(id, dto);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

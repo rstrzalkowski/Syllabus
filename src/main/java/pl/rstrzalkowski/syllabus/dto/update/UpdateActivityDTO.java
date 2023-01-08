@@ -1,6 +1,5 @@
-package pl.rstrzalkowski.syllabus.dto;
+package pl.rstrzalkowski.syllabus.dto.update;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,11 +7,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreateCourseDTO {
-
-    @NotNull
+public class UpdateActivityDTO {
     private String name;
 
-    @NotNull
+    private Integer weight;
+
     private String description;
 }

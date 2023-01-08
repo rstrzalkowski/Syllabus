@@ -26,7 +26,7 @@ public class Grade extends AbstractEntity {
 
     @Min(1)
     @Max(5)
-    private int grade;
+    private Integer grade;
 
     @ManyToOne
     private Student student;

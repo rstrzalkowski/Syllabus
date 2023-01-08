@@ -1,18 +1,16 @@
-package pl.rstrzalkowski.syllabus.dto;
+package pl.rstrzalkowski.syllabus.dto.add;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreatePostDTO {
+public class AddStudentsDTO {
     @NotNull
-    private String content;
-
-    @NotNull
-    //TODO get teacher from context instead of dto
-    private Long teacherId;
+    private List<Long> studentIds;
 }

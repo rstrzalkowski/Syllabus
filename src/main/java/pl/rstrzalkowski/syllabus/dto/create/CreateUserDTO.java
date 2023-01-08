@@ -1,11 +1,13 @@
-package pl.rstrzalkowski.syllabus.dto;
+package pl.rstrzalkowski.syllabus.dto.create;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Getter
+@NoArgsConstructor
+@Data
 public class CreateUserDTO {
     @NotNull
     private String email;

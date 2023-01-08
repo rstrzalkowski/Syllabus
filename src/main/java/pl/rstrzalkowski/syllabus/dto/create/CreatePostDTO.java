@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.dto;
+package pl.rstrzalkowski.syllabus.dto.create;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,15 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreateActivityDTO {
+public class CreatePostDTO {
     @NotNull
-    private String name;
-
-    @NotNull
-    private Integer weight;
-
-    @NotNull
-    private String description;
+    private String content;
 
     @NotNull
     //TODO get teacher from context instead of dto

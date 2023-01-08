@@ -9,7 +9,8 @@ import pl.rstrzalkowski.syllabus.domain.user.Admin;
 import pl.rstrzalkowski.syllabus.domain.user.Student;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 import pl.rstrzalkowski.syllabus.domain.user.User;
-import pl.rstrzalkowski.syllabus.dto.CreateUserDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreateUserDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdateUserDTO;
 import pl.rstrzalkowski.syllabus.exception.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
@@ -48,6 +49,12 @@ public class UserService {
         user.setPassword(dto.getPassword());
         user.setRole(User.Role.STUDENT);
 
+        return userRepository.save(user);
+    }
+
+    public User update(Long id, UpdateUserDTO dto) {
+        User user = getById(id);
+        user.setEmail(dto.getEmail() == null ? user.getEmail() : dto.getEmail());
         return userRepository.save(user);
     }
 

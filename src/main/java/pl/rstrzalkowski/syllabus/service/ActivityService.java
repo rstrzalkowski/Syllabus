@@ -8,7 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Activity;
 import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
-import pl.rstrzalkowski.syllabus.dto.CreateActivityDTO;
+import pl.rstrzalkowski.syllabus.dto.create.CreateActivityDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdateActivityDTO;
 import pl.rstrzalkowski.syllabus.exception.CourseNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.RoleMismatchException;
@@ -59,6 +60,14 @@ public class ActivityService {
         }
         activity.setTeacher(teacher);
         activity.setCourse(course);
+        return activityRepository.save(activity);
+    }
+
+    public Activity update(Long id, UpdateActivityDTO dto) {
+        Activity activity = getById(id);
+        activity.setName(dto.getName() == null ? activity.getName() : dto.getName());
+        activity.setDescription(dto.getDescription() == null ? activity.getDescription() : dto.getDescription());
+        activity.setWeight(dto.getWeight() == null ? activity.getWeight() : dto.getWeight());
         return activityRepository.save(activity);
     }
 
