@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.rstrzalkowski.syllabus.domain.user.Student;
+import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 
 @Entity
 @Getter
@@ -26,10 +27,13 @@ public class Grade extends AbstractEntity {
 
     @Min(1)
     @Max(5)
-    private Integer grade;
+    private Integer value;
 
     @ManyToOne
     private Student student;
+
+    @ManyToOne
+    private Teacher teacher;
 
     @ManyToOne
     private Activity activity;

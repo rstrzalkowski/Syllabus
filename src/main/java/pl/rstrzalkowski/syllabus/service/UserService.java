@@ -11,7 +11,7 @@ import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 import pl.rstrzalkowski.syllabus.domain.user.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateUserDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateUserDTO;
-import pl.rstrzalkowski.syllabus.exception.UserNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;

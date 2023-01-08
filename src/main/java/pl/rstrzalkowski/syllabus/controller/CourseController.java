@@ -25,6 +25,7 @@ import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateCourseDTO;
 import pl.rstrzalkowski.syllabus.service.ActivityService;
 import pl.rstrzalkowski.syllabus.service.CourseService;
+import pl.rstrzalkowski.syllabus.service.GradeService;
 import pl.rstrzalkowski.syllabus.service.PostService;
 
 import java.util.List;
@@ -37,6 +38,7 @@ import java.util.Set;
 public class CourseController {
 
     private final CourseService courseService;
+    private final GradeService gradeService;
     private final PostService postService;
     private final ActivityService activityService;
 
@@ -62,24 +64,29 @@ public class CourseController {
     }
 
     @GetMapping("/{id}/posts")
-    public List<Post> getAllCoursePosts(@PathVariable("id") Long id) {
+    public List<Post> getCoursePosts(@PathVariable("id") Long id) {
         return postService.getByCourseId(id);
     }
 
     @GetMapping("/{id}/activities")
-    public List<Activity> getAllCourseActivities(@PathVariable("id") Long id) {
+    public List<Activity> getCourseActivities(@PathVariable("id") Long id) {
         return activityService.getByCourseId(id);
     }
 
     @GetMapping("/{id}/students")
-    public Set<Student> getAllCourseStudents(@PathVariable("id") Long id) {
+    public Set<Student> getCourseStudents(@PathVariable("id") Long id) {
         return courseService.getStudentsByCourseId(id);
     }
 
     @GetMapping("/{id}/teachers")
-    public Set<Teacher> getAllCourseTeachers(@PathVariable("id") Long id) {
+    public Set<Teacher> getCourseTeachers(@PathVariable("id") Long id) {
         return courseService.getTeachersByCourseId(id);
     }
+
+//    @GetMapping("/{id}/grades")
+//    public List<Grade> getCourseGrades(@PathVariable("id") Long id) {
+//        return gradeService.getStudentCourseGrades(id, studentId);
+//    }
 
     @PutMapping("/{id}/students")
     public void addStudents(@PathVariable("id") Long id, @Valid @RequestBody AddStudentsDTO dto) {

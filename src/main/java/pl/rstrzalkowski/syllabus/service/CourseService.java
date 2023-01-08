@@ -10,9 +10,9 @@ import pl.rstrzalkowski.syllabus.dto.add.AddStudentsDTO;
 import pl.rstrzalkowski.syllabus.dto.add.AddTeachersDTO;
 import pl.rstrzalkowski.syllabus.dto.create.CreateCourseDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateCourseDTO;
-import pl.rstrzalkowski.syllabus.exception.CourseNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.RoleMismatchException;
-import pl.rstrzalkowski.syllabus.exception.UserNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.course.CourseNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.user.RoleMismatchException;
+import pl.rstrzalkowski.syllabus.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.CourseRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 

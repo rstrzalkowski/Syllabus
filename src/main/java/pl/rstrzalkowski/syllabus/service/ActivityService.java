@@ -10,9 +10,10 @@ import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 import pl.rstrzalkowski.syllabus.dto.create.CreateActivityDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateActivityDTO;
-import pl.rstrzalkowski.syllabus.exception.CourseNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.PostNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.RoleMismatchException;
+import pl.rstrzalkowski.syllabus.exception.activity.ActivityNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.course.CourseNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.user.RoleMismatchException;
 import pl.rstrzalkowski.syllabus.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.repository.CourseRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
@@ -35,7 +36,7 @@ public class ActivityService {
 
     public Activity getById(Long id) {
         return activityRepository.findById(id)
-                .orElseThrow(PostNotFoundException::new);
+                .orElseThrow(ActivityNotFoundException::new);
     }
 
     public List<Activity> getByCourseId(Long courseId) {
