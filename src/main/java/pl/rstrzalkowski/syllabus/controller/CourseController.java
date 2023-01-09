@@ -28,8 +28,8 @@ import pl.rstrzalkowski.syllabus.service.CourseService;
 import pl.rstrzalkowski.syllabus.service.GradeService;
 import pl.rstrzalkowski.syllabus.service.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -74,13 +74,13 @@ public class CourseController {
     }
 
     @GetMapping("/{id}/students")
-    public Set<Student> getCourseStudents(@PathVariable("id") Long id) {
-        return courseService.getStudentsByCourseId(id);
+    public List<Student> getCourseStudents(@PathVariable("id") Long id) {
+        return new ArrayList<>(courseService.getStudentsByCourseId(id));
     }
 
     @GetMapping("/{id}/teachers")
-    public Set<Teacher> getCourseTeachers(@PathVariable("id") Long id) {
-        return courseService.getTeachersByCourseId(id);
+    public List<Teacher> getCourseTeachers(@PathVariable("id") Long id) {
+        return new ArrayList<>(courseService.getTeachersByCourseId(id));
     }
 
 //    @GetMapping("/{id}/grades")

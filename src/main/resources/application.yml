@@ -5,10 +5,16 @@ spring:
     username: user
     password: password
 
+  sql:
+    init:
+      mode: always
+  
   jpa:
     hibernate:
       ddl-auto: create-drop
+    defer-datasource-initialization: true
 
 server:
   servlet:
     context-path: /api
+

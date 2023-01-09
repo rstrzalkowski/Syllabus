@@ -1,0 +1,2 @@
+INSERT INTO public.courses (created_at, updated_at, version, archived, description, name) VALUES ('2023-01-09 19:31:21.372000', '2023-01-09 19:31:21.372000', 0, false, 'Easy', 'Maths');
+INSERT INTO public.courses (created_at, updated_at, version, archived, description, name) VALUES ('2023-01-09 19:32:48.848000', '2023-01-09 19:32:48.848000', 0, false, 'Course to teach student component programming', 'Component programming');
