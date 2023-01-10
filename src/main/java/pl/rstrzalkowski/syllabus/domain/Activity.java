@@ -10,12 +10,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "activities")
+@Table(name = "ACTIVITY")
 @NoArgsConstructor
 public class Activity extends AbstractEntity {
 
@@ -25,10 +24,10 @@ public class Activity extends AbstractEntity {
 
     @JsonIgnore
     @ManyToOne
-    private Course course;
+    private SubjectRealisation subjectRealisation;
 
     @ManyToOne
-    private Teacher teacher;
+    private User teacher;
 
     private String name;
 

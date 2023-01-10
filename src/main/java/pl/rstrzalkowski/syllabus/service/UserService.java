@@ -1,14 +1,9 @@
 package pl.rstrzalkowski.syllabus.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.rstrzalkowski.syllabus.domain.user.Admin;
-import pl.rstrzalkowski.syllabus.domain.user.Student;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
-import pl.rstrzalkowski.syllabus.domain.user.User;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateUserDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateUserDTO;
 import pl.rstrzalkowski.syllabus.exception.user.UserNotFoundException;
@@ -23,16 +18,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void createInitialUsers() {
-        User student = new Student("student@wp.pl", "pass");
-        Teacher teacher = new Teacher("teacher@wp.pl", "pass");
-        Admin admin = new Admin("admin@wp.pl", "pass");
-
-        userRepository.save(student);
-        userRepository.save(teacher);
-        userRepository.save(admin);
-    }
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -44,10 +29,9 @@ public class UserService {
     }
 
     public User create(CreateUserDTO dto) {
-        User user = new Student();
+        User user = new User();
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
-        user.setRole(User.Role.STUDENT);
 
         return userRepository.save(user);
     }
@@ -66,15 +50,23 @@ public class UserService {
         }
     }
 
-    public List<User> getAllStudents() {
-        return userRepository.findUserByRole(User.Role.STUDENT);
-    }
-
-    public List<User> getAllTeachers() {
-        return userRepository.findUserByRole(User.Role.TEACHER);
-    }
-
-    public List<User> getAllAdmins() {
-        return userRepository.findUserByRole(User.Role.ADMIN);
-    }
+//    public List<User> getAllStudents() {
+//        return userRepository.findByRoleName(RoleEnum.STUDENT);
+//    }
+//
+//    public List<User> getAllTeachers() {
+//        return userRepository.findByRoleName(RoleEnum.TEACHER);
+//    }
+//
+//    public List<User> getAllAdmins() {
+//        return userRepository.findByRoleName(RoleEnum.ADMIN);
+//    }
+//
+//    public List<User> getAllOffices() {
+//        return userRepository.findByRoleName(RoleEnum.OFFICE);
+//    }
+//
+//    public List<User> getAllDirectors() {
+//        return userRepository.findByRoleName(RoleEnum.DIRECTOR);
+//    }
 }

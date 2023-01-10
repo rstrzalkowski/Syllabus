@@ -15,4 +15,7 @@ public class CreateCourseDTO {
 
     @NotNull
     private String description;
+
+    @NotNull
+    private String abbreviation;
 }

@@ -5,16 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import pl.rstrzalkowski.syllabus.domain.Course;
 import pl.rstrzalkowski.syllabus.domain.Post;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
+import pl.rstrzalkowski.syllabus.domain.SubjectRealisation;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdatePostDTO;
-import pl.rstrzalkowski.syllabus.exception.course.CourseNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.course.SubjectRealisationNotFound;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.user.RoleMismatchException;
-import pl.rstrzalkowski.syllabus.repository.CourseRepository;
 import pl.rstrzalkowski.syllabus.repository.PostRepository;
+import pl.rstrzalkowski.syllabus.repository.SubjectRealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;
@@ -25,7 +24,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final CourseRepository courseRepository;
+    private final SubjectRealisationRepository subjectRealisationRepository;
     private final UserRepository userRepository;
 
     public List<Post> getAll() {
@@ -38,25 +37,21 @@ public class PostService {
     }
 
     public List<Post> getByCourseId(Long courseId) {
-        return postRepository.findByCourseId(courseId);
+        return postRepository.findBySubjectRealisationId(courseId);
     }
 
     public Post create(Long courseId, CreatePostDTO dto) {
         Post post = new Post();
         post.setContent(dto.getContent());
 
-        Teacher teacher;
-        Course course;
-        try {
-            course = courseRepository.findById(courseId)
-                    .orElseThrow(CourseNotFoundException::new);
-            teacher = (Teacher) userRepository.findById(dto.getTeacherId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        } catch (ClassCastException e) {
-            throw new RoleMismatchException();
-        }
+        SubjectRealisation subjectRealisation = subjectRealisationRepository.findById(courseId)
+                .orElseThrow(SubjectRealisationNotFound::new);
+
+        User teacher = userRepository.findById(dto.getTeacherId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
+        post.setSubjectRealisation(subjectRealisation);
         post.setTeacher(teacher);
-        post.setCourse(course);
         return postRepository.save(post);
     }
 

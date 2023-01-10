@@ -7,13 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Activity;
 import pl.rstrzalkowski.syllabus.domain.Grade;
-import pl.rstrzalkowski.syllabus.domain.user.Student;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateGradeDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateGradeDTO;
 import pl.rstrzalkowski.syllabus.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.user.RoleMismatchException;
 import pl.rstrzalkowski.syllabus.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
@@ -44,7 +42,7 @@ public class GradeService {
     }
 
     public List<Grade> getStudentCourseGrades(Long courseId, Long studentId) {
-        return gradeRepository.findByActivityCourseIdAndStudentId(courseId, studentId);
+        return gradeRepository.findByActivitySubjectRealisationIdAndStudentId(courseId, studentId);
     }
 
     public List<Grade> getActivityGrades(Long activityId) {
@@ -55,22 +53,14 @@ public class GradeService {
         Grade grade = new Grade();
         grade.setValue(dto.getValue());
 
-        Activity activity;
-        Student student;
-        Teacher teacher;
-        try {
-            activity = activityRepository.findById(activityId)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-            student = (Student) userRepository.findById(dto.getStudentId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-            teacher = (Teacher) userRepository.findById(dto.getTeacherId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        } catch (ClassCastException e) {
-            throw new RoleMismatchException();
-        }
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        User student = userRepository.findById(dto.getStudentId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
         grade.setActivity(activity);
         grade.setStudent(student);
-        grade.setTeacher(teacher);
+
         return gradeRepository.save(grade);
     }
 

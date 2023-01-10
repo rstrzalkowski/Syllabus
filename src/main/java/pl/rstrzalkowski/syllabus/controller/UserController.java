@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.rstrzalkowski.syllabus.domain.user.User;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateUserDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateUserDTO;
 import pl.rstrzalkowski.syllabus.service.UserService;
@@ -39,21 +39,21 @@ public class UserController {
         return userService.getAll();
     }
 
-    @GetMapping("/students")
-    public List<User> getAllStudents() {
-        return userService.getAllStudents();
-    }
+//    @GetMapping("/students")
+//    public List<User> getAllStudents() {
+//        return userService.getAllStudents();
+//    }
+//
+//    @GetMapping("/teachers")
+//    public List<User> getAllTeachers() {
+//        return userService.getAllTeachers();
+//    }
+//
+//    @GetMapping("/admins")
+//    public List<User> getAllAdmins() {
+//        return userService.getAllAdmins();
+//    }
 
-    @GetMapping("/teachers")
-    public List<User> getAllTeachers() {
-        return userService.getAllTeachers();
-    }
-
-    @GetMapping("/admins")
-    public List<User> getAllAdmins() {
-        return userService.getAllAdmins();
-    }
-    
     @PutMapping("/{id}")
     public User updateUser(@PathVariable("id") Long id, @Valid @RequestBody UpdateUserDTO dto) {
         return userService.update(id, dto);

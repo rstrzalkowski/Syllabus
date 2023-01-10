@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,8 +28,9 @@ public class CourseControllerTests {
         mockMvc.perform(get("/courses/1").accept(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.name").value("Maths"))
-                .andExpect(jsonPath("$.description").value("Easy"));
+                .andExpect(jsonPath("$.name").value("Discrete mathematics"))
+                .andExpect(jsonPath("$.description").value("Course of discrete mathematics"))
+                .andExpect(jsonPath("$.abbreviation").value("DM2023"));
     }
 
     @Test
@@ -42,10 +44,12 @@ public class CourseControllerTests {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "TEST NAME");
         jsonObject.put("description", "TEST DESCRIPTION");
+        jsonObject.put("abbreviation", "TD2023");
         mockMvc.perform(post("/courses").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("TEST NAME"))
-                .andExpect(jsonPath("$.description").value("TEST DESCRIPTION"));
+                .andExpect(jsonPath("$.description").value("TEST DESCRIPTION"))
+                .andExpect(jsonPath("$.abbreviation").value("TD2023"));
     }
 
     @Test
@@ -67,6 +71,16 @@ public class CourseControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$").isNotEmpty());
+    }
+
+    @Test
+    void shouldAddStudentToCourseWithSC200() throws Exception {
+        mockMvc.perform(put("/courses/1/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                { "studentIds": [1] }
+                                """))
+                .andExpect(status().isOk());
     }
 
 }

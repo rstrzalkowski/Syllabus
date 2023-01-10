@@ -6,16 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Activity;
-import pl.rstrzalkowski.syllabus.domain.Course;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
+import pl.rstrzalkowski.syllabus.domain.SubjectRealisation;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateActivityDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateActivityDTO;
 import pl.rstrzalkowski.syllabus.exception.activity.ActivityNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.course.CourseNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.course.SubjectRealisationNotFound;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.user.RoleMismatchException;
 import pl.rstrzalkowski.syllabus.repository.ActivityRepository;
-import pl.rstrzalkowski.syllabus.repository.CourseRepository;
+import pl.rstrzalkowski.syllabus.repository.SubjectRealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;
@@ -26,7 +25,7 @@ import java.util.List;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
-    private final CourseRepository courseRepository;
+    private final SubjectRealisationRepository subjectRealisationRepository;
     private final UserRepository userRepository;
 
 
@@ -40,7 +39,7 @@ public class ActivityService {
     }
 
     public List<Activity> getByCourseId(Long courseId) {
-        return activityRepository.findByCourseId(courseId);
+        return activityRepository.findBySubjectRealisationId(courseId);
     }
 
     public Activity create(Long courseId, CreateActivityDTO dto) {
@@ -49,18 +48,14 @@ public class ActivityService {
         activity.setWeight(dto.getWeight());
         activity.setDescription(dto.getDescription());
 
-        Teacher teacher;
-        Course course;
-        try {
-            course = courseRepository.findById(courseId)
-                    .orElseThrow(CourseNotFoundException::new);
-            teacher = (Teacher) userRepository.findById(dto.getTeacherId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        } catch (ClassCastException e) {
-            throw new RoleMismatchException();
-        }
+        SubjectRealisation subjectRealisation = subjectRealisationRepository.findById(courseId)
+                .orElseThrow(SubjectRealisationNotFound::new);
+
+        User teacher = userRepository.findById(dto.getTeacherId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
+        activity.setSubjectRealisation(subjectRealisation);
         activity.setTeacher(teacher);
-        activity.setCourse(course);
         return activityRepository.save(activity);
     }
 

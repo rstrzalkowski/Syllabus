@@ -11,13 +11,11 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.domain.user.Student;
-import pl.rstrzalkowski.syllabus.domain.user.Teacher;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "grades")
+@Table(name = "GRADE")
 @NoArgsConstructor
 public class Grade extends AbstractEntity {
 
@@ -30,10 +28,7 @@ public class Grade extends AbstractEntity {
     private Integer value;
 
     @ManyToOne
-    private Student student;
-
-    @ManyToOne
-    private Teacher teacher;
+    private User student;
 
     @ManyToOne
     private Activity activity;
