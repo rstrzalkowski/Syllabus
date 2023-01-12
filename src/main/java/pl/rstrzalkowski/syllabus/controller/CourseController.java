@@ -1,8 +1,16 @@
 package pl.rstrzalkowski.syllabus.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.rstrzalkowski.syllabus.domain.Subject;
+import pl.rstrzalkowski.syllabus.dto.create.CreateSubjectDTO;
+import pl.rstrzalkowski.syllabus.service.SubjectService;
 
 
 @RestController
@@ -10,16 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CourseController {
 
-//    private final SubjectService subjectService;
-//    private final GradeService gradeService;
+    private final SubjectService subjectService;
+
+    //    private final GradeService gradeService;
 //    private final PostService postService;
 //    private final ActivityService activityService;
 //
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping
-//    public Course createCourse(@Valid @RequestBody CreateCourseDTO dto) {
-//        return subjectService.create(dto);
-//    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public Subject createCourse(@Valid @RequestBody CreateSubjectDTO dto) {
+        return subjectService.create(dto);
+    }
 //
 //    @GetMapping("/{id}")
 //    public Course getCourseById(@PathVariable("id") Long id) {

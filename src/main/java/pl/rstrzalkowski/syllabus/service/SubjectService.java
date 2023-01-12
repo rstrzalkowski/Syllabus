@@ -3,6 +3,8 @@ package pl.rstrzalkowski.syllabus.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.rstrzalkowski.syllabus.domain.Subject;
+import pl.rstrzalkowski.syllabus.dto.create.CreateSubjectDTO;
 import pl.rstrzalkowski.syllabus.repository.SubjectRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
@@ -11,10 +13,10 @@ import pl.rstrzalkowski.syllabus.repository.UserRepository;
 @Transactional
 public class SubjectService {
 
-    private final SubjectRepository courseRepository;
+    private final SubjectRepository subjectRepository;
     private final UserRepository userRepository;
 
-//    public List<Course> getAllActive() {
+    //    public List<Course> getAllActive() {
 //        return courseRepository.findAllByArchivedIsFalse();
 //    }
 //
@@ -27,14 +29,13 @@ public class SubjectService {
 //                .orElseThrow(CourseNotFoundException::new);
 //    }
 //
-//    public Course create(CreateCourseDTO dto) {
-//        Course course = new Course();
-//        course.setName(dto.getName());
-//        course.setDescription(dto.getDescription());
-//        course.setAbbreviation(dto.getAbbreviation());
-//
-//        return courseRepository.save(course);
-//    }
+    public Subject create(CreateSubjectDTO dto) {
+        Subject subject = new Subject();
+        subject.setName(dto.getName());
+        subject.setAbbreviation(dto.getAbbreviation());
+
+        return subjectRepository.save(subject);
+    }
 //
 //    public Course update(Long id, UpdateCourseDTO dto) {
 //        Course course = getById(id);
