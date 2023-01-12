@@ -24,8 +24,8 @@ public class CourseControllerTests {
 
 
     @Test
-    void shouldReturnCourseByIdWithSC200() throws Exception {
-        mockMvc.perform(get("/courses/1").accept(MediaType.parseMediaType("application/json")))
+    void shouldReturnSubjectByIdWithSC200() throws Exception {
+        mockMvc.perform(get("/subjects/1").accept(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.name").value("Discrete mathematics"))
@@ -34,18 +34,18 @@ public class CourseControllerTests {
     }
 
     @Test
-    void shouldFailReturnCourseByIdWithSC404() throws Exception {
-        mockMvc.perform(get("/courses/999").accept(MediaType.parseMediaType("application/json")))
+    void shouldFailReturnSubjectByIdWithSC404() throws Exception {
+        mockMvc.perform(get("/subjects/999").accept(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    void shouldCreateCourseWithSC201() throws Exception {
+    void shouldCreateSubjectsWithSC201() throws Exception {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "TEST NAME");
         jsonObject.put("description", "TEST DESCRIPTION");
         jsonObject.put("abbreviation", "TD2023");
-        mockMvc.perform(post("/courses").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
+        mockMvc.perform(post("/subjects").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("TEST NAME"))
                 .andExpect(jsonPath("$.description").value("TEST DESCRIPTION"))
@@ -53,34 +53,24 @@ public class CourseControllerTests {
     }
 
     @Test
-    void shouldFailCreatingCourseWithSC400() throws Exception {
+    void shouldFailCreatingSubjectWithSC400() throws Exception {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("description", "TEST DESCRIPTION");
-        mockMvc.perform(post("/courses").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
+        mockMvc.perform(post("/subjects").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isBadRequest());
 
         jsonObject = new JSONObject();
-        jsonObject.put("description", "TEST DESCRIPTION");
-        mockMvc.perform(post("/courses").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
+        jsonObject.put("name", "TEST NAME");
+        mockMvc.perform(post("/subjects").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    void shouldReturnAllCoursesWithSC200() throws Exception {
-        mockMvc.perform(get("/courses").accept(MediaType.parseMediaType("application/json")))
+    void shouldReturnAllSubjectsWithSC200() throws Exception {
+        mockMvc.perform(get("/subjects").accept(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$").isNotEmpty());
-    }
-
-    @Test
-    void shouldAddStudentToCourseWithSC200() throws Exception {
-        mockMvc.perform(put("/courses/1/students")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                { "studentIds": [1] }
-                                """))
-                .andExpect(status().isOk());
     }
 
 }
