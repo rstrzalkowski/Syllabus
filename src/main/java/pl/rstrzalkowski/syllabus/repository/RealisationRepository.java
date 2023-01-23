@@ -2,8 +2,8 @@ package pl.rstrzalkowski.syllabus.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.rstrzalkowski.syllabus.domain.ClassLevel;
+import pl.rstrzalkowski.syllabus.domain.Realisation;
 
 @Repository
-public interface ClassLevelRepository extends JpaRepository<ClassLevel, Long> {
+public interface RealisationRepository extends JpaRepository<Realisation, Long> {
 }

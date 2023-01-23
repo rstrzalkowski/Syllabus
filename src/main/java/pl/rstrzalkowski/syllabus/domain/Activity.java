@@ -24,7 +24,7 @@ public class Activity extends AbstractEntity {
 
     @JsonIgnore
     @ManyToOne
-    private SubjectRealisation subjectRealisation;
+    private Realisation realisation;
 
     @ManyToOne
     private User teacher;

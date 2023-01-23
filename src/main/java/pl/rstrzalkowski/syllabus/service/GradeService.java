@@ -42,7 +42,7 @@ public class GradeService {
     }
 
     public List<Grade> getStudentCourseGrades(Long courseId, Long studentId) {
-        return gradeRepository.findByActivitySubjectRealisationIdAndStudentId(courseId, studentId);
+        return gradeRepository.findByActivityRealisationIdAndStudentId(courseId, studentId);
     }
 
     public List<Grade> getActivityGrades(Long activityId) {

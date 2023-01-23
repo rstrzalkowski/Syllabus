@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UpdateCourseDTO {
+public class UpdateSubjectDTO {
     private String name;
 
     private String description;
+
+    private String abbreviation;
 }

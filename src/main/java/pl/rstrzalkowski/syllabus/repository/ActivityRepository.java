@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    List<Activity> findBySubjectRealisationId(Long courseId);
+    List<Activity> findByRealisationId(Long courseId);
 }

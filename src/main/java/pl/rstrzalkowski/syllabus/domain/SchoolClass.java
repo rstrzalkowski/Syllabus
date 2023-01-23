@@ -19,7 +19,7 @@ import java.util.Set;
 public class SchoolClass extends AbstractEntity {
 
     @ManyToOne
-    private ClassLevel classLevel;
+    private Level level;
 
     @ManyToOne
     private User supervisingTeacher;

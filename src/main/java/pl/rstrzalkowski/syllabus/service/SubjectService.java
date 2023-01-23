@@ -5,8 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.rstrzalkowski.syllabus.domain.Subject;
 import pl.rstrzalkowski.syllabus.dto.create.CreateSubjectDTO;
+import pl.rstrzalkowski.syllabus.dto.update.UpdateSubjectDTO;
+import pl.rstrzalkowski.syllabus.exception.subject.SubjectNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.SubjectRepository;
-import pl.rstrzalkowski.syllabus.repository.UserRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,21 +17,21 @@ import pl.rstrzalkowski.syllabus.repository.UserRepository;
 public class SubjectService {
 
     private final SubjectRepository subjectRepository;
-    private final UserRepository userRepository;
 
-    //    public List<Course> getAllActive() {
-//        return courseRepository.findAllByArchivedIsFalse();
-//    }
-//
-//    public List<Course> getAllArchived() {
-//        return courseRepository.findAllByArchivedIsTrue();
-//    }
-//
-//    public Course getById(Long id) {
-//        return courseRepository.findById(id)
-//                .orElseThrow(CourseNotFoundException::new);
-//    }
-//
+    public List<Subject> getAllActive() {
+        return subjectRepository.findAllByArchivedIsFalse();
+    }
+
+
+    public List<Subject> getAllArchived() {
+        return subjectRepository.findAllByArchivedIsTrue();
+    }
+
+    public Subject getById(Long id) {
+        return subjectRepository.findById(id)
+                .orElseThrow(SubjectNotFoundException::new);
+    }
+
     public Subject create(CreateSubjectDTO dto) {
         Subject subject = new Subject();
         subject.setName(dto.getName());
@@ -36,31 +39,21 @@ public class SubjectService {
 
         return subjectRepository.save(subject);
     }
-//
-//    public Course update(Long id, UpdateCourseDTO dto) {
-//        Course course = getById(id);
-//        course.setName(dto.getName() == null ? course.getName() : dto.getName());
-//        course.setDescription(dto.getDescription() == null ? course.getDescription() : dto.getDescription());
-//        return courseRepository.save(course);
-//    }
-//
-//    public void deleteById(Long id) {
-//        try {
-//            Course course = getById(id);
-//            course.setArchived(true);
-//            courseRepository.save(course);
-//        } catch (CourseNotFoundException ignored) {
-//        }
-//    }
-//
-//    public Set<Student> getStudentsByCourseId(Long courseId) {
-//        Course course = getById(courseId);
-//        return course.getStudents();
-//    }
-//
-//    public Set<Teacher> getTeachersByCourseId(Long courseId) {
-//        Course course = getById(courseId);
-//        return course.getTeachers();
-//    }
+
+    public Subject update(Long id, UpdateSubjectDTO dto) {
+        Subject subject = getById(id);
+        subject.setName(dto.getName() == null ? subject.getName() : dto.getName());
+        subject.setAbbreviation(dto.getAbbreviation() == null ? subject.getAbbreviation() : dto.getAbbreviation());
+        return subjectRepository.save(subject);
+    }
+
+    public void deleteById(Long id) {
+        try {
+            Subject subject = getById(id);
+            subject.setArchived(true);
+            subjectRepository.save(subject);
+        } catch (SubjectNotFoundException ignored) {
+        }
+    }
 
 }

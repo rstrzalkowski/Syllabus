@@ -1,9 +1,9 @@
-package pl.rstrzalkowski.syllabus.exception.course;
+package pl.rstrzalkowski.syllabus.exception.realisation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.rstrzalkowski.syllabus.exception.SyllabusException;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class SubjectRealisationNotFound extends SyllabusException {
+public class RealisationNotFoundException extends SyllabusException {
 }

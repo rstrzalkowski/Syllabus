@@ -16,8 +16,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "SUBJECT_REALISATION")
-public class SubjectRealisation extends AbstractEntity {
+@Table(name = "REALISATION")
+public class Realisation extends AbstractEntity {
     @ManyToOne
     private Subject subject;
 
@@ -29,9 +29,9 @@ public class SubjectRealisation extends AbstractEntity {
 
     private Year year;
 
-    @OneToMany(mappedBy = "subjectRealisation")
+    @OneToMany(mappedBy = "realisation")
     private Set<Post> posts = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "subjectRealisation")
+    @OneToMany(mappedBy = "realisation")
     private Set<Activity> activities = new LinkedHashSet<>();
 }

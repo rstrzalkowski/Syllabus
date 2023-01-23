@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Post;
-import pl.rstrzalkowski.syllabus.domain.SubjectRealisation;
+import pl.rstrzalkowski.syllabus.domain.Realisation;
 import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdatePostDTO;
-import pl.rstrzalkowski.syllabus.exception.course.SubjectRealisationNotFound;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.PostRepository;
-import pl.rstrzalkowski.syllabus.repository.SubjectRealisationRepository;
+import pl.rstrzalkowski.syllabus.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final SubjectRealisationRepository subjectRealisationRepository;
+    private final RealisationRepository realisationRepository;
     private final UserRepository userRepository;
 
     public List<Post> getAll() {
@@ -37,20 +37,20 @@ public class PostService {
     }
 
     public List<Post> getByCourseId(Long courseId) {
-        return postRepository.findBySubjectRealisationId(courseId);
+        return postRepository.findByRealisationId(courseId);
     }
 
     public Post create(Long courseId, CreatePostDTO dto) {
         Post post = new Post();
         post.setContent(dto.getContent());
 
-        SubjectRealisation subjectRealisation = subjectRealisationRepository.findById(courseId)
-                .orElseThrow(SubjectRealisationNotFound::new);
+        Realisation realisation = realisationRepository.findById(courseId)
+                .orElseThrow(RealisationNotFoundException::new);
 
         User teacher = userRepository.findById(dto.getTeacherId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
-        post.setSubjectRealisation(subjectRealisation);
+        post.setRealisation(realisation);
         post.setTeacher(teacher);
         return postRepository.save(post);
     }

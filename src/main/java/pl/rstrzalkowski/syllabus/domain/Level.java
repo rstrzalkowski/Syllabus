@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "CLASS_LEVEL")
-public class ClassLevel extends AbstractEntity {
+@Table(name = "LEVEL")
+public class Level extends AbstractEntity {
     private Integer level;
 }
