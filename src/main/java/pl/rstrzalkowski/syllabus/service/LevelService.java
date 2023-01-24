@@ -8,8 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Level;
 import pl.rstrzalkowski.syllabus.dto.create.CreateLevelDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateLevelDTO;
-import pl.rstrzalkowski.syllabus.exception.LevelAlreadyExistsException;
-import pl.rstrzalkowski.syllabus.exception.LevelNotFoundException;
+import pl.rstrzalkowski.syllabus.exception.level.LevelAlreadyExistsException;
+import pl.rstrzalkowski.syllabus.exception.level.LevelNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.schoolClass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.LevelRepository;
 
