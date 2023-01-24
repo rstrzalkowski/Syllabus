@@ -39,20 +39,30 @@ public class UserController {
         return userService.getAll();
     }
 
-//    @GetMapping("/students")
-//    public List<User> getAllStudents() {
-//        return userService.getAllStudents();
-//    }
-//
-//    @GetMapping("/teachers")
-//    public List<User> getAllTeachers() {
-//        return userService.getAllTeachers();
-//    }
-//
-//    @GetMapping("/admins")
-//    public List<User> getAllAdmins() {
-//        return userService.getAllAdmins();
-//    }
+    @GetMapping("/students")
+    public List<User> getAllStudents() {
+        return userService.getAllStudents();
+    }
+
+    @GetMapping("/teachers")
+    public List<User> getAllTeachers() {
+        return userService.getAllTeachers();
+    }
+
+    @GetMapping("/admins")
+    public List<User> getAllAdmins() {
+        return userService.getAllAdmins();
+    }
+
+    @GetMapping("/offices")
+    public List<User> getAllOffices() {
+        return userService.getAllOffices();
+    }
+
+    @GetMapping("/directors")
+    public List<User> getAllDirectors() {
+        return userService.getAllDirectors();
+    }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable("id") Long id, @Valid @RequestBody UpdateUserDTO dto) {

@@ -29,6 +29,8 @@ public class Realisation extends AbstractEntity {
 
     private Year year;
 
+    private boolean archived;
+
     @OneToMany(mappedBy = "realisation")
     private Set<Post> posts = new LinkedHashSet<>();
 

@@ -36,7 +36,7 @@ public class PostService {
                 .orElseThrow(PostNotFoundException::new);
     }
 
-    public List<Post> getByCourseId(Long courseId) {
+    public List<Post> getByRealisationId(Long courseId) {
         return postRepository.findByRealisationId(courseId);
     }
 

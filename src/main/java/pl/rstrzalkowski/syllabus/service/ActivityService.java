@@ -38,7 +38,7 @@ public class ActivityService {
                 .orElseThrow(ActivityNotFoundException::new);
     }
 
-    public List<Activity> getByCourseId(Long courseId) {
+    public List<Activity> getByRealisationId(Long courseId) {
         return activityRepository.findByRealisationId(courseId);
     }
 

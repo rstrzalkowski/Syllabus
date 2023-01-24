@@ -24,6 +24,8 @@ public class SchoolClass extends AbstractEntity {
     @ManyToOne
     private User supervisingTeacher;
 
+    private boolean archived;
+
     @OneToMany(mappedBy = "schoolClass")
     private Set<User> students = new LinkedHashSet<>();
 }
