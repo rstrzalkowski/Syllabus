@@ -6,12 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.domain.Level;
+import pl.rstrzalkowski.syllabus.dto.create.CreateLevelDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateLevelDTO;
 import pl.rstrzalkowski.syllabus.service.LevelService;
 
@@ -25,6 +27,11 @@ public class LevelController {
 
     private final LevelService levelService;
 
+
+    @PostMapping
+    public Level createLevel(CreateLevelDTO dto) {
+        return levelService.create(dto);
+    }
 
     @GetMapping("/{id}")
     public Level getLevelById(@PathVariable("id") Long id) {

@@ -15,6 +15,8 @@ import pl.rstrzalkowski.syllabus.repository.LevelRepository;
 import pl.rstrzalkowski.syllabus.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -28,6 +30,14 @@ public class SchoolClassService {
     public SchoolClass getById(Long id) {
         return schoolClassRepository.findById(id)
                 .orElseThrow(SchoolClassNotFoundException::new);
+    }
+
+    public List<SchoolClass> getAllActive() {
+        return schoolClassRepository.findAllByArchived(false);
+    }
+
+    public List<SchoolClass> getAllArchived() {
+        return schoolClassRepository.findAllByArchived(true);
     }
 
     public SchoolClass create(CreateSchoolClassDTO dto) {
