@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.subject.domain.model.Subject;
 
 import java.time.Year;
 import java.util.LinkedHashSet;

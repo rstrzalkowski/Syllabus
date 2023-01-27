@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.exception.subject;
+package pl.rstrzalkowski.syllabus.subject.domain.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
