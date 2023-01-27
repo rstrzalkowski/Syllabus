@@ -28,7 +28,7 @@ public class SubjectQueryController {
     }
 
     @GetMapping("/search")
-    public Page<Subject> getSubjectById(@Param("name") String name, Pageable pageable) {
+    public Page<Subject> getSubjectByName(@Param("name") String name, Pageable pageable) {
         return subjectQueryHandler.handle(new SearchSubjectByNameQuery(name, pageable));
     }
 

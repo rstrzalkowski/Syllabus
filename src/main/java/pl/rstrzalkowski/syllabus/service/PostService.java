@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Post;
-import pl.rstrzalkowski.syllabus.domain.Realisation;
 import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreatePostDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdatePostDTO;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
-import pl.rstrzalkowski.syllabus.exception.realisation.RealisationNotFoundException;
+import pl.rstrzalkowski.syllabus.realisation.domain.exception.RealisationNotFoundException;
+import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.realisation.domain.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.PostRepository;
-import pl.rstrzalkowski.syllabus.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.UserRepository;
 
 import java.util.List;

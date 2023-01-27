@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.domain;
+package pl.rstrzalkowski.syllabus.realisation.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -7,6 +7,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
+import pl.rstrzalkowski.syllabus.domain.Activity;
+import pl.rstrzalkowski.syllabus.domain.Post;
+import pl.rstrzalkowski.syllabus.domain.SchoolClass;
+import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.subject.domain.model.Subject;
 
 import java.time.Year;
