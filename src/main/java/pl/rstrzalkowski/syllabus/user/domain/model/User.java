@@ -13,9 +13,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
-import pl.rstrzalkowski.syllabus.domain.Role;
 import pl.rstrzalkowski.syllabus.schoolclass.domain.model.SchoolClass;
+import pl.rstrzalkowski.syllabus.shared.AbstractEntity;
 
 import java.util.List;
 
@@ -26,16 +25,13 @@ import java.util.List;
 @NoArgsConstructor
 public class User extends AbstractEntity {
 
+    boolean archived;
     @Column(unique = true)
     private String email;
-
     @ManyToOne
     private SchoolClass schoolClass;
     @JsonIgnore
     private String password;
-
-    boolean archived;
-
     @ElementCollection
     @JoinTable(name = "APP_USER_ROLE", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role", nullable = false)

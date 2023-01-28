@@ -48,7 +48,7 @@ public class PostCommandService {
 
         post.setContent(command.getContent() == null ? post.getContent() : command.getContent());
         post.setEdited(true);
-        
+
         return postRepository.save(post);
     }
 

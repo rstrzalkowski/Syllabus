@@ -1,42 +1,43 @@
-package pl.rstrzalkowski.syllabus.activity.domain.model;
+package pl.rstrzalkowski.syllabus.grade.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.activity.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.shared.AbstractEntity;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "ACTIVITY")
+@Table(name = "GRADE")
 @NoArgsConstructor
-public class Activity extends AbstractEntity {
+public class Grade extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @Min(1)
+    @Max(5)
+    private Integer value;
+
     @ManyToOne
-    private Realisation realisation;
+    private User student;
 
     @ManyToOne
     private User teacher;
 
-    private String name;
-
-    private Integer weight;
-
-    private String description;
+    @ManyToOne
+    private Activity activity;
 
     private boolean edited;
 

@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.rstrzalkowski.syllabus.domain.Role;
+import pl.rstrzalkowski.syllabus.user.domain.model.Role;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
 @Repository

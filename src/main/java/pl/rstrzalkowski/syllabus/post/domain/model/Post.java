@@ -7,8 +7,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.shared.AbstractEntity;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
 @Entity

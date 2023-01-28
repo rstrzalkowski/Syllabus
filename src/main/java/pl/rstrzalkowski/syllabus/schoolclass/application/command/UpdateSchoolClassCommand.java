@@ -12,7 +12,7 @@ public class UpdateSchoolClassCommand {
 
     @NotNull
     private Long id;
-    
+
     @NotNull
     private Long levelId;
 

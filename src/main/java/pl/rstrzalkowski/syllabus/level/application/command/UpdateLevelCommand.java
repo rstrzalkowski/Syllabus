@@ -12,7 +12,7 @@ public class UpdateLevelCommand {
 
     @NotNull
     private Long id;
-    
+
     @NotNull
     private Integer level;
 }

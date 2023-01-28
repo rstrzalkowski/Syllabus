@@ -11,7 +11,7 @@ import java.time.Year;
 @NoArgsConstructor
 @Getter
 public class CreateRealisationCommand {
-    
+
     @NotNull
     private Year year;
 

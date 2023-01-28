@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pl.rstrzalkowski.syllabus.domain.Role;
 import pl.rstrzalkowski.syllabus.user.domain.exception.UserNotFoundException;
+import pl.rstrzalkowski.syllabus.user.domain.model.Role;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 import pl.rstrzalkowski.syllabus.user.domain.repository.UserRepository;
 

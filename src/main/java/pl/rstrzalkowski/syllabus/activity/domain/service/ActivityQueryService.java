@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.rstrzalkowski.syllabus.activity.domain.exception.ActivityNotFoundException;
 import pl.rstrzalkowski.syllabus.activity.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.activity.domain.repository.ActivityRepository;
-import pl.rstrzalkowski.syllabus.exception.activity.ActivityNotFoundException;
 
 @Service
 @RequiredArgsConstructor

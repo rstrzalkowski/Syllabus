@@ -5,7 +5,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
+import pl.rstrzalkowski.syllabus.shared.AbstractEntity;
 
 @Entity
 @NoArgsConstructor
