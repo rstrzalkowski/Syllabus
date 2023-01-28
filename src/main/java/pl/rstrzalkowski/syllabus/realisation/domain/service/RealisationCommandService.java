@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.SchoolClass;
-import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.realisation.application.command.ArchiveRealisationCommand;
 import pl.rstrzalkowski.syllabus.realisation.application.command.CreateRealisationCommand;
 import pl.rstrzalkowski.syllabus.realisation.application.command.UpdateRealisationCommand;
@@ -15,8 +14,10 @@ import pl.rstrzalkowski.syllabus.realisation.domain.exception.RealisationUpdateE
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.realisation.domain.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.SchoolClassRepository;
-import pl.rstrzalkowski.syllabus.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.subject.domain.model.Subject;
 import pl.rstrzalkowski.syllabus.subject.domain.repository.SubjectRepository;
+import pl.rstrzalkowski.syllabus.user.domain.model.User;
+import pl.rstrzalkowski.syllabus.user.domain.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +34,7 @@ public class RealisationCommandService {
         Realisation realisation = new Realisation();
         realisation.setYear(command.getYear());
 
-        pl.rstrzalkowski.syllabus.subject.domain.model.Subject subject = subjectRepository.findById(command.getSubjectId())
+        Subject subject = subjectRepository.findById(command.getSubjectId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
         SchoolClass schoolClass = schoolClassRepository.findById(command.getClassId())

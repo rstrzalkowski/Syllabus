@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
 @Entity
 @Getter

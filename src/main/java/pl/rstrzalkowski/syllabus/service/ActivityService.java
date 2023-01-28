@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Activity;
-import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateActivityDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateActivityDTO;
 import pl.rstrzalkowski.syllabus.exception.activity.ActivityNotFoundException;
@@ -15,7 +14,8 @@ import pl.rstrzalkowski.syllabus.realisation.domain.exception.RealisationNotFoun
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.realisation.domain.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.repository.ActivityRepository;
-import pl.rstrzalkowski.syllabus.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.user.domain.model.User;
+import pl.rstrzalkowski.syllabus.user.domain.repository.UserRepository;
 
 import java.util.List;
 

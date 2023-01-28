@@ -7,14 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Activity;
 import pl.rstrzalkowski.syllabus.domain.Grade;
-import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateGradeDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateGradeDTO;
 import pl.rstrzalkowski.syllabus.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.exception.post.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.repository.GradeRepository;
-import pl.rstrzalkowski.syllabus.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.user.domain.model.User;
+import pl.rstrzalkowski.syllabus.user.domain.repository.UserRepository;
 
 import java.util.List;
 

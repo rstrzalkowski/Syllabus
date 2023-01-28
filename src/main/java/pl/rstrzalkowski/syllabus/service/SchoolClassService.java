@@ -7,13 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.domain.Level;
 import pl.rstrzalkowski.syllabus.domain.SchoolClass;
-import pl.rstrzalkowski.syllabus.domain.User;
 import pl.rstrzalkowski.syllabus.dto.create.CreateSchoolClassDTO;
 import pl.rstrzalkowski.syllabus.dto.update.UpdateSchoolClassDTO;
 import pl.rstrzalkowski.syllabus.exception.schoolClass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.repository.LevelRepository;
 import pl.rstrzalkowski.syllabus.repository.SchoolClassRepository;
-import pl.rstrzalkowski.syllabus.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.user.domain.model.User;
+import pl.rstrzalkowski.syllabus.user.domain.repository.UserRepository;
 
 import java.util.List;
 

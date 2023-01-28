@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.domain;
+package pl.rstrzalkowski.syllabus.user.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
@@ -13,6 +13,9 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
+import pl.rstrzalkowski.syllabus.domain.Role;
+import pl.rstrzalkowski.syllabus.domain.SchoolClass;
 
 import java.util.List;
 
@@ -30,6 +33,8 @@ public class User extends AbstractEntity {
     private SchoolClass schoolClass;
     @JsonIgnore
     private String password;
+
+    boolean archived;
 
     @ElementCollection
     @JoinTable(name = "APP_USER_ROLE", joinColumns = @JoinColumn(name = "user_id"))
