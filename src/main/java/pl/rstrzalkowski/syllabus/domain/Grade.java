@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.activity.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
 @Entity

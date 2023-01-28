@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.domain;
+package pl.rstrzalkowski.syllabus.activity.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
@@ -36,4 +37,8 @@ public class Activity extends AbstractEntity {
     private Integer weight;
 
     private String description;
+
+    private boolean edited;
+
+    private boolean archived;
 }
