@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.rstrzalkowski.syllabus.domain.Post;
 import pl.rstrzalkowski.syllabus.dto.update.UpdatePostDTO;
+import pl.rstrzalkowski.syllabus.post.domain.model.Post;
 import pl.rstrzalkowski.syllabus.service.PostService;
 
 import java.util.List;

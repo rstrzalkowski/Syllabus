@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.domain;
+package pl.rstrzalkowski.syllabus.post.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
@@ -25,4 +26,8 @@ public class Post extends AbstractEntity {
     private User teacher;
 
     private String content;
+
+    private boolean edited;
+
+    private boolean archived;
 }

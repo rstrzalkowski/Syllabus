@@ -2,7 +2,7 @@ package pl.rstrzalkowski.syllabus.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.rstrzalkowski.syllabus.domain.Post;
+import pl.rstrzalkowski.syllabus.post.domain.model.Post;
 
 import java.util.List;
 
