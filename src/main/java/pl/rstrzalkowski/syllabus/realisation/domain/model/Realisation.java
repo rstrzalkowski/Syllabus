@@ -10,7 +10,7 @@ import lombok.Setter;
 import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.domain.Activity;
 import pl.rstrzalkowski.syllabus.domain.Post;
-import pl.rstrzalkowski.syllabus.domain.SchoolClass;
+import pl.rstrzalkowski.syllabus.schoolclass.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.subject.domain.model.Subject;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 

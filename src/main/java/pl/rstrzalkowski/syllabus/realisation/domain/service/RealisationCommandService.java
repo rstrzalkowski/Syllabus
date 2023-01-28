@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import pl.rstrzalkowski.syllabus.domain.SchoolClass;
 import pl.rstrzalkowski.syllabus.realisation.application.command.ArchiveRealisationCommand;
 import pl.rstrzalkowski.syllabus.realisation.application.command.CreateRealisationCommand;
 import pl.rstrzalkowski.syllabus.realisation.application.command.UpdateRealisationCommand;
@@ -13,7 +12,8 @@ import pl.rstrzalkowski.syllabus.realisation.domain.exception.RealisationNotFoun
 import pl.rstrzalkowski.syllabus.realisation.domain.exception.RealisationUpdateException;
 import pl.rstrzalkowski.syllabus.realisation.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.realisation.domain.repository.RealisationRepository;
-import pl.rstrzalkowski.syllabus.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.schoolclass.domain.model.SchoolClass;
+import pl.rstrzalkowski.syllabus.schoolclass.domain.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.subject.domain.model.Subject;
 import pl.rstrzalkowski.syllabus.subject.domain.repository.SubjectRepository;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;

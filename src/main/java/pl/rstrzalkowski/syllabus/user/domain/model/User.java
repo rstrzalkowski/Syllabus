@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.domain.Role;
-import pl.rstrzalkowski.syllabus.domain.SchoolClass;
+import pl.rstrzalkowski.syllabus.schoolclass.domain.model.SchoolClass;
 
 import java.util.List;
 

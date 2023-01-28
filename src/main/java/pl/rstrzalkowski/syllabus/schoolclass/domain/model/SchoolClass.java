@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.domain;
+package pl.rstrzalkowski.syllabus.schoolclass.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.rstrzalkowski.syllabus.domain.AbstractEntity;
 import pl.rstrzalkowski.syllabus.level.domain.model.Level;
 import pl.rstrzalkowski.syllabus.user.domain.model.User;
 
