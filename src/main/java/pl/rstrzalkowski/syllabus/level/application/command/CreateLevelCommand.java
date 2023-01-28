@@ -1,14 +1,15 @@
-package pl.rstrzalkowski.syllabus.dto.create;
+package pl.rstrzalkowski.syllabus.level.application.command;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class CreateLevelDTO {
+@Getter
+public class CreateLevelCommand {
+
     @NotNull
     private Integer level;
 }

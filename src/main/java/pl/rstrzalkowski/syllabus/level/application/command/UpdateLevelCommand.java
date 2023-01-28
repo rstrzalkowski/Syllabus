@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.dto.update;
+package pl.rstrzalkowski.syllabus.level.application.command;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UpdateLevelDTO {
+public class UpdateLevelCommand {
+
+    @NotNull
+    private Long id;
+    
     @NotNull
     private Integer level;
 }
