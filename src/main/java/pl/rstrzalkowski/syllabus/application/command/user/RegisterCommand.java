@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class RegisterCommand {
 
+    //TODO include registration code
     @NotNull
     private String firstName;
 

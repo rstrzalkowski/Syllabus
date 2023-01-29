@@ -14,10 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.LoginCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.RegisterCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.user.UserAlreadyRegisteredException;
+import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtProvider;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
+
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -51,9 +55,17 @@ public class AuthService {
         user.setUsername(command.getUsername());
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
+        user.setPersonalId(command.getPersonalId());
+
+        //TODO set role and class according to code
+        user.setRoles(Collections.singletonList(Role.STUDENT));
         user.setPassword(passwordEncoder.encode(command.getPassword()));
 
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new UserAlreadyRegisteredException();
+        }
     }
 
 }
