@@ -8,10 +8,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class LoginCommand {
+public class RegisterCommand {
+
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     @NotNull
     private String username;
+
+    @NotNull
+    private String personalId;
 
     @NotNull
     private String password;

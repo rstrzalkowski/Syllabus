@@ -14,6 +14,7 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
 
     private final UserCommandService userCommandService;
 
+
     @Override
     public void handle(CreateUserByAdminCommand command) {
         userCommandService.create(command);
@@ -28,5 +29,4 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
     public void handle(ArchiveUserCommand command) {
         userCommandService.archiveById(command);
     }
-
 }
