@@ -47,7 +47,7 @@ public class AuthService {
         }
 
         User user = (User) authentication.getPrincipal();
-        return new JwtResponse(jwtProvider.generateJwt(user.getUsername(), user.getAuthorities()));
+        return new JwtResponse(jwtProvider.generateJwt(user.getUsername(), user.getRoles()));
     }
 
     public void register(RegisterCommand command) {

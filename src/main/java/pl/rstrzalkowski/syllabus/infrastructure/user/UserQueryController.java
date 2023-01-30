@@ -4,6 +4,7 @@ import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,11 +43,13 @@ public class UserQueryController {
     }
 
     @GetMapping
+    @Secured("OFFICE")
     public Page<User> getAllActiveUsers(Pageable pageable) {
         return userQueryHandler.handle(new GetActiveUsersQuery(pageable));
     }
 
     @GetMapping("/archived")
+    @Secured("STUDENT")
     public Page<User> getAllArchivedUsers(Pageable pageable) {
         return userQueryHandler.handle(new GetArchivedUsersQuery(pageable));
     }

@@ -18,3 +18,8 @@ server:
   servlet:
     context-path: /api
 
+jwt:
+  expiration:
+    time: 900000
+  secret: "ufi4f3u3472h7fh327gfhjeifjouojri32f"
+

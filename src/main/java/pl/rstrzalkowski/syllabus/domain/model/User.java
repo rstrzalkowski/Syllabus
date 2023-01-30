@@ -6,6 +6,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
@@ -51,14 +52,15 @@ public class User extends AbstractEntity implements UserDetails {
     private boolean locked;
 
     boolean archived;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name = "APP_USER_ROLE", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "roles", nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private List<Role> roles = new ArrayList<>();
 
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
                 .map((role -> new SimpleGrantedAuthority(role.name())))
@@ -72,21 +74,25 @@ public class User extends AbstractEntity implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return !archived;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return !locked;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
