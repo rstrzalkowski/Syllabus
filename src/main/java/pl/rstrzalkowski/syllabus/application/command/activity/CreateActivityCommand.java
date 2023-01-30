@@ -23,5 +23,6 @@ public class CreateActivityCommand {
     //TODO get teacher from context instead of dto
     private Long teacherId;
 
+    @NotNull
     private Long realisationId;
 }

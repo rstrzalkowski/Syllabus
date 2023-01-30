@@ -15,4 +15,9 @@ public class CreateSchoolClassCommand {
 
     @NotNull
     private Long teacherId;
+
+    @NotNull
+    private String name;
+
+    private String description;
 }

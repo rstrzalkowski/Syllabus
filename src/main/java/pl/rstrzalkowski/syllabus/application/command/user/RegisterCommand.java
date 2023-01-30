@@ -5,12 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 public class RegisterCommand {
 
-    //TODO include registration code
     @NotNull
     private String firstName;
 
@@ -25,4 +26,9 @@ public class RegisterCommand {
 
     @NotNull
     private String password;
+
+    @NotNull
+    private UUID registrationToken;
+
+    private Boolean isParent;
 }

@@ -15,8 +15,11 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.LoginCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.RegisterCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserAlreadyRegisteredException;
+import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
+import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.domain.repository.TokenRepository;
 import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtProvider;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
@@ -33,6 +36,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
 
     public JwtResponse login(LoginCommand command) {
         Authentication authentication;
@@ -51,18 +55,25 @@ public class AuthService {
     }
 
     public void register(RegisterCommand command) {
+        RegistrationToken token = tokenRepository.findById(command.getRegistrationToken())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
         User user = new User();
         user.setUsername(command.getUsername());
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
         user.setPersonalId(command.getPersonalId());
-
-        //TODO set role and class according to code
-        user.setRoles(Collections.singletonList(Role.STUDENT));
         user.setPassword(passwordEncoder.encode(command.getPassword()));
+        user.setRoles(Collections.singletonList(token.getRole()));
+
+        SchoolClass schoolClass = token.getSchoolClass();
+        if (token.getRole() == Role.STUDENT && schoolClass != null) {
+            user.setSchoolClass(schoolClass);
+        }
 
         try {
             userRepository.save(user);
+            tokenRepository.delete(token);
         } catch (Exception e) {
             throw new UserAlreadyRegisteredException();
         }

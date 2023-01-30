@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,7 +48,11 @@ public class User extends AbstractEntity implements UserDetails {
     private String personalId;
 
     @ManyToOne
+    @JsonIgnore
     private SchoolClass schoolClass;
+
+    @OneToOne
+    private User child;
 
     private boolean locked;
 
