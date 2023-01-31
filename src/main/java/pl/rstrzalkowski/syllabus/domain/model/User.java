@@ -47,7 +47,7 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(unique = true)
     private String personalId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private SchoolClass schoolClass;
 
