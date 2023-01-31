@@ -52,6 +52,17 @@ INSERT INTO public.app_user (created_at, updated_at, version, archived, first_na
 INSERT INTO public.app_user (created_at, updated_at, version, archived, first_name, last_name, locked, password, personal_id, username, child_id, school_class_id) VALUES ('2023-01-30 21:23:11.929000', '2023-01-30 21:23:11.929000', 0, false, 'Julia', 'Honda', false, '$2a$10$jWuYQQyJehk2Rz4iBDhanOBNR6Ty7c94QugkJ0BdxVeylR9u5LkFq', '5325536', 'ninthStudent', null, 3);
 
 
+INSERT INTO public.app_user_role (user_id, role) VALUES (7, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (8, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (9, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (10, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (11, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (12, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (13, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (14, 'STUDENT');
+INSERT INTO public.app_user_role (user_id, role) VALUES (15, 'STUDENT');
+
+
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:08.863000', '2023-01-30 21:34:08.863000', 0, false, 2023, 1, 1, 2);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:21.354000', '2023-01-30 21:34:21.354000', 0, false, 2023, 1, 2, 4);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:25.265000', '2023-01-30 21:34:25.265000', 0, false, 2023, 1, 3, 2);
