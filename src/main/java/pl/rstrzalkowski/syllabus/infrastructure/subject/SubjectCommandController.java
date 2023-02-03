@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.infrastructure.subject;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,20 @@ public class SubjectCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @Secured({"DIRECTOR", "OFFICE"})
     public void createSubject(@Valid @RequestBody CreateSubjectCommand command) {
         subjectCommandHandler.handle(command);
     }
 
     @PutMapping
+    @Secured({"DIRECTOR", "OFFICE"})
     public void updateSubject(@Valid @RequestBody UpdateSubjectCommand command) {
         subjectCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured({"DIRECTOR", "OFFICE"})
     public void archiveById(@PathVariable("id") Long id) {
         subjectCommandHandler.handle(new ArchiveSubjectCommand(id));
     }

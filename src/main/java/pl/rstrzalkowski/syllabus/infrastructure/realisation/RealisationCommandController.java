@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.infrastructure.realisation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,20 @@ public class RealisationCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createSubject(@Valid @RequestBody CreateRealisationCommand command) {
+    @Secured({"DIRECTOR", "OFFICE"})
+    public void createRealisation(@Valid @RequestBody CreateRealisationCommand command) {
         realisationCommandHandler.handle(command);
     }
 
     @PutMapping
-    public void updateSubject(@Valid @RequestBody UpdateRealisationCommand command) {
+    @Secured({"DIRECTOR", "OFFICE"})
+    public void updateRealisation(@Valid @RequestBody UpdateRealisationCommand command) {
         realisationCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured({"DIRECTOR", "OFFICE"})
     public void archiveById(@PathVariable("id") Long id) {
         realisationCommandHandler.handle(new ArchiveRealisationCommand(id));
     }
