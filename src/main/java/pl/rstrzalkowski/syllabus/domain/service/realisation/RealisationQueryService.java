@@ -1,6 +1,7 @@
 package pl.rstrzalkowski.syllabus.domain.service.realisation;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,7 @@ import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoun
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.domain.repository.RealisationRepository;
@@ -58,5 +60,15 @@ public class RealisationQueryService {
             return new AverageGradeDTO(0.0);
         }
         return new AverageGradeDTO(sum / weights);
+    }
+
+    public Page<Realisation> getOwnActiveRealisations(Pageable pageable) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user.getRoles().contains(Role.TEACHER)) {
+            return realisationRepository.findAllByArchivedAndTeacherId(false, user.getId(), pageable);
+        } else {
+            //TODO query for student
+            throw new NotYetImplementedException();
+        }
     }
 }

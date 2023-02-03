@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
+import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationAverageGradeQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.dto.AverageGradeDTO;
@@ -42,5 +43,11 @@ public class RealisationQueryController {
     @Secured("STUDENT")
     public AverageGradeDTO getRealisationAverageGrade(@PathVariable("id") Long id) {
         return realisationQueryHandler.handle(new GetRealisationAverageGradeQuery(id));
+    }
+
+    @GetMapping("/own")
+    @Secured({"STUDENT", "TEACHER"})
+    public Page<Realisation> getOwnRealisations(Pageable pageable) {
+        return realisationQueryHandler.handle(new GetOwnRealisationsQuery(pageable));
     }
 }

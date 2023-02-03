@@ -9,4 +9,6 @@ import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 @Repository
 public interface RealisationRepository extends JpaRepository<Realisation, Long> {
     Page<Realisation> findAllByArchived(boolean archived, Pageable pageable);
+
+    Page<Realisation> findAllByArchivedAndTeacherId(boolean archived, Long teacherId, Pageable pageable);
 }

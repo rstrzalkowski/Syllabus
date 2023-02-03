@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
+import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationAverageGradeQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.dto.AverageGradeDTO;
@@ -36,5 +37,10 @@ public class RealisationQueryHandlerImpl implements RealisationQueryHandler {
     @Override
     public AverageGradeDTO handle(GetRealisationAverageGradeQuery query) {
         return realisationQueryService.getRealisationAverageGrade(query.id());
+    }
+
+    @Override
+    public Page<Realisation> handle(GetOwnRealisationsQuery query) {
+        return realisationQueryService.getOwnActiveRealisations(query.pageable());
     }
 }

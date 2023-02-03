@@ -24,16 +24,19 @@ public class SubjectQueryController {
     private final SubjectQueryHandler subjectQueryHandler;
 
     @GetMapping("/{id}")
+    @Secured({"DIRECTOR", "OFFICE"})
     public Subject getSubjectById(@PathVariable("id") Long id) {
         return subjectQueryHandler.handle(new GetSubjectByIdQuery(id));
     }
 
     @GetMapping("/search")
+    @Secured({"DIRECTOR", "OFFICE"})
     public Page<Subject> getSubjectByName(@Param("name") String name, Pageable pageable) {
         return subjectQueryHandler.handle(new SearchSubjectByNameQuery(name, pageable));
     }
 
     @GetMapping
+    @Secured({"DIRECTOR", "OFFICE"})
     public Page<Subject> getActiveSubjects(Pageable pageable) {
         return subjectQueryHandler.handle(new GetActiveSubjectsQuery(pageable));
     }
