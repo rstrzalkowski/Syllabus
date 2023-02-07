@@ -9,7 +9,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './components/home/home.component';
-import {SidebarComponent} from './components/sidebar/sidebar.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import {SidebarComponent} from './components/sidebar/sidebar.component';
     ThemeSwitchComponent,
     RegisterComponent,
     HomeComponent,
-    SidebarComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
