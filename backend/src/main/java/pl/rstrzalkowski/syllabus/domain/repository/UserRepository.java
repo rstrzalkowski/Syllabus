@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Page<User> findByRolesContainsAndArchived(Role role, boolean archived, Pageable pageable);
+    Page<User> findByRoleAndArchived(Role role, boolean archived, Pageable pageable);
 
     Page<User> findByArchived(boolean archived, Pageable pageable);
 

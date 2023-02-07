@@ -1,17 +1,13 @@
 <div
   class="
-      antialiased
-      bg-gradient-to-r
-      from-pink-300
-      via-purple-300
-      to-indigo-400
+
       sticky
       top-0
     "
 >
-<header>
-  <nav
-    class="
+  <header>
+    <nav
+      class="
           flex flex-wrap
           items-center
           justify-between
@@ -22,45 +18,55 @@
           text-lg text-gray-700
           bg-white
         "
-  >
-    <div>
-      Syllabus
-    </div>
-
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      id="menu-button"
-      class="h-6 w-6 cursor-pointer md:hidden block"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
-    </svg>
+      <div>
+        Syllabus
+      </div>
 
-    <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
-      <ul
-        class="
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="menu-button"
+        class="h-6 w-6 cursor-pointer md:hidden block"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+
+      <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+        <ul
+          class="
               pt-4
               text-base text-gray-700
               md:flex
               md:justify-between
               md:pt-0"
-      >
-        <li>
-          <a
-            class="md:p-4 py-2 block hover:text-purple-400 text-purple-500"
-            href="#"
-          >Sign Up</a
-          >
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+        >
+          <li>
+            <div class="flex items-center justify-center w-full m-3">
+              <label for="toggle" class="flex items-center cursor-pointer">
+                <!-- toggle -->
+                <div class="relative">
+                  <!-- input -->
+                  <input type="checkbox" id="toggle" class="sr-only" (click)="switchTheme()"
+                         [checked]="!themeService.lightTheme">
+                  <!-- line -->
+                  <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                  <!-- dot -->
+                  <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                </div>
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 </div>
+

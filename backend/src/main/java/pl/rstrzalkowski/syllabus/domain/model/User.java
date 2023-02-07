@@ -2,13 +2,10 @@ package pl.rstrzalkowski.syllabus.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -20,10 +17,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
 
 @Entity
 @Getter
@@ -57,19 +52,15 @@ public class User extends AbstractEntity implements UserDetails {
     private boolean locked;
 
     boolean archived;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @JoinTable(name = "APP_USER_ROLE", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role", nullable = false)
+
     @Enumerated(EnumType.STRING)
-    private List<Role> roles = new ArrayList<>();
+    private Role role;
 
 
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream()
-                .map((role -> new SimpleGrantedAuthority(role.name())))
-                .collect(Collectors.toList());
+        return Collections.singleton(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

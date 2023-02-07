@@ -24,8 +24,6 @@ import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtProvider;
 import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
 
-import java.util.Collections;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -51,7 +49,7 @@ public class AuthService {
         }
 
         User user = (User) authentication.getPrincipal();
-        return new JwtResponse(jwtProvider.generateJwt(user.getUsername(), user.getRoles()));
+        return new JwtResponse(jwtProvider.generateJwt(user.getUsername(), user.getRole()));
     }
 
     public void register(RegisterCommand command) {
@@ -64,7 +62,7 @@ public class AuthService {
         user.setLastName(command.getLastName());
         user.setPersonalId(command.getPersonalId());
         user.setPassword(passwordEncoder.encode(command.getPassword()));
-        user.setRoles(Collections.singletonList(token.getRole()));
+        user.setRole(token.getRole());
 
         SchoolClass schoolClass = token.getSchoolClass();
         if (token.getRole() == Role.STUDENT && schoolClass != null) {

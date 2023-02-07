@@ -34,34 +34,34 @@ public class UserQueryService {
     }
 
     public Page<User> getAllActiveStudents(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.STUDENT, false, pageable);
+        return userRepository.findByRoleAndArchived(Role.STUDENT, false, pageable);
     }
 
     public Page<User> getAllActiveTeachers(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.TEACHER, false, pageable);
+        return userRepository.findByRoleAndArchived(Role.TEACHER, false, pageable);
     }
 
     public Page<User> getAllActiveOffices(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.OFFICE, false, pageable);
+        return userRepository.findByRoleAndArchived(Role.OFFICE, false, pageable);
     }
 
     public Page<User> getAllActiveDirectors(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.DIRECTOR, false, pageable);
+        return userRepository.findByRoleAndArchived(Role.DIRECTOR, false, pageable);
     }
 
     public Page<User> getAllArchiveStudents(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.STUDENT, true, pageable);
+        return userRepository.findByRoleAndArchived(Role.STUDENT, true, pageable);
     }
 
     public Page<User> getAllArchiveTeachers(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.TEACHER, true, pageable);
+        return userRepository.findByRoleAndArchived(Role.TEACHER, true, pageable);
     }
 
     public Page<User> getAllArchiveOffices(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.OFFICE, true, pageable);
+        return userRepository.findByRoleAndArchived(Role.OFFICE, true, pageable);
     }
 
     public Page<User> getAllArchiveDirectors(Pageable pageable) {
-        return userRepository.findByRolesContainsAndArchived(Role.DIRECTOR, true, pageable);
+        return userRepository.findByRoleAndArchived(Role.DIRECTOR, true, pageable);
     }
 }

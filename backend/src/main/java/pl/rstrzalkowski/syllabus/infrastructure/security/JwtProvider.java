@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 
 import java.util.Date;
-import java.util.List;
 
 @Component
 public class JwtProvider {
@@ -21,10 +20,10 @@ public class JwtProvider {
     @Value("${jwt.expiration.time}")
     private Long jwtExpirationInMillis;
 
-    public String generateJwt(String username, List<Role> roles) {
+    public String generateJwt(String username, Role role) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("roles", roles)
+                .claim("role", role)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMillis))
                 .signWith(SignatureAlgorithm.HS512, secret)

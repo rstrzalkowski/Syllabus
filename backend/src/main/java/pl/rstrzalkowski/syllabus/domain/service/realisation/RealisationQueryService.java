@@ -64,7 +64,7 @@ public class RealisationQueryService {
 
     public Page<Realisation> getOwnActiveRealisations(Pageable pageable) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user.getRoles().contains(Role.TEACHER)) {
+        if (user.getRole() == Role.TEACHER) {
             return realisationRepository.findAllByArchivedAndTeacherId(false, user.getId(), pageable);
         } else {
             //TODO query for student

@@ -3,15 +3,102 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply
+    rounded-lg
+    border-gray-300
+    focus:border-teal-600
+    focus:ring-teal-600
+    shadow-sm
+  }
+
+  :root {
+    --color-text-base: #0c0c0c;
+    --color-text-inverted: #eaeaea;
+    --color-text-muted: #313131;
+
+    --color-background-base: #ffffff;
+    --color-background-muted: #ffffff;
+    --logo-url: url(assets/logo.svg)
+  }
+
+  .theme-dark {
+    --color-text-base: #FFFFFF;
+    --color-text-inverted: #151515;
+    --color-text-muted: #dcdcdc;
+
+    --color-background-base: #151515;
+    --color-background-muted: #212121;
+    --logo-url: url(assets/logo-white-border.svg)
+  }
+
+  .theme-light {
+    --color-text-base: #0c0c0c;
+    --color-text-inverted: #eaeaea;
+    --color-text-muted: #313131;
+
+    --color-background-base: #ffffff;
+    --color-background-muted: #ffffff;
+    background: url("assets/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .btn-submit {
+    @apply
+    flex
+    justify-center
+    py-2.5
+    px-4
+    rounded-md
+    text-sm
+    font-medium
+    text-white
+    bg-teal-600
+    hover:bg-teal-700
+    focus:outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-teal-500
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
 }
 
-#login-page {
-  background: url("assets/background.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+input[type="checkbox"]:checked ~ .dot {
+  transform: translateX(100%);
+  background-image: url("assets/moon.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="checkbox"] ~ .dot {
+  background-image: url("assets/sun.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
