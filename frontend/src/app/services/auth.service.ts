@@ -12,10 +12,24 @@ export class AuthService {
   authenticated = new BehaviorSubject<boolean>(false)
 
   constructor(private http: HttpClient) {
+    let jwt = this.getJwtFromStorage()
+    if (jwt == undefined) {
+      return
+    }
+    let decodedJWT = this.decodeJWT(jwt)
+    if (decodedJWT == null) {
+      return
+    }
+    this.authenticated.next(true)
   }
 
-  public login(username: string, password: string) {
+  login(username: string, password: string) {
     return this.http.post(`${environment.apiUrl}/authorize`, {username, password}, {observe: "response"})
+  }
+
+  logout() {
+    this.clearJwt()
+    this.authenticated.next(false)
   }
 
   setLoggedInUser(result: any) {
@@ -24,19 +38,23 @@ export class AuthService {
   }
 
   getJwtFromStorage() {
-    return localStorage.getItem("jwt");
+    return localStorage.getItem("jwt")
+  }
+
+  clearJwt() {
+    localStorage.removeItem("jwt")
   }
 
   getRole() {
-    let decoded = this.decodeJWT(this.getJwtFromStorage() || "");
-    return decoded.role;
+    let decoded = this.decodeJWT(this.getJwtFromStorage() || "")
+    return decoded.role
   }
 
   decodeJWT(token: string): any {
     try {
-      return jwt_decode(token);
+      return jwt_decode(token)
     } catch (Error) {
-      return null;
+      return null
     }
   }
 }

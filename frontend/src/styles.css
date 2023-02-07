@@ -39,23 +39,41 @@
   }
 
   .theme-dark {
-    --color-text-base: #FFFFFF;
+    --color-text-base: #d7d7d7;
     --color-text-inverted: #151515;
     --color-text-muted: #dcdcdc;
+    --color-text-hovered: #070707;
 
     --color-background-base: #151515;
-    --color-background-muted: #212121;
-    --logo-url: url(assets/logo-white-border.svg)
+    --color-background-muted: #2c2c2c;
+    --color-background-inverted: #dcdcdc;
+    --color-background-filled: #2c2c2c;
+    --color-background-sidebar: #1a1a1a;
   }
 
   .theme-light {
     --color-text-base: #0c0c0c;
     --color-text-inverted: #eaeaea;
     --color-text-muted: #313131;
+    --color-text-hovered: #000000;
 
     --color-background-base: #ffffff;
-    --color-background-muted: #ffffff;
+    --color-background-muted: #f4f4f4;
+    --color-background-inverted: #0c0c0c;
+    --color-background-filled: #ffffff;
+    --color-background-sidebar: #c7e3dbff;
+  }
+
+  .bg-image-light {
     background: url("assets/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .bg-image-dark {
+    background: url("src/assets/background-dark.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-skin-base flex flex-col justify-center py-12 px-6 lg:px-8"
-     [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
+     [ngClass]="themeService.lightTheme ? 'theme-light bg-image-light' : 'theme-dark bg-image-dark'">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <img class="mx-auto h-16 w-auto" src="../../../assets/logo.svg"
          alt="Workflow"/>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-skin-muted py-8 px-6 shadow-2xl rounded-lg sm:px-10">
+    <div class="bg-skin-fill py-8 px-6 shadow-2xl rounded-lg sm:px-10">
       <form class="mb-0 space-y-6" action="#" method="POST">
         <div>
           <label for="email" class="block text-sm font-medium text-skin-base">Email address</label>

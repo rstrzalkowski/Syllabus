@@ -9,6 +9,9 @@ module.exports = {
         skin: {
           base: 'var(--color-background-base)',
           muted: 'var(--color-background-muted)',
+          inverted: 'var(--color-background-inverted)',
+          fill: 'var(--color-background-filled)',
+          sidebar: 'var(--color-background-sidebar)'
         }
       },
       textColor: {
@@ -16,6 +19,7 @@ module.exports = {
           base: 'var(--color-text-base)',
           muted: 'var(--color-text-muted)',
           inverted: 'var(--color-text-inverted)',
+          hover: 'var(--color-text-hovered)'
         }
       }
     },

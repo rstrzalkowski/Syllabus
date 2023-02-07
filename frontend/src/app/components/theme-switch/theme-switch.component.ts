@@ -3,10 +3,9 @@ import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './theme-switch.component.html',
 })
-export class NavbarComponent implements OnInit {
+export class ThemeSwitchComponent implements OnInit {
 
   constructor(public themeService: ThemeService) {
   }

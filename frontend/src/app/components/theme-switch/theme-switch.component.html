@@ -1,0 +1,15 @@
+<div class="m-6 bottom-0 right-0 fixed"
+     [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
+  <label for="toggle" class="flex items-center cursor-pointer bg-transparent">
+    <!-- toggle -->
+    <div class="relative rounded-full">
+      <!-- input -->
+      <input type="checkbox" id="toggle" class="sr-only" (click)="switchTheme()"
+             [checked]="!themeService.lightTheme">
+      <!-- line -->
+      <div class="block bg-skin-inverted w-14 h-8 rounded-full transition"></div>
+      <!-- dot -->
+      <div class="dot absolute left-1 top-1 bg-skin-base w-6 h-6 rounded-full transition"></div>
+    </div>
+  </label>
+</div>
