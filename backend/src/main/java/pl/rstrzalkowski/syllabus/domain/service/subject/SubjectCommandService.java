@@ -9,7 +9,7 @@ import pl.rstrzalkowski.syllabus.application.command.subject.UpdateSubjectComman
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectUpdateException;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
-import pl.rstrzalkowski.syllabus.domain.repository.SubjectRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
 
 @Service
 @RequiredArgsConstructor

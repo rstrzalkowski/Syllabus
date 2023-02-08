@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
-import pl.rstrzalkowski.syllabus.domain.repository.SubjectRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
 
 @Service
 @RequiredArgsConstructor

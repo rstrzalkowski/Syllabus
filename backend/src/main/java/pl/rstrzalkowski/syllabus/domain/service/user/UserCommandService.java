@@ -10,9 +10,9 @@ import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
-import pl.rstrzalkowski.syllabus.domain.repository.SchoolClassRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.TokenRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
