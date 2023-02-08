@@ -14,4 +14,8 @@ export class UserService {
   getLoggedInUser() {
     return this.http.get<User>(`${environment.apiUrl}/users/me`)
   }
+
+  updateAbout(newAbout: string) {
+    return this.http.put(`${environment.apiUrl}/users/me`, {description: newAbout}, {observe: "response"})
+  }
 }

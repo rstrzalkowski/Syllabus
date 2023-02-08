@@ -2,8 +2,9 @@ package pl.rstrzalkowski.syllabus.domain.adapter.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.rstrzalkowski.syllabus.application.command.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserCommandHandler;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
@@ -31,5 +32,10 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
     @Override
     public List<RegistrationToken> handle(GenerateRegistrationTokensCommand command) {
         return userCommandService.generateRegistrationTokens(command);
+    }
+
+    @Override
+    public void handle(UpdateDescriptionCommand command) {
+        userCommandService.updateDescription(command);
     }
 }

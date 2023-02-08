@@ -2,14 +2,17 @@ package pl.rstrzalkowski.syllabus.domain.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import pl.rstrzalkowski.syllabus.application.command.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
+import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
@@ -29,6 +32,7 @@ public class UserCommandService {
 
 
     public void update(UpdateUserCommand command) {
+
     }
 
     public List<RegistrationToken> generateRegistrationTokens(GenerateRegistrationTokensCommand command) {
@@ -50,5 +54,11 @@ public class UserCommandService {
     }
 
     public void archiveById(ArchiveUserCommand command) {
+    }
+
+    public void updateDescription(UpdateDescriptionCommand command) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setDescription(command.getDescription());
+        userRepository.save(user);
     }
 }

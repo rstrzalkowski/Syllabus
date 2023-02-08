@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.application.command;
+package pl.rstrzalkowski.syllabus.application.command.user;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

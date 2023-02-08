@@ -55,96 +55,6 @@
             <span class="flex font-medium text-sm text-skin-base px-4 my-4 uppercase">Your subjects</span>
           </li>
           <li class="my-px">
-            <a
-              href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
-            >
-              <span class="flex items-center justify-center text-lg">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                  />
-                </svg>
-              </span>
-              <span class="ml-3">Manager</span>
-            </a>
-          </li>
-          <li class="my-px">
-            <a
-              href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
-            >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  />
-                </svg>
-              </span>
-              <span class="ml-3">Tasks</span>
-            </a>
-          </li>
-          <li class="my-px">
-            <a
-              href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
-            >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </span>
-              <span class="ml-3">Clients</span>
-            </a>
-          </li>
-          <li class="my-px">
-            <a
-              href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
-            >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </span>
-              <span class="ml-3">Add new</span>
-            </a>
-          </li>
-          <li class="my-px">
             <span class="flex font-medium text-sm text-skin-base px-4 my-4 uppercase">Account</span>
           </li>
           <li class="my-px">
@@ -170,31 +80,7 @@
           </li>
           <li class="my-px">
             <a
-              href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
-            >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-              </span>
-              <span class="ml-3">Notifications</span>
-
-            </a>
-          </li>
-          <li class="my-px">
-            <a
-              href="#"
+              routerLink="/settings"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
             >
               <span class="flex items-center justify-center text-lg text-skin-base">
@@ -218,7 +104,7 @@
           </li>
           <li class="my-px">
             <a
-              (click)="logout()"
+              (click)="logoutModal = true"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted cursor-pointer"
             >
               <span class="flex items-center justify-center text-lg text-red-400">
@@ -259,6 +145,48 @@
             </div>
           </div>
         </form>
+        <form>
+          <div class="hidden md:flex relative" [ngClass]="hidden? 'ml-5': ''">
+            <div
+              class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+
+            <input
+              id="search"
+              type="text"
+              name="search"
+              class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-300 w-full h-10 focus:outline-none"
+              placeholder="Search..."
+            />
+          </div>
+          <div class="flex md:hidden">
+            <a href="#" class="flex items-center justify-center h-10 w-10 border-transparent">
+              <svg
+                class="h-6 w-6 text-gray-500"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </a>
+          </div>
+        </form>
         <div class="flex ml-auto">
           <a href class="flex flex-row items-center">
             <img
@@ -280,3 +208,44 @@
     </div>
   </main>
 </div>
+
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="logoutModal">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-30 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-gray-100 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div
+              class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
+              <!-- Heroicon name: outline/exclamation-triangle -->
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Log out</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Are you sure you want to log out?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-gray-100">
+          <button type="button" (click)="logout()"
+                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+            Log out
+          </button>
+          <button type="button" (click)="logoutModal = false"
+                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

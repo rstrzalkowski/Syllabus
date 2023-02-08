@@ -1,5 +1,5 @@
-<section class="">
-  <div class="bg-skin-base p-5 m-3 rounded-md shadow">
+<section>
+  <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
     <div class="flex items-center">
       <img
         src="assets/avatar.png"
@@ -8,11 +8,11 @@
       />
       <span class="ml-5 text-4xl text-skin-base">{{user?.firstName}} {{user?.lastName}}</span>
     </div>
-    <p class="mt-5">Dashboard > Profile</p>
+    <p class="mt-5"><span routerLink="/" class="cursor-pointer font-bold">Dashboard</span> > Profile</p>
   </div>
 
-  <div class="bg-skin-base p-5 m-3 rounded-md shadow md:flex">
-    <div class="md:w-1/2 md:mr-5">
+  <div class="bg-skin-base p-5 m-3 rounded-md shadow md:flex border-r-4 border-l-4 border-teal-600">
+    <div class="md:w-1/2 md:border-r-2 border-teal-600 md:pr-5">
       <div class="flex justify-center">
         <img
           src="assets/avatar.png"
@@ -32,10 +32,22 @@
     </div>
     <div class="md:w-1/2 md:ml-5">
       <div class="bg-skin-base">
-        <p class="text-2xl mt-3 text-center mt-10 sm:mt-0">About</p>
-        <textarea disabled class="text-skin-base bg-skin-muted w-full mt-5 h-52">{{user?.description}}</textarea>
+        <p class="text-2xl mt-3 text-center mt-10 md:mt-0">About</p>
+        <div *ngIf="!aboutChange"
+             class="text-skin-base bg-skin-muted w-full mt-5 h-52 p-2.5 rounded-lg">{{user?.description}}</div>
+        <textarea *ngIf="aboutChange" [(ngModel)]="newAbout"
+                  class="text-skin-base bg-skin-muted w-full mt-5 h-52">{{user?.description}}</textarea>
       </div>
-      <button class="btn-submit mt-3">Edit about</button>
+      <button *ngIf="!aboutChange" (click)="aboutChange = true" class="btn-submit mt-3">Edit about</button>
+      <div class="flex space-x-3">
+        <button *ngIf="aboutChange" (click)="saveAbout()" class="btn-submit mt-3">Save</button>
+        <button *ngIf="aboutChange" (click)="cancelChangingAbout()"
+                class="mt-3 flex justify-center py-2.5 px-4 rounded-md text-sm font-medium text-teal-600 bg-skin-base
+                hover:bg-teal-600 hover:text-white outline-none border-teal-600 border-2 transition-colors duration-200">
+          Cancel
+        </button>
+      </div>
+
     </div>
   </div>
   <p class="text-xl mt-5 text-center">Joined: {{user?.createdAt | date:'medium'}}</p>

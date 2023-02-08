@@ -10,14 +10,30 @@ export class ProfileComponent implements OnInit {
 
   user: User | undefined
 
+  aboutChange = false
+  newAbout = ""
+
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.userService.getLoggedInUser().subscribe((result) => {
       this.user = result
-      console.log(this.user)
+      this.newAbout = this.user.description
     })
   }
 
+  saveAbout() {
+    this.userService.updateAbout(this.newAbout).subscribe((result) => {
+      this.aboutChange = false
+      this.ngOnInit()
+    }, error => {
+      alert("Nie udalo sie zmienic opisu")
+    })
+  }
+
+  cancelChangingAbout() {
+    this.newAbout = this.user?.description
+    this.aboutChange = false
+  }
 }

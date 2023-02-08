@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   hidden = true;
   defaultTouch = {x: 0, y: 0, time: 0};
   user: User | undefined
+  logoutModal = false;
 
   constructor(public themeService: ThemeService,
               private authService: AuthService,

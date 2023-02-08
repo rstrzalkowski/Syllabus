@@ -1,0 +1,24 @@
+<section>
+  <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
+    <div class="flex items-center">
+      <img
+        src="assets/avatar.png"
+        alt
+        class="h-20 w-20 bg-gray-200 border rounded-full border-none"
+      />
+      <span class="ml-5 text-4xl text-skin-base">{{user?.firstName}} {{user?.lastName}}</span>
+    </div>
+    <p class="mt-5"><span routerLink="/" class="cursor-pointer font-bold">Dashboard</span> > Settings</p>
+  </div>
+  <div class="bg-green-50 rounded-lg py-5 px-6 mb-4 text-base text-green-700 m-3" role="alert">
+    A simple success alert - check it out!
+  </div>
+  <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
+    <p class="text-3xl mb-5">Change password</p>
+    Old password
+    <input type="password" class="block py-1 mb-5 mt-1 bg-skin-muted">
+    New password
+    <input type="password" class="block py-1 mt-1 bg-skin-muted">
+    <button class="btn-submit mt-5">Change password</button>
+  </div>
+</section>

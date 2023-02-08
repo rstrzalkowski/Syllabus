@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -21,7 +22,8 @@ import {JwtInterceptor} from "./interceptors/jwt.interceptor";
     RegisterComponent,
     HomeComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
