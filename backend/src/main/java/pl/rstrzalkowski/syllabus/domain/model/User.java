@@ -30,7 +30,7 @@ public class User extends AbstractEntity implements UserDetails {
 
 
     @Column(unique = true)
-    private String username;
+    private String email;
 
     @JsonIgnore
     private String password;
@@ -57,7 +57,13 @@ public class User extends AbstractEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
+    
+    public String getSchoolClassName() {
+        if (schoolClass != null) {
+            return schoolClass.getLevel().getValue() + " " + schoolClass.getName();
+        }
+        return "";
+    }
 
     @Override
     @JsonIgnore
@@ -65,10 +71,9 @@ public class User extends AbstractEntity implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(role.name()));
     }
 
-    @Override
     @JsonIgnore
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

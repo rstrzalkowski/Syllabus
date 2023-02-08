@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.activity.ActivityNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
-import pl.rstrzalkowski.syllabus.domain.repository.ActivityRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
 
 @Service
 @RequiredArgsConstructor

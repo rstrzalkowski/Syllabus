@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
-import pl.rstrzalkowski.syllabus.domain.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 
 @Service
 @RequiredArgsConstructor

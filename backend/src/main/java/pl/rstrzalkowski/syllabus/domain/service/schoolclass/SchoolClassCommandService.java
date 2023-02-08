@@ -12,9 +12,9 @@ import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoun
 import pl.rstrzalkowski.syllabus.domain.model.Level;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.LevelRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.SchoolClassRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

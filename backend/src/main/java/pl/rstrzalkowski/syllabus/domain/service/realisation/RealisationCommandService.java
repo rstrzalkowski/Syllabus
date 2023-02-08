@@ -14,10 +14,10 @@ import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.RealisationRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.SchoolClassRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.SubjectRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

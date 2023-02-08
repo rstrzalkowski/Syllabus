@@ -12,9 +12,9 @@ import pl.rstrzalkowski.syllabus.domain.exception.post.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Post;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.PostRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.RealisationRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.PostRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

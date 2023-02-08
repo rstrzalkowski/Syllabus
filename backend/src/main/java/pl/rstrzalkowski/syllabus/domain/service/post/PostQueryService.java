@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.post.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Post;
-import pl.rstrzalkowski.syllabus.domain.repository.PostRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.PostRepository;
 
 @Service
 @RequiredArgsConstructor

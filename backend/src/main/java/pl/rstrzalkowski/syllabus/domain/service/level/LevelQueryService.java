@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
-import pl.rstrzalkowski.syllabus.domain.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class LevelQueryService {
     }
 
     public Level getByValue(int level) {
-        return levelRepository.findByLevel(level)
+        return levelRepository.findByValue(level)
                 .orElseThrow(LevelNotFoundException::new);
     }
 }

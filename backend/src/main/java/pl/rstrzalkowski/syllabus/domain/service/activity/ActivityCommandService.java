@@ -13,9 +13,9 @@ import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoun
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.ActivityRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.RealisationRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

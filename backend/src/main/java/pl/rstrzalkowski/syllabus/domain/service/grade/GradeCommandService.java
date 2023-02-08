@@ -12,9 +12,9 @@ import pl.rstrzalkowski.syllabus.domain.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.ActivityRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.GradeRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

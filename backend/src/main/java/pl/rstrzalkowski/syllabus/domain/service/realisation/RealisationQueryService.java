@@ -6,15 +6,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import pl.rstrzalkowski.syllabus.domain.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.GradeRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.RealisationRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 
 import java.util.List;
 import java.util.Objects;

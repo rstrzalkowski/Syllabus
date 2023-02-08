@@ -2,6 +2,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {ThemeService} from "../../services/theme.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../model/user";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -11,9 +13,11 @@ export class HomeComponent implements OnInit {
 
   hidden = true;
   defaultTouch = {x: 0, y: 0, time: 0};
+  user: User | undefined
 
   constructor(public themeService: ThemeService,
               private authService: AuthService,
+              private userService: UserService,
               private router: Router) {
   }
 
@@ -21,6 +25,9 @@ export class HomeComponent implements OnInit {
     if (window.innerWidth > 1024) {
       this.hidden = false;
     }
+    this.userService.getLoggedInUser().subscribe((result) => {
+      this.user = result;
+    })
   }
 
   @HostListener('touchstart', ['$event'])

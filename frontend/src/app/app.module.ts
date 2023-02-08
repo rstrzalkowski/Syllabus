@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
 import {ThemeSwitchComponent} from './components/theme-switch/theme-switch.component';
 import {RegisterComponent} from './components/register/register.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -27,8 +29,12 @@ import {ProfileComponent} from './components/profile/profile.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }]
 })
 export class AppModule {
 }

@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.infrastructure.security;
+package pl.rstrzalkowski.syllabus.application.controller.security;
 
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;

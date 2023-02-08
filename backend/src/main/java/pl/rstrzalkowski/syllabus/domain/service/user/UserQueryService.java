@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +35,7 @@ public class UserQueryService {
     }
 
     public Page<User> getByEmailContaining(String email, Pageable pageable) {
-        return userRepository.findByUsername(email, pageable);
+        return userRepository.findByEmail(email, pageable);
     }
 
     public Page<User> getAllActiveStudents(Pageable pageable) {

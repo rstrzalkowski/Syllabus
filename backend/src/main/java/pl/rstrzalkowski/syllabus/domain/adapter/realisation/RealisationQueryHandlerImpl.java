@@ -3,13 +3,13 @@ package pl.rstrzalkowski.syllabus.domain.adapter.realisation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationAverageGradeQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationByIdQuery;
-import pl.rstrzalkowski.syllabus.domain.dto.AverageGradeDTO;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.service.realisation.RealisationQueryService;
 

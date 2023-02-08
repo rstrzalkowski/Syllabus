@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "LEVEL")
 public class Level extends AbstractEntity {
-    private Integer level;
+    private Integer value;
 
     private boolean archived;
 }

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
-import pl.rstrzalkowski.syllabus.domain.repository.GradeRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 
 @Service
 @RequiredArgsConstructor

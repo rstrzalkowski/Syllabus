@@ -14,15 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.LoginCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.RegisterCommand;
+import pl.rstrzalkowski.syllabus.application.controller.security.JwtProvider;
+import pl.rstrzalkowski.syllabus.application.controller.security.JwtResponse;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserAlreadyRegisteredException;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
-import pl.rstrzalkowski.syllabus.domain.repository.TokenRepository;
-import pl.rstrzalkowski.syllabus.domain.repository.UserRepository;
-import pl.rstrzalkowski.syllabus.infrastructure.security.JwtProvider;
-import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +49,7 @@ public class AuthService {
         }
 
         User user = (User) authentication.getPrincipal();
-        return new JwtResponse(jwtProvider.generateJwt(user.getUsername(), user.getRole()));
+        return new JwtResponse(jwtProvider.generateJwt(user.getEmail(), user.getRole()));
     }
 
     public void register(RegisterCommand command) {
@@ -57,7 +57,7 @@ public class AuthService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
         User user = new User();
-        user.setUsername(command.getUsername());
+        user.setEmail(command.getUsername());
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
         user.setPersonalId(command.getPersonalId());

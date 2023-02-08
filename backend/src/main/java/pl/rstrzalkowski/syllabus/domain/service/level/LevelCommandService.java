@@ -11,7 +11,7 @@ import pl.rstrzalkowski.syllabus.application.command.level.UpdateLevelCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelAlreadyExistsException;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
-import pl.rstrzalkowski.syllabus.domain.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
 
 import java.util.Objects;
 
@@ -25,9 +25,9 @@ public class LevelCommandService {
 
     public void create(CreateLevelCommand command) {
         Level level = new Level();
-        level.setLevel(command.getLevel());
+        level.setValue(command.getLevel());
 
-        if (levelRepository.findByLevel(level.getLevel()).isPresent()) {
+        if (levelRepository.findByValue(level.getValue()).isPresent()) {
             throw new LevelAlreadyExistsException();
         }
 
@@ -38,10 +38,10 @@ public class LevelCommandService {
         Level level = levelRepository.findById(command.getId())
                 .orElseThrow(LevelNotFoundException::new);
 
-        if (Objects.equals(level.getLevel(), command.getLevel())) {
+        if (Objects.equals(level.getValue(), command.getLevel())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        level.setLevel(command.getLevel());
+        level.setValue(command.getLevel());
         levelRepository.save(level);
     }
 
