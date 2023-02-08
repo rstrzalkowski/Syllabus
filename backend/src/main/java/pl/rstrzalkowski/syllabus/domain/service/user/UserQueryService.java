@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.domain.service.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
@@ -19,6 +20,10 @@ public class UserQueryService {
     public User getById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
+    }
+
+    public User getLoggedInUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     public Page<User> getAllActiveUsers(Pageable pageable) {

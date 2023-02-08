@@ -20,6 +20,7 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedOfficesQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
@@ -35,6 +36,12 @@ public class UserQueryController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") Long id) {
         return userQueryHandler.handle(new GetUserByIdQuery(id));
+    }
+
+    @GetMapping("/me")
+    @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
+    public User getLoggedInUser() {
+        return userQueryHandler.handle(new GetLoggedInUserQuery());
     }
 
     @GetMapping("/search")
