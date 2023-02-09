@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {User} from "../../model/user";
 import {AlertService} from "../../services/alert.service";
 
 @Component({
@@ -8,8 +7,6 @@ import {AlertService} from "../../services/alert.service";
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
-
-  user: User | undefined
 
   oldPassword = "";
   newPassword = "";
@@ -21,9 +18,6 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser().subscribe((result) => {
-      this.user = result
-    })
     let timeout = localStorage.getItem("alertTimeout")
     if (timeout) {
       this.alertTimeout = JSON.parse(timeout)
@@ -47,5 +41,9 @@ export class SettingsComponent implements OnInit {
   saveAlertTimeout() {
     localStorage.setItem("alertTimeout", JSON.stringify(this.alertTimeout))
     this.alertService.showAlert("success", "Alert timeout saved successfully!")
+  }
+
+  get user() {
+    return this.userService.user
   }
 }

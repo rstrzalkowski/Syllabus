@@ -1,12 +1,14 @@
 package pl.rstrzalkowski.syllabus.domain.service.realisation;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
@@ -18,6 +20,7 @@ import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +40,13 @@ public class RealisationQueryService {
 
 
     public Realisation getById(Long id) {
-        return realisationRepository.findById(id)
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Realisation realisation = realisationRepository.findById(id)
                 .orElseThrow(RealisationNotFoundException::new);
+        if (!Objects.equals(user.getSchoolClass().getId(), realisation.getSchoolClass().getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        return realisation;
     }
 
     public AverageGradeDTO getRealisationAverageGrade(Long id) {
@@ -62,13 +70,25 @@ public class RealisationQueryService {
         return new AverageGradeDTO(sum / weights);
     }
 
-    public Page<Realisation> getOwnActiveRealisations(Pageable pageable) {
+    public List<RealisedSubjectDTO> getOwnActiveRealisations() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user.getRole() == Role.TEACHER) {
-            return realisationRepository.findAllByArchivedAndTeacherId(false, user.getId(), pageable);
+            List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
+            return activeRealisationsBySchoolClass
+                    .stream()
+                    .map((realisation -> new RealisedSubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .collect(Collectors.toList());
         } else {
-            //TODO query for student
-            throw new NotYetImplementedException();
+            Long schoolClassId = user.getSchoolClass().getId();
+            if (schoolClassId == null) {
+                return List.of();
+            }
+
+            List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClassId);
+            return activeRealisationsBySchoolClass
+                    .stream()
+                    .map((realisation -> new RealisedSubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .collect(Collectors.toList());
         }
     }
 }

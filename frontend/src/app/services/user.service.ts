@@ -2,17 +2,47 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {User} from "../model/user";
+import {AuthService} from "./auth.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {
+  public user: User | undefined
+
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              private router: Router) {
+    if (this.authService.authenticated.value) {
+      this.getLoggedInUser()
+    } else {
+      this.authService.authenticated.subscribe((authenticated) => {
+        if (authenticated) {
+          this.getLoggedInUser()
+        } else {
+          this.user = undefined
+        }
+      })
+    }
+  }
+
+  getLoggedInUserObservable() {
+    return this.http.get<User>(`${environment.apiUrl}/users/me`)
   }
 
   getLoggedInUser() {
-    return this.http.get<User>(`${environment.apiUrl}/users/me`)
+    this.http.get<User>(`${environment.apiUrl}/users/me`).subscribe((result) => {
+      this.user = result;
+    })
+  }
+
+  getLoggedInUserAndNavigate(url: string) {
+    this.http.get<User>(`${environment.apiUrl}/users/me`).subscribe((result) => {
+      this.user = result;
+      this.router.navigate([url])
+    })
   }
 
   updateAbout(newAbout: string) {

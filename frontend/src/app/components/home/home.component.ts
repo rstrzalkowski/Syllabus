@@ -2,8 +2,9 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {ThemeService} from "../../services/theme.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {User} from "../../model/user";
 import {UserService} from "../../services/user.service";
+import {RealisationService} from "../../services/realisation.service";
+import {RealisedSubject} from "../../model/realised.subject";
 
 @Component({
   selector: 'app-sidebar',
@@ -11,24 +12,29 @@ import {UserService} from "../../services/user.service";
 })
 export class HomeComponent implements OnInit {
 
-  hidden = true;
+  sidebarHidden = true;
+  subjectsHidden = false;
   defaultTouch = {x: 0, y: 0, time: 0};
-  user: User | undefined
   logoutModal = false;
+
+
+  subjects: RealisedSubject[] = []
 
 
   constructor(public themeService: ThemeService,
               private authService: AuthService,
               private userService: UserService,
+              private realisationService: RealisationService,
               private router: Router) {
   }
 
   ngOnInit(): void {
     if (window.innerWidth > 1024) {
-      this.hidden = false;
+      this.sidebarHidden = false;
     }
-    this.userService.getLoggedInUser().subscribe((result) => {
-      this.user = result;
+
+    this.realisationService.getRealisedSubjects().subscribe((result) => {
+      this.subjects = result;
     })
   }
 
@@ -65,10 +71,14 @@ export class HomeComponent implements OnInit {
   }
 
   hide() {
-    this.hidden = true
+    this.sidebarHidden = true
   }
 
   show() {
-    this.hidden = false
+    this.sidebarHidden = false
+  }
+
+  get user() {
+    return this.userService.user
   }
 }

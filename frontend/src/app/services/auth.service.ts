@@ -32,7 +32,7 @@ export class AuthService {
     this.authenticated.next(false)
   }
 
-  setLoggedInUser(result: any) {
+  saveJWT(result: any) {
     localStorage.setItem("jwt", result.body.token)
     this.authenticated.next(true)
   }

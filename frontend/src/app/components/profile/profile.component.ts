@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {User} from "../../model/user";
 import {AlertService} from "../../services/alert.service";
 
 @Component({
@@ -8,8 +7,6 @@ import {AlertService} from "../../services/alert.service";
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-
-  user: User | undefined
 
   aboutChange = false
   newAbout = ""
@@ -19,16 +16,20 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser().subscribe((result) => {
-      this.user = result
-      this.newAbout = this.user.description
-    })
+    if (this.userService.user == undefined) {
+      this.userService.getLoggedInUserObservable().subscribe((result) => {
+        this.userService.user = result
+        this.newAbout = this.userService.user.description
+      })
+    } else {
+      this.newAbout = this.userService.user.description
+    }
   }
 
   saveAbout() {
     this.userService.updateAbout(this.newAbout).subscribe((result) => {
       this.aboutChange = false
-      this.ngOnInit()
+      this.userService.getLoggedInUser()
       this.alertService.showAlert("success", "Description updated successfully")
     }, error => {
       this.alertService.showAlert("danger", "Error during updating description.")
@@ -36,7 +37,12 @@ export class ProfileComponent implements OnInit {
   }
 
   cancelChangingAbout() {
+    console.log(this.newAbout)
     this.newAbout = this.user?.description
     this.aboutChange = false
+  }
+
+  get user() {
+    return this.userService.user
   }
 }

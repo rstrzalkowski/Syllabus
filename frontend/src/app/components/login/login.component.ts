@@ -3,6 +3,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {ThemeService} from "../../services/theme.service";
 import {AlertService} from "../../services/alert.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,13 @@ export class LoginComponent implements OnInit {
 
   username = "";
   password = "";
+  loading = false;
 
   constructor(private authService: AuthService,
               private router: Router,
               public themeService: ThemeService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -24,11 +27,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.username, this.password).subscribe((result) => {
-      this.authService.setLoggedInUser(result)
-      this.router.navigate(["/"])
-      console.log(this.authService.getRole())
+      this.loading = true
+      this.authService.saveJWT(result)
+      this.userService.getLoggedInUserAndNavigate('/')
     }, error => {
       this.alertService.showAlert("danger", "Wrong credentials")
+      this.loading = false
     })
   }
 }

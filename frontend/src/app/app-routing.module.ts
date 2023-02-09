@@ -6,6 +6,7 @@ import {AuthenticationGuard} from "./guards/authentication.guard";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
+import {RealisationComponent} from "./components/realisation/realisation.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
       {
         path: "settings",
         component: SettingsComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "realisation/::id",
+        component: RealisationComponent,
         canActivate: [AuthenticationGuard]
       }
     ]
