@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
 import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
@@ -11,6 +12,7 @@ import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealis
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationAverageGradeQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationInfoByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.service.realisation.RealisationQueryService;
 
@@ -45,5 +47,10 @@ public class RealisationQueryHandlerImpl implements RealisationQueryHandler {
     @Override
     public List<RealisedSubjectDTO> handle(GetOwnRealisationsQuery query) {
         return realisationQueryService.getOwnActiveRealisations();
+    }
+
+    @Override
+    public RealisationInfoDTO handle(GetRealisationInfoByIdQuery query) {
+        return realisationQueryService.getInfoById(query.id());
     }
 }

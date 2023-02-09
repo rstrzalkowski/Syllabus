@@ -25,7 +25,7 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard]
       },
       {
-        path: "realisation/::id",
+        path: "realisation/:id",
         component: RealisationComponent,
         canActivate: [AuthenticationGuard]
       }

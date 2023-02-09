@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
 import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
@@ -16,6 +17,7 @@ import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealis
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationAverageGradeQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.realisation.GetRealisationInfoByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 
 import java.util.List;
@@ -27,9 +29,15 @@ public class RealisationQueryController {
 
     private final RealisationQueryHandler realisationQueryHandler;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/secured")
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public Realisation getRealisationById(@PathVariable("id") Long id) {
         return realisationQueryHandler.handle(new GetRealisationByIdQuery(id));
+    }
+
+    @GetMapping("/{id}")
+    public RealisationInfoDTO getRealisationInfoById(@PathVariable("id") Long id) {
+        return realisationQueryHandler.handle(new GetRealisationInfoByIdQuery(id));
     }
 
     @GetMapping

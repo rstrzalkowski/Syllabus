@@ -38,13 +38,6 @@ export class UserService {
     })
   }
 
-  getLoggedInUserAndNavigate(url: string) {
-    this.http.get<User>(`${environment.apiUrl}/users/me`).subscribe((result) => {
-      this.user = result;
-      this.router.navigate([url])
-    })
-  }
-
   updateAbout(newAbout: string) {
     return this.http.put(`${environment.apiUrl}/users/me/description`, {description: newAbout}, {observe: "response"})
   }

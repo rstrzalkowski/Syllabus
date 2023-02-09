@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
 import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
@@ -90,5 +91,25 @@ public class RealisationQueryService {
                     .map((realisation -> new RealisedSubjectDTO(realisation.getId(), realisation.getSubject().getName())))
                     .collect(Collectors.toList());
         }
+    }
+
+    public RealisationInfoDTO getInfoById(Long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Realisation realisation = realisationRepository.findById(id)
+                .orElseThrow(RealisationNotFoundException::new);
+        if (!Objects.equals(user.getSchoolClass().getId(), realisation.getSchoolClass().getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        User teacher = realisation.getTeacher();
+
+        RealisationInfoDTO dto = new RealisationInfoDTO();
+        dto.setTeacherId(teacher.getId());
+        dto.setSubjectName(realisation.getSubject().getName());
+        dto.setSchoolClassName(user.getSchoolClassName());
+        dto.setTeacherFirstName(teacher.getFirstName());
+        dto.setTeacherLastName(teacher.getLastName());
+        dto.setSubjectAbbreviation(realisation.getSubject().getAbbreviation());
+
+        return dto;
     }
 }
