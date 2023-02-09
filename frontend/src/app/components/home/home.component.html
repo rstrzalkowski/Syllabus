@@ -1,6 +1,5 @@
-<!-- component -->
-<div class="flex flex-row min-h-screen bg-skin-muted text-skin-base"
-     [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
+<body [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
+<div class="flex flex-row min-h-screen bg-skin-muted text-skin-base">
   <aside
     class="bg-skin-sidebar w-64 shadow-2xl transform transition-transform duration-300 ease-in z-10 lg:z-0 flex-none"
     [ngClass]="hidden ? '-translate-x-full' : '-translate-x-0'">
@@ -33,21 +32,21 @@
               href="#"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base bg-skin-muted"
             >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  />
-                </svg>
-              </span>
+                <span class="flex items-center justify-center text-lg text-skin-base">
+                  <svg
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="h-6 w-6"
+                  >
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
+                  </svg>
+                </span>
               <span class="ml-3">Dashboard</span>
             </a>
           </li>
@@ -62,19 +61,19 @@
               routerLink="/profile"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
             >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                </svg>
-              </span>
+                <span class="flex items-center justify-center text-lg text-skin-base">
+                  <svg
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="h-6 w-6"
+                  >
+                    <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  </svg>
+                </span>
               <span class="ml-3">Profile</span>
             </a>
           </li>
@@ -83,22 +82,22 @@
               routerLink="/settings"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
             >
-              <span class="flex items-center justify-center text-lg text-skin-base">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-              </span>
+                <span class="flex items-center justify-center text-lg text-skin-base">
+                  <svg
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="h-6 w-6"
+                  >
+                    <path
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </span>
               <span class="ml-3">Settings</span>
             </a>
           </li>
@@ -107,21 +106,21 @@
               (click)="logoutModal = true"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted cursor-pointer"
             >
-              <span class="flex items-center justify-center text-lg text-red-400">
-                <svg
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="h-6 w-6"
-                >
-                  <path
-                    d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
-                  />
-                </svg>
-              </span>
+                <span class="flex items-center justify-center text-lg text-red-400">
+                  <svg
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="h-6 w-6"
+                  >
+                    <path
+                      d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                    />
+                  </svg>
+                </span>
               <span class="ml-3">Logout</span>
             </a>
           </li>
@@ -195,10 +194,10 @@
               class="h-10 w-10 bg-gray-200 border rounded-full border-none"
             />
             <span class="flex flex-col ml-2">
-                <span
-                  class="truncate w-40 text-skin-base font-semibold tracking-wide leading-none">{{user?.firstName}} {{user?.lastName}}</span>
-                <span class="w-40 text-skin-base text-xs leading-none mt-1">{{user?.role}}</span>
-              </span>
+                  <span
+                    class="truncate w-40 text-skin-base font-semibold tracking-wide leading-none">{{user?.firstName}} {{user?.lastName}}</span>
+                  <span class="w-40 text-skin-base text-xs leading-none mt-1">{{user?.role}}</span>
+                </span>
           </a>
         </div>
       </div>
@@ -215,7 +214,7 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
       <div
         class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div class="bg-gray-100 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="bg-skin-base px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
             <div
               class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
@@ -227,20 +226,20 @@
               </svg>
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Log out</h3>
+              <h3 class="text-lg font-medium leading-6 text-skin-base" id="modal-title">Log out</h3>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">Are you sure you want to log out?</p>
+                <p class="text-sm text-skin-base">Are you sure you want to log out?</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-gray-100">
+        <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-skin-base">
           <button type="button" (click)="logout()"
-                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
             Log out
           </button>
           <button type="button" (click)="logoutModal = false"
-                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
             Cancel
           </button>
         </div>
@@ -249,3 +248,5 @@
   </div>
 </div>
 
+
+</body>

@@ -3,13 +3,17 @@ package pl.rstrzalkowski.syllabus.domain.service.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.user.InvalidPasswordException;
+import pl.rstrzalkowski.syllabus.domain.exception.user.PasswordNotAcceptableException;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
@@ -29,6 +33,7 @@ public class UserCommandService {
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
     private final SchoolClassRepository schoolClassRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     public void update(UpdateUserCommand command) {
@@ -59,6 +64,22 @@ public class UserCommandService {
     public void updateDescription(UpdateDescriptionCommand command) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.setDescription(command.getDescription());
+        userRepository.save(user);
+    }
+
+    public void changePassword(ChangePasswordCommand command) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!passwordEncoder.matches(command.getOldPassword(), user.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+
+        String newPassword = command.getNewPassword();
+        if (newPassword.length() < 8 || newPassword.length() > 20) {
+            throw new PasswordNotAcceptableException();
+        }
+        
+        String newPasswordEncoded = passwordEncoder.encode(newPassword);
+        user.setPassword(newPasswordEncoded);
         userRepository.save(user);
     }
 }

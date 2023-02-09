@@ -12,6 +12,7 @@ import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import { SettingsComponent } from './components/settings/settings.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -23,7 +24,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     HomeComponent,
     HomeComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

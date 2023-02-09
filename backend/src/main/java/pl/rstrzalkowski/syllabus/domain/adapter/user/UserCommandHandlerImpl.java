@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.domain.adapter.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
@@ -37,5 +38,10 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
     @Override
     public void handle(UpdateDescriptionCommand command) {
         userCommandService.updateDescription(command);
+    }
+
+    @Override
+    public void handle(ChangePasswordCommand command) {
+        userCommandService.changePassword(command);
     }
 }

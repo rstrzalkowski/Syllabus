@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   user: User | undefined
   logoutModal = false;
 
+
   constructor(public themeService: ThemeService,
               private authService: AuthService,
               private userService: UserService,

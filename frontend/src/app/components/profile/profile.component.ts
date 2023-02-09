@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {User} from "../../model/user";
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ export class ProfileComponent implements OnInit {
   aboutChange = false
   newAbout = ""
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -27,8 +29,9 @@ export class ProfileComponent implements OnInit {
     this.userService.updateAbout(this.newAbout).subscribe((result) => {
       this.aboutChange = false
       this.ngOnInit()
+      this.alertService.showAlert("success", "Description updated successfully")
     }, error => {
-      alert("Nie udalo sie zmienic opisu")
+      this.alertService.showAlert("danger", "Error during updating description.")
     })
   }
 

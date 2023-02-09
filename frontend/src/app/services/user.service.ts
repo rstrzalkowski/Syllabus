@@ -16,6 +16,13 @@ export class UserService {
   }
 
   updateAbout(newAbout: string) {
-    return this.http.put(`${environment.apiUrl}/users/me`, {description: newAbout}, {observe: "response"})
+    return this.http.put(`${environment.apiUrl}/users/me/description`, {description: newAbout}, {observe: "response"})
+  }
+
+  changePassword(oldPassword: string, newPassword: string) {
+    return this.http.put(`${environment.apiUrl}/users/me/password`, {
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    }, {observe: "response"})
   }
 }

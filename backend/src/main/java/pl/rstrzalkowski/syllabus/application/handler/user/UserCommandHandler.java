@@ -1,6 +1,7 @@
 package pl.rstrzalkowski.syllabus.application.handler.user;
 
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
@@ -17,4 +18,6 @@ public interface UserCommandHandler {
     List<RegistrationToken> handle(GenerateRegistrationTokensCommand command);
 
     void handle(UpdateDescriptionCommand command);
+
+    void handle(ChangePasswordCommand command);
 }

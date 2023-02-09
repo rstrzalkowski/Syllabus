@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {ThemeService} from "../../services/theme.service";
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              public themeService: ThemeService) {
+              public themeService: ThemeService,
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/"])
       console.log(this.authService.getRole())
     }, error => {
-      alert("Wrong credentials")
+      this.alertService.showAlert("danger", "Wrong credentials")
     })
   }
 }

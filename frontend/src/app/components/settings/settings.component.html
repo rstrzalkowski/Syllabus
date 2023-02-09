@@ -10,15 +10,41 @@
     </div>
     <p class="mt-5"><span routerLink="/" class="cursor-pointer font-bold">Dashboard</span> > Settings</p>
   </div>
-  <div class="bg-green-50 rounded-lg py-5 px-6 mb-4 text-base text-green-700 m-3" role="alert">
-    A simple success alert - check it out!
+  <div class="bg-skin-base p-5 m-3 rounded-md shadow md:flex border-r-4 border-l-4 border-teal-600">
+    <div class="md:w-1/2 md:border-r-2 border-teal-600 md:pr-5">
+      <form class="bg-skin-base m-3">
+        <p class="text-3xl mb-1">Change password</p>
+        <span class="block mb-5">Password should be 8-20 characters long</span>
+        Old password
+        <input [(ngModel)]="oldPassword" type="password" name="oldPassword" class="block py-1 mb-5 mt-1 bg-skin-muted">
+        New password
+        <input [(ngModel)]="newPassword" type="password" name="newPassword" class="block py-1  mb-5 mt-1 bg-skin-muted">
+        Repeat new password
+        <input [(ngModel)]="repeatPassword" type="password" name="repeatPassword" class="block py-1 mt-1 bg-skin-muted">
+        <input type="submit" (click)="changePassword()" class="btn-submit mt-5 cursor-pointer" value="Change password">
+      </form>
+    </div>
+    <hr class="my-10">
+    <div class="md:w-1/2 md:ml-5 lg:mt-0">
+      <div class="bg-skin-base m-3">
+        <p class="text-3xl mb-1">Alert settings</p>
+        <span class="mt-5 block">Alert timeout</span>
+        <select [(ngModel)]="alertTimeout" name="oldPassword" class="block py-1 mb-5 mt-1 bg-skin-muted">
+          <option value="1000">1s</option>
+          <option value="2000">2s</option>
+          <option value="3000">3s</option>
+          <option value="5000">5s</option>
+          <option value="10000">10s</option>
+          <option value="0">Never</option>
+        </select>
+        <input type="submit" (click)="saveAlertTimeout()" class="btn-submit mt-5 cursor-pointer" value="Save">
+      </div>
+    </div>
   </div>
-  <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
-    <p class="text-3xl mb-5">Change password</p>
-    Old password
-    <input type="password" class="block py-1 mb-5 mt-1 bg-skin-muted">
-    New password
-    <input type="password" class="block py-1 mt-1 bg-skin-muted">
-    <button class="btn-submit mt-5">Change password</button>
-  </div>
+
 </section>
+
+
+<div>
+
+</div>
