@@ -29,6 +29,7 @@
         <ul class="flex flex-col w-full">
           <li class="my-px">
             <a
+              (click)="hideSidebarIfOverlapping()"
               routerLink="/"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
               routerLinkActive="bg-skin-muted"
@@ -71,6 +72,7 @@
                    [ngClass]="subjectsHidden? 'hidden': ''">
             <li *ngFor="let subject of subjects" class="my-px">
               <a
+                (click)="hideSidebarIfOverlapping()"
                 [routerLink]="'/realisation/' + subject.realisationId"
                 routerLinkActive="bg-skin-muted"
                 [routerLinkActiveOptions]="{exact: true}"
@@ -86,6 +88,7 @@
           </li>
           <li class="my-px">
             <a
+              (click)="hideSidebarIfOverlapping()"
               routerLink="/profile"
               routerLinkActive="bg-skin-muted"
               [routerLinkActiveOptions]="{exact: true}"
@@ -109,6 +112,7 @@
           </li>
           <li class="my-px">
             <a
+              (click)="hideSidebarIfOverlapping()"
               routerLink="/settings"
               routerLinkActive="bg-skin-muted"
               [routerLinkActiveOptions]="{exact: true}"
@@ -250,7 +254,6 @@
           <div class="sm:flex sm:items-start">
             <div
               class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
-              <!-- Heroicon name: outline/exclamation-triangle -->
               <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                    stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round"

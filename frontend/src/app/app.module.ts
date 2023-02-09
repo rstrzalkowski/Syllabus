@@ -14,6 +14,9 @@ import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import { SettingsComponent } from './components/settings/settings.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { RealisationComponent } from './components/realisation/realisation.component';
+import { ForbiddenPageComponent } from './components/forbidden-page/forbidden-page.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -27,7 +30,10 @@ import { RealisationComponent } from './components/realisation/realisation.compo
     ProfileComponent,
     SettingsComponent,
     AlertComponent,
-    RealisationComponent
+    RealisationComponent,
+    ForbiddenPageComponent,
+    NotFoundPageComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (window.innerWidth > 1024) {
+    if (window.innerWidth > 1023) {
       this.sidebarHidden = false;
     }
 
@@ -72,6 +72,12 @@ export class HomeComponent implements OnInit {
 
   hide() {
     this.sidebarHidden = true
+  }
+
+  hideSidebarIfOverlapping() {
+    if (window.innerWidth < 1024) {
+      this.sidebarHidden = true;
+    }
   }
 
   show() {

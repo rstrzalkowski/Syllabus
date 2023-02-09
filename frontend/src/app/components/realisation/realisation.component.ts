@@ -10,6 +10,7 @@ import {RealisationInfo} from "../../model/realisation.info";
 export class RealisationComponent implements OnInit {
 
   realisationInfo: RealisationInfo | undefined
+  loading = false;
 
   constructor(private realisationService: RealisationService,
               private activatedRoute: ActivatedRoute,
@@ -18,16 +19,17 @@ export class RealisationComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
+      this.loading = true;
+      this.realisationInfo = undefined
       let realisationIdString = params.get('id')!.toString();
       let realisationId
-      try {
-        realisationId = Number(realisationIdString)
-        this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
-          this.realisationInfo = result
-        })
-      } catch (err) {
-        this.router.navigate([''])
-      }
+      realisationId = Number(realisationIdString)
+      this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
+        this.realisationInfo = result
+        this.loading = false;
+      }, error => {
+        this.router.navigate(['/forbidden'])
+      })
     })
   }
 }

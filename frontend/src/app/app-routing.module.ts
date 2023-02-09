@@ -7,6 +7,8 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {RealisationComponent} from "./components/realisation/realisation.component";
+import {ForbiddenPageComponent} from "./components/forbidden-page/forbidden-page.component";
+import {NotFoundPageComponent} from "./components/not-found-page/not-found-page.component";
 
 const routes: Routes = [
   {
@@ -28,6 +30,16 @@ const routes: Routes = [
         path: "realisation/:id",
         component: RealisationComponent,
         canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "forbidden",
+        component: ForbiddenPageComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "404",
+        component: NotFoundPageComponent,
+        canActivate: [AuthenticationGuard]
       }
     ]
   },
@@ -39,7 +51,9 @@ const routes: Routes = [
     path: "register",
     component: RegisterComponent
   },
-
+  {
+    path: '**', redirectTo: '404'
+  },
 ];
 
 @NgModule({
