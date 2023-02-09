@@ -13,7 +13,7 @@ export class AlertComponent {
   danger = false;
   info = false;
   message = "";
-  callbacks: any[] = []
+  lastCallback: any
 
   constructor(private alertService: AlertService,
               public themeService: ThemeService) {
@@ -47,11 +47,8 @@ export class AlertComponent {
         let callback = setTimeout(() => {
           this.resetAlerts()
         }, timeout)
-        this.callbacks.forEach((c) => {
-          clearTimeout(c)
-        })
-        this.callbacks = []
-        this.callbacks.push(callback)
+        clearTimeout(this.lastCallback)
+        this.lastCallback = callback
       }
     })
   }
@@ -61,6 +58,5 @@ export class AlertComponent {
     this.info = false
     this.danger = false
     this.warning = false
-    this.message = ""
   }
 }
