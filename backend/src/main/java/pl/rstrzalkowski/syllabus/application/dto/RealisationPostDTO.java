@@ -21,10 +21,12 @@ public class RealisationPostDTO {
         this.createdAt = post.getCreatedAt();
         this.updatedAt = post.getUpdatedAt();
         this.edited = post.isEdited();
+        this.title = post.getTitle();
     }
 
     private Long postId;
     private Long authorId;
+    private String title;
     private String content;
     private String authorFirstName;
     private String authorLastName;

@@ -22,9 +22,12 @@ public class Post extends AbstractEntity {
     @ManyToOne
     private User teacher;
 
+    private String title;
+
     private String content;
 
     private boolean edited;
 
     private boolean archived;
+
 }

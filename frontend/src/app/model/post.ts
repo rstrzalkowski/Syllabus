@@ -1,11 +1,13 @@
 export interface PostPage {
   content: Post[],
-  totalPages: number
+  totalPages: number,
+  last: boolean
 }
 
 export interface Post {
   postId: number;
   authorId: number;
+  title: string;
   content: string;
   authorFirstName: string;
   authorLastName: string;

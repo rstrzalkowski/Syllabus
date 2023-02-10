@@ -2,12 +2,12 @@
   <div class="flex items-center">
     <div class="text-xl text-skin-base">Recent posts:
       <div *ngFor="let post of postPage?.content">
-        <div class="mt-2 w-full md:px-6 px-0 py-4 bg-skin-base rounded">
+        <div class="mt-2 w-full md:px-6 px-0 py-4 rounded">
           <div>
             <div>
-              <h3 class="text-xl font-semibold text-skin-base">To be added</h3>
+              <h3 class="text-xl font-semibold text-skin-base">{{post.title}}</h3>
               <div class="flex items-center mb-4 space-x-2 text-skin-muted">
-              <span class="text-xs">Created by
+              <span class="text-base">Created by
                 <b>{{post.authorFirstName}} {{post.authorLastName}}</b> at {{post.createdAt | date:'medium'}}
               </span>
               </div>
@@ -19,5 +19,7 @@
       </div>
     </div>
   </div>
-  <p *ngIf="postPage" class="mt-5"><span routerLink="/" class="cursor-pointer font-bold truncate">Show more</span></p>
+  <p *ngIf="!postPage?.last" class="mt-5"><span routerLink="/"
+                                                class="cursor-pointer font-bold truncate">Show more</span>
+  </p>
 </div>

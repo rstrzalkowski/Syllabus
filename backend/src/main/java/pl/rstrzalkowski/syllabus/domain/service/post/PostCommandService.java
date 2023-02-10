@@ -39,6 +39,7 @@ public class PostCommandService {
 
         post.setRealisation(realisation);
         post.setTeacher(teacher);
+        post.setTitle(command.getTitle());
         return postRepository.save(post);
     }
 

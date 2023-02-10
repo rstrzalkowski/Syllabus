@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 public class CreatePostCommand {
 
     @NotNull
+    private String title;
+
+    @NotNull
     private String content;
 
     @NotNull

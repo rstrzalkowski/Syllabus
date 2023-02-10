@@ -1,8 +1,8 @@
 <body [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
 <div class="flex flex-row min-h-screen bg-skin-muted text-skin-base">
-  <aside
-    class="bg-skin-sidebar w-64 shadow-2xl transform transition-transform duration-300 ease-in z-10 lg:z-0 flex-none"
-    [ngClass]="sidebarHidden ? '-translate-x-full' : '-translate-x-0'">
+  <aside id="dashboard"
+         class="bg-skin-sidebar w-64 shadow-2xl transform transition-transform duration-300 ease-in z-10 lg:z-0 flex-none"
+         [ngClass]="sidebarHidden ? '-translate-x-full' : '-translate-x-0'">
     <div class="sticky top-0 left-0 overflow-y-auto max-h-screen">
       <div class="sidebar-header flex items-center py-4 ml-6">
         <div class="inline-flex">
@@ -82,8 +82,7 @@
               </a>
             </li>
           </section>
-          <hr class="my-3">
-          <li class="my-px">
+          <li class="my-px mt-3">
             <span class="flex font-medium text-sm text-skin-base px-4 mb-2 uppercase">Account</span>
           </li>
           <li class="my-px">
@@ -238,7 +237,7 @@
         </div>
       </div>
     </header>
-    <div>
+    <div id="content">
       <router-outlet></router-outlet>
     </div>
   </main>

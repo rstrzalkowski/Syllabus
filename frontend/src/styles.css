@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&family=Poppins&family=Comfortaa&display=swap');
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
@@ -106,7 +105,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', serif;
+}
+
+#dashboard {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "Titillium Web", sans-serif;
 }
 
 input[type="checkbox"]:checked ~ .dot {
