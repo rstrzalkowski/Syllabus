@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.domain.adapter.post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationPostDTO;
 import pl.rstrzalkowski.syllabus.application.handler.post.PostQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.post.GetActivePostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetArchivedPostsByRealisationQuery;
@@ -17,7 +18,7 @@ public class PostQueryHandlerImpl implements PostQueryHandler {
     private final PostQueryService postQueryService;
 
     @Override
-    public Page<Post> handle(GetActivePostsByRealisationQuery query) {
+    public Page<RealisationPostDTO> handle(GetActivePostsByRealisationQuery query) {
         return postQueryService.getAllActiveByRealisation(query.realisationId(), query.pageable());
     }
 

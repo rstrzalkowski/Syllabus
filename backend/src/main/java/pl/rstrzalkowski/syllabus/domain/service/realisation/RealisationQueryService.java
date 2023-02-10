@@ -94,18 +94,14 @@ public class RealisationQueryService {
     }
 
     public RealisationInfoDTO getInfoById(Long id) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Realisation realisation = realisationRepository.findById(id)
                 .orElseThrow(RealisationNotFoundException::new);
-        if (!Objects.equals(user.getSchoolClass().getId(), realisation.getSchoolClass().getId())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
         User teacher = realisation.getTeacher();
 
         RealisationInfoDTO dto = new RealisationInfoDTO();
         dto.setTeacherId(teacher.getId());
         dto.setSubjectName(realisation.getSubject().getName());
-        dto.setSchoolClassName(user.getSchoolClassName());
+        dto.setSchoolClassName(realisation.getSchoolClass().getSchoolClassName());
         dto.setTeacherFirstName(teacher.getFirstName());
         dto.setTeacherLastName(teacher.getLastName());
         dto.setSubjectAbbreviation(realisation.getSubject().getAbbreviation());

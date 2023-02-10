@@ -1,5 +1,6 @@
 package pl.rstrzalkowski.syllabus.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -30,4 +31,9 @@ public class SchoolClass extends AbstractEntity {
 
     @OneToMany(mappedBy = "schoolClass")
     private Set<User> students = new LinkedHashSet<>();
+
+    @JsonIgnore
+    public String getSchoolClassName() {
+        return level.getValue() + " " + name;
+    }
 }

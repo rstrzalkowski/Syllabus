@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationPostDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.post.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Post;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.PostRepository;
@@ -14,8 +15,9 @@ public class PostQueryService {
 
     private final PostRepository postRepository;
 
-    public Page<Post> getAllActiveByRealisation(Long realisationId, Pageable pageable) {
-        return postRepository.findByRealisationIdAndArchived(realisationId, false, pageable);
+    public Page<RealisationPostDTO> getAllActiveByRealisation(Long realisationId, Pageable pageable) {
+        Page<Post> posts = postRepository.findByRealisationIdAndArchived(realisationId, false, pageable);
+        return posts.map((RealisationPostDTO::new));
     }
 
 

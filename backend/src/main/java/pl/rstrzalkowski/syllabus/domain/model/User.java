@@ -58,13 +58,6 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    public String getSchoolClassName() {
-        if (schoolClass != null) {
-            return schoolClass.getLevel().getValue() + " " + schoolClass.getName();
-        }
-        return "";
-    }
-
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
