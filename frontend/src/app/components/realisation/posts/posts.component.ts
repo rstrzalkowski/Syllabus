@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostPage} from "../../../model/post";
-import {PostService} from "../../../services/post.service";
 
 @Component({
   selector: 'app-posts',
@@ -10,14 +9,11 @@ export class PostsComponent implements OnInit {
 
   @Input() realisationId: number | undefined;
 
-  postPage: PostPage | undefined
+  @Input() postPage: PostPage | undefined
 
-  constructor(private postService: PostService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.postService.getRealisationPosts(this.realisationId).subscribe((result) => {
-      this.postPage = result
-    })
   }
 }

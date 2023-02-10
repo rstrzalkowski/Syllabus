@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GradeService} from "../../../services/grade.service";
 
 @Component({
   selector: 'app-grade',
@@ -9,15 +8,12 @@ export class AverageGradeComponent implements OnInit {
 
 
   @Input() realisationId: number | undefined;
+  @Input() grade: number | undefined;
 
-  grade: number | undefined
 
-  constructor(private gradeService: GradeService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.gradeService.getAverageGrade(this.realisationId).subscribe((result) => {
-      this.grade = result.average
-    })
   }
 }
