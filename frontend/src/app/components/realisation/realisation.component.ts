@@ -9,8 +9,10 @@ import {RealisationInfo} from "../../model/realisation.info";
 })
 export class RealisationComponent implements OnInit {
 
+  realisationId: number | undefined
   realisationInfo: RealisationInfo | undefined
   loading = false;
+
 
   constructor(private realisationService: RealisationService,
               private activatedRoute: ActivatedRoute,
@@ -22,9 +24,9 @@ export class RealisationComponent implements OnInit {
       this.loading = true;
       this.realisationInfo = undefined
       let realisationIdString = params.get('id')!.toString();
-      let realisationId
-      realisationId = Number(realisationIdString)
-      this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
+
+      this.realisationId = Number(realisationIdString)
+      this.realisationService.getRealisationInfo(this.realisationId).subscribe((result) => {
         this.realisationInfo = result
         this.loading = false;
       }, error => {

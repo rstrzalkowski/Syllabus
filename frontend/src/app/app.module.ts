@@ -11,12 +11,15 @@ import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
-import { SettingsComponent } from './components/settings/settings.component';
-import { AlertComponent } from './components/alert/alert.component';
-import { RealisationComponent } from './components/realisation/realisation.component';
-import { ForbiddenPageComponent } from './components/forbidden-page/forbidden-page.component';
-import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { LoadingComponent } from './components/loading/loading.component';
+import {SettingsComponent} from './components/settings/settings.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {RealisationComponent} from './components/realisation/realisation.component';
+import {ForbiddenPageComponent} from './components/forbidden-page/forbidden-page.component';
+import {NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
+import {LoadingComponent} from './components/loading/loading.component';
+import {AverageGradeComponent} from './components/realisation/average-grade/average-grade.component';
+import {PostsComponent} from './components/realisation/posts/posts.component';
+import {ActivitiesComponent} from './components/realisation/activities/activities.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -33,7 +36,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     RealisationComponent,
     ForbiddenPageComponent,
     NotFoundPageComponent,
-    LoadingComponent
+    LoadingComponent,
+    AverageGradeComponent,
+    PostsComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,

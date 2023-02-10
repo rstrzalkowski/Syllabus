@@ -18,17 +18,52 @@
       </p>
     </div>
   </div>
+  <div class="md:flex">
+    <div class="md:w-1/3">
+      <div
+        class=" bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 md:border-r-0 border-l-4 border-teal-600 flex justify-between space-x-5">
+        <app-grade [realisationId]="realisationId"></app-grade>
+      </div>
+      <div
+        class="mt-3 bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 md:border-r-0 border-l-4 border-teal-600 flex justify-between space-x-5">
+        <app-activities [realisationId]="realisationId"></app-activities>
+      </div>
+    </div>
+
+    <div
+      class="md:w-2/3 mt-3 md:mt-0 md:ml-0 bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 border-l-4 md:border-l-0 border-teal-600 flex justify-between space-x-5">
+      <app-posts [realisationId]="realisationId"></app-posts>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="loading">
   <div
     class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
-    <div class="">
-      <div class="flex items-center">
-        <span class="text-xl text-skin-base">Realisation posts</span>
+    <div class="w-1/6">
+      <div class="bg-skin-muted w-full rounded h-5"></div>
+      <div class="bg-skin-muted w-full rounded h-5 mt-5"></div>
+    </div>
+    <div class="w-1/6">
+      <div class="flex justify-end">
+        <div class="bg-skin-muted w-full rounded h-5"></div>
       </div>
-      <div class="flex items-center">
-        <span class="text-xl text-skin-base">Show activities</span>
+      <div class="flex justify-end">
+        <div class="bg-skin-muted w-1/2 rounded h-5 mt-5"></div>
       </div>
     </div>
   </div>
+  <!--  <div-->
+  <!--    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">-->
+  <!--    <div class="">-->
+  <!--      <div class="flex items-center">-->
+  <!--        <span class="text-xl text-skin-base">Realisation posts</span>-->
+  <!--      </div>-->
+  <!--      <div class="flex items-center">-->
+  <!--        <span class="text-xl text-skin-base">Show activities</span>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <app-loading></app-loading>
 </ng-container>
-
-<app-loading *ngIf="loading"></app-loading>

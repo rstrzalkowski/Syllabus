@@ -1,0 +1,9 @@
+<div class="">
+  <div class="flex items-center">
+    <span class="text-xl text-skin-base">Your grade:
+    <span *ngIf="grade !== 0" class="text-3xl">{{grade}}</span>
+    <span *ngIf="grade === 0">No grades.</span>
+  </span>
+  </div>
+  <p class="mt-5"><span routerLink="/" class="cursor-pointer font-bold truncate">View grades</span></p>
+</div>
