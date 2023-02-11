@@ -4,7 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {RealisationInfo} from "../../model/realisation.info";
 import {GradeService} from "../../services/grade.service";
 import {PostService} from "../../services/post.service";
+import {ActivityService} from "../../services/activity.service";
 import {PostPage} from "../../model/post";
+import {ActivityPage} from "../../model/activity";
 
 @Component({
   selector: 'app-realisation',
@@ -13,24 +15,35 @@ import {PostPage} from "../../model/post";
 export class RealisationComponent implements OnInit {
 
   realisationId: number | undefined
+
+  //Data from API
   realisationInfo: RealisationInfo | undefined
+  grade: number | undefined;
+  postPage: PostPage | undefined;
+  activityPage: ActivityPage | undefined;
+  //end data
+
+  //Loading indicators
   realisationLoading = false;
   postsLoading = false;
+  activitiesLoading = false;
   gradeLoading = false;
+  //end loading
+
+  //Subscriptions
   realisationSubscription: any;
   gradeSubscription: any;
   postsSubscription: any;
+  activitiesSubscription: any;
 
-
-  grade: number | undefined;
-  postPage: PostPage | undefined;
-
+  //end subscriptions
 
   constructor(private realisationService: RealisationService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private gradeService: GradeService,
-              private postService: PostService) {
+              private postService: PostService,
+              private activityService: ActivityService) {
   }
 
   ngOnInit(): void {
@@ -42,14 +55,20 @@ export class RealisationComponent implements OnInit {
 
       this.getAverageGrade();
       this.getPosts();
+      this.getActivities();
       this.getRealisationInfo(this.realisationId);
     })
+  }
+
+  isLoading() {
+    return this.realisationLoading || this.postsLoading || this.gradeLoading || this.activitiesLoading
   }
 
   clearSubscriptions() {
     this.realisationSubscription?.unsubscribe()
     this.postsSubscription?.unsubscribe()
     this.gradeSubscription?.unsubscribe()
+    this.activitiesSubscription?.unsubscribe()
   }
 
   getAverageGrade() {
@@ -68,17 +87,21 @@ export class RealisationComponent implements OnInit {
     })
   }
 
+  getActivities() {
+    this.activitiesLoading = true
+    this.postsSubscription = this.activityService.getRealisationActivities(this.realisationId).subscribe((result) => {
+      this.activityPage = result
+      this.activitiesLoading = false
+    })
+  }
+
   getRealisationInfo(realisationId: number) {
     this.realisationLoading = true
     this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
       this.realisationInfo = result
-      this.realisationLoading = false;
+      this.realisationLoading = false
     }, error => {
       this.router.navigate(['/forbidden'])
     })
-  }
-
-  isLoading() {
-    return this.realisationLoading || this.postsLoading || this.gradeLoading
   }
 }

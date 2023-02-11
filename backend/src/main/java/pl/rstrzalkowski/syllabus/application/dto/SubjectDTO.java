@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealisedSubjectDTO {
-    
+public class SubjectDTO {
+
     private Long realisationId;
 
     private String subjectName;

@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisationPostDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
+import pl.rstrzalkowski.syllabus.application.dto.PostDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationDTO;
+import pl.rstrzalkowski.syllabus.application.dto.SubjectDTO;
+import pl.rstrzalkowski.syllabus.application.handler.activity.ActivityQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.post.PostQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetActivePostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
@@ -33,6 +36,7 @@ public class RealisationQueryController {
 
     private final RealisationQueryHandler realisationQueryHandler;
     private final PostQueryHandler postQueryHandler;
+    private final ActivityQueryHandler activityQueryHandler;
     private final AccessGuard accessGuard;
 
     @GetMapping("/{id}/secured")
@@ -42,7 +46,7 @@ public class RealisationQueryController {
     }
 
     @GetMapping("/{id}")
-    public RealisationInfoDTO getRealisationInfoById(@PathVariable("id") Long id) {
+    public RealisationDTO getRealisationInfoById(@PathVariable("id") Long id) {
         accessGuard.checkAccessToRealisation(id);
         return realisationQueryHandler.handle(new GetRealisationInfoByIdQuery(id));
     }
@@ -55,9 +59,16 @@ public class RealisationQueryController {
 
     @GetMapping("/{id}/posts")
     @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
-    public Page<RealisationPostDTO> getActivePostsOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
+    public Page<PostDTO> getActivePostsOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
         accessGuard.checkAccessToRealisation(id);
         return postQueryHandler.handle(new GetActivePostsByRealisationQuery(id, pageable));
+    }
+
+    @GetMapping("/{id}/activities")
+    @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    public Page<ActivityDTO> getActiveActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
+        accessGuard.checkAccessToRealisation(id);
+        return activityQueryHandler.handle(new GetActiveActivitiesByRealisationQuery(id, pageable));
     }
 
     @GetMapping("/archived")
@@ -74,7 +85,7 @@ public class RealisationQueryController {
 
     @GetMapping("/me")
     @Secured({"STUDENT", "TEACHER"})
-    public List<RealisedSubjectDTO> getOwnRealisations() {
+    public List<SubjectDTO> getOwnRealisations() {
         return realisationQueryHandler.handle(new GetOwnRealisationsQuery());
     }
 }

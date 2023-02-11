@@ -1,9 +1,29 @@
-<div class="">
-  <div class="flex items-center">
-    <span class="text-xl text-skin-base">Incoming activities:
-  </span>
+<div class="w-full">
+  <div class="w-full flex items-center">
+    <div class="w-full text-xl text-skin-base">
+      <div class="flex justify-between space-x-5">
+        <span>Incoming activities:</span>
+        <span>Weight</span>
+      </div>
+      <div *ngFor="let activity of activityPage?.content">
+        <div class="mt-2 md:px-6 px-0 py-4 rounded">
+          <div class="flex items-center justify-between space-x-5">
+            <div>
+              <div class="text-xl font-semibold text-skin-base">{{activity.name}}</div>
+              <span class="text-base">19.02.2023</span>
+              <div class="mt-6 text-base text-skin-base">{{activity.description}}</div>
+            </div>
+            <div class="text-3xl">{{activity.weight}}</div>
+          </div>
+        </div>
+        <hr class="bg-skin-base">
+      </div>
+    </div>
   </div>
-  <p class="mt-5"><span routerLink="/" class="cursor-pointer font-bold truncate">View all activities</span></p>
+  <p *ngIf="!activityPage?.last" class="mt-5"><span routerLink="/"
+                                                    class="cursor-pointer font-bold truncate">Show more</span>
+  </p>
 </div>
+
 
 

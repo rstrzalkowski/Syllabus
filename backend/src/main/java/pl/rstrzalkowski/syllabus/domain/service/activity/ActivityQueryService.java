@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.activity.ActivityNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
@@ -14,8 +15,9 @@ public class ActivityQueryService {
 
     private final ActivityRepository activityRepository;
 
-    public Page<Activity> getAllActiveByRealisation(Long realisationId, Pageable pageable) {
-        return activityRepository.findByRealisationIdAndArchived(realisationId, false, pageable);
+    public Page<ActivityDTO> getAllActiveByRealisation(Long realisationId, Pageable pageable) {
+        Page<Activity> activities = activityRepository.findByRealisationIdAndArchived(realisationId, false, pageable);
+        return activities.map((ActivityDTO::new));
     }
 
 

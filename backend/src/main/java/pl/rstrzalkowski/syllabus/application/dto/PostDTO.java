@@ -10,19 +10,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealisationPostDTO {
-
-    public RealisationPostDTO(Post post) {
-        this.postId = post.getId();
-        this.authorId = post.getTeacher().getId();
-        this.content = post.getContent();
-        this.authorFirstName = post.getTeacher().getFirstName();
-        this.authorLastName = post.getTeacher().getLastName();
-        this.createdAt = post.getCreatedAt();
-        this.updatedAt = post.getUpdatedAt();
-        this.edited = post.isEdited();
-        this.title = post.getTitle();
-    }
+public class PostDTO {
 
     private Long postId;
     private Long authorId;
@@ -33,4 +21,16 @@ public class RealisationPostDTO {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private boolean edited;
+
+    public PostDTO(Post post) {
+        this.postId = post.getId();
+        this.authorId = post.getTeacher().getId();
+        this.content = post.getContent();
+        this.authorFirstName = post.getTeacher().getFirstName();
+        this.authorLastName = post.getTeacher().getLastName();
+        this.createdAt = post.getCreatedAt();
+        this.updatedAt = post.getUpdatedAt();
+        this.edited = post.isEdited();
+        this.title = post.getTitle();
+    }
 }

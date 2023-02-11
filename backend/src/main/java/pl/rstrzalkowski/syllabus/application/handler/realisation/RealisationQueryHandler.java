@@ -2,8 +2,8 @@ package pl.rstrzalkowski.syllabus.application.handler.realisation;
 
 import org.springframework.data.domain.Page;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationDTO;
+import pl.rstrzalkowski.syllabus.application.dto.SubjectDTO;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetOwnRealisationsQuery;
@@ -23,7 +23,7 @@ public interface RealisationQueryHandler {
 
     AverageGradeDTO handle(GetRealisationAverageGradeQuery getRealisationAverageGradeQuery);
 
-    List<RealisedSubjectDTO> handle(GetOwnRealisationsQuery getOwnRealisationsQuery);
+    List<SubjectDTO> handle(GetOwnRealisationsQuery getOwnRealisationsQuery);
 
-    RealisationInfoDTO handle(GetRealisationInfoByIdQuery getRealisationInfoByIdQuery);
+    RealisationDTO handle(GetRealisationInfoByIdQuery getRealisationInfoByIdQuery);
 }

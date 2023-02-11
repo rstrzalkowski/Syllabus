@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.domain.adapter.activity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.application.handler.activity.ActivityQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
@@ -17,7 +18,7 @@ public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
     private final ActivityQueryService activityQueryService;
 
     @Override
-    public Page<Activity> handle(GetActiveActivitiesByRealisationQuery query) {
+    public Page<ActivityDTO> handle(GetActiveActivitiesByRealisationQuery query) {
         return activityQueryService.getAllActiveByRealisation(query.realisationId(), query.pageable());
     }
 

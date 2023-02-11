@@ -8,8 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisationInfoDTO;
-import pl.rstrzalkowski.syllabus.application.dto.RealisedSubjectDTO;
+import pl.rstrzalkowski.syllabus.application.dto.RealisationDTO;
+import pl.rstrzalkowski.syllabus.application.dto.SubjectDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
@@ -71,13 +71,13 @@ public class RealisationQueryService {
         return new AverageGradeDTO(sum / weights);
     }
 
-    public List<RealisedSubjectDTO> getOwnActiveRealisations() {
+    public List<SubjectDTO> getOwnActiveRealisations() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user.getRole() == Role.TEACHER) {
             List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
             return activeRealisationsBySchoolClass
                     .stream()
-                    .map((realisation -> new RealisedSubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .map((realisation -> new SubjectDTO(realisation.getId(), realisation.getSubject().getName())))
                     .collect(Collectors.toList());
         } else {
             Long schoolClassId = user.getSchoolClass().getId();
@@ -88,17 +88,17 @@ public class RealisationQueryService {
             List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClassId);
             return activeRealisationsBySchoolClass
                     .stream()
-                    .map((realisation -> new RealisedSubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .map((realisation -> new SubjectDTO(realisation.getId(), realisation.getSubject().getName())))
                     .collect(Collectors.toList());
         }
     }
 
-    public RealisationInfoDTO getInfoById(Long id) {
+    public RealisationDTO getInfoById(Long id) {
         Realisation realisation = realisationRepository.findById(id)
                 .orElseThrow(RealisationNotFoundException::new);
         User teacher = realisation.getTeacher();
 
-        RealisationInfoDTO dto = new RealisationInfoDTO();
+        RealisationDTO dto = new RealisationDTO();
         dto.setTeacherId(teacher.getId());
         dto.setSubjectName(realisation.getSubject().getName());
         dto.setSchoolClassName(realisation.getSchoolClass().getSchoolClassName());

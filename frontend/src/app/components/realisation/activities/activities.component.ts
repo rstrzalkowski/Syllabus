@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ActivityPage} from "../../../model/activity";
 
 @Component({
   selector: 'app-activities',
@@ -7,6 +8,9 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ActivitiesComponent implements OnInit {
 
   @Input() realisationId: number | undefined;
+
+  @Input() activityPage: ActivityPage | undefined
+
 
   constructor() {
   }
