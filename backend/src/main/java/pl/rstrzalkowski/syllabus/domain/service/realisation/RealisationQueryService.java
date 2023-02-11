@@ -11,7 +11,6 @@ import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
 import pl.rstrzalkowski.syllabus.application.dto.RealisationDTO;
 import pl.rstrzalkowski.syllabus.application.dto.SubjectDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
-import pl.rstrzalkowski.syllabus.domain.exception.realisation.StudentNotInRealisationException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
@@ -53,12 +52,7 @@ public class RealisationQueryService {
     public AverageGradeDTO getRealisationAverageGrade(Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Grade> grades = gradeRepository.findAllByActivityRealisationIdAndStudent(id, user);
-
-        Realisation realisation = getById(id);
-        if (!Objects.equals(realisation.getSchoolClass().getId(), user.getSchoolClass().getId())) {
-            throw new StudentNotInRealisationException();
-        }
-
+        
         double sum = 0;
         double weights = 0;
         for (Grade grade : grades) {

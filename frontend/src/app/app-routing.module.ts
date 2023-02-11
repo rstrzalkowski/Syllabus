@@ -9,6 +9,7 @@ import {SettingsComponent} from "./components/settings/settings.component";
 import {RealisationComponent} from "./components/realisation/realisation.component";
 import {ForbiddenPageComponent} from "./components/forbidden-page/forbidden-page.component";
 import {NotFoundPageComponent} from "./components/not-found-page/not-found-page.component";
+import {GradesComponent} from "./components/grades/grades.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
       {
         path: "realisation/:id",
         component: RealisationComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "realisation/:id/grades",
+        component: GradesComponent,
         canActivate: [AuthenticationGuard]
       },
       {

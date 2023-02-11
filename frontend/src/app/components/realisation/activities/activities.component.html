@@ -2,10 +2,11 @@
   <div class="w-full flex items-center">
     <div class="w-full text-xl text-skin-base">
       <div class="flex justify-between space-x-5">
-        <span>Incoming activities:</span>
+        <span class="text-lg underline underline-offset-8">Incoming activities:</span>
         <span *ngIf="activityPage?.totalPages !== 0">Weight</span>
       </div>
-      <p *ngIf="activityPage?.totalPages === 0" class="text-base">There are no incoming activities. Take a breath!</p>
+      <p *ngIf="activityPage?.totalPages === 0" class="text-base mt-5">There are no incoming activities. Take a
+        breath!</p>
       <div *ngFor="let activity of activityPage?.content">
         <div class="mt-2 md:px-6 px-0 py-4 rounded">
           <div class="flex items-center justify-between space-x-5">

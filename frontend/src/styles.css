@@ -133,3 +133,8 @@ input[type="checkbox"] ~ .dot {
 #logo-text {
   font-family: 'Comfortaa', cursive;
 }
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

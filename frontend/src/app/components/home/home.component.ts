@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
       // simulate a swipe -> less than 500 ms and more than 60 px
       if (deltaTime < 500) {
         // touch movement lasted less than 500 ms
-        if (Math.abs(deltaX) > 60) {
+        if (Math.abs(deltaX) > 60 && !this.router.url.endsWith("grades")) {
           // delta x is at least 60 pixels
           if (deltaX > 0) {
             this.show();

@@ -1,10 +1,12 @@
 package pl.rstrzalkowski.syllabus.application.handler.grade;
 
 import org.springframework.data.domain.Page;
+import pl.rstrzalkowski.syllabus.application.dto.GradeDTO;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetActiveGradesByStudentQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetArchivedGradesByStudentQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByActivityAndStudentQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.grade.GetOwnGradesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 
 public interface GradeQueryHandler {
@@ -15,4 +17,6 @@ public interface GradeQueryHandler {
     Grade handle(GetGradeByActivityAndStudentQuery query);
 
     Grade handle(GetGradeByIdQuery query);
+
+    Page<GradeDTO> handle(GetOwnGradesByRealisationQuery getOwnGradesByRealisationQuery);
 }

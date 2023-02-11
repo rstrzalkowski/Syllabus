@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.application.dto.AverageGradeDTO;
+import pl.rstrzalkowski.syllabus.application.dto.GradeDTO;
 import pl.rstrzalkowski.syllabus.application.dto.PostDTO;
 import pl.rstrzalkowski.syllabus.application.dto.RealisationDTO;
 import pl.rstrzalkowski.syllabus.application.dto.SubjectDTO;
 import pl.rstrzalkowski.syllabus.application.handler.activity.ActivityQueryHandler;
+import pl.rstrzalkowski.syllabus.application.handler.grade.GradeQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.post.PostQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.grade.GetOwnGradesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetActivePostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetArchivedRealisationsQuery;
@@ -37,6 +40,7 @@ public class RealisationQueryController {
     private final RealisationQueryHandler realisationQueryHandler;
     private final PostQueryHandler postQueryHandler;
     private final ActivityQueryHandler activityQueryHandler;
+    private final GradeQueryHandler gradeQueryHandler;
     private final AccessGuard accessGuard;
 
     @GetMapping("/{id}/secured")
@@ -64,6 +68,14 @@ public class RealisationQueryController {
         return postQueryHandler.handle(new GetActivePostsByRealisationQuery(id, pageable));
     }
 
+    @GetMapping("/{id}/grades")
+    @Secured("STUDENT")
+    public Page<GradeDTO> getOwnGradesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
+        accessGuard.checkAccessToRealisation(id);
+        return gradeQueryHandler.handle(new GetOwnGradesByRealisationQuery(id, pageable));
+    }
+
+
     @GetMapping("/{id}/activities")
     @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public Page<ActivityDTO> getActiveActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
@@ -80,6 +92,7 @@ public class RealisationQueryController {
     @GetMapping("/{id}/average")
     @Secured("STUDENT")
     public AverageGradeDTO getRealisationAverageGrade(@PathVariable("id") Long id) {
+        accessGuard.checkAccessToRealisation(id);
         return realisationQueryHandler.handle(new GetRealisationAverageGradeQuery(id));
     }
 

@@ -59,6 +59,9 @@ INSERT INTO public.activity (created_at, updated_at, version, archived, date, de
 INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:40:06.550000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-11', 'Small test of integrals', false, 'Small test', 1, 8, 2);
 INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:41:13.121000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-13', 'Test of conditionals', false, 'Test conditionals', 3, 9, 4);
 INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:43:08.106000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-22', 'Test of tennis', false, 'Test tennis', 2, 10, 2);
+INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:40:06.550000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-12', 'Small test of integrals v2', false, 'Small test v2', 1, 8, 2);
+INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:40:06.550000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-19', 'Small test of integrals v3', false, 'Small test v3', 1, 8, 2);
+
 
 
 INSERT INTO public.post (created_at, updated_at, version, archived, content, edited, title, realisation_id, teacher_id) VALUES ('2023-01-30 21:48:28.454000', '2023-01-30 21:48:28.454000', 0, false, 'Hello students! Prepare for incoming test of integrals! Weight of the test is only 1', false, 'Integrals test!', 8, 2);
