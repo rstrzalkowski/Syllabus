@@ -32,6 +32,7 @@ public class ActivityCommandService {
         activity.setName(command.getName());
         activity.setWeight(command.getWeight());
         activity.setDescription(command.getDescription());
+        activity.setDate(command.getDate());
 
         Realisation realisation = realisationRepository.findById(command.getRealisationId())
                 .orElseThrow(RealisationNotFoundException::new);

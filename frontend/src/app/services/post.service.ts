@@ -12,6 +12,6 @@ export class PostService {
   }
 
   getRealisationPosts(realisationId: number | undefined) {
-    return this.http.get<PostPage>(`${environment.apiUrl}/realisations/${realisationId}/posts?size=4`)
+    return this.http.get<PostPage>(`${environment.apiUrl}/realisations/${realisationId}/posts?size=3&sort=createdAt,desc`)
   }
 }

@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -30,6 +32,8 @@ public class Activity extends AbstractEntity {
     private User teacher;
 
     private String name;
+
+    private LocalDateTime date;
 
     private Integer weight;
 

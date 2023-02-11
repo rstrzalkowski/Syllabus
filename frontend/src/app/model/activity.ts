@@ -9,6 +9,7 @@ export interface Activity {
   weight: number;
   name: string;
   description: string;
+  date: Date;
   createdAt: Date;
   updatedAt: Date;
 }
