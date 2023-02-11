@@ -21,6 +21,7 @@ import {AverageGradeComponent} from './components/realisation/average-grade/aver
 import {PostsComponent} from './components/realisation/posts/posts.component';
 import {ActivitiesComponent} from './components/realisation/activities/activities.component';
 import {GradesComponent} from "./components/grades/grades.component";
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -42,6 +43,7 @@ import {GradesComponent} from "./components/grades/grades.component";
     PostsComponent,
     ActivitiesComponent,
     GradesComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
