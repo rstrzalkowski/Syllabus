@@ -14,4 +14,8 @@ export class ActivityService {
   getRealisationActivities(realisationId: number | undefined) {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=4&sort=date`)
   }
+
+  getIncomingActivities(realisationId: number | undefined, page: number) {
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=1&page=${page}&sort=date`)
+  }
 }

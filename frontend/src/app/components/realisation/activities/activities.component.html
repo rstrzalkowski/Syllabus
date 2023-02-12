@@ -22,9 +22,12 @@
       </div>
     </div>
   </div>
-  <p *ngIf="!activityPage?.last" class="mt-5"><span routerLink="/"
-                                                    class="cursor-pointer font-bold truncate">Show more</span>
-  </p>
+  <div class="flex justify-around">
+    <span *ngIf="(activityPage!.number) > 0" (click)="previous()"
+          class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Previous page</span>
+    <span *ngIf="!activityPage?.last" (click)="next()"
+          class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
+  </div>
 </div>
 
 

@@ -59,6 +59,12 @@
         </tr>
         </tbody>
       </table>
+      <div class="flex justify-around">
+        <span *ngIf="(grades!.number) > 0" (click)="previousPage()"
+              class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Previous page</span>
+        <span *ngIf="!grades?.last" (click)="nextPage()"
+              class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
+      </div>
     </div>
   </div>
 </div>

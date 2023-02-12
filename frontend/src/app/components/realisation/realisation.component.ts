@@ -23,18 +23,25 @@ export class RealisationComponent implements OnInit {
   activityPage: ActivityPage | undefined;
   //end data
 
+  //Page numbers
+  postPageNumber: number = 0
+  activityPageNumber: number = 0
+  //end page numbers
+
   //Loading indicators
-  realisationLoading = false;
-  postsLoading = false;
-  activitiesLoading = false;
-  gradeLoading = false;
+  realisationLoading = false
+  postsLoading = false
+  postPageLoading = false
+  activitiesLoading = false
+  activityPageLoading = false
+  gradeLoading = false
   //end loading
 
   //Subscriptions
-  realisationSubscription: any;
-  gradeSubscription: any;
-  postsSubscription: any;
-  activitiesSubscription: any;
+  realisationSubscription: any
+  gradeSubscription: any
+  postsSubscription: any
+  activitiesSubscription: any
 
   //end subscriptions
 
@@ -81,7 +88,7 @@ export class RealisationComponent implements OnInit {
 
   getPosts() {
     this.postsLoading = true
-    this.postsSubscription = this.postService.getRealisationPosts(this.realisationId).subscribe((result) => {
+    this.postsSubscription = this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
       this.postPage = result
       this.postsLoading = false
     })
@@ -89,7 +96,7 @@ export class RealisationComponent implements OnInit {
 
   getActivities() {
     this.activitiesLoading = true
-    this.postsSubscription = this.activityService.getRealisationActivities(this.realisationId).subscribe((result) => {
+    this.postsSubscription = this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
       this.activityPage = result
       this.activitiesLoading = false
     })
@@ -103,5 +110,49 @@ export class RealisationComponent implements OnInit {
     }, error => {
       this.router.navigate(['/forbidden'])
     })
+  }
+
+  getNextPostPage() {
+    if (!this.postPage?.last) {
+      this.postPageLoading = true
+      this.postPageNumber++
+      this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+        this.postPage = result
+        this.postPageLoading = false
+      })
+    }
+  }
+
+  getPreviousPostPage() {
+    if (this.postPageNumber > 0) {
+      this.postPageLoading = true
+      this.postPageNumber--
+      this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+        this.postPage = result
+        this.postPageLoading = false
+      })
+    }
+  }
+
+  getNextActivityPage() {
+    if (!this.activityPage?.last) {
+      this.activityPageLoading = true
+      this.activityPageNumber++
+      this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
+        this.activityPage = result
+        this.activityPageLoading = false
+      })
+    }
+  }
+
+  getPreviousActivityPage() {
+    if (this.activityPageNumber > 0) {
+      this.activityPageLoading = true
+      this.activityPageNumber--
+      this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
+        this.activityPage = result
+        this.activityPageLoading = false
+      })
+    }
   }
 }

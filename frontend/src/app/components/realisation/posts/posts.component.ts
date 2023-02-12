@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostPage} from "../../../model/post";
 
 @Component({
@@ -11,9 +11,21 @@ export class PostsComponent implements OnInit {
 
   @Input() postPage: PostPage | undefined
 
+  @Output() nextPage: EventEmitter<any> = new EventEmitter();
+  @Output() previousPage: EventEmitter<any> = new EventEmitter();
+
   constructor() {
   }
 
   ngOnInit(): void {
+    console.log("Initializing PostsComponent")
+  }
+
+  next() {
+    this.nextPage.emit()
+  }
+
+  previous() {
+    this.previousPage.emit()
   }
 }

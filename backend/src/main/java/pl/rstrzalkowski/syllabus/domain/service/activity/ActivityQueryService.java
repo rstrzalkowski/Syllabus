@@ -9,6 +9,8 @@ import pl.rstrzalkowski.syllabus.domain.exception.activity.ActivityNotFoundExcep
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityQueryService {
@@ -17,6 +19,11 @@ public class ActivityQueryService {
 
     public Page<ActivityDTO> getAllActiveByRealisation(Long realisationId, Pageable pageable) {
         Page<Activity> activities = activityRepository.findByRealisationIdAndArchived(realisationId, false, pageable);
+        return activities.map((ActivityDTO::new));
+    }
+
+    public Page<ActivityDTO> getAllIncomingByRealisation(Long realisationId, Pageable pageable) {
+        Page<Activity> activities = activityRepository.findByRealisationIdAndArchivedAndDateAfter(realisationId, false, LocalDateTime.now(), pageable);
         return activities.map((ActivityDTO::new));
     }
 

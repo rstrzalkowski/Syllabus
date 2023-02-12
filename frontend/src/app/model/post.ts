@@ -1,7 +1,8 @@
 export interface PostPage {
   content: Post[],
   totalPages: number,
-  last: boolean
+  last: boolean,
+  number: number
 }
 
 export interface Post {

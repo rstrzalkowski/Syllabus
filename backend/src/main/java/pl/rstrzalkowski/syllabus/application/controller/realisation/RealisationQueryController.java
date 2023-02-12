@@ -19,6 +19,7 @@ import pl.rstrzalkowski.syllabus.application.handler.grade.GradeQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.post.PostQueryHandler;
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetOwnGradesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetActivePostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.realisation.GetActiveRealisationsQuery;
@@ -81,6 +82,13 @@ public class RealisationQueryController {
     public Page<ActivityDTO> getActiveActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
         accessGuard.checkAccessToRealisation(id);
         return activityQueryHandler.handle(new GetActiveActivitiesByRealisationQuery(id, pageable));
+    }
+
+    @GetMapping("/{id}/activities/incoming")
+    @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    public Page<ActivityDTO> getIncomingActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
+        accessGuard.checkAccessToRealisation(id);
+        return activityQueryHandler.handle(new GetIncomingActivitiesByRealisationQuery(id, pageable));
     }
 
     @GetMapping("/archived")

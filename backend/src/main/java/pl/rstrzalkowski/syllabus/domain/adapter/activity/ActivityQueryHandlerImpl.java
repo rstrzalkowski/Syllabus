@@ -8,6 +8,7 @@ import pl.rstrzalkowski.syllabus.application.handler.activity.ActivityQueryHandl
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetArchivedActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.service.activity.ActivityQueryService;
 
@@ -30,5 +31,10 @@ public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
     @Override
     public Activity handle(GetActivityByIdQuery query) {
         return activityQueryService.getById(query.id());
+    }
+
+    @Override
+    public Page<ActivityDTO> handle(GetIncomingActivitiesByRealisationQuery query) {
+        return activityQueryService.getAllIncomingByRealisation(query.realisationId(), query.pageable());
     }
 }

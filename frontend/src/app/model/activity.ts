@@ -1,7 +1,8 @@
 export interface ActivityPage {
   content: Activity[],
   totalPages: number,
-  last: boolean
+  last: boolean,
+  number: number
 }
 
 export interface Activity {

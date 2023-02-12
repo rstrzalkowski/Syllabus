@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivityPage} from "../../../model/activity";
 
 @Component({
@@ -11,6 +11,9 @@ export class ActivitiesComponent implements OnInit {
 
   @Input() activityPage: ActivityPage | undefined
 
+  @Output() nextPage: EventEmitter<any> = new EventEmitter();
+  @Output() previousPage: EventEmitter<any> = new EventEmitter();
+
 
   constructor() {
   }
@@ -18,4 +21,11 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  previous() {
+    this.previousPage.emit()
+  }
+
+  next() {
+    this.nextPage.emit()
+  }
 }

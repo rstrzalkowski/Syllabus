@@ -5,6 +5,7 @@ import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetArchivedActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 
 public interface ActivityQueryHandler {
@@ -13,4 +14,6 @@ public interface ActivityQueryHandler {
     Page<Activity> handle(GetArchivedActivitiesByRealisationQuery query);
 
     Activity handle(GetActivityByIdQuery query);
+
+    Page<ActivityDTO> handle(GetIncomingActivitiesByRealisationQuery getIncomingActivitiesByRealisationQuery);
 }

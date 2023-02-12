@@ -16,8 +16,12 @@ export class GradesComponent implements OnInit {
   //Data from API
   realisationInfo: RealisationInfo | undefined
   grades: GradePage | undefined
-
   //end data
+
+
+  //Page number
+  pageNumber: number = 0
+  //
 
 
   //Loading indicators
@@ -69,7 +73,7 @@ export class GradesComponent implements OnInit {
 
   getGrades(realisationId: number) {
     this.gradesLoading = true
-    this.gradesSubscription = this.gradeService.getGradesOfRealisation(realisationId).subscribe((result) => {
+    this.gradesSubscription = this.gradeService.getGradesOfRealisation(realisationId, this.pageNumber).subscribe((result) => {
       this.grades = result
       this.gradesLoading = false
     })
@@ -77,5 +81,19 @@ export class GradesComponent implements OnInit {
 
   isLoading() {
     return this.realisationLoading || this.gradesLoading
+  }
+
+  nextPage() {
+    if (!this.grades?.last) {
+      this.pageNumber++
+      this.getGrades(this.realisationId!)
+    }
+  }
+
+  previousPage() {
+    if (this.pageNumber > 0) {
+      this.pageNumber--
+      this.getGrades(this.realisationId!)
+    }
   }
 }
