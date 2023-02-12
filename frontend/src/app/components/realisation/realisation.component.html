@@ -93,7 +93,8 @@
                      (close)="createPostOpened = false"
                      [realisationId]="realisationId">
     </app-create-post>
-    <app-create-activity *ngIf="createActivityOpened"
+    <app-create-activity (success)="refreshActivities()"
+                         *ngIf="createActivityOpened"
                          (close)="createActivityOpened = false"
                          [realisationId]="realisationId">
     </app-create-activity>

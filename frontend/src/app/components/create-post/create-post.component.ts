@@ -40,7 +40,7 @@ export class CreatePostComponent implements OnInit {
       this.alertService.showAlert('success', 'Post has been successfully created!')
       this.success.emit()
     }, error => {
-      this.alertService.showAlert('danger', 'Something went wrong during creating a post')
+      this.alertService.showAlert('danger', 'Something went wrong during creating a post. Make sure form is valid')
     })
   }
 

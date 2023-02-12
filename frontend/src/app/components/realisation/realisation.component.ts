@@ -133,6 +133,16 @@ export class RealisationComponent implements OnInit {
     })
   }
 
+  refreshActivities() {
+    this.activityPageNumber = 0
+    this.activityPageLoading = true
+    this.activityService.getIncomingActivities(this.realisationId, this.postPageNumber).subscribe((result) => {
+      this.activityPage = result
+      this.activityPageLoading = false
+      this.createActivityOpened = false
+    })
+  }
+
   getNextPostPage() {
     if (!this.postPage?.last) {
       this.postPageLoading = true

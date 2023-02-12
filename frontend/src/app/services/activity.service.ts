@@ -16,6 +16,16 @@ export class ActivityService {
   }
 
   getIncomingActivities(realisationId: number | undefined, page: number) {
-    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=1&page=${page}&sort=date`)
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=3&page=${page}&sort=date`)
+  }
+
+  createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined) {
+    return this.http.post(`${environment.apiUrl}/activities`, {
+      name: name,
+      description: description,
+      weight: weight,
+      date: date,
+      realisationId: realisationId
+    }, {observe: "response"})
   }
 }

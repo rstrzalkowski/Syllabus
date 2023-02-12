@@ -16,7 +16,7 @@ export class PostService {
   }
 
   createPost(title: string, content: string, realisationId: number | undefined) {
-    return this.http.post<PostPage>(`${environment.apiUrl}/posts`, {
+    return this.http.post(`${environment.apiUrl}/posts`, {
       title: title,
       content: content,
       realisationId: realisationId

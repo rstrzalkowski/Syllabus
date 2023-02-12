@@ -1,10 +1,9 @@
 package pl.rstrzalkowski.syllabus.domain.service.activity;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.activity.ArchiveActivityCommand;
 import pl.rstrzalkowski.syllabus.application.command.activity.CreateActivityCommand;
 import pl.rstrzalkowski.syllabus.application.command.activity.UpdateActivityCommand;
@@ -37,8 +36,7 @@ public class ActivityCommandService {
         Realisation realisation = realisationRepository.findById(command.getRealisationId())
                 .orElseThrow(RealisationNotFoundException::new);
 
-        User teacher = userRepository.findById(command.getTeacherId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         activity.setRealisation(realisation);
         activity.setTeacher(teacher);
