@@ -52,7 +52,7 @@ public class RealisationQueryService {
     public AverageGradeDTO getRealisationAverageGrade(Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Grade> grades = gradeRepository.findAllByActivityRealisationIdAndStudent(id, user);
-        
+
         double sum = 0;
         double weights = 0;
         for (Grade grade : grades) {
@@ -68,8 +68,8 @@ public class RealisationQueryService {
     public List<SubjectDTO> getOwnActiveRealisations() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user.getRole() == Role.TEACHER) {
-            List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
-            return activeRealisationsBySchoolClass
+            List<Realisation> realisations = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
+            return realisations
                     .stream()
                     .map((realisation -> new SubjectDTO(realisation.getId(), realisation.getSubject().getName())))
                     .collect(Collectors.toList());

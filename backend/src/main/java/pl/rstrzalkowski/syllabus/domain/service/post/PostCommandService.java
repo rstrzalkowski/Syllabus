@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.domain.service.post;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,8 +26,7 @@ public class PostCommandService {
     private final RealisationRepository realisationRepository;
     private final UserRepository userRepository;
 
-
-    //TODO get teacher from context and check if he is the teacher of realisation
+    
     public Post create(CreatePostCommand command) {
         Post post = new Post();
         post.setContent(command.getContent());
@@ -34,11 +34,10 @@ public class PostCommandService {
         Realisation realisation = realisationRepository.findById(command.getRealisationId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
-        User teacher = userRepository.findById(command.getTeacherId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        User author = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         post.setRealisation(realisation);
-        post.setTeacher(teacher);
+        post.setTeacher(author);
         post.setTitle(command.getTitle());
         return postRepository.save(post);
     }

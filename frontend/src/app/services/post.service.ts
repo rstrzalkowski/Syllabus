@@ -14,4 +14,12 @@ export class PostService {
   getRealisationPosts(realisationId: number | undefined, page: number) {
     return this.http.get<PostPage>(`${environment.apiUrl}/realisations/${realisationId}/posts?size=3&page=${page}&sort=createdAt,desc`)
   }
+
+  createPost(title: string, content: string, realisationId: number | undefined) {
+    return this.http.post<PostPage>(`${environment.apiUrl}/posts`, {
+      title: title,
+      content: content,
+      realisationId: realisationId
+    }, {observe: "response"})
+  }
 }

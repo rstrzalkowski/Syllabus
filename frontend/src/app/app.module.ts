@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
-import {ThemeSwitchComponent} from './components/theme-switch/theme-switch.component';
+import {ThemeSwitchComponent} from './components/utilities/theme-switch/theme-switch.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
@@ -12,16 +12,18 @@ import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import {SettingsComponent} from './components/settings/settings.component';
-import {AlertComponent} from './components/alert/alert.component';
+import {AlertComponent} from './components/utilities/alert/alert.component';
 import {RealisationComponent} from './components/realisation/realisation.component';
-import {ForbiddenPageComponent} from './components/forbidden-page/forbidden-page.component';
-import {NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
-import {LoadingComponent} from './components/loading/loading.component';
+import {ForbiddenPageComponent} from './components/utilities/forbidden-page/forbidden-page.component';
+import {NotFoundPageComponent} from './components/utilities/not-found-page/not-found-page.component';
+import {LoadingComponent} from './components/utilities/loading/loading.component';
 import {AverageGradeComponent} from './components/realisation/average-grade/average-grade.component';
 import {PostsComponent} from './components/realisation/posts/posts.component';
 import {ActivitiesComponent} from './components/realisation/activities/activities.component';
 import {GradesComponent} from "./components/grades/grades.component";
-import { FooterComponent } from './components/footer/footer.component';
+import {FooterComponent} from './components/utilities/footer/footer.component';
+import {CreatePostComponent} from './components/create-post/create-post.component';
+import {CreateActivityComponent} from './components/create-activity/create-activity.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -44,6 +46,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ActivitiesComponent,
     GradesComponent,
     FooterComponent,
+    CreatePostComponent,
+    CreateActivityComponent,
   ],
   imports: [
     BrowserModule,

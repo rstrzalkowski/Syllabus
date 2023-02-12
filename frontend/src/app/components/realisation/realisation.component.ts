@@ -7,6 +7,7 @@ import {PostService} from "../../services/post.service";
 import {ActivityService} from "../../services/activity.service";
 import {PostPage} from "../../model/post";
 import {ActivityPage} from "../../model/activity";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-realisation',
@@ -42,15 +43,23 @@ export class RealisationComponent implements OnInit {
   gradeSubscription: any
   postsSubscription: any
   activitiesSubscription: any
-
   //end subscriptions
+
+  //Modals
+  createActivityOpened = false
+  createPostOpened = false
+  editActivityOpened = false
+  editPostOpened = false
+
+  //end modals
 
   constructor(private realisationService: RealisationService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private gradeService: GradeService,
               private postService: PostService,
-              private activityService: ActivityService) {
+              private activityService: ActivityService,
+              public userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -60,7 +69,9 @@ export class RealisationComponent implements OnInit {
 
       this.realisationId = Number(realisationIdString)
 
-      this.getAverageGrade();
+      if (this.userService.user?.role === 'STUDENT') {
+        this.getAverageGrade();
+      }
       this.getPosts();
       this.getActivities();
       this.getRealisationInfo(this.realisationId);
@@ -109,6 +120,16 @@ export class RealisationComponent implements OnInit {
       this.realisationLoading = false
     }, error => {
       this.router.navigate(['/forbidden'])
+    })
+  }
+
+  refreshPosts() {
+    this.postPageNumber = 0
+    this.postPageLoading = true
+    this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+      this.postPage = result
+      this.postPageLoading = false
+      this.createPostOpened = false
     })
   }
 

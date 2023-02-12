@@ -7,8 +7,8 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {RealisationComponent} from "./components/realisation/realisation.component";
-import {ForbiddenPageComponent} from "./components/forbidden-page/forbidden-page.component";
-import {NotFoundPageComponent} from "./components/not-found-page/not-found-page.component";
+import {ForbiddenPageComponent} from "./components/utilities/forbidden-page/forbidden-page.component";
+import {NotFoundPageComponent} from "./components/utilities/not-found-page/not-found-page.component";
 import {GradesComponent} from "./components/grades/grades.component";
 
 const routes: Routes = [

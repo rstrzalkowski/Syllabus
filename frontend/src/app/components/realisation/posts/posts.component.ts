@@ -18,7 +18,6 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Initializing PostsComponent")
   }
 
   next() {

@@ -24,15 +24,29 @@
         class="flex-none bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 md:border-r-0 border-l-4 border-teal-600 flex justify-between space-x-5">
         <app-grade
           class="w-full"
+          *ngIf="userService.user?.role === 'STUDENT'"
           [realisationId]="realisationId"
           [grade]="grade">
         </app-grade>
+        <ng-container *ngIf="userService.user?.role === 'TEACHER'">
+          <div class="w-full">
+            <span class="text-lg underline underline-offset-4">Manage realisation:</span>
+            <div class="p-2 font-bold text-teal-600 w-full mt-3">
+              <div class="flex flex-col xl:flex-row justify-between text-center space-y-3 xl:space-y-0 xl:space-x-4">
+                <span class="w-full cursor-pointer btn-submit">Grade students</span>
+                <span class="w-full cursor-pointer btn-submit"
+                      (click)="createActivityOpened = true">Create activity</span>
+                <span class="w-full cursor-pointer btn-submit" (click)="createPostOpened = true">Create post</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </div>
       <div
         class="mt-3 bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 md:border-r-0 border-l-4 border-teal-600 flex justify-between space-x-5">
         <app-activities
-          [hidden]="activityPageLoading"
           class="w-full"
+          [hidden]="activityPageLoading"
           [realisationId]="realisationId"
           [activityPage]="activityPage"
           (nextPage)="getNextActivityPage()"
@@ -57,8 +71,8 @@
     <div
       class="md:w-3/5 mt-3 md:mt-0 md:ml-0 bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 border-l-4 md:border-l-0 border-teal-600 flex justify-between space-x-5">
       <app-posts
-        [hidden]="postPageLoading"
         class="w-full"
+        [hidden]="postPageLoading"
         [realisationId]="realisationId"
         [postPage]="postPage"
         (nextPage)="getNextPostPage()"
@@ -74,6 +88,16 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="userService.user?.role === 'TEACHER'">
+    <app-create-post (success)="refreshPosts()" *ngIf="createPostOpened"
+                     (close)="createPostOpened = false"
+                     [realisationId]="realisationId">
+    </app-create-post>
+    <app-create-activity *ngIf="createActivityOpened"
+                         (close)="createActivityOpened = false"
+                         [realisationId]="realisationId">
+    </app-create-activity>
+  </ng-container>
 </ng-container>
 
 <ng-container *ngIf="isLoading()">

@@ -1,7 +1,7 @@
 <body [ngClass]="themeService.lightTheme ? 'theme-light' : 'theme-dark'">
 <div class="flex flex-row min-h-screen bg-skin-muted text-skin-base">
   <aside id="dashboard"
-         class="bg-skin-sidebar w-64 shadow-2xl transform transition-transform duration-300 ease-in z-10 lg:z-0 flex-none"
+         class="bg-skin-sidebar w-64 shadow-2xl transform transition-transform duration-300 ease-in z-20 flex-none"
          [ngClass]="sidebarHidden ? '-translate-x-full' : '-translate-x-0'">
     <div class="sticky top-0 left-0 overflow-y-auto max-h-screen">
       <div class="sidebar-header flex items-center py-4 ml-6">
@@ -244,12 +244,12 @@
   </main>
 </div>
 
-<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="logoutModal">
+<div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="logoutModal">
   <div class="fixed inset-0 bg-gray-500 bg-opacity-30 transition-opacity"></div>
-  <div class="fixed inset-0 z-10 overflow-y-auto">
+  <div class="fixed inset-0 overflow-y-auto">
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
       <div
-        class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 w-4/5 sm:w-full sm:max-w-lg">
         <div class="bg-skin-base px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
             <div

@@ -25,7 +25,7 @@ INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archi
 
 INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:17:50.795000', '2023-01-30 21:17:50.795000', 0, false, 1, 2, 'TIN');
 INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:17:57.326000', '2023-01-30 21:17:57.326000', 0, false, 2, 4, 'TAI');
-INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:18:03.808000', '2023-01-30 21:18:03.808000', 0, false, 4, 2, 'TEK');
+INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:18:03.808000', '2023-01-30 21:18:03.808000', 0, false, 4, 1, 'TEK');
 
 
 INSERT INTO public.app_user (created_at, updated_at, version, archived, description, email, first_name, last_name, locked, password, personal_id, role, child_id, school_class_id) VALUES ('2023-01-30 21:23:11.929000', '2023-01-30 21:23:11.929000', 0, false, null, 'thirdStudent', 'Wioletta', 'Graczyk', false, '$2a$10$jWuYQQyJehk2Rz4iBDhanOBNR6Ty7c94QugkJ0BdxVeylR9u5LkFq', '5326', 'STUDENT', null, 1);
@@ -49,9 +49,9 @@ INSERT INTO public.realisation (created_at, updated_at, version, archived, year,
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:35.460000', '2023-01-30 21:34:35.460000', 0, false, 2023, 2, 1, 4);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:37.414000', '2023-01-30 21:34:37.414000', 0, false, 2023, 2, 2, 4);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:41.747000', '2023-01-30 21:34:41.747000', 0, false, 2023, 2, 5, 2);
-INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:49.097000', '2023-01-30 21:34:49.097000', 0, false, 2023, 3, 6, 2);
-INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:55.043000', '2023-01-30 21:34:55.043000', 0, false, 2023, 3, 2, 2);
-INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:58.539000', '2023-01-30 21:34:58.539000', 0, false, 2023, 3, 3, 4);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:49.097000', '2023-01-30 21:34:49.097000', 0, false, 2023, 3, 6, 1);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:55.043000', '2023-01-30 21:34:55.043000', 0, false, 2023, 3, 2, 1);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:58.539000', '2023-01-30 21:34:58.539000', 0, false, 2023, 3, 3, 1);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:35:02.417000', '2023-01-30 21:35:02.417000', 0, false, 2023, 3, 4, 2);
 
 
