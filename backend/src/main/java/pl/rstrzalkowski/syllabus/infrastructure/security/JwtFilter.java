@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.application.controller.security;
+package pl.rstrzalkowski.syllabus.infrastructure.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

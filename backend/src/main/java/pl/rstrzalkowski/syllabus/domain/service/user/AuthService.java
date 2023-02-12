@@ -14,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.LoginCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.RegisterCommand;
-import pl.rstrzalkowski.syllabus.application.controller.security.JwtProvider;
-import pl.rstrzalkowski.syllabus.application.controller.security.JwtResponse;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserAlreadyRegisteredException;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
@@ -23,6 +21,8 @@ import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.security.JwtProvider;
+import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
 
 @Service
 @RequiredArgsConstructor

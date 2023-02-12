@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.application.controller.security;
+package pl.rstrzalkowski.syllabus.infrastructure.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

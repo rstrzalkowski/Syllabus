@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.command.user.LoginCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.RegisterCommand;
-import pl.rstrzalkowski.syllabus.application.controller.security.JwtResponse;
 import pl.rstrzalkowski.syllabus.application.handler.user.AuthHandler;
+import pl.rstrzalkowski.syllabus.infrastructure.security.JwtResponse;
 
 @RestController
 @RequiredArgsConstructor
