@@ -51,8 +51,8 @@ public class RealisationQueryService {
 
     public AverageGradeDTO getRealisationAverageGrade(Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Grade> grades = gradeRepository.findAllByActivityRealisationIdAndStudent(id, user);
-
+        List<Grade> grades = gradeRepository.findAllByArchivedAndActivityArchivedAndActivityRealisationIdAndStudent(false, false, id, user);
+        
         double sum = 0;
         double weights = 0;
         for (Grade grade : grades) {

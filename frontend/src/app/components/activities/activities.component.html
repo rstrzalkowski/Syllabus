@@ -49,7 +49,7 @@
           </td>
           <td class="px-6 py-4 text-center flex justify-center space-x-3">
             <button class="btn-submit">Grade</button>
-            <button class="btn-edit">Edit</button>
+            <button (click)="showEditModal(activity)" class="btn-edit">Edit</button>
             <button (click)="showDeleteModal(activity.activityId)" class="btn-del">Delete</button>
           </td>
         </tr>
@@ -141,3 +141,9 @@
     </div>
   </div>
 </div>
+
+<app-edit-activity *ngIf="editModalOpened"
+                   [activity]="editedActivity"
+                   (close)="editModalOpened = false"
+                   (success)="refreshActivities()">
+</app-edit-activity>

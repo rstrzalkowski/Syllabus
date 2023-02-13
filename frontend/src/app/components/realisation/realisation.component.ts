@@ -7,7 +7,7 @@ import {PostService} from "../../services/post.service";
 import {ActivityService} from "../../services/activity.service";
 import {PostPage} from "../../model/post";
 import {ActivityPage} from "../../model/activity";
-import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-realisation',
@@ -49,7 +49,7 @@ export class RealisationComponent implements OnInit {
   createActivityOpened = false
   createPostOpened = false
   editActivityOpened = false
-  
+
   //end modals
 
   constructor(private realisationService: RealisationService,
@@ -58,7 +58,7 @@ export class RealisationComponent implements OnInit {
               private gradeService: GradeService,
               private postService: PostService,
               private activityService: ActivityService,
-              public userService: UserService) {
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class RealisationComponent implements OnInit {
 
       this.realisationId = Number(realisationIdString)
 
-      if (this.userService.user?.role === 'STUDENT') {
+      if (this.authService.getRole() === 'STUDENT') {
         this.getAverageGrade();
       }
       this.getPosts();

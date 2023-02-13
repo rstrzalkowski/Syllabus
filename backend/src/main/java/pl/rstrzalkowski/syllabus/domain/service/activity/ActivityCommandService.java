@@ -50,6 +50,7 @@ public class ActivityCommandService {
         activity.setName(command.getName() == null ? activity.getName() : command.getName());
         activity.setDescription(command.getDescription() == null ? activity.getDescription() : command.getDescription());
         activity.setWeight(command.getWeight() == null ? activity.getWeight() : command.getWeight());
+        activity.setDate(command.getDate() == null ? activity.getDate() : command.getDate());
 
         activity.setEdited(true);
         return activityRepository.save(activity);

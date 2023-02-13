@@ -12,11 +12,11 @@ export class ActivityService {
   }
 
   getRealisationActivities(realisationId: number | undefined, page: number) {
-    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=5&page=${page}&sort=date`)
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=5&page=${page}&sort=createdAt`)
   }
 
   getIncomingActivities(realisationId: number | undefined, page: number) {
-    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=3&page=${page}&sort=date`)
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=3&page=${page}&sort=createdAt`)
   }
 
   createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined) {
@@ -29,10 +29,12 @@ export class ActivityService {
     }, {observe: "response"})
   }
 
-  updateActivity(title: string, content: string, postId: number | undefined) {
-    return this.http.put(`${environment.apiUrl}/activities/${postId}`, {
-      title: title,
-      content: content,
+  updateActivity(name: string, description: string, weight: number, date: any, activityId: number | undefined,) {
+    return this.http.put(`${environment.apiUrl}/activities/${activityId}`, {
+      name: name,
+      description: description,
+      weight: weight,
+      date: date
     }, {observe: "response"})
   }
 

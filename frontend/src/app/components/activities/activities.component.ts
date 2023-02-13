@@ -94,6 +94,16 @@ export class ActivitiesComponent implements OnInit {
     })
   }
 
+  refreshActivities() {
+    this.pageNumber = 0
+    this.activitiesLoading = true
+    this.activitiesSubscription = this.activityService.getRealisationActivities(this.realisationId, this.pageNumber).subscribe((result) => {
+      this.activities = result
+      this.activitiesLoading = false
+      this.editModalOpened = false
+    })
+  }
+
   isLoading() {
     return this.realisationLoading || this.activitiesLoading
   }
@@ -127,5 +137,10 @@ export class ActivitiesComponent implements OnInit {
   showDeleteModal(activityId: number) {
     this.activityIdToBeDeleted = activityId
     this.deleteModalOpened = true
+  }
+
+  showEditModal(activity: Activity) {
+    this.editedActivity = activity
+    this.editModalOpened = true
   }
 }

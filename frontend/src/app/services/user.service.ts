@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {User} from "../model/user";
 import {AuthService} from "./auth.service";
-import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +12,7 @@ export class UserService {
   public user: User | undefined
 
   constructor(private http: HttpClient,
-              private authService: AuthService,
-              private router: Router) {
-    console.log("User constructor")
+              private authService: AuthService) {
     if (this.authService.authenticated.value) {
       this.getLoggedInUser()
     } else {

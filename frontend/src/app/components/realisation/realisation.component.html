@@ -24,11 +24,11 @@
         class="flex-none bg-skin-base p-5 mx-3 rounded-md shadow border-r-4 md:border-r-0 border-l-4 border-teal-600 flex justify-between space-x-5">
         <app-grade
           class="w-full"
-          *ngIf="userService.user?.role === 'STUDENT'"
+          *ngIf="authService.getRole() === 'STUDENT'"
           [realisationId]="realisationId"
           [grade]="grade">
         </app-grade>
-        <ng-container *ngIf="userService.user?.role === 'TEACHER'">
+        <ng-container *ngIf="authService.getRole() === 'TEACHER'">
           <div class="w-full">
             <span class="text-lg underline underline-offset-4">Manage realisation:</span>
             <div class="p-2 font-bold text-teal-600 w-full mt-3">
@@ -90,7 +90,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="userService.user?.role === 'TEACHER'">
+  <ng-container *ngIf="authService.getRole() === 'TEACHER'">
     <app-create-post (success)="refreshPosts()" *ngIf="createPostOpened"
                      (close)="createPostOpened = false"
                      [realisationId]="realisationId">

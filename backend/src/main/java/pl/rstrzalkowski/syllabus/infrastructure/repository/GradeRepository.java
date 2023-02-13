@@ -16,7 +16,7 @@ public interface GradeRepository extends JpaRepository<Grade, Long> {
 
     Optional<Grade> findByActivityIdAndStudentId(Long activityId, Long studentId);
 
-    List<Grade> findAllByActivityRealisationIdAndStudent(Long realisationId, User student);
+    List<Grade> findAllByArchivedAndActivityArchivedAndActivityRealisationIdAndStudent(boolean archived, boolean activityArchived, Long realisationId, User student);
 
     List<Grade> findAllByArchivedAndStudentIdAndActivityRealisationId(boolean archived, Long studentId, Long realisationId);
 }

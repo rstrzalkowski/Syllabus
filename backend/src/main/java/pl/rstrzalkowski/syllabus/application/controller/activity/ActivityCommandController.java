@@ -34,13 +34,16 @@ public class ActivityCommandController {
         activityCommandHandler.handle(command);
     }
 
-    @PutMapping
-    public void updateActivity(@Valid @RequestBody UpdateActivityCommand command) {
+    @PutMapping("/{id}")
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    public void updateActivity(@PathVariable("id") Long id, @Valid @RequestBody UpdateActivityCommand command) {
+        command.setId(id);
         activityCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         activityCommandHandler.handle(new ArchiveActivityCommand(id));
     }
