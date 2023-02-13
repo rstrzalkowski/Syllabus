@@ -18,10 +18,16 @@ export class StudentGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userService.user?.role !== 'STUDENT') {
-      this.router.navigate(['forbidden'])
-      return false
-    }
+    // if (!this.userService.user) {
+    //   this.userService.getLoggedInUser()
+    //   while (this.userService.user === undefined) {
+    //   }
+    // }
+    //
+    // if (this.userService.user?.role !== 'STUDENT') {
+    //   this.router.navigate(['forbidden'])
+    //   return false
+    // }
     return true
   }
 }

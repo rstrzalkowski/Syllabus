@@ -15,6 +15,7 @@ export class UserService {
   constructor(private http: HttpClient,
               private authService: AuthService,
               private router: Router) {
+    console.log("User constructor")
     if (this.authService.authenticated.value) {
       this.getLoggedInUser()
     } else {

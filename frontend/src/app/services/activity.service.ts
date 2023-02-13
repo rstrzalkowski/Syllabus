@@ -28,4 +28,15 @@ export class ActivityService {
       realisationId: realisationId
     }, {observe: "response"})
   }
+
+  updateActivity(title: string, content: string, postId: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/activities/${postId}`, {
+      title: title,
+      content: content,
+    }, {observe: "response"})
+  }
+
+  deleteActivity(activityId: number) {
+    return this.http.delete(`${environment.apiUrl}/activities/${activityId}`)
+  }
 }

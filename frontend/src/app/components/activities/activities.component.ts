@@ -3,7 +3,8 @@ import {RealisationInfo} from "../../model/realisation.info";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RealisationService} from "../../services/realisation.service";
 import {ActivityService} from "../../services/activity.service";
-import {ActivityPage} from "../../model/activity";
+import {Activity, ActivityPage} from "../../model/activity";
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-activities',
@@ -37,9 +38,23 @@ export class ActivitiesComponent implements OnInit {
   //end subscriptions
 
 
+  //Delete activity
+  deleteModalOpened = false
+  activityIdToBeDeleted: number | undefined
+  //end delete
+
+
+  //Edit activity
+  editModalOpened = false
+  editedActivity: Activity | undefined
+
+  //end edit
+
+
   constructor(private activatedRoute: ActivatedRoute,
               private realisationService: RealisationService,
               private activityService: ActivityService,
+              private alertService: AlertService,
               private router: Router) {
   }
 
@@ -95,5 +110,22 @@ export class ActivitiesComponent implements OnInit {
       this.pageNumber--
       this.getActivities(this.realisationId!)
     }
+  }
+
+  deleteActivity() {
+    if (this.activityIdToBeDeleted) {
+      this.activityService.deleteActivity(this.activityIdToBeDeleted).subscribe((result) => {
+        this.ngOnInit()
+        this.alertService.showAlert('success', 'Activity has been deleted.')
+        this.deleteModalOpened = false
+      }, error => {
+        this.alertService.showAlert('danger', 'Something went wrong during deleting activity. Try again later.')
+      })
+    }
+  }
+
+  showDeleteModal(activityId: number) {
+    this.activityIdToBeDeleted = activityId
+    this.deleteModalOpened = true
   }
 }

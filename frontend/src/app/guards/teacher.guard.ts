@@ -18,10 +18,10 @@ export class TeacherGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userService.user?.role !== 'TEACHER' && this.userService.user?.role !== 'OFFICE' && this.userService.user?.role !== 'DIRECTOR') {
-      this.router.navigate(['forbidden'])
-      return false
-    }
+    // if (this.userService.user?.role !== 'TEACHER' && this.userService.user?.role !== 'OFFICE' && this.userService.user?.role !== 'DIRECTOR') {
+    //   this.router.navigate(['forbidden'])
+    //   return false
+    // }
     return true
   }
 }
