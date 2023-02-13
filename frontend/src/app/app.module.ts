@@ -19,11 +19,14 @@ import {NotFoundPageComponent} from './components/utilities/not-found-page/not-f
 import {LoadingComponent} from './components/utilities/loading/loading.component';
 import {AverageGradeComponent} from './components/realisation/average-grade/average-grade.component';
 import {PostsComponent} from './components/realisation/posts/posts.component';
-import {ActivitiesComponent} from './components/realisation/activities/activities.component';
+import {IncomingActivitiesComponent} from './components/realisation/incoming-activities/incoming-activities.component';
 import {GradesComponent} from "./components/grades/grades.component";
 import {FooterComponent} from './components/utilities/footer/footer.component';
 import {CreatePostComponent} from './components/create-post/create-post.component';
 import {CreateActivityComponent} from './components/create-activity/create-activity.component';
+import {ActivitiesComponent} from "./components/activities/activities.component";
+import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -43,11 +46,14 @@ import {CreateActivityComponent} from './components/create-activity/create-activ
     LoadingComponent,
     AverageGradeComponent,
     PostsComponent,
-    ActivitiesComponent,
+    IncomingActivitiesComponent,
     GradesComponent,
     FooterComponent,
     CreatePostComponent,
     CreateActivityComponent,
+    ActivitiesComponent,
+    EditActivityComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,

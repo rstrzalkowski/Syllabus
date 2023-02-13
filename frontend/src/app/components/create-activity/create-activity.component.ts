@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {AlertService} from "../../services/alert.service";
 import {ActivityService} from "../../services/activity.service";
 
@@ -29,6 +29,12 @@ export class CreateActivityComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.closeModal()
+    }
   }
 
   submit() {

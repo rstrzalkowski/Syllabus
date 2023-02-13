@@ -11,8 +11,8 @@ export class ActivityService {
   constructor(private http: HttpClient) {
   }
 
-  getRealisationActivities(realisationId: number | undefined) {
-    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=4&sort=date`)
+  getRealisationActivities(realisationId: number | undefined, page: number) {
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=5&page=${page}&sort=date`)
   }
 
   getIncomingActivities(realisationId: number | undefined, page: number) {

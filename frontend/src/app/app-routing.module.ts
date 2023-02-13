@@ -10,6 +10,9 @@ import {RealisationComponent} from "./components/realisation/realisation.compone
 import {ForbiddenPageComponent} from "./components/utilities/forbidden-page/forbidden-page.component";
 import {NotFoundPageComponent} from "./components/utilities/not-found-page/not-found-page.component";
 import {GradesComponent} from "./components/grades/grades.component";
+import {ActivitiesComponent} from "./components/activities/activities.component";
+import {StudentGuard} from "./guards/student.guard";
+import {TeacherGuard} from "./guards/teacher.guard";
 
 const routes: Routes = [
   {
@@ -35,7 +38,12 @@ const routes: Routes = [
       {
         path: "realisation/:id/grades",
         component: GradesComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, StudentGuard]
+      },
+      {
+        path: "realisation/:id/activities",
+        component: ActivitiesComponent,
+        canActivate: [AuthenticationGuard, TeacherGuard]
       },
       {
         path: "forbidden",

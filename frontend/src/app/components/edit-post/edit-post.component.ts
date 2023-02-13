@@ -1,12 +1,13 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {AlertService} from "../../services/alert.service";
+import {Post} from "../../model/post";
 
 @Component({
-  selector: 'app-create-post',
-  templateUrl: './create-post.component.html'
+  selector: 'app-edit-post',
+  templateUrl: './edit-post.component.html'
 })
-export class CreatePostComponent implements OnInit {
+export class EditPostComponent implements OnInit {
 
   //Data
   title: string = ""
@@ -18,7 +19,7 @@ export class CreatePostComponent implements OnInit {
   loading = false
   //end loading
 
-  @Input() realisationId: number | undefined
+  @Input() post: Post | undefined
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
 
@@ -27,12 +28,8 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    if (event.key === "Escape") {
-      this.closeModal()
-    }
+    this.title = this.post?.title || ""
+    this.content = this.post?.content || ""
   }
 
   submit() {
@@ -42,11 +39,11 @@ export class CreatePostComponent implements OnInit {
     }
 
     this.loading = true
-    this.postService.createPost(this.title, this.content, this.realisationId).subscribe((result) => {
-      this.alertService.showAlert('success', 'Post has been successfully created!')
+    this.postService.updatePost(this.title, this.content, this.post?.postId).subscribe((result) => {
+      this.alertService.showAlert('success', 'Post has been successfully updated!')
       this.success.emit()
     }, error => {
-      this.alertService.showAlert('danger', 'Something went wrong during creating a post. Make sure form is valid')
+      this.alertService.showAlert('danger', 'Something went wrong during updating a post. Try again later.')
     })
   }
 

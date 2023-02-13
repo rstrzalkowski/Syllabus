@@ -34,8 +34,9 @@ public class PostCommandController {
         postCommandHandler.handle(command);
     }
 
-    @PutMapping
-    public void updatePost(@Valid @RequestBody UpdatePostCommand command) {
+    @PutMapping("/{id}")
+    public void updatePost(@PathVariable("id") Long id, @Valid @RequestBody UpdatePostCommand command) {
+        command.setId(id);
         postCommandHandler.handle(command);
     }
 

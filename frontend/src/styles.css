@@ -82,7 +82,7 @@
   }
 }
 
-@layer utilities {
+@layer base {
   .btn-submit {
     @apply
     flex
@@ -98,6 +98,40 @@
     focus:outline-none
     focus:ring-2
     focus:ring-teal-700
+  }
+
+  .btn-edit {
+    @apply
+    justify-center
+    py-2.5
+    px-4
+    rounded-md
+    text-sm
+    font-medium
+    text-skin-base
+    bg-skin-base
+    hover:bg-skin-muted
+    focus:outline-none
+    focus:ring-2
+    focus:ring-gray-700
+    border-gray-500
+    border
+  }
+
+  .btn-del {
+    @apply
+    justify-center
+    py-2.5
+    px-4
+    rounded-md
+    text-sm
+    font-medium
+    text-white
+    bg-red-600
+    hover:bg-red-700
+    focus:outline-none
+    focus:ring-2
+    focus:ring-red-700
   }
 }
 

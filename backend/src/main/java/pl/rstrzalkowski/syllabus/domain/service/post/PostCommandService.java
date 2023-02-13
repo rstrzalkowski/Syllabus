@@ -26,7 +26,7 @@ public class PostCommandService {
     private final RealisationRepository realisationRepository;
     private final UserRepository userRepository;
 
-    
+
     public Post create(CreatePostCommand command) {
         Post post = new Post();
         post.setContent(command.getContent());
@@ -46,6 +46,7 @@ public class PostCommandService {
         Post post = postRepository.findById(command.getId())
                 .orElseThrow(PostNotFoundException::new);
 
+        post.setTitle(command.getTitle() == null ? post.getTitle() : command.getTitle());
         post.setContent(command.getContent() == null ? post.getContent() : command.getContent());
         post.setEdited(true);
 

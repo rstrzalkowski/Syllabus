@@ -1,0 +1,98 @@
+<div *ngIf="!isLoading()">
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <span class="text-xl text-skin-base">{{realisationInfo?.subjectName}}</span>
+      </div>
+      <p class="mt-5">
+        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        <span routerLink="/realisation/{{realisationId}}"
+              class="cursor-pointer font-bold truncate"> > {{realisationInfo?.subjectAbbreviation}}</span>
+        > Activities</p>
+    </div>
+    <div>
+      <div class="flex justify-end">
+        <span
+          class="cursor-pointer text-lg text-skin-base truncate">{{realisationInfo?.teacherFirstName}} {{realisationInfo?.teacherLastName}}</span>
+      </div>
+      <p class="mt-5 flex justify-end"><span
+        class="cursor-pointer font-bold text-sm">{{realisationInfo?.schoolClassName}}</span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="bg-skin-base text-skin-muted p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 space-x-5">
+    <span *ngIf="activities?.totalPages === 0">There are no activities to be graded.</span>
+    <div *ngIf="activities?.totalPages !== 0" class="overflow-x-auto max-w-[81vw] sm:max-w-full">
+      <table class="text-left w-full">
+        <thead class="uppercase">
+        <tr>
+          <th class="px-6 py-3">
+            Activity
+          </th>
+          <th class="px-6 py-3 text-center">
+            Weight
+          </th>
+          <th class="px-6 py-3 text-center">
+            Action
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let activity of activities?.content" class="border-b border-gray-400 text-lg text-skin-base">
+          <td class="px-6 py-4">
+            {{activity.name}}
+          </td>
+          <td class="px-6 py-4 text-xl text-center">
+            {{activity.weight}}
+          </td>
+          <td class="px-6 py-4 text-center flex justify-center space-x-3">
+            <button class="btn-submit">Grade</button>
+            <button class="btn-edit">Edit</button>
+            <button class="btn-del">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="flex justify-around">
+        <span *ngIf="(activities!.number) > 0" (click)="previousPage()"
+              class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Previous page</span>
+        <span *ngIf="!activities?.last" (click)="nextPage()"
+              class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="isLoading()">
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="w-1/6">
+      <div class="bg-skin-muted w-full rounded h-5 animate-pulse"></div>
+      <div class="bg-skin-muted w-full rounded h-5 mt-5 animate-pulse"></div>
+    </div>
+    <div class="w-1/6">
+      <div class="flex justify-end">
+        <div class="bg-skin-muted w-full rounded h-5 animate-pulse"></div>
+      </div>
+      <div class="flex justify-end">
+        <div class="bg-skin-muted w-1/2 rounded h-5 mt-5 animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-skin-base text-skin-muted p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 space-x-5">
+    <div class="overflow-x-auto">
+      <div class="text-left w-full">
+        <div class="w-full flex">
+          <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+          <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+          <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+          <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loading></app-loading>
+</ng-container>

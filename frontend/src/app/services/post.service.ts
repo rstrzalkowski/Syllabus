@@ -22,4 +22,15 @@ export class PostService {
       realisationId: realisationId
     }, {observe: "response"})
   }
+
+  updatePost(title: string, content: string, postId: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/posts/${postId}`, {
+      title: title,
+      content: content,
+    }, {observe: "response"})
+  }
+
+  deletePost(postId: number) {
+    return this.http.delete(`${environment.apiUrl}/posts/${postId}`)
+  }
 }

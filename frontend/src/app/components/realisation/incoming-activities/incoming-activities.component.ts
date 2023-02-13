@@ -2,13 +2,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivityPage} from "../../../model/activity";
 
 @Component({
-  selector: 'app-activities',
-  templateUrl: './activities.component.html'
+  selector: 'app-incoming-activities',
+  templateUrl: './incoming-activities.component.html'
 })
-export class ActivitiesComponent implements OnInit {
+export class IncomingActivitiesComponent implements OnInit {
 
   @Input() realisationId: number | undefined;
-
   @Input() activityPage: ActivityPage | undefined
 
   @Output() nextPage: EventEmitter<any> = new EventEmitter();

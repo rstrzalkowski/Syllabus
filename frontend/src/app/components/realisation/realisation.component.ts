@@ -49,8 +49,7 @@ export class RealisationComponent implements OnInit {
   createActivityOpened = false
   createPostOpened = false
   editActivityOpened = false
-  editPostOpened = false
-
+  
   //end modals
 
   constructor(private realisationService: RealisationService,

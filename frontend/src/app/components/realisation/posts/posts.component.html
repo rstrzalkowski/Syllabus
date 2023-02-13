@@ -4,7 +4,7 @@
       <span class="text-lg underline underline-offset-8">Recent posts:</span>
       <p *ngIf="postPage?.totalPages === 0" class="mt-5">No posts yet.</p>
       <div *ngFor="let post of postPage?.content">
-        <div class="mt-2 w-full md:px-6 px-0 py-4 rounded">
+        <div class="flex justify-between items-center space-x-5 mt-2 w-full md:px-6 px-0 py-4 rounded">
           <div>
             <div>
               <h3 class="text-xl font-semibold text-skin-base">{{post.title}}</h3>
@@ -14,6 +14,23 @@
               </span>
               </div>
               <p class="mt-6 text-base text-skin-base">{{post.content}}</p>
+            </div>
+          </div>
+          <div *ngIf="userService.user?.role === 'TEACHER'" class="space-y-8 flex flex-col justify-around">
+            <div (click)="showEditModal(post)" class="cursor-pointer p-2 hover:bg-skin-muted rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+              </svg>
+            </div>
+            <div (click)="showDeleteModal(post.postId)"
+                 class="text-red-700 cursor-pointer p-2 hover:bg-skin-muted rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -28,3 +45,54 @@
           class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
   </div>
 </div>
+
+<div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="deleteModalOpened">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-30 transition-opacity"></div>
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 w-4/5 sm:w-full sm:max-w-lg">
+        <div class="top-4 right-4 absolute cursor-pointer rounded text-skin-base" (click)="deleteModalOpened = false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <div class="bg-skin-base px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div
+              class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg font-medium leading-6 text-skin-base" id="modal-title">Delete post</h3>
+              <div class="mt-2">
+                <p class="text-sm text-skin-base">Are you sure you want to delete post?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-skin-base">
+          <button type="button" (click)="deletePost()"
+                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+            Delete
+          </button>
+          <button type="button" (click)="deleteModalOpened = false"
+                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-skin-base px-4 py-2 text-base font-medium text-skin-base shadow-sm hover:bg-skin-muted focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-edit-post *ngIf="editModalOpened"
+               [post]="editedPost"
+               (close)="editModalOpened = false"
+               (success)="updateSuccessful()">
+</app-edit-post>
