@@ -8,7 +8,8 @@ export interface GradePage {
 }
 
 export interface Grade {
-  activityDTO: Activity;
-  grade: number;
-  createdAt: Date;
+  activityDTO: Activity
+  grade: number
+  comment: string
+  createdAt: Date
 }

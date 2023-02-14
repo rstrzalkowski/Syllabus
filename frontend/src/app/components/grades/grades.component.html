@@ -38,6 +38,9 @@
             Grade
           </th>
           <th class="px-6 py-3">
+            Comment
+          </th>
+          <th class="px-6 py-3">
             Date
           </th>
         </tr>
@@ -52,6 +55,9 @@
           </td>
           <td class="px-6 py-4">
             {{grade.grade || "Not graded"}}
+          </td>
+          <td class="px-6 py-4">
+            {{grade.comment}}
           </td>
           <td class="px-6 py-4">
             {{(grade.createdAt | date: "short") || "Not graded"}}

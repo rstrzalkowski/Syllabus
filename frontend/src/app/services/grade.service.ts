@@ -24,4 +24,13 @@ export class GradeService {
   getGradesOfActivity(activityId: number | undefined) {
     return this.http.get<GradesOfActivity[]>(`${environment.apiUrl}/activities/${activityId}/grades`)
   }
+
+  updateGrade(activityId: number | undefined, studentId: number | undefined, value: number | undefined, comment: string | undefined) {
+    return this.http.post(`${environment.apiUrl}/grades`, {
+      value: value,
+      activityId: activityId,
+      studentId: studentId,
+      comment: comment
+    })
+  }
 }

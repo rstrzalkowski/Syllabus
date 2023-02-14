@@ -35,14 +35,18 @@ public class PostCommandController {
     }
 
     @PutMapping("/{id}")
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public void updatePost(@PathVariable("id") Long id, @Valid @RequestBody UpdatePostCommand command) {
+        accessGuard.checkAccessToPost(command.getId());
         command.setId(id);
         postCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
+        accessGuard.checkAccessToPost(id);
         postCommandHandler.handle(new ArchivePostCommand(id));
     }
 }

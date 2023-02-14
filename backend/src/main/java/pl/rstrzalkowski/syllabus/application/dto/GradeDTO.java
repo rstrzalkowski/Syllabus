@@ -17,6 +17,8 @@ public class GradeDTO {
 
     private Integer grade;
 
+    private String comment;
+
     private Timestamp createdAt;
 
     public GradeDTO(Activity activity, Grade grade) {
@@ -24,6 +26,7 @@ public class GradeDTO {
         if (grade != null) {
             this.grade = grade.getValue();
             this.createdAt = grade.getCreatedAt();
+            this.comment = grade.getComment();
         }
     }
 }

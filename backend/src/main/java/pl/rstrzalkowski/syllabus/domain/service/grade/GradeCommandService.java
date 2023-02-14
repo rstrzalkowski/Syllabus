@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.domain.service.grade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +17,8 @@ import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -27,15 +30,17 @@ public class GradeCommandService {
 
 
     public Grade create(CreateGradeCommand command) {
-        Grade grade = new Grade();
+        Optional<Grade> optionalGrade = gradeRepository.findByActivityIdAndStudentId(command.getActivityId(), command.getStudentId());
+        Grade grade = optionalGrade.orElseGet(Grade::new);
+
         grade.setValue(command.getValue());
+        grade.setComment(command.getComment());
 
         Activity activity = activityRepository.findById(command.getActivityId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         User student = userRepository.findById(command.getStudentId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        User teacher = userRepository.findById(command.getTeacherId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         grade.setActivity(activity);
         grade.setStudent(student);

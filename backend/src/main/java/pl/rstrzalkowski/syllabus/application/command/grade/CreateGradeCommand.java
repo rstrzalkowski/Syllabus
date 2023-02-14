@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class CreateGradeCommand {
     @NotNull
     private Long studentId;
 
-    @NotNull
-    private Long activityId;
+    @Length(max = 100)
+    private String comment;
 
     @NotNull
-    private Long teacherId;
+    private Long activityId;
 }
