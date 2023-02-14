@@ -107,6 +107,7 @@ export class ActivitiesComponent implements OnInit {
     this.activitiesLoading = true
     this.activitiesSubscription = this.activityService.getRealisationActivities(this.realisationId, this.pageNumber).subscribe((result) => {
       this.activities = result
+      this.chosenActivity = undefined
       this.activitiesLoading = false
       this.editModalOpened = false
     })

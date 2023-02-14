@@ -19,6 +19,9 @@ export class GradeStudentsComponent implements OnInit {
 
   subscription: any
 
+  filter: string = ""
+  onlyUngraded: boolean = false
+
   constructor(private gradeService: GradeService) {
   }
 
@@ -31,6 +34,18 @@ export class GradeStudentsComponent implements OnInit {
         this.grades = result
         this.loading = false
       })
+    })
+  }
+
+  getFilteredGrades(): GradesOfActivity[] | undefined {
+    return this.grades?.filter((grade) => {
+      let conditionUngraded = true
+      let conditionFilter
+      if (this.onlyUngraded) {
+        conditionUngraded = grade.grade === null
+      }
+      conditionFilter = grade.studentFirstName.includes(this.filter) || grade.studentLastName.includes(this.filter) || grade.studentPersonalId.includes(this.filter);
+      return conditionFilter && conditionUngraded
     })
   }
 
