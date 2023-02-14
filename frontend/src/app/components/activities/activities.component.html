@@ -22,7 +22,7 @@
     </div>
   </div>
   <div
-    class="bg-skin-base text-skin-muted p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 space-x-5">
+    class="bg-skin-base text-skin-muted p-5 mx-3 mt-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 space-x-5">
     <span *ngIf="activities?.totalPages === 0">There are no activities to be graded.</span>
     <div *ngIf="activities?.totalPages !== 0" class="overflow-x-auto max-w-[81vw] sm:max-w-full">
       <table class="text-left w-full">
@@ -48,7 +48,7 @@
             {{activity.weight}}
           </td>
           <td class="px-6 py-4 text-center flex justify-center space-x-3">
-            <button class="btn-submit">Grade</button>
+            <button class="btn-submit" (click)="showStudentList(activity)">Grade</button>
             <button (click)="showEditModal(activity)" class="btn-edit">Edit</button>
             <button (click)="showDeleteModal(activity.activityId)" class="btn-del">Delete</button>
           </td>
@@ -141,6 +141,11 @@
     </div>
   </div>
 </div>
+
+<app-grade-students *ngIf="chosenActivity"
+                    [activity$]="chosenActivity$?.asObservable()">
+
+</app-grade-students>
 
 <app-edit-activity *ngIf="editModalOpened"
                    [activity]="editedActivity"

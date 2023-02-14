@@ -4,19 +4,27 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
+import pl.rstrzalkowski.syllabus.application.dto.GradeOfActivityDTO;
 import pl.rstrzalkowski.syllabus.application.handler.activity.ActivityQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetArchivedActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.grade.GetGradesOfActivityQuery;
+import pl.rstrzalkowski.syllabus.domain.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
+import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.service.activity.ActivityQueryService;
+import pl.rstrzalkowski.syllabus.domain.service.grade.GradeQueryService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
 public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
 
     private final ActivityQueryService activityQueryService;
+    private final GradeQueryService gradeQueryService;
 
     @Override
     public Page<ActivityDTO> handle(GetActiveActivitiesByRealisationQuery query) {
@@ -36,5 +44,21 @@ public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
     @Override
     public Page<ActivityDTO> handle(GetIncomingActivitiesByRealisationQuery query) {
         return activityQueryService.getAllIncomingByRealisation(query.realisationId(), query.pageable());
+    }
+
+    @Override
+    public List<GradeOfActivityDTO> handle(GetGradesOfActivityQuery query) {
+        List<GradeOfActivityDTO> gradesOfActivity = activityQueryService.getGradesOfActivity(query.activityId(), query.pageable());
+        gradesOfActivity.forEach((gradeOfActivityDTO -> {
+            try {
+                Grade grade = gradeQueryService.getByActivityAndStudent(gradeOfActivityDTO.getActivityId(), gradeOfActivityDTO.getStudentId());
+                gradeOfActivityDTO.setGrade(grade.getValue());
+                gradeOfActivityDTO.setComment(grade.getComment());
+                gradeOfActivityDTO.setCreatedAt(grade.getCreatedAt());
+                gradeOfActivityDTO.setUpdatedAt(grade.getUpdatedAt());
+            } catch (GradeNotFoundException ignored) {
+            }
+        }));
+        return gradesOfActivity;
     }
 }

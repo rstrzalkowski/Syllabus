@@ -27,6 +27,7 @@ import {CreateActivityComponent} from './components/create-activity/create-activ
 import {ActivitiesComponent} from "./components/activities/activities.component";
 import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -54,6 +55,7 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
     ActivitiesComponent,
     EditActivityComponent,
     EditPostComponent,
+    GradeStudentsComponent,
   ],
   imports: [
     BrowserModule,

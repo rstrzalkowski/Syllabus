@@ -5,6 +5,7 @@ import {RealisationService} from "../../services/realisation.service";
 import {ActivityService} from "../../services/activity.service";
 import {Activity, ActivityPage} from "../../model/activity";
 import {AlertService} from "../../services/alert.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-activities',
@@ -49,6 +50,13 @@ export class ActivitiesComponent implements OnInit {
   editedActivity: Activity | undefined
 
   //end edit
+
+
+  //Grading
+  chosenActivity: Activity | undefined
+  chosenActivity$: BehaviorSubject<Activity> | undefined
+
+  //end grading
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -128,6 +136,9 @@ export class ActivitiesComponent implements OnInit {
         this.ngOnInit()
         this.alertService.showAlert('success', 'Activity has been deleted.')
         this.deleteModalOpened = false
+        if (this.chosenActivity?.activityId === this.activityIdToBeDeleted) {
+          this.chosenActivity = undefined
+        }
       }, error => {
         this.alertService.showAlert('danger', 'Something went wrong during deleting activity. Try again later.')
       })
@@ -142,5 +153,14 @@ export class ActivitiesComponent implements OnInit {
   showEditModal(activity: Activity) {
     this.editedActivity = activity
     this.editModalOpened = true
+  }
+
+  showStudentList(activity: Activity) {
+    this.chosenActivity = activity
+    if (!this.chosenActivity$) {
+      this.chosenActivity$ = new BehaviorSubject<Activity>(this.chosenActivity)
+    } else {
+      this.chosenActivity$.next(this.chosenActivity)
+    }
   }
 }

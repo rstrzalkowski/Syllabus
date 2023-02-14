@@ -36,6 +36,8 @@ public class Grade extends AbstractEntity {
     @ManyToOne
     private Activity activity;
 
+    private String comment;
+
     private boolean edited;
 
     private boolean archived;

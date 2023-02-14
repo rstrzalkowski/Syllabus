@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {AverageGrade} from "../model/average.grade";
 import {GradePage} from "../model/grade";
+import {GradesOfActivity} from "../model/grades-of-activity";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class GradeService {
 
   getGradesOfRealisation(realisationId: number | undefined, page: number) {
     return this.http.get<GradePage>(`${environment.apiUrl}/realisations/${realisationId}/grades?size=6&page=${page}&sort=createdAt`)
+  }
+
+  getGradesOfActivity(activityId: number | undefined) {
+    return this.http.get<GradesOfActivity[]>(`${environment.apiUrl}/activities/${activityId}/grades`)
   }
 }

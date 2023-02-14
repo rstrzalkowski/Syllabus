@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${this.authService.getJwtFromStorage() || ""}`
         }
-      });
+      })
       return next.handle(cloned);
     }
     return next.handle(request);
