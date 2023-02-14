@@ -54,9 +54,9 @@
             </a>
           </li>
           <li class="my-px" (click)="subjectsHidden = !subjectsHidden">
-            <span
-              class="flex font-medium text-sm text-skin-base px-4 mt-5 uppercase cursor-pointer"
-              [ngClass]="subjectsHidden? '': 'mb-2'">Your subjects
+            <span *ngIf="authService.getRole() == 'STUDENT' || authService.getRole() == 'TEACHER'"
+                  class="flex font-medium text-sm text-skin-base px-4 mt-5 uppercase cursor-pointer"
+                  [ngClass]="subjectsHidden? '': 'mb-2'">Your subjects
               <div class="transition-all duration-300 ease-in-out"
                    [ngClass]="subjectsHidden? '-rotate-90 ml-10': 'ml-10'">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +78,18 @@
                 [routerLinkActiveOptions]="{exact: true}"
                 class="flex flex-row items-center h-9 pr-3 rounded-lg text-skin-base hover:bg-skin-muted"
               >
-                <span class="ml-4 truncate"> > {{subject.subjectName}}</span>
+                <span *ngIf="authService.getRole() == 'STUDENT'"
+                      class="ml-4 truncate"> > {{subject.subjectName}}</span>
+                <span *ngIf="authService.getRole() == 'TEACHER'"
+                      class="ml-4 truncate"> > {{subject.subjectAbbreviation}} {{subject.schoolClassName}}</span>
               </a>
             </li>
           </section>
+          <app-manage-school-sidebar
+            *ngIf="authService.getRole() == 'OFFICE' || authService.getRole() == 'DIRECTOR' || authService.getRole() == 'ADMIN'"
+            (hideSidebar)="hideSidebarIfOverlapping()">
+
+          </app-manage-school-sidebar>
           <li class="my-px mt-3">
             <span class="flex font-medium text-sm text-skin-base px-4 mb-2 uppercase">Account</span>
           </li>

@@ -13,6 +13,11 @@ import {GradesComponent} from "./components/grades/grades.component";
 import {ActivitiesComponent} from "./components/activities/activities.component";
 import {StudentGuard} from "./guards/student.guard";
 import {TeacherGuard} from "./guards/teacher.guard";
+import {SubjectsComponent} from "./components/subjects/subjects.component";
+import {RealisationsComponent} from "./components/realisations/realisations.component";
+import {ClassesComponent} from "./components/classes/classes.component";
+import {UsersComponent} from "./components/users/users.component";
+import {LevelsComponent} from "./components/levels/levels.component";
 
 const routes: Routes = [
   {
@@ -44,6 +49,31 @@ const routes: Routes = [
         path: "realisation/:id/activities",
         component: ActivitiesComponent,
         canActivate: [AuthenticationGuard, TeacherGuard]
+      },
+      {
+        path: "subjects",
+        component: SubjectsComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "realisations",
+        component: RealisationsComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "classes",
+        component: ClassesComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "users",
+        component: UsersComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: "levels",
+        component: LevelsComponent,
+        canActivate: [AuthenticationGuard]
       },
       {
         path: "forbidden",

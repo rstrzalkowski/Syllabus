@@ -12,4 +12,8 @@ public class SubjectDTO {
     private Long realisationId;
 
     private String subjectName;
+
+    private String subjectAbbreviation;
+
+    private String schoolClassName;
 }

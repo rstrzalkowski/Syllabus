@@ -52,7 +52,7 @@ public class RealisationQueryService {
     public AverageGradeDTO getRealisationAverageGrade(Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Grade> grades = gradeRepository.findAllByArchivedAndActivityArchivedAndActivityRealisationIdAndStudent(false, false, id, user);
-        
+
         double sum = 0;
         double weights = 0;
         for (Grade grade : grades) {
@@ -71,7 +71,11 @@ public class RealisationQueryService {
             List<Realisation> realisations = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
             return realisations
                     .stream()
-                    .map((realisation -> new SubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .map((realisation -> new SubjectDTO(
+                            realisation.getId(),
+                            realisation.getSubject().getName(),
+                            realisation.getSubject().getAbbreviation(),
+                            realisation.getSchoolClass().getSchoolClassName())))
                     .collect(Collectors.toList());
         } else {
             Long schoolClassId = user.getSchoolClass().getId();
@@ -82,7 +86,11 @@ public class RealisationQueryService {
             List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClassId);
             return activeRealisationsBySchoolClass
                     .stream()
-                    .map((realisation -> new SubjectDTO(realisation.getId(), realisation.getSubject().getName())))
+                    .map((realisation -> new SubjectDTO(
+                            realisation.getId(),
+                            realisation.getSubject().getName(),
+                            realisation.getSubject().getAbbreviation(),
+                            realisation.getSchoolClass().getSchoolClassName())))
                     .collect(Collectors.toList());
         }
     }

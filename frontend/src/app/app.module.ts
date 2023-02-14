@@ -28,6 +28,12 @@ import {ActivitiesComponent} from "./components/activities/activities.component"
 import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
+import { ManageSchoolSidebarComponent } from './components/manage-school-sidebar/manage-school-sidebar.component';
+import { SubjectsComponent } from './components/subjects/subjects.component';
+import { RealisationsComponent } from './components/realisations/realisations.component';
+import { ClassesComponent } from './components/classes/classes.component';
+import { UsersComponent } from './components/users/users.component';
+import { LevelsComponent } from './components/levels/levels.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -56,6 +62,12 @@ import { GradeStudentsComponent } from './components/grade-students/grade-studen
     EditActivityComponent,
     EditPostComponent,
     GradeStudentsComponent,
+    ManageSchoolSidebarComponent,
+    SubjectsComponent,
+    RealisationsComponent,
+    ClassesComponent,
+    UsersComponent,
+    LevelsComponent,
   ],
   imports: [
     BrowserModule,

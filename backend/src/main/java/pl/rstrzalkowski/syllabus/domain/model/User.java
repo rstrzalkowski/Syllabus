@@ -64,6 +64,13 @@ public class User extends AbstractEntity implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(role.name()));
     }
 
+    public String getSchoolClassName() {
+        if (schoolClass != null) {
+            return schoolClass.getSchoolClassName();
+        }
+        return null;
+    }
+
     @JsonIgnore
     public String getUsername() {
         return email;

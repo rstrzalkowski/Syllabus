@@ -1,0 +1,61 @@
+<span class="flex font-medium text-sm text-skin-base px-4 mt-5 uppercase">
+  Manage school
+</span>
+<div class="border-l-2 rounded-lg border-teal-600 mt-3 px-3 ml-2">
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
+      routerLink="/subjects"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+      <span class="ml-3">Subjects</span>
+    </a>
+  </li>
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
+      routerLink="/realisations"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+      <span class="ml-3">Realisations</span>
+    </a>
+  </li>
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
+      routerLink="/classes"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+
+      <span class="ml-3">Classes</span>
+    </a>
+  </li>
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
+      routerLink="/users"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+      <span class="ml-3">Users</span>
+    </a>
+  </li>
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
+      routerLink="/levels"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+      <span class="ml-3">Levels</span>
+    </a>
+  </li>
+</div>

@@ -1,4 +1,6 @@
 export interface RealisedSubject {
-  realisationId: number;
-  subjectName: string;
+  realisationId: number
+  subjectName: string
+  subjectAbbreviation: string
+  schoolClassName: string
 }
