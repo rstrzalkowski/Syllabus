@@ -10,6 +10,7 @@ export interface Subject {
   createdAt: Date;
   updatedAt: Date;
   name: string;
+  activeRealisationsCount: number
   abbreviation: string;
   archived: boolean;
 }

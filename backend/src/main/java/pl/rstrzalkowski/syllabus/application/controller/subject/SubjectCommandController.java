@@ -26,20 +26,20 @@ public class SubjectCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void createSubject(@Valid @RequestBody CreateSubjectCommand command) {
         subjectCommandHandler.handle(command);
     }
 
     @PutMapping
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void updateSubject(@Valid @RequestBody UpdateSubjectCommand command) {
         subjectCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         subjectCommandHandler.handle(new ArchiveSubjectCommand(id));
     }

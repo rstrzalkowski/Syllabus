@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
 
 @Service
@@ -13,9 +14,14 @@ import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
 public class SubjectQueryService {
 
     private final SubjectRepository subjectRepository;
+    private final RealisationRepository realisationRepository;
 
     public Page<Subject> getAllActive(Pageable pageable) {
-        return subjectRepository.findAllByArchived(false, pageable);
+        Page<Subject> subjects = subjectRepository.findAllByArchived(false, pageable);
+        subjects.forEach((subject -> {
+            subject.setActiveRealisationsCount(realisationRepository.countByArchivedAndSubjectId(false, subject.getId()));
+        }));
+        return subjects;
     }
 
 

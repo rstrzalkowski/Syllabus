@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +18,7 @@ public class Subject extends AbstractEntity {
     private String abbreviation;
 
     private boolean archived;
+    
+    @Transient
+    private Integer activeRealisationsCount;
 }

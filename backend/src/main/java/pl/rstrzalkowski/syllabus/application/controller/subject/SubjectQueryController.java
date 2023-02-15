@@ -24,25 +24,25 @@ public class SubjectQueryController {
     private final SubjectQueryHandler subjectQueryHandler;
 
     @GetMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public Subject getSubjectById(@PathVariable("id") Long id) {
         return subjectQueryHandler.handle(new GetSubjectByIdQuery(id));
     }
 
     @GetMapping("/search")
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public Page<Subject> getSubjectByName(@Param("name") String name, Pageable pageable) {
         return subjectQueryHandler.handle(new SearchSubjectByNameQuery(name, pageable));
     }
 
     @GetMapping
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public Page<Subject> getActiveSubjects(Pageable pageable) {
         return subjectQueryHandler.handle(new GetActiveSubjectsQuery(pageable));
     }
 
     @GetMapping("/archived")
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public Page<Subject> getArchivedSubjects(Pageable pageable) {
         return subjectQueryHandler.handle(new GetArchivedSubjectsQuery(pageable));
     }
