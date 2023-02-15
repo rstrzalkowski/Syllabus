@@ -14,8 +14,5 @@ public class CreateSubjectCommand {
     private String name;
 
     @NotNull
-    private String description;
-
-    @NotNull
     private String abbreviation;
 }

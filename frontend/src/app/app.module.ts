@@ -36,6 +36,8 @@ import {SubjectsComponent} from "./components/manage-school/subjects/subjects.co
 import {
   ManageSchoolSidebarComponent
 } from "./components/manage-school/manage-school-sidebar/manage-school-sidebar.component";
+import {EditSubjectComponent} from './components/manage-school/subjects/edit-subject/edit-subject.component';
+import {CreateSubjectComponent} from './components/manage-school/subjects/create-subject/create-subject.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import {
     ClassesComponent,
     UsersComponent,
     LevelsComponent,
+    EditSubjectComponent,
+    CreateSubjectComponent,
   ],
   imports: [
     BrowserModule,

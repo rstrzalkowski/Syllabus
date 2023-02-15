@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectService} from "../../../services/subject.service";
 import {BehaviorSubject, Observable} from "rxjs";
-import {SubjectPage} from "../../../model/subject";
+import {Subject, SubjectPage} from "../../../model/subject";
 import {AlertService} from "../../../services/alert.service";
 
 @Component({
@@ -13,8 +13,11 @@ export class SubjectsComponent implements OnInit {
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   subjects$: Observable<SubjectPage> | undefined
   showArchived: boolean = false
-  deleteModalOpened: boolean = false
+  deleteModalOpen: boolean = false
+  createSubjectModalOpen: boolean = false
+  editSubjectModalOpen: boolean = false
   subjectIdToBeArchived: number | undefined
+  editedSubject: Subject | undefined
 
 
   constructor(private subjectService: SubjectService,
@@ -65,7 +68,7 @@ export class SubjectsComponent implements OnInit {
       this.subjectService.archiveSubject(this.subjectIdToBeArchived).subscribe((result) => {
         this.alertService.showAlert("success", "Subject has been successfully archived.")
         this.getFilteredSubjects()
-        this.deleteModalOpened = false
+        this.deleteModalOpen = false
       }, error => {
         this.alertService.showAlert("danger", "There was a problem during archiving subject. Try again later.")
       })
@@ -74,6 +77,11 @@ export class SubjectsComponent implements OnInit {
 
   showDeleteModal(id: number) {
     this.subjectIdToBeArchived = id
-    this.deleteModalOpened = true
+    this.deleteModalOpen = true
+  }
+
+  showEditModal(subject: Subject) {
+    this.editedSubject = subject
+    this.editSubjectModalOpen = true
   }
 }

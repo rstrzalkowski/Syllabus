@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.domain.exception.activity.ActivityNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.post.PostNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.NotAffiliatedWithRealisationException;
+import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationArchivedException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Post;
@@ -38,6 +39,10 @@ public class AccessGuard {
 
         Realisation realisation = realisationRepository.findById(realisationId)
                 .orElseThrow(RealisationNotFoundException::new);
+
+        if (realisation.isArchived() && !privilegedRoles.contains(user.getRole())) {
+            throw new RealisationArchivedException();
+        }
 
         boolean isAffiliatedAsStudent = realisation.getSchoolClass()
                 .getStudents()

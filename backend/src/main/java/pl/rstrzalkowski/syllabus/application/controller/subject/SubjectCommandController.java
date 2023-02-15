@@ -31,9 +31,10 @@ public class SubjectCommandController {
         subjectCommandHandler.handle(command);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
-    public void updateSubject(@Valid @RequestBody UpdateSubjectCommand command) {
+    public void updateSubject(@PathVariable("id") Long id, @Valid @RequestBody UpdateSubjectCommand command) {
+        command.setId(id);
         subjectCommandHandler.handle(command);
     }
 
