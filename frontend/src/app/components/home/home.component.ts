@@ -7,7 +7,7 @@ import {RealisationService} from "../../services/realisation.service";
 import {RealisedSubject} from "../../model/realised.subject";
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
@@ -33,9 +33,10 @@ export class HomeComponent implements OnInit {
       this.sidebarHidden = false;
     }
 
-    this.realisationService.getRealisedSubjects().subscribe((result) => {
-      this.subjects = result;
-    })
+    if (this.authService.getRole() == "STUDENT" || this.authService.getRole() == "TEACHER")
+      this.realisationService.getRealisedSubjects().subscribe((result) => {
+        this.subjects = result;
+      })
   }
 
   @HostListener('touchstart', ['$event'])

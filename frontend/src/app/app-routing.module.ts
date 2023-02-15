@@ -13,11 +13,12 @@ import {GradesComponent} from "./components/grades/grades.component";
 import {ActivitiesComponent} from "./components/activities/activities.component";
 import {StudentGuard} from "./guards/student.guard";
 import {TeacherGuard} from "./guards/teacher.guard";
-import {SubjectsComponent} from "./components/subjects/subjects.component";
-import {RealisationsComponent} from "./components/realisations/realisations.component";
-import {ClassesComponent} from "./components/classes/classes.component";
-import {UsersComponent} from "./components/users/users.component";
-import {LevelsComponent} from "./components/levels/levels.component";
+import {SubjectsComponent} from "./components/manage-school/subjects/subjects.component";
+import {RealisationsComponent} from "./components/manage-school/realisations/realisations.component";
+import {ClassesComponent} from "./components/manage-school/classes/classes.component";
+import {UsersComponent} from "./components/manage-school/users/users.component";
+import {LevelsComponent} from "./components/manage-school/levels/levels.component";
+import {ManagementGuard} from "./guards/management.guard";
 
 const routes: Routes = [
   {
@@ -53,27 +54,27 @@ const routes: Routes = [
       {
         path: "subjects",
         component: SubjectsComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard]
       },
       {
         path: "realisations",
         component: RealisationsComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard]
       },
       {
         path: "classes",
         component: ClassesComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard]
       },
       {
         path: "users",
         component: UsersComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard]
       },
       {
         path: "levels",
         component: LevelsComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard]
       },
       {
         path: "forbidden",

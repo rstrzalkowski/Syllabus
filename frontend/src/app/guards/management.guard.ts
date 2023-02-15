@@ -6,7 +6,7 @@ import {AuthService} from "../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherGuard implements CanActivate {
+export class ManagementGuard implements CanActivate {
 
   constructor(
     private router: Router,
@@ -16,6 +16,7 @@ export class TeacherGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.getRole() === 'TEACHER'
+    return this.authService.getRole() === 'OFFICE' || this.authService.getRole() === 'DIRECTOR' || this.authService.getRole() === 'ADMIN';
   }
+
 }

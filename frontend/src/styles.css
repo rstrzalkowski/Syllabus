@@ -164,11 +164,20 @@ input[type="checkbox"] ~ .dot {
   background-position: center;
 }
 
+input[type="checkbox"]:checked ~ .switch {
+  transform: translateX(100%);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="checkbox"] ~ .switch {
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 #logo-text {
   font-family: 'Comfortaa', cursive;
 }
 
-.table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}

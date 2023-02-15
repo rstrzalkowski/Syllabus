@@ -1,0 +1,166 @@
+<div>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <span class="text-xl text-skin-base">Subjects</span>
+      </div>
+      <p class="mt-5">
+        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        > Subjects</p>
+    </div>
+  </div>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <div class="text-xl text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
+          <span>Create new subject</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
+    <div class="flex items-center mt-2 space-x-5 ml-0.5 mb-10">
+      <div class="flex-nowrap">
+        <div class="flex cursor-pointer select-none items-center space-x-3 ml-3">
+          <span (click)="showActiveSubjects()">Active subjects</span>
+          <label for="toggleArchived" class="relative bg-skin-muted rounded-lg cursor-pointer">
+            <input [(ngModel)]="showArchived" (change)="getFilteredSubjects()" type="checkbox" id="toggleArchived"
+                   class="sr-only"/>
+            <div class="box block h-8 w-14 rounded-full"></div>
+            <div
+              class="switch absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 transition">
+            </div>
+          </label>
+          <span (click)="showArchivedSubjects()">Archived subjects</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="subjects$ | async as subjects; else loading" class="mt-3">
+      <div *ngIf="subjects?.totalPages !== 0; else noSubjects" class="overflow-x-auto max-w-[81vw] sm:max-w-full">
+        <table class="text-left w-full">
+          <thead class="uppercase">
+          <tr>
+            <th class="px-6 py-3">
+              Name
+            </th>
+            <th class="px-6 py-3">
+              Abbreviation
+            </th>
+            <th class="px-6 py-3">
+              Archived
+            </th>
+            <th *ngIf="!showArchived" class="px-6 py-3 text-center">
+              Action
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let subject of subjects?.content" class="border-b border-gray-400 text-lg text-skin-base">
+            <td class="px-6 py-4">
+              {{subject.name}}
+            </td>
+            <td class="px-6 py-4">
+              {{subject.abbreviation}}
+            </td>
+            <td class="px-6 py-4">
+              {{subject.archived}}
+            </td>
+            <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
+              <button class="btn-submit">Edit</button>
+              <button (click)="showDeleteModal(subject.id)" class="btn-del">Archive</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="flex justify-around">
+              <span *ngIf="(subjects!.number) > 0" (click)="previousPage()"
+                    class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Previous page</span>
+          <span *ngIf="!subjects?.last" (click)="nextPage()"
+                class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true" *ngIf="deleteModalOpened">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-30 transition-opacity"></div>
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-skin-base text-left shadow-xl transition-all sm:my-8 w-4/5 sm:w-full sm:max-w-lg">
+        <div class="top-4 right-4 absolute cursor-pointer rounded text-skin-base" (click)="deleteModalOpened = false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <div class="bg-skin-base px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div
+              class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg font-medium leading-6 text-skin-base" id="modal-title">Archive subject</h3>
+              <div class="mt-2">
+                <p class="text-sm text-skin-base">Are you sure you want to archive subject? This action will archive all
+                  the subject realisations. This action can't be undone</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 bg-skin-base">
+          <button type="button" (click)="deleteSubject()"
+                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+            Delete
+          </button>
+          <button type="button" (click)="deleteModalOpened = false"
+                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-skin-base px-4 py-2 text-base font-medium text-skin-base shadow-sm hover:bg-skin-muted focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <div class="overflow-x-auto">
+    <div class="text-left w-full space-y-3">
+      <div class="w-full flex">
+        <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+      </div>
+      <div class="w-full flex">
+        <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 w-1/2 md:w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+        <div class="mx-3 hidden md:block w-1/4 py-3 bg-skin-muted rounded h-5 animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+  <app-loading></app-loading>
+</ng-template>
+
+<ng-template #noSubjects>
+  No subjects found
+</ng-template>
+
+

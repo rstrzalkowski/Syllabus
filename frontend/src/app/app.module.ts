@@ -25,15 +25,18 @@ import {FooterComponent} from './components/utilities/footer/footer.component';
 import {CreatePostComponent} from './components/create-post/create-post.component';
 import {CreateActivityComponent} from './components/create-activity/create-activity.component';
 import {ActivitiesComponent} from "./components/activities/activities.component";
-import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
-import { EditPostComponent } from './components/edit-post/edit-post.component';
-import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
-import { ManageSchoolSidebarComponent } from './components/manage-school-sidebar/manage-school-sidebar.component';
-import { SubjectsComponent } from './components/subjects/subjects.component';
-import { RealisationsComponent } from './components/realisations/realisations.component';
-import { ClassesComponent } from './components/classes/classes.component';
-import { UsersComponent } from './components/users/users.component';
-import { LevelsComponent } from './components/levels/levels.component';
+import {EditActivityComponent} from './components/edit-activity/edit-activity.component';
+import {EditPostComponent} from './components/edit-post/edit-post.component';
+import {GradeStudentsComponent} from './components/grade-students/grade-students.component';
+import {RealisationsComponent} from "./components/manage-school/realisations/realisations.component";
+import {ClassesComponent} from "./components/manage-school/classes/classes.component";
+import {UsersComponent} from "./components/manage-school/users/users.component";
+import {LevelsComponent} from "./components/manage-school/levels/levels.component";
+import {SubjectsComponent} from "./components/manage-school/subjects/subjects.component";
+import {
+  ManageSchoolSidebarComponent
+} from "./components/manage-school/manage-school-sidebar/manage-school-sidebar.component";
+
 
 @NgModule({
   bootstrap: [AppComponent],
