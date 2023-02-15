@@ -8,10 +8,12 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.level.ArchiveLevelCommand;
 import pl.rstrzalkowski.syllabus.application.command.level.CreateLevelCommand;
 import pl.rstrzalkowski.syllabus.application.command.level.UpdateLevelCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.level.ActiveSchoolClassesException;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelAlreadyExistsException;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 
 import java.util.Objects;
 
@@ -21,16 +23,16 @@ import java.util.Objects;
 public class LevelCommandService {
 
     private final LevelRepository levelRepository;
+    private final SchoolClassRepository schoolClassRepository;
 
 
     public void create(CreateLevelCommand command) {
         Level level = new Level();
         level.setValue(command.getLevel());
 
-        if (levelRepository.findByValue(level.getValue()).isPresent()) {
+        if (levelRepository.findByArchivedAndValue(false, level.getValue()).isPresent()) {
             throw new LevelAlreadyExistsException();
         }
-
         levelRepository.save(level);
     }
 
@@ -49,6 +51,9 @@ public class LevelCommandService {
         Level level = levelRepository.findById(command.id())
                 .orElseThrow(LevelNotFoundException::new);
 
+        if (schoolClassRepository.countByArchivedAndAndLevelId(false, level.getId()) > 0) {
+            throw new ActiveSchoolClassesException();
+        }
         level.setArchived(true);
         levelRepository.save(level);
     }

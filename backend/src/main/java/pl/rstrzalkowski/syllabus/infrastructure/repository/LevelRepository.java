@@ -13,4 +13,6 @@ public interface LevelRepository extends JpaRepository<Level, Long> {
     Page<Level> findByArchived(boolean archived, Pageable pageable);
 
     Optional<Level> findByValue(int level);
+
+    Optional<Level> findByArchivedAndValue(boolean archived, int level);
 }

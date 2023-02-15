@@ -7,15 +7,21 @@ import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.level.LevelNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 
 @Service
 @RequiredArgsConstructor
 public class LevelQueryService {
 
     private final LevelRepository levelRepository;
+    private final SchoolClassRepository schoolClassRepository;
 
     public Page<Level> getAllActive(Pageable pageable) {
-        return levelRepository.findByArchived(false, pageable);
+        Page<Level> levels = levelRepository.findByArchived(false, pageable);
+        levels.forEach((level -> {
+            level.setActiveSchoolClasses(schoolClassRepository.countByArchivedAndAndLevelId(false, level.getId()));
+        }));
+        return levels;
     }
 
 

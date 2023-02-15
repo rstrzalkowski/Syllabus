@@ -9,4 +9,6 @@ import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 @Repository
 public interface SchoolClassRepository extends JpaRepository<SchoolClass, Long> {
     Page<SchoolClass> findAllByArchived(boolean archived, Pageable pageable);
+
+    Integer countByArchivedAndAndLevelId(boolean archived, Long levelId);
 }

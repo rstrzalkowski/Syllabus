@@ -10,14 +10,31 @@ import {AlertService} from "../../../services/alert.service";
 })
 export class SubjectsComponent implements OnInit {
 
+  //Pagination
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  //end pagination
+
+
+  //Data
   subjects$: Observable<SubjectPage> | undefined
+  //end data
+
+  //Filter
   showArchived: boolean = false
+  //end filter
+
+  //Modals
   deleteModalOpen: boolean = false
   createSubjectModalOpen: boolean = false
   editSubjectModalOpen: boolean = false
+  //end modals
+
+
+  //Data passed to children
   subjectIdToBeArchived: number | undefined
   editedSubject: Subject | undefined
+
+  //end data
 
 
   constructor(private subjectService: SubjectService,
