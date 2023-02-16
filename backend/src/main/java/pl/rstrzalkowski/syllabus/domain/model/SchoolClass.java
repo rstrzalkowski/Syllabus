@@ -24,6 +24,8 @@ public class SchoolClass extends AbstractEntity {
 
     private String name;
 
+    private String fullName;
+
     @ManyToOne
     private User supervisingTeacher;
 

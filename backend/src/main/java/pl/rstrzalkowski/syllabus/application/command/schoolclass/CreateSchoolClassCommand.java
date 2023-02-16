@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +18,10 @@ public class CreateSchoolClassCommand {
     private Long teacherId;
 
     @NotNull
-    private String name;
+    @Length(max = 5)
+    private String shortName;
 
-    private String description;
+    @NotNull
+    @Length(max = 40)
+    private String fullName;
 }

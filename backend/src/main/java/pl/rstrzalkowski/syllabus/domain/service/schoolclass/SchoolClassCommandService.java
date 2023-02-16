@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.ArchiveSchoolClassCommand;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.CreateSchoolClassCommand;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.UpdateSchoolClassCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassAlreadyExistsException;
 import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
@@ -27,6 +28,10 @@ public class SchoolClassCommandService {
 
 
     public SchoolClass create(CreateSchoolClassCommand command) {
+        if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, command.getShortName(), command.getLevelId())) {
+            throw new SchoolClassAlreadyExistsException();
+        }
+
         SchoolClass schoolClass = new SchoolClass();
 
         Level level = levelRepository.findById(command.getLevelId())
@@ -37,6 +42,8 @@ public class SchoolClassCommandService {
 
         schoolClass.setLevel(level);
         schoolClass.setSupervisingTeacher(teacher);
+        schoolClass.setName(command.getShortName());
+        schoolClass.setFullName(command.getFullName());
 
         return schoolClassRepository.save(schoolClass);
     }

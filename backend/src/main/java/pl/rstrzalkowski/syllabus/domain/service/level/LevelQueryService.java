@@ -19,7 +19,7 @@ public class LevelQueryService {
     public Page<Level> getAllActive(Pageable pageable) {
         Page<Level> levels = levelRepository.findByArchived(false, pageable);
         levels.forEach((level -> {
-            level.setActiveSchoolClasses(schoolClassRepository.countByArchivedAndAndLevelId(false, level.getId()));
+            level.setActiveSchoolClasses(schoolClassRepository.countByArchivedAndLevelId(false, level.getId()));
         }));
         return levels;
     }

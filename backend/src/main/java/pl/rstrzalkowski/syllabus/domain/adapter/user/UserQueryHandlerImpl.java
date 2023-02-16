@@ -15,10 +15,13 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.service.user.UserQueryService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
@@ -90,5 +93,10 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
     @Override
     public User handle(GetLoggedInUserQuery getLoggedInUserQuery) {
         return userQueryService.getLoggedInUser();
+    }
+
+    @Override
+    public List<User> handle(GetNotSupervisingActiveTeachersQuery query) {
+        return userQueryService.getNotSupervisingActiveTeachers(query.pageable());
     }
 }

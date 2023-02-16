@@ -21,9 +21,12 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -69,6 +72,11 @@ public class UserQueryController {
     @GetMapping("/teachers")
     public Page<User> getAllActiveTeachers(Pageable pageable) {
         return userQueryHandler.handle(new GetActiveTeachersQuery(pageable));
+    }
+
+    @GetMapping("/teachers/free")
+    public List<User> getAllNotSupervisingActiveTeachers(Pageable pageable) {
+        return userQueryHandler.handle(new GetNotSupervisingActiveTeachersQuery(pageable));
     }
 
     @GetMapping("/offices")

@@ -51,7 +51,7 @@ public class LevelCommandService {
         Level level = levelRepository.findById(command.id())
                 .orElseThrow(LevelNotFoundException::new);
 
-        if (schoolClassRepository.countByArchivedAndAndLevelId(false, level.getId()) > 0) {
+        if (schoolClassRepository.countByArchivedAndLevelId(false, level.getId()) > 0) {
             throw new ActiveSchoolClassesException();
         }
         level.setArchived(true);

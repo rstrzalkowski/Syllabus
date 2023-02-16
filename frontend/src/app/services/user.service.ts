@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {User} from "../model/user";
+import {User, UserPage} from "../model/user";
 import {AuthService} from "./auth.service";
 
 @Injectable({
@@ -24,6 +24,14 @@ export class UserService {
         }
       })
     }
+  }
+
+  getAllActiveTeachers() {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers`)
+  }
+
+  getAllNotSupervisingActiveTeachers() {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/teachers/free?sort=lastName,firstName`)
   }
 
   getLoggedInUserObservable() {

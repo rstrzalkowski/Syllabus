@@ -7,14 +7,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
+import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserQueryService {
 
     private final UserRepository userRepository;
+    private final SchoolClassRepository schoolClassRepository;
 
 
     public User getById(Long id) {
@@ -68,5 +75,11 @@ public class UserQueryService {
 
     public Page<User> getAllArchiveDirectors(Pageable pageable) {
         return userRepository.findByRoleAndArchived(Role.DIRECTOR, true, pageable);
+    }
+
+    public List<User> getNotSupervisingActiveTeachers(Pageable pageable) {
+        Page<User> teachers = getAllActiveTeachers(pageable);
+        List<SchoolClass> classes = schoolClassRepository.findAllByArchived(false);
+        return teachers.stream().filter(teacher -> classes.stream().noneMatch(schoolClass -> Objects.equals(schoolClass.getSupervisingTeacher().getId(), teacher.getId()))).collect(Collectors.toList());
     }
 }

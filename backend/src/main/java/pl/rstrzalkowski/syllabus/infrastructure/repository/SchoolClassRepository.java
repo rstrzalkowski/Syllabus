@@ -6,9 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 
+import java.util.List;
+
 @Repository
 public interface SchoolClassRepository extends JpaRepository<SchoolClass, Long> {
     Page<SchoolClass> findAllByArchived(boolean archived, Pageable pageable);
 
-    Integer countByArchivedAndAndLevelId(boolean archived, Long levelId);
+    boolean existsByArchivedAndNameAndLevelId(boolean archived, String name, Long levelId);
+
+    Integer countByArchivedAndLevelId(boolean archived, Long levelId);
+
+    List<SchoolClass> findAllByArchived(boolean archived);
 }

@@ -12,9 +12,12 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+
+import java.util.List;
 
 public interface UserQueryHandler {
 
@@ -43,4 +46,6 @@ public interface UserQueryHandler {
     Page<User> handle(GetArchivedDirectorsQuery query);
 
     User handle(GetLoggedInUserQuery getLoggedInUserQuery);
+
+    List<User> handle(GetNotSupervisingActiveTeachersQuery getNotSupervisingActiveTeachersQuery);
 }

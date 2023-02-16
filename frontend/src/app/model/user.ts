@@ -1,9 +1,15 @@
+export interface UserPage {
+  content: User[],
+  totalPages: number,
+  last: boolean,
+  number: number
+}
+
 export interface User {
   id: number;
-  email: string;
-  schoolClassName: string
   createdAt: Date;
   updatedAt: Date;
+  email: string;
   firstName: string;
   lastName: string;
   personalId: string;
@@ -12,4 +18,5 @@ export interface User {
   locked: boolean;
   archived: boolean;
   role: string;
+  schoolClassName?: any;
 }

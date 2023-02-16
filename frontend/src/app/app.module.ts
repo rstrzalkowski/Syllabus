@@ -39,6 +39,8 @@ import {
 import {EditSubjectComponent} from './components/manage-school/subjects/edit-subject/edit-subject.component';
 import {CreateSubjectComponent} from './components/manage-school/subjects/create-subject/create-subject.component';
 import {CreateLevelComponent} from './components/manage-school/levels/create-level/create-level.component';
+import { CreateClassComponent } from './components/manage-school/classes/create-class/create-class.component';
+import { EditClassComponent } from './components/manage-school/classes/edit-class/edit-class.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import {CreateLevelComponent} from './components/manage-school/levels/create-lev
     EditSubjectComponent,
     CreateSubjectComponent,
     CreateLevelComponent,
+    CreateClassComponent,
+    EditClassComponent,
   ],
   imports: [
     BrowserModule,
