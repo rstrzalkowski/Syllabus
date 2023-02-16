@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.application.controller.schoolclass;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,21 @@ public class SchoolClassCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public void createSchoolClass(@Valid @RequestBody CreateSchoolClassCommand command) {
         schoolClassCommandHandler.handle(command);
     }
 
-    @PutMapping
-    public void updateSchoolClass(@Valid @RequestBody UpdateSchoolClassCommand command) {
+    @PutMapping("/{id}")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public void updateSchoolClass(@PathVariable("id") Long id, @Valid @RequestBody UpdateSchoolClassCommand command) {
+        command.setId(id);
         schoolClassCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         schoolClassCommandHandler.handle(new ArchiveSchoolClassCommand(id));
     }

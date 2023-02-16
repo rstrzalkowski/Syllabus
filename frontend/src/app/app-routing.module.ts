@@ -25,21 +25,30 @@ const routes: Routes = [
     path: "",
     component: HomeComponent,
     canActivate: [AuthenticationGuard],
+    data: {
+      title: "Dashboard"
+    },
     children: [
       {
         path: "profile",
         component: ProfileComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "Profile"
+        },
       },
       {
         path: "settings",
         component: SettingsComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "Settings"
+        },
       },
       {
         path: "realisation/:id",
         component: RealisationComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
       },
       {
         path: "realisation/:id/grades",
@@ -54,37 +63,58 @@ const routes: Routes = [
       {
         path: "subjects",
         component: SubjectsComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Subjects"
+        },
       },
       {
         path: "realisations",
         component: RealisationsComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Realisations"
+        },
       },
       {
         path: "classes",
         component: ClassesComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Classes"
+        },
       },
       {
         path: "users",
         component: UsersComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Users"
+        },
       },
       {
         path: "levels",
         component: LevelsComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard]
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Levels"
+        },
       },
       {
         path: "forbidden",
         component: ForbiddenPageComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "Forbidden"
+        },
       },
       {
         path: "404",
         component: NotFoundPageComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "404"
+        },
       }
     ]
   },

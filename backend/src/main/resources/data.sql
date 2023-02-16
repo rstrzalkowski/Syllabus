@@ -29,9 +29,9 @@ INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archi
 INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:11:25.809000', '2023-01-30 21:11:25.809000', 0, 'PE', false, 'Physical education');
 
 
-INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:17:50.795000', '2023-01-30 21:17:50.795000', 0, false, 1, 2, 'TIN');
-INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:17:57.326000', '2023-01-30 21:17:57.326000', 0, false, 2, 4, 'TAI');
-INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name) VALUES ('2023-01-30 21:18:03.808000', '2023-01-30 21:18:03.808000', 0, false, 4, 1, 'TEK');
+INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name, full_name) VALUES ('2023-01-30 21:17:50.795000', '2023-01-30 21:17:50.795000', 0, false, 1, 2, 'TIN', 'Technik informatyk');
+INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name, full_name) VALUES ('2023-01-30 21:17:57.326000', '2023-01-30 21:17:57.326000', 0, false, 2, 4, 'TAI', 'Technik analityk-informatyk');
+INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name, full_name) VALUES ('2023-01-30 21:18:03.808000', '2023-01-30 21:18:03.808000', 0, false, 4, 1, 'TEK', 'Technik ekonom');
 
 
 INSERT INTO public.app_user (created_at, updated_at, version, archived, description, email, first_name, last_name, locked, password, personal_id, role, child_id, school_class_id) VALUES ('2023-01-30 21:23:11.929000', '2023-01-30 21:23:11.929000', 0, false, null, 'thirdStudent', 'Wioletta', 'Graczyk', false, '$2a$10$jWuYQQyJehk2Rz4iBDhanOBNR6Ty7c94QugkJ0BdxVeylR9u5LkFq', '5326', 'STUDENT', null, 1);

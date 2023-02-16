@@ -144,11 +144,11 @@
 
 </app-create-class>
 
-<!--<app-edit-subject *ngIf="editClassModalOpen"-->
-<!--                  [subject]="editedClass"-->
-<!--                  (close)="editClassModalOpen = false"-->
-<!--                  (success)="getFilteredSubjects(); editClassModalOpen = false">-->
-<!--</app-edit-subject>-->
+<app-edit-class *ngIf="editClassModalOpen"
+                [class]="editedClass"
+                (close)="editClassModalOpen = false"
+                (success)="getFilteredClasses(); editClassModalOpen = false">
+</app-edit-class>
 
 
 <ng-template #loading>

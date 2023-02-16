@@ -28,8 +28,13 @@ export class ClassService {
     }, {observe: "response"})
   }
 
-  updateClass(levelId: number | undefined, value: number | undefined) {
-    return this.http.put(`${environment.apiUrl}/classes/${levelId}`, {level: value})
+  updateClass(classId: number | undefined, shortName: string | undefined, fullName: string | undefined, levelId: number | undefined, teacherId: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/classes/${classId}`, {
+      shortName: shortName,
+      fullName: fullName,
+      levelId: levelId,
+      teacherId: teacherId
+    }, {observe: "response"})
   }
 
   archiveClass(levelId: number | undefined) {

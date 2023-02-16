@@ -8,6 +8,7 @@ import {ActivityService} from "../../services/activity.service";
 import {PostPage} from "../../model/post";
 import {ActivityPage} from "../../model/activity";
 import {AuthService} from "../../services/auth.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-realisation',
@@ -58,7 +59,8 @@ export class RealisationComponent implements OnInit {
               private gradeService: GradeService,
               private postService: PostService,
               private activityService: ActivityService,
-              public authService: AuthService) {
+              public authService: AuthService,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -117,6 +119,11 @@ export class RealisationComponent implements OnInit {
     this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
       this.realisationInfo = result
       this.realisationLoading = false
+      if (this.authService.getRole() === 'STUDENT') {
+        this.titleService.setTitle(this.realisationInfo.subjectName + ' - Syllabus');
+      } else {
+        this.titleService.setTitle(this.realisationInfo.schoolClassName + " " + this.realisationInfo.subjectAbbreviation + ' - Syllabus');
+      }
     }, error => {
       this.router.navigate(['/forbidden'])
     })

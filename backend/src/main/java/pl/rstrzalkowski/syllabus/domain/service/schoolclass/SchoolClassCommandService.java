@@ -28,7 +28,8 @@ public class SchoolClassCommandService {
 
 
     public SchoolClass create(CreateSchoolClassCommand command) {
-        if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, command.getShortName(), command.getLevelId())) {
+        String shortName = command.getShortName().trim();
+        if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, shortName, command.getLevelId())) {
             throw new SchoolClassAlreadyExistsException();
         }
 
@@ -42,7 +43,7 @@ public class SchoolClassCommandService {
 
         schoolClass.setLevel(level);
         schoolClass.setSupervisingTeacher(teacher);
-        schoolClass.setName(command.getShortName());
+        schoolClass.setName(shortName);
         schoolClass.setFullName(command.getFullName());
 
         return schoolClassRepository.save(schoolClass);
@@ -52,9 +53,21 @@ public class SchoolClassCommandService {
         SchoolClass schoolClass = schoolClassRepository.findById(command.getId())
                 .orElseThrow(SchoolClassNotFoundException::new);
 
+        String newShortName = command.getShortName();
+
+        if (newShortName != null) {
+            newShortName = newShortName.trim();
+            if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, newShortName, schoolClass.getLevel().getId())) {
+                throw new SchoolClassAlreadyExistsException();
+            }
+        }
+
         if (command.getLevelId() != null) {
             Level level = levelRepository.findById(command.getLevelId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+            if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, schoolClass.getName(), level.getId())) {
+                throw new SchoolClassAlreadyExistsException();
+            }
             schoolClass.setLevel(level);
         }
 
@@ -63,6 +76,10 @@ public class SchoolClassCommandService {
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
             schoolClass.setSupervisingTeacher(teacher);
         }
+
+        schoolClass.setName(command.getShortName() == null ? schoolClass.getName() : command.getShortName());
+        schoolClass.setFullName(command.getFullName() == null ? schoolClass.getFullName() : command.getFullName());
+
         return schoolClassRepository.save(schoolClass);
     }
 

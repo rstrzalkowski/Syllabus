@@ -14,6 +14,7 @@ export interface Class {
   updatedAt: Date;
   level: Level;
   name: string;
+  fullName: string;
   supervisingTeacher: User;
   archived: boolean;
   students: User[];
