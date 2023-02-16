@@ -25,6 +25,7 @@ public class UserCommandController {
 
 
     @PostMapping("/tokens")
+    @Secured({"DIRECTOR", "ADMIN"})
     public List<RegistrationToken> generateRegistrationTokens(@Valid @RequestBody GenerateRegistrationTokensCommand command) {
         return userCommandHandler.handle(command);
     }
@@ -40,5 +41,4 @@ public class UserCommandController {
     public void changePassword(@Valid @RequestBody ChangePasswordCommand command) {
         userCommandHandler.handle(command);
     }
-
 }

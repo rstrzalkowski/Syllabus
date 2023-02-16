@@ -5,17 +5,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import pl.rstrzalkowski.syllabus.application.command.realisation.ArchiveRealisationCommand;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.ArchiveSchoolClassCommand;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.CreateSchoolClassCommand;
 import pl.rstrzalkowski.syllabus.application.command.schoolclass.UpdateSchoolClassCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassAlreadyExistsException;
 import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Level;
+import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.domain.service.realisation.RealisationCommandService;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.LevelRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +31,8 @@ public class SchoolClassCommandService {
     private final SchoolClassRepository schoolClassRepository;
     private final LevelRepository levelRepository;
     private final UserRepository userRepository;
+    private final RealisationRepository realisationRepository;
+    private final RealisationCommandService realisationCommandService;
 
 
     public SchoolClass create(CreateSchoolClassCommand command) {
@@ -86,6 +94,12 @@ public class SchoolClassCommandService {
     public void archiveById(ArchiveSchoolClassCommand command) {
         SchoolClass schoolClass = schoolClassRepository.findById(command.id())
                 .orElseThrow(SchoolClassNotFoundException::new);
+
+        schoolClass.setSupervisingTeacher(null);
+        schoolClass.getStudents().forEach((student) -> student.setSchoolClass(null));
+
+        List<Realisation> realisations = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClass.getId());
+        realisations.forEach((realisation -> realisationCommandService.archiveById(new ArchiveRealisationCommand(realisation.getId()))));
 
         schoolClass.setArchived(true);
         schoolClassRepository.save(schoolClass);

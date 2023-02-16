@@ -14,6 +14,7 @@ import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
@@ -28,6 +29,7 @@ public class RealisationCommandService {
     private final SubjectRepository subjectRepository;
     private final SchoolClassRepository schoolClassRepository;
     private final UserRepository userRepository;
+    private final GradeRepository gradeRepository;
 
 
     public void create(CreateRealisationCommand command) {
@@ -54,6 +56,12 @@ public class RealisationCommandService {
     public void archiveById(ArchiveRealisationCommand command) {
         Realisation realisation = realisationRepository.findById(command.id())
                 .orElseThrow(RealisationNotFoundException::new);
+
+        realisation.getActivities().forEach(activity -> {
+            gradeRepository.findByActivityIdAndArchived(activity.getId(), false).forEach(grade -> grade.setArchived(true));
+            activity.setArchived(true);
+        });
+        realisation.getPosts().forEach(post -> post.setArchived(true));
 
         if (realisation.isArchived()) {
             return;
