@@ -22,17 +22,21 @@
                 Full name* (max 40 characters)
                 <input required [(ngModel)]="fullName" type="text" maxlength="40" name="fullName"
                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-                Level*
-                <select *ngIf="levels$ | async as levels" [(ngModel)]="levelId"
-                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="levelId">
-                  <option *ngFor="let level of levels.content" value="{{level.id}}">{{level.value}}</option>
-                </select>
-                Supervising teacher*
-                <select *ngIf="teachers$ | async as teachers" [(ngModel)]="teacherId"
-                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
-                  <option *ngFor="let teacher of teachers"
-                          value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
-                </select>
+                <div *ngIf="levels$ | async as levels">
+                  Level*
+                  <select [(ngModel)]="levelId"
+                          class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="levelId">
+                    <option *ngFor="let level of levels.content" value="{{level.id}}">{{level.value}}</option>
+                  </select>
+                </div>
+                <div *ngIf="teachers$ | async as teachers">
+                  Supervising teacher*
+                  <select [(ngModel)]="teacherId"
+                          class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
+                    <option *ngFor="let teacher of teachers"
+                            value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
+                  </select>
+                </div>
               </form>
               <div class="text-left">* field is required</div>
             </div>
