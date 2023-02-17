@@ -51,7 +51,7 @@ public class RealisationQueryController {
     }
 
     @GetMapping("/{id}")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public RealisationDTO getRealisationInfoById(@PathVariable("id") Long id) {
         accessGuard.checkAccessToRealisation(id);
         return realisationQueryHandler.handle(new GetRealisationInfoByIdQuery(id));
@@ -76,7 +76,7 @@ public class RealisationQueryController {
         accessGuard.checkAccessToRealisation(id);
         return gradeQueryHandler.handle(new GetOwnGradesByRealisationQuery(id, pageable));
     }
-    
+
     @GetMapping("/{id}/activities")
     @Secured({"STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public Page<ActivityDTO> getActiveActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
