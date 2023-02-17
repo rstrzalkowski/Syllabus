@@ -2,12 +2,17 @@ package pl.rstrzalkowski.syllabus.application.controller.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
@@ -25,7 +30,7 @@ public class UserCommandController {
 
 
     @PostMapping("/tokens")
-    @Secured({"DIRECTOR", "ADMIN"})
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public List<RegistrationToken> generateRegistrationTokens(@Valid @RequestBody GenerateRegistrationTokensCommand command) {
         return userCommandHandler.handle(command);
     }
@@ -40,5 +45,12 @@ public class UserCommandController {
     @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
     public void changePassword(@Valid @RequestBody ChangePasswordCommand command) {
         userCommandHandler.handle(command);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    @Secured({"DIRECTOR", "ADMIN"})
+    public void archiveById(@PathVariable("id") Long id) {
+        userCommandHandler.handle(new ArchiveUserCommand(id));
     }
 }

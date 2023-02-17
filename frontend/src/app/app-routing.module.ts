@@ -122,12 +122,15 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent,
     data: {
-      title: "Levels"
+      title: "Sign in"
     },
   },
   {
     path: "register",
-    component: RegisterComponent
+    component: RegisterComponent,
+    data: {
+      title: "Sign up"
+    },
   },
   {
     path: '**', redirectTo: '404'

@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findByRoleAndArchived(Role role, boolean archived, Pageable pageable);
 
-    Page<User> findByArchived(boolean archived, Pageable pageable);
+    Page<User> findByArchivedAndRoleNot(boolean archived, Role role, Pageable pageable);
 
     Page<User> findByEmail(String email, Pageable pageable);
 

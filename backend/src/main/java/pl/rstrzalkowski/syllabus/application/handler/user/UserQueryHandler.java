@@ -1,6 +1,7 @@
 package pl.rstrzalkowski.syllabus.application.handler.user;
 
 import org.springframework.data.domain.Page;
+import pl.rstrzalkowski.syllabus.application.dto.TokenDTO;
 import pl.rstrzalkowski.syllabus.application.query.user.GetActiveDirectorsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetActiveOfficesQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetActiveStudentsQuery;
@@ -11,8 +12,12 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedOfficesQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetDirectorTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
@@ -48,4 +53,12 @@ public interface UserQueryHandler {
     User handle(GetLoggedInUserQuery getLoggedInUserQuery);
 
     List<User> handle(GetNotSupervisingActiveTeachersQuery getNotSupervisingActiveTeachersQuery);
+
+    Page<TokenDTO> handle(GetStudentTokensQuery getStudentTokensQuery);
+
+    Page<TokenDTO> handle(GetTeacherTokensQuery getTeacherTokensQuery);
+
+    Page<TokenDTO> handle(GetOfficeTokensQuery getOfficeTokensQuery);
+
+    Page<TokenDTO> handle(GetDirectorTokensQuery getDirectorTokensQuery);
 }

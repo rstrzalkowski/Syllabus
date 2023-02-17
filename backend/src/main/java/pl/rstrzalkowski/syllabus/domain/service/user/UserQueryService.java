@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pl.rstrzalkowski.syllabus.application.dto.TokenDTO;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
+import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class UserQueryService {
 
     private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
     private final SchoolClassRepository schoolClassRepository;
 
 
@@ -34,11 +37,11 @@ public class UserQueryService {
     }
 
     public Page<User> getAllActiveUsers(Pageable pageable) {
-        return userRepository.findByArchived(false, pageable);
+        return userRepository.findByArchivedAndRoleNot(false, Role.ADMIN, pageable);
     }
 
     public Page<User> getAllArchivedUsers(Pageable pageable) {
-        return userRepository.findByArchived(false, pageable);
+        return userRepository.findByArchivedAndRoleNot(true, Role.ADMIN, pageable);
     }
 
     public Page<User> getByEmailContaining(String email, Pageable pageable) {
@@ -81,5 +84,9 @@ public class UserQueryService {
         Page<User> teachers = getAllActiveTeachers(pageable);
         List<SchoolClass> classes = schoolClassRepository.findAllByArchived(false);
         return teachers.stream().filter(teacher -> classes.stream().noneMatch(schoolClass -> Objects.equals(schoolClass.getSupervisingTeacher().getId(), teacher.getId()))).collect(Collectors.toList());
+    }
+
+    public Page<TokenDTO> getTokensByRole(Role role, Pageable pageable) {
+        return tokenRepository.findByRole(role, pageable).map(TokenDTO::new);
     }
 }

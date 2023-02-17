@@ -39,8 +39,10 @@ import {
 import {EditSubjectComponent} from './components/manage-school/subjects/edit-subject/edit-subject.component';
 import {CreateSubjectComponent} from './components/manage-school/subjects/create-subject/create-subject.component';
 import {CreateLevelComponent} from './components/manage-school/levels/create-level/create-level.component';
-import { CreateClassComponent } from './components/manage-school/classes/create-class/create-class.component';
-import { EditClassComponent } from './components/manage-school/classes/edit-class/edit-class.component';
+import {CreateClassComponent} from './components/manage-school/classes/create-class/create-class.component';
+import {EditClassComponent} from './components/manage-school/classes/edit-class/edit-class.component';
+import {GenerateCodeComponent} from './components/manage-school/users/generate-code/generate-code.component';
+import {CodesComponent} from './components/manage-school/users/codes/codes.component';
 
 
 @NgModule({
@@ -81,6 +83,8 @@ import { EditClassComponent } from './components/manage-school/classes/edit-clas
     CreateLevelComponent,
     CreateClassComponent,
     EditClassComponent,
+    GenerateCodeComponent,
+    CodesComponent,
   ],
   imports: [
     BrowserModule,

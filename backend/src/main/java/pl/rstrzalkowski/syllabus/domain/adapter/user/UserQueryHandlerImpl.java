@@ -3,6 +3,7 @@ package pl.rstrzalkowski.syllabus.domain.adapter.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import pl.rstrzalkowski.syllabus.application.dto.TokenDTO;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.user.GetActiveDirectorsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetActiveOfficesQuery;
@@ -14,10 +15,15 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedOfficesQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetDirectorTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
+import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.service.user.UserQueryService;
 
@@ -98,5 +104,25 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
     @Override
     public List<User> handle(GetNotSupervisingActiveTeachersQuery query) {
         return userQueryService.getNotSupervisingActiveTeachers(query.pageable());
+    }
+
+    @Override
+    public Page<TokenDTO> handle(GetStudentTokensQuery query) {
+        return userQueryService.getTokensByRole(Role.STUDENT, query.pageable());
+    }
+
+    @Override
+    public Page<TokenDTO> handle(GetTeacherTokensQuery query) {
+        return userQueryService.getTokensByRole(Role.TEACHER, query.pageable());
+    }
+
+    @Override
+    public Page<TokenDTO> handle(GetOfficeTokensQuery query) {
+        return userQueryService.getTokensByRole(Role.OFFICE, query.pageable());
+    }
+
+    @Override
+    public Page<TokenDTO> handle(GetDirectorTokensQuery query) {
+        return userQueryService.getTokensByRole(Role.DIRECTOR, query.pageable());
     }
 }

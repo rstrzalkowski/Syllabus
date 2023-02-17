@@ -14,7 +14,9 @@ import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionComma
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.user.InvalidPasswordException;
 import pl.rstrzalkowski.syllabus.domain.exception.user.PasswordNotAcceptableException;
+import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
+import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
@@ -41,6 +43,19 @@ public class UserCommandService {
     }
 
     public List<RegistrationToken> generateRegistrationTokens(GenerateRegistrationTokensCommand command) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (command.getRole() == Role.OFFICE) {
+            if (user.getRole() != Role.DIRECTOR && user.getRole() != Role.ADMIN) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            }
+        }
+
+        if (command.getRole() == Role.DIRECTOR || command.getRole() == Role.ADMIN) {
+            if (user.getRole() != Role.ADMIN) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            }
+        }
+
         List<RegistrationToken> generatedTokens = new ArrayList<>();
         for (int i = 0; i < command.getAmount(); i++) {
             RegistrationToken token = new RegistrationToken();
@@ -59,6 +74,13 @@ public class UserCommandService {
     }
 
     public void archiveById(ArchiveUserCommand command) {
+        User user = userRepository.findById(command.id())
+                .orElseThrow(UserNotFoundException::new);
+
+        user.setSchoolClass(null);
+        user.setArchived(true);
+
+        userRepository.save(user);
     }
 
     public void updateDescription(UpdateDescriptionCommand command) {
@@ -77,7 +99,7 @@ public class UserCommandService {
         if (newPassword.length() < 8 || newPassword.length() > 20) {
             throw new PasswordNotAcceptableException();
         }
-        
+
         String newPasswordEncoded = passwordEncoder.encode(newPassword);
         user.setPassword(newPasswordEncoded);
         userRepository.save(user);

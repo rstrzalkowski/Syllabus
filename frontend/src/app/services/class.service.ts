@@ -11,6 +11,10 @@ export class ClassService {
   constructor(private http: HttpClient) {
   }
 
+  getAllActiveClasses() {
+    return this.http.get<ClassPage>(`${environment.apiUrl}/classes?sort=level.value,createdAt`)
+  }
+
   getActiveClasses(page: number | undefined) {
     return this.http.get<ClassPage>(`${environment.apiUrl}/classes?page=${page}&size=6&sort=level.value,createdAt`)
   }

@@ -79,7 +79,7 @@ INSERT INTO public.post (created_at, updated_at, version, archived, content, edi
 INSERT INTO public.post (created_at, updated_at, version, archived, content, edited, title, realisation_id, teacher_id) VALUES ('2023-01-22 21:49:10.065000', '2023-01-30 21:49:10.065000', 0, false, 'There are no incoming tests, but keep on studying WW1', false, 'Dont lose focus!', 9, 2);
 
 
-INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:55:13.423000', '2023-01-30 21:55:13.423000', 0, false, false, 5, 1, 14, 2);
-INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:21.342000', '2023-01-30 21:57:21.342000', 0, false, false, 3, 2, 14, 2);
-INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:26.678000', '2023-01-30 21:57:26.678000', 0, false, false, 4, 3, 14, 2);
-INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:26.678000', '2023-01-30 21:57:26.678000', 0, false, false, 2, 4, 14, 2);
+INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:55:13.423000', '2023-01-30 21:55:13.423000', 0, false, false, 5, 1, 20, 2);
+INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:21.342000', '2023-01-30 21:57:21.342000', 0, false, false, 3, 2, 20, 2);
+INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:26.678000', '2023-01-30 21:57:26.678000', 0, false, false, 4, 3, 20, 2);
+INSERT INTO public.grade (created_at, updated_at, version, archived, edited, value, activity_id, student_id, teacher_id) VALUES ('2023-01-30 21:57:26.678000', '2023-01-30 21:57:26.678000', 0, false, false, 2, 4, 20, 2);
