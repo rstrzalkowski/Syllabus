@@ -59,8 +59,14 @@ public class RealisationQueryController {
 
     @GetMapping
     @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
-    public Page<Realisation> getActiveRealisations(Pageable pageable) {
+    public Page<RealisationDTO> getActiveRealisations(Pageable pageable) {
         return realisationQueryHandler.handle(new GetActiveRealisationsQuery(pageable));
+    }
+
+    @GetMapping("/archived")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public Page<RealisationDTO> getArchivedRealisations(Pageable pageable) {
+        return realisationQueryHandler.handle(new GetArchivedRealisationsQuery(pageable));
     }
 
     @GetMapping("/{id}/posts")
@@ -89,12 +95,6 @@ public class RealisationQueryController {
     public Page<ActivityDTO> getIncomingActivitiesOfRealisation(@PathVariable("id") Long id, Pageable pageable) {
         accessGuard.checkAccessToRealisation(id);
         return activityQueryHandler.handle(new GetIncomingActivitiesByRealisationQuery(id, pageable));
-    }
-
-    @GetMapping("/archived")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
-    public Page<Realisation> getArchivedRealisations(Pageable pageable) {
-        return realisationQueryHandler.handle(new GetArchivedRealisationsQuery(pageable));
     }
 
     @GetMapping("/{id}/average")

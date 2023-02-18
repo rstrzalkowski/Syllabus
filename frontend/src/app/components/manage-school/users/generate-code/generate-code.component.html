@@ -29,13 +29,16 @@
                     </option>
                     <option *ngIf="authService.getRole() === 'ADMIN'" value="DIRECTOR">Director</option>
                   </select>
-                  <select [(ngModel)]="classId" *ngIf="role == 'STUDENT'"
-                          class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classId">
-                    <option>Unassigned</option>
-                    <option
-                      *ngFor="let schoolClass of classes.content"
-                      [value]="schoolClass.id">{{schoolClass.level.value}} {{schoolClass.name}}</option>
-                  </select>
+                  <div *ngIf="role == 'STUDENT'">
+                    Class
+                    <select [(ngModel)]="classId"
+                            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classId">
+                      <option value="-1">Unassigned</option>
+                      <option
+                        *ngFor="let schoolClass of classes.content"
+                        [value]="schoolClass.id">{{schoolClass.level.value}} {{schoolClass.name}}</option>
+                    </select>
+                  </div>
                 </div>
               </form>
               <div class="text-left">* field is required</div>

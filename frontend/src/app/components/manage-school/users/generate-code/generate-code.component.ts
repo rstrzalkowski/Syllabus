@@ -16,7 +16,7 @@ export class GenerateCodeComponent implements OnInit {
   //Data
   number: number = 1
   role: string = ""
-  classId: number | undefined
+  classId: number | undefined = -1
   classes$: Observable<ClassPage> = this.classService.getAllActiveClasses()
   //end data
 
@@ -55,7 +55,9 @@ export class GenerateCodeComponent implements OnInit {
       return
     }
 
-    console.log(this.classId)
+    if (this.classId == -1) {
+      this.classId = undefined
+    }
 
     this.loading = true
     this.userService.generateCodes(this.number, this.role, this.classId).subscribe((result) => {

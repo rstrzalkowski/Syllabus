@@ -27,6 +27,9 @@
           <th class="px-6 py-3 text-center">
             Created
           </th>
+          <th *ngIf="userType == 'STUDENT'" class="px-6 py-3 text-center">
+            Class
+          </th>
           <th class="px-6 py-3 text-center">
             Role
           </th>
@@ -39,6 +42,9 @@
           </td>
           <td class="px-6 py-4 text-center">
             {{code.createdAt | date:"short"}}
+          </td>
+          <td *ngIf="userType == 'STUDENT'" class="px-6 py-4 text-center">
+            {{code.schoolClassName || "Unassigned"}}
           </td>
           <td class="px-6 py-4 text-center">
             {{code.role}}

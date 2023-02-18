@@ -18,6 +18,7 @@ import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,13 +30,13 @@ public class RealisationQueryService {
     private final RealisationRepository realisationRepository;
     private final GradeRepository gradeRepository;
 
-    public Page<Realisation> getAllActive(Pageable pageable) {
-        return realisationRepository.findAllByArchived(false, pageable);
+    public Page<RealisationDTO> getAllActive(Pageable pageable) {
+        return realisationRepository.findAllByArchived(false, pageable).map(RealisationDTO::new);
     }
 
 
-    public Page<Realisation> getAllArchived(Pageable pageable) {
-        return realisationRepository.findAllByArchived(true, pageable);
+    public Page<RealisationDTO> getAllArchived(Pageable pageable) {
+        return realisationRepository.findAllByArchived(true, pageable).map(RealisationDTO::new);
     }
 
 
@@ -67,47 +68,24 @@ public class RealisationQueryService {
 
     public List<SubjectDTO> getOwnActiveRealisations() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Realisation> realisations = new ArrayList<>();
         if (user.getRole() == Role.TEACHER) {
-            List<Realisation> realisations = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
-            return realisations
-                    .stream()
-                    .map((realisation -> new SubjectDTO(
-                            realisation.getId(),
-                            realisation.getSubject().getName(),
-                            realisation.getSubject().getAbbreviation(),
-                            realisation.getSchoolClass().getSchoolClassName())))
-                    .collect(Collectors.toList());
-        } else {
+            realisations = realisationRepository.findAllByArchivedAndTeacherId(false, user.getId());
+        } else if (user.getRole() == Role.STUDENT) {
             Long schoolClassId = user.getSchoolClass().getId();
             if (schoolClassId == null) {
                 return List.of();
             }
-
-            List<Realisation> activeRealisationsBySchoolClass = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClassId);
-            return activeRealisationsBySchoolClass
-                    .stream()
-                    .map((realisation -> new SubjectDTO(
-                            realisation.getId(),
-                            realisation.getSubject().getName(),
-                            realisation.getSubject().getAbbreviation(),
-                            realisation.getSchoolClass().getSchoolClassName())))
-                    .collect(Collectors.toList());
+            realisations = realisationRepository.findAllByArchivedAndSchoolClassId(false, schoolClassId);
         }
+        return realisations.stream()
+                .map(SubjectDTO::new)
+                .collect(Collectors.toList());
     }
 
     public RealisationDTO getInfoById(Long id) {
         Realisation realisation = realisationRepository.findById(id)
                 .orElseThrow(RealisationNotFoundException::new);
-        User teacher = realisation.getTeacher();
-
-        RealisationDTO dto = new RealisationDTO();
-        dto.setTeacherId(teacher.getId());
-        dto.setSubjectName(realisation.getSubject().getName());
-        dto.setSchoolClassName(realisation.getSchoolClass().getSchoolClassName());
-        dto.setTeacherFirstName(teacher.getFirstName());
-        dto.setTeacherLastName(teacher.getLastName());
-        dto.setSubjectAbbreviation(realisation.getSubject().getAbbreviation());
-
-        return dto;
+        return new RealisationDTO(realisation);
     }
 }

@@ -52,25 +52,6 @@ public class RealisationCommandService {
         realisationRepository.save(realisation);
     }
 
-
-    public void archiveById(ArchiveRealisationCommand command) {
-        Realisation realisation = realisationRepository.findById(command.id())
-                .orElseThrow(RealisationNotFoundException::new);
-
-        realisation.getActivities().forEach(activity -> {
-            gradeRepository.findByActivityIdAndArchived(activity.getId(), false).forEach(grade -> grade.setArchived(true));
-            activity.setArchived(true);
-        });
-        realisation.getPosts().forEach(post -> post.setArchived(true));
-
-        if (realisation.isArchived()) {
-            return;
-        }
-        realisation.setArchived(true);
-        realisationRepository.save(realisation);
-    }
-
-
     public void update(UpdateRealisationCommand command) {
         Realisation realisation = realisationRepository.findById(command.getId())
                 .orElseThrow(RealisationNotFoundException::new);
@@ -87,5 +68,25 @@ public class RealisationCommandService {
         } catch (Exception e) {
             throw new RealisationUpdateException();
         }
+    }
+
+    public void archiveById(ArchiveRealisationCommand command) {
+        Realisation realisation = realisationRepository.findById(command.id())
+                .orElseThrow(RealisationNotFoundException::new);
+
+        if (realisation.isArchived()) {
+            return;
+        }
+
+        realisation.getActivities().forEach(activity -> {
+            gradeRepository.findByActivityIdAndArchived(activity.getId(), false)
+                    .forEach(grade -> grade.setArchived(true));
+            activity.setArchived(true);
+        });
+        realisation.getPosts()
+                .forEach(post -> post.setArchived(true));
+
+        realisation.setArchived(true);
+        realisationRepository.save(realisation);
     }
 }

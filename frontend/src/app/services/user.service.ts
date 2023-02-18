@@ -88,19 +88,19 @@ export class UserService {
   }
 
   getStudentTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/students?page=${page}&sort=createdAt`)
+    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/students?size=10&page=${page}&sort=createdAt,desc`)
   }
 
   getTeacherTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/teachers?page=${page}&sort=createdAt`)
+    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/teachers?size=10&page=${page}&sort=createdAt,desc`)
   }
 
   getOfficeTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/offices?page=${page}&sort=createdAt`)
+    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/offices?size=10&page=${page}&sort=createdAt,desc`)
   }
 
   getDirectorTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/directors?page=${page}&sort=createdAt`)
+    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/directors?size=10&page=${page}&sort=createdAt,desc`)
   }
 
   getLoggedInUserObservable() {

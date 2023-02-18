@@ -25,12 +25,12 @@ public class RealisationQueryHandlerImpl implements RealisationQueryHandler {
     private final RealisationQueryService realisationQueryService;
 
     @Override
-    public Page<Realisation> handle(GetActiveRealisationsQuery query) {
+    public Page<RealisationDTO> handle(GetActiveRealisationsQuery query) {
         return realisationQueryService.getAllActive(query.pageable());
     }
 
     @Override
-    public Page<Realisation> handle(GetArchivedRealisationsQuery query) {
+    public Page<RealisationDTO> handle(GetArchivedRealisationsQuery query) {
         return realisationQueryService.getAllArchived(query.pageable());
     }
 

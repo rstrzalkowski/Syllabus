@@ -15,9 +15,9 @@ import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import java.util.List;
 
 public interface RealisationQueryHandler {
-    Page<Realisation> handle(GetActiveRealisationsQuery query);
+    Page<RealisationDTO> handle(GetActiveRealisationsQuery query);
 
-    Page<Realisation> handle(GetArchivedRealisationsQuery query);
+    Page<RealisationDTO> handle(GetArchivedRealisationsQuery query);
 
     Realisation handle(GetRealisationByIdQuery query);
 

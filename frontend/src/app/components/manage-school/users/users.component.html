@@ -38,7 +38,9 @@
     </div>
   </div>
 
-  <app-codes *ngIf="showCodes"></app-codes>
+  <app-codes *ngIf="showCodes">
+
+  </app-codes>
 
   <div
     class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
@@ -180,7 +182,7 @@
 
 <app-generate-code *ngIf="generateCodeModalOpen"
                    (close)="generateCodeModalOpen = false"
-                   (success)="getFilteredUsers(); generateCodeModalOpen = false">
+                   (success)="onGeneratedTokens(); generateCodeModalOpen = false">
 
 </app-generate-code>
 
