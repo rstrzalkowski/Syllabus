@@ -16,6 +16,8 @@ public interface RealisationRepository extends JpaRepository<Realisation, Long> 
 
     Page<Realisation> findAllByArchivedAndSchoolClassId(boolean archived, Long schoolClassId, Pageable pageable);
 
+    boolean existsByArchivedAndSchoolClassIdAndSubjectId(boolean archived, Long schoolClassId, Long subjectId);
+
     Integer countByArchivedAndSubjectId(boolean archived, Long subjectId);
 
     List<Realisation> findByArchivedAndSubjectId(boolean archived, Long subjectId);

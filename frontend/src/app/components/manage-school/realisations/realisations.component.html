@@ -147,11 +147,11 @@
   </div>
 </div>
 
-<!--<app-create-subject *ngIf="createRealisationModalOpen"-->
-<!--                    (close)="createRealisationModalOpen = false"-->
-<!--                    (success)="getFilteredRealisations(); createRealisationModalOpen = false">-->
+<app-create-realisation *ngIf="createRealisationModalOpen"
+                        (close)="createRealisationModalOpen = false"
+                        (success)="getFilteredRealisations(); createRealisationModalOpen = false">
 
-<!--</app-create-subject>-->
+</app-create-realisation>
 
 <!--<app-edit-subject *ngIf="editRealisationModalOpen"-->
 <!--                  [subject]="editedRealisation"-->

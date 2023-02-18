@@ -42,46 +42,49 @@ export class UserService {
     }
   }
 
-  getAllActiveUsers(page: number | undefined) {
+  getAllActiveTeachers() {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers?sort=lastName,firstName`)
+  }
+
+  getActiveUsers(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllArchivedUsers(page: number | undefined) {
+  getArchivedUsers(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllActiveStudents(page: number | undefined) {
+  getActiveStudents(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/students?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllActiveTeachers(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers`)
+  getActiveTeachers(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllActiveOffices(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices`)
+  getActiveOffices(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllActiveDirectors(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors`)
+  getActiveDirectors(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllArchivedStudents(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/students/archived`)
+  getArchivedStudents(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/students/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllArchivedTeachers(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers/archived`)
+  getArchivedTeachers(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllArchivedOffices(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices/archived`)
+  getArchivedOffices(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getAllArchivedDirectors(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors/archived`)
+  getArchivedDirectors(page: number | undefined) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
-
 
   getAllNotSupervisingActiveTeachers() {
     return this.http.get<User[]>(`${environment.apiUrl}/users/teachers/free?sort=lastName,firstName`)

@@ -43,6 +43,8 @@ import {CreateClassComponent} from './components/manage-school/classes/create-cl
 import {EditClassComponent} from './components/manage-school/classes/edit-class/edit-class.component';
 import {GenerateCodeComponent} from './components/manage-school/users/generate-code/generate-code.component';
 import {CodesComponent} from './components/manage-school/users/codes/codes.component';
+import { CreateRealisationComponent } from './components/manage-school/realisations/create-realisation/create-realisation.component';
+import { EditRealisationComponent } from './components/manage-school/realisations/edit-realisation/edit-realisation.component';
 
 
 @NgModule({
@@ -85,6 +87,8 @@ import {CodesComponent} from './components/manage-school/users/codes/codes.compo
     EditClassComponent,
     GenerateCodeComponent,
     CodesComponent,
+    CreateRealisationComponent,
+    EditRealisationComponent,
   ],
   imports: [
     BrowserModule,

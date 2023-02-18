@@ -12,6 +12,10 @@ export class SubjectService {
   constructor(private http: HttpClient) {
   }
 
+  getAllActiveSubjects() {
+    return this.http.get<SubjectPage>(`${environment.apiUrl}/subjects?sort=createdAt,desc`)
+  }
+
   getActiveSubjects(page: number) {
     return this.http.get<SubjectPage>(`${environment.apiUrl}/subjects?size=6&page=${page}&sort=createdAt,desc`)
   }

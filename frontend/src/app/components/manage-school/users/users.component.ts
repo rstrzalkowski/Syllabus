@@ -61,46 +61,46 @@ export class UsersComponent implements OnInit {
     if (!this.showArchived) {
       switch (this.userType) {
         case "STUDENT": {
-          this.users$ = this.userService.getAllActiveStudents(this.pageNumber$.value)
+          this.users$ = this.userService.getActiveStudents(this.pageNumber$.value)
           break
         }
         case "TEACHER": {
-          this.users$ = this.userService.getAllActiveTeachers(this.pageNumber$.value)
+          this.users$ = this.userService.getActiveTeachers(this.pageNumber$.value)
           break
         }
         case "OFFICE": {
-          this.users$ = this.userService.getAllActiveOffices(this.pageNumber$.value)
+          this.users$ = this.userService.getActiveOffices(this.pageNumber$.value)
           break
         }
         case "DIRECTOR": {
-          this.users$ = this.userService.getAllActiveDirectors(this.pageNumber$.value)
+          this.users$ = this.userService.getActiveDirectors(this.pageNumber$.value)
           break
         }
         default: {
-          this.users$ = this.userService.getAllActiveUsers(this.pageNumber$.value)
+          this.users$ = this.userService.getActiveUsers(this.pageNumber$.value)
         }
       }
 
     } else {
       switch (this.userType) {
         case "STUDENT": {
-          this.users$ = this.userService.getAllArchivedUsers(this.pageNumber$.value)
+          this.users$ = this.userService.getArchivedStudents(this.pageNumber$.value)
           break
         }
         case "TEACHER": {
-          this.users$ = this.userService.getAllArchivedTeachers(this.pageNumber$.value)
+          this.users$ = this.userService.getArchivedTeachers(this.pageNumber$.value)
           break
         }
         case "OFFICE": {
-          this.users$ = this.userService.getAllArchivedOffices(this.pageNumber$.value)
+          this.users$ = this.userService.getArchivedOffices(this.pageNumber$.value)
           break
         }
         case "DIRECTOR": {
-          this.users$ = this.userService.getAllArchivedDirectors(this.pageNumber$.value)
+          this.users$ = this.userService.getArchivedDirectors(this.pageNumber$.value)
           break
         }
         default: {
-          this.users$ = this.userService.getAllArchivedUsers(this.pageNumber$.value)
+          this.users$ = this.userService.getArchivedUsers(this.pageNumber$.value)
         }
       }
     }

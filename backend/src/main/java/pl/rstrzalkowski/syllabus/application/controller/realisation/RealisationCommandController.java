@@ -26,20 +26,20 @@ public class RealisationCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void createRealisation(@Valid @RequestBody CreateRealisationCommand command) {
         realisationCommandHandler.handle(command);
     }
 
     @PutMapping
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void updateRealisation(@Valid @RequestBody UpdateRealisationCommand command) {
         realisationCommandHandler.handle(command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE"})
+    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         realisationCommandHandler.handle(new ArchiveRealisationCommand(id));
     }

@@ -12,6 +12,15 @@ export class RealisationService {
   constructor(private http: HttpClient) {
   }
 
+  createRealisation(classId: number | undefined, subjectId: number | undefined, teacherId: number | undefined, year: number | undefined) {
+    return this.http.post(`${environment.apiUrl}/realisations`, {
+      year: year,
+      classId: classId,
+      subjectId: subjectId,
+      teacherId: teacherId
+    }, {observe: "response"})
+  }
+
   getActiveRealisations(page: number | undefined) {
     return this.http.get<RealisationInfoPage>(`${environment.apiUrl}/realisations?page=${page}&size=8`)
   }

@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.realisation.ArchiveRealisationCommand;
 import pl.rstrzalkowski.syllabus.application.command.realisation.CreateRealisationCommand;
 import pl.rstrzalkowski.syllabus.application.command.realisation.UpdateRealisationCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationAlreadyExistsException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationUpdateException;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
@@ -33,6 +34,11 @@ public class RealisationCommandService {
 
 
     public void create(CreateRealisationCommand command) {
+        if (realisationRepository.existsByArchivedAndSchoolClassIdAndSubjectId(
+                false, command.getClassId(), command.getSubjectId())) {
+            throw new RealisationAlreadyExistsException();
+        }
+
         Realisation realisation = new Realisation();
         realisation.setYear(command.getYear());
 
@@ -44,6 +50,7 @@ public class RealisationCommandService {
 
         User teacher = userRepository.findById(command.getTeacherId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
 
         realisation.setSubject(subject);
         realisation.setSchoolClass(schoolClass);

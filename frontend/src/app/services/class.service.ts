@@ -18,7 +18,7 @@ export class ClassService {
   getActiveClasses(page: number | undefined) {
     return this.http.get<ClassPage>(`${environment.apiUrl}/classes?page=${page}&size=6&sort=level.value,createdAt`)
   }
-
+  
   getArchivedClasses(page: number | undefined) {
     return this.http.get<ClassPage>(`${environment.apiUrl}/classes/archived?page=${page}&size=6&sort=level.value,createdAt`)
   }
