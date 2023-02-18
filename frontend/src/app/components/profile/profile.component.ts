@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
   }
 
   cancelChangingAbout() {
-    console.log(this.newAbout)
     this.newAbout = this.user?.description
     this.aboutChange = false
   }

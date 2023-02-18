@@ -153,11 +153,11 @@
 
 </app-create-realisation>
 
-<!--<app-edit-subject *ngIf="editRealisationModalOpen"-->
-<!--                  [subject]="editedRealisation"-->
-<!--                  (close)="editRealisationModalOpen = false"-->
-<!--                  (success)="getFilteredRealisations(); editRealisationModalOpen = false">-->
-<!--</app-edit-subject>-->
+<app-edit-realisation *ngIf="editRealisationModalOpen"
+                      [realisation]="editedRealisation"
+                      (close)="editRealisationModalOpen = false"
+                      (success)="getFilteredRealisations(); editRealisationModalOpen = false">
+</app-edit-realisation>
 
 
 <ng-template #loading>

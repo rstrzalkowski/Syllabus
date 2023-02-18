@@ -21,6 +21,13 @@ export class RealisationService {
     }, {observe: "response"})
   }
 
+  updateRealisation(realisationId: number | undefined, teacherId: number | undefined, year: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/realisations/${realisationId}`, {
+      year: year,
+      teacherId: teacherId
+    }, {observe: "response"})
+  }
+
   getActiveRealisations(page: number | undefined) {
     return this.http.get<RealisationInfoPage>(`${environment.apiUrl}/realisations?page=${page}&size=8`)
   }

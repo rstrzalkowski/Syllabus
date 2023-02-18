@@ -31,9 +31,10 @@ public class RealisationCommandController {
         realisationCommandHandler.handle(command);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
-    public void updateRealisation(@Valid @RequestBody UpdateRealisationCommand command) {
+    public void updateRealisation(@PathVariable("id") Long id, @Valid @RequestBody UpdateRealisationCommand command) {
+        command.setId(id);
         realisationCommandHandler.handle(command);
     }
 
