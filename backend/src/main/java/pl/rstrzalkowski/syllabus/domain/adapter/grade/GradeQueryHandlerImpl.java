@@ -10,6 +10,7 @@ import pl.rstrzalkowski.syllabus.application.query.grade.GetArchivedGradesByStud
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByActivityAndStudentQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetOwnGradesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.grade.GetRecentGradesQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.service.grade.GradeQueryService;
 
@@ -21,7 +22,7 @@ public class GradeQueryHandlerImpl implements GradeQueryHandler {
 
     @Override
     public Page<Grade> handle(GetActiveGradesByStudentQuery query) {
-        return gradeQueryService.getAllActiveByStudent(query.studentId(), query.pageable());
+        return gradeQueryService.getAllActiveByStudent(query.pageable());
     }
 
     @Override
@@ -42,5 +43,11 @@ public class GradeQueryHandlerImpl implements GradeQueryHandler {
     @Override
     public Page<GradeDTO> handle(GetOwnGradesByRealisationQuery query) {
         return gradeQueryService.getOwnGradesByRealisation(query.realisationId(), query.pageable());
+    }
+
+    @Override
+    public Page<GradeDTO> handle(GetRecentGradesQuery query) {
+        return gradeQueryService.getAllActiveByStudent(query.pageable())
+                .map(grade -> new GradeDTO(grade.getActivity(), grade));
     }
 }

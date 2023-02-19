@@ -7,6 +7,7 @@ import pl.rstrzalkowski.syllabus.application.query.grade.GetArchivedGradesByStud
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByActivityAndStudentQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradeByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetOwnGradesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.grade.GetRecentGradesQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 
 public interface GradeQueryHandler {
@@ -19,4 +20,6 @@ public interface GradeQueryHandler {
     Grade handle(GetGradeByIdQuery query);
 
     Page<GradeDTO> handle(GetOwnGradesByRealisationQuery getOwnGradesByRealisationQuery);
+
+    Page<GradeDTO> handle(GetRecentGradesQuery getRecentGradesQuery);
 }

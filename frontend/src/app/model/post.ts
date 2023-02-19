@@ -7,9 +7,11 @@ export interface PostPage {
 
 export interface Post {
   postId: number;
+  realisationId: number;
   authorId: number;
   title: string;
   content: string;
+  subjectName: string;
   authorFirstName: string;
   authorLastName: string;
   createdAt: Date;

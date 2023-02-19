@@ -5,6 +5,10 @@ import {RealisationService} from "../../services/realisation.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {ActivityPage} from "../../model/activity";
 import {ActivityService} from "../../services/activity.service";
+import {GradePage} from "../../model/grade";
+import {GradeService} from "../../services/grade.service";
+import {PostService} from "../../services/post.service";
+import {PostPage} from "../../model/post";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +17,9 @@ import {ActivityService} from "../../services/activity.service";
 export class DashboardComponent implements OnInit {
 
   //Pagination
-  pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  activityPageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  gradePageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  postPageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   //end pagination
 
   today = new Date()
@@ -26,29 +32,61 @@ export class DashboardComponent implements OnInit {
 
   subjects$: Observable<RealisedSubject[]> | undefined
   activities$: Observable<ActivityPage> | undefined
+  grades$: Observable<GradePage> | undefined
+  posts$: Observable<PostPage> | undefined
 
   constructor(public authService: AuthService,
               private realisationService: RealisationService,
-              private activityService: ActivityService) {
+              private activityService: ActivityService,
+              private gradeService: GradeService,
+              private postService: PostService) {
   }
 
   ngOnInit(): void {
     if (this.authService.getRole() == "STUDENT" || this.authService.getRole() == "TEACHER") {
       this.subjects$ = this.realisationService.getRealisedSubjects()
-      this.activities$ = this.activityService.getAllIncomingActivities(this.pageNumber$.value)
-      this.pageNumber$.subscribe(() => {
-        this.activities$ = this.activityService.getAllIncomingActivities(this.pageNumber$.value)
+
+      this.activityPageNumber$.subscribe(() => {
+        this.activities$ = this.activityService.getAllIncomingActivities(this.activityPageNumber$.value)
+      })
+
+      this.gradePageNumber$.subscribe(() => {
+        this.grades$ = this.gradeService.getRecentGrades(this.gradePageNumber$.value)
+      })
+
+      this.postPageNumber$.subscribe(() => {
+        this.posts$ = this.postService.getRecentPosts(this.postPageNumber$.value)
       })
     }
   }
 
-  previousPage() {
-    if (this.pageNumber$.value > 0) {
-      this.pageNumber$.next(this.pageNumber$.value - 1)
+  previousActivityPage() {
+    if (this.activityPageNumber$.value > 0) {
+      this.activityPageNumber$.next(this.activityPageNumber$.value - 1)
     }
   }
 
-  nextPage() {
-    this.pageNumber$.next(this.pageNumber$.value + 1)
+  nextActivityPage() {
+    this.activityPageNumber$.next(this.activityPageNumber$.value + 1)
+  }
+
+  previousGradePage() {
+    if (this.gradePageNumber$.value > 0) {
+      this.gradePageNumber$.next(this.gradePageNumber$.value - 1)
+    }
+  }
+
+  nextGradePage() {
+    this.gradePageNumber$.next(this.gradePageNumber$.value + 1)
+  }
+
+  previousPostPage() {
+    if (this.postPageNumber$.value > 0) {
+      this.postPageNumber$.next(this.postPageNumber$.value - 1)
+    }
+  }
+
+  nextPostPage() {
+    this.postPageNumber$.next(this.postPageNumber$.value + 1)
   }
 }

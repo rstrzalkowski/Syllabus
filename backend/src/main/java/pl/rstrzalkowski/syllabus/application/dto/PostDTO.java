@@ -14,10 +14,12 @@ public class PostDTO {
 
     private Long postId;
     private Long authorId;
+    private Long realisationId;
     private String title;
     private String content;
     private String authorFirstName;
     private String authorLastName;
+    private String subjectName;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private boolean edited;
@@ -32,5 +34,7 @@ public class PostDTO {
         this.updatedAt = post.getUpdatedAt();
         this.edited = post.isEdited();
         this.title = post.getTitle();
+        this.realisationId = post.getRealisation().getId();
+        this.subjectName = post.getRealisation().getSubject().getName();
     }
 }

@@ -8,6 +8,7 @@ import pl.rstrzalkowski.syllabus.application.handler.post.PostQueryHandler;
 import pl.rstrzalkowski.syllabus.application.query.post.GetActivePostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetArchivedPostsByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.post.GetPostByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.post.GetRecentActivePosts;
 import pl.rstrzalkowski.syllabus.domain.model.Post;
 import pl.rstrzalkowski.syllabus.domain.service.post.PostQueryService;
 
@@ -30,5 +31,10 @@ public class PostQueryHandlerImpl implements PostQueryHandler {
     @Override
     public Post handle(GetPostByIdQuery query) {
         return postQueryService.getById(query.id());
+    }
+
+    @Override
+    public Page<PostDTO> handle(GetRecentActivePosts query) {
+        return postQueryService.getRecentActivePosts(query.pageable());
     }
 }

@@ -9,4 +9,6 @@ import pl.rstrzalkowski.syllabus.domain.model.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findByRealisationIdAndArchived(Long realisationId, boolean archived, Pageable pageable);
+
+    Page<Post> findByRealisation_SchoolClass_Students_IdAndArchived(Long studentId, boolean archived, Pageable pageable);
 }

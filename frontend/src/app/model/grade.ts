@@ -9,6 +9,7 @@ export interface GradePage {
 
 export interface Grade {
   activityDTO: Activity
+  realisationId: number
   grade: number
   comment: string
   createdAt: Date

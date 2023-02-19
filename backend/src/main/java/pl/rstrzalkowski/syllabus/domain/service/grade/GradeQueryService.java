@@ -24,8 +24,9 @@ public class GradeQueryService {
     private final GradeRepository gradeRepository;
     private final ActivityRepository activityRepository;
 
-    public Page<Grade> getAllActiveByStudent(Long studentId, Pageable pageable) {
-        return gradeRepository.findAllByArchivedAndStudentId(false, studentId, pageable);
+    public Page<Grade> getAllActiveByStudent(Pageable pageable) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return gradeRepository.findAllByArchivedAndStudentId(false, user.getId(), pageable);
     }
 
     public Page<Grade> getAllArchivedByStudent(Long studentId, Pageable pageable) {
