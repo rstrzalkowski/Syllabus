@@ -116,11 +116,21 @@
       </div>
     </div>
     <div>
-      <div class="grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid w-full gap-5">
-        <div *ngFor="let subject of subjects" class="w-full">
-          <div routerLink="/realisation/{{subject.realisationId}}"
-               class="bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer">
-            <span>{{subject.subjectAbbreviation}}</span>
+      <div class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid w-full gap-5">
+        <div *ngFor="let subject of subjects">
+          <div class="rounded-lg">
+            <div>
+              <div routerLink="/realisation/{{subject.realisationId}}"
+                   [ngClass]="{
+                   'history': subject.subjectName == 'History',
+                   'english': subject.subjectName == 'English',
+                   'pe': subject.subjectName == 'Physical education',
+                   'biology': subject.subjectName == 'Biology'}"
+                   class="text-white brightness-75 bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+                <span
+                  class="bg-black text-white rounded-lg p-2 bg-opacity-50">{{subject.subjectAbbreviation}}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

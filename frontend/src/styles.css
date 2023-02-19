@@ -180,3 +180,21 @@ input[type="checkbox"] ~ .switch {
   font-family: 'Comfortaa', cursive;
 }
 
+.english {
+  background-image: url("https://cdn.britannica.com/25/4825-004-F1975B92/Flag-United-Kingdom.jpg");
+}
+
+.history {
+  background-image: url("https://media.istockphoto.com/id/936911748/photo/old-hourglass-and-ancient-book.jpg?s=612x612&w=0&k=20&c=jQX5TjGDgXEDSKfY2cHEL4x7oc7pH4B_ApO0Q4aXMaI=");
+}
+
+.biology {
+  background-image: url("https://media.istockphoto.com/id/1206633490/photo/cells-and-biological-chain-molecules-and-abstract-conception-3d-rendering.jpg?s=612x612&w=0&k=20&c=i6A1aKLqoTVvteXSTen0PAUjo3XRlfXhkj6S2OwI8LY=");
+}
+
+.pe {
+  background-image: url("https://leverageedu.com/blog/wp-content/uploads/2020/01/physical-education-class-12.jpg");
+}
+
+
+
