@@ -1,0 +1,85 @@
+<div *ngIf="authService.getRole() === 'STUDENT' || authService.getRole() === 'TEACHER'">
+  <div *ngIf="subjects$ | async as subjects; else loading" class="p-3">
+    <div class="mb-5">
+      <div
+        class="md:flex w-full md:space-x-5">
+        <div
+          class="flex justify-center items-center bg-skin-base p-5 rounded-md shadow md:border-r-0 border-r-4 border-l-4 border-teal-600 rounded-lg w-full md:w-1/3 mb-5 md:mb-0">
+          <div class="p-3 mb-4">
+            <div class="flex-none rounded lg:rounded-t-none lg:rounded-l text-center">
+              <div class="block overflow-hidden text-skin-muted text-center px-8 rounded-lg">
+                <div class="py-1 text-4xl">
+                  {{monthNames[today.getMonth()]}}
+                </div>
+                <div class="">
+                  <div class="pt-1">
+                  <span class="text-7xl font-bold leading-tight">
+                    {{today.getDate()}}
+                  </span>
+                  </div>
+                  <div class=" text-center -pt-2 -mb-1 pb-3 ">
+                    <span class="text-2xl">{{days[today.getDay()]}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-skin-base p-5 rounded-md shadow border-r-4 border-l-4 md:border-l-0 border-teal-600 rounded-lg w-full">
+          <span class="text-lg underline underline-offset-8">Incoming activities:</span>
+          <div *ngIf="activities$ | async as activities; else loading">
+            <div *ngIf="activities.content.length > 0">
+              <div class="md:flex md:space-x-5 mt-5 space-y-3 md:space-y-0">
+                <div *ngFor="let activity of activities.content"
+                     class="flex flex-col text-center border-gray-400 bg-skin-muted border-2 rounded-xl hover:opacity-80 p-3 md:w-1/3 truncate tracking-wide">
+                  <span class="text-xl">{{activity.name}}</span>
+                  <span>Weight: {{activity.weight}}</span>
+                  <span class="font-bold">{{activity.date | date:"mediumDate"}}</span>
+                  <span>{{activity.subjectName}}</span>
+                  <p class="mt-5"><span routerLink="/realisation/{{activity.realisationId}}"
+                                        class="cursor-pointer font-bold truncate text-teal-600">View</span>
+                </div>
+              </div>
+              <div class="flex justify-around">
+            <span *ngIf="(activities!.number) > 0" (click)="previousPage()"
+                  class="mt-3 p-3 cursor-pointer font-bold truncate text-teal-600">Previous page</span>
+                <span *ngIf="!activities?.last" (click)="nextPage()"
+                      class="mt-3 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
+              </div>
+            </div>
+            <div *ngIf="activities.content.length === 0" class="p-3">
+              There are no incoming activities.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-5">
+      <div class="grid-cols-2 grid w-full gap-5">
+        <div class="bg-skin-base rounded-lg min-h-60 p-5">
+          <span class="text-lg underline underline-offset-8">Today's grades:</span>
+        </div>
+        <div class="bg-skin-base rounded-lg min-h-60 p-5">
+          <span class="text-lg underline underline-offset-8">Today's posts:</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid w-full gap-5">
+        <div *ngFor="let subject of subjects" class="w-full">
+          <div routerLink="/realisation/{{subject.realisationId}}"
+               class="bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:-m-1 hover:underline underline-offset-4 cursor-pointer">
+            {{subject.subjectAbbreviation}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+

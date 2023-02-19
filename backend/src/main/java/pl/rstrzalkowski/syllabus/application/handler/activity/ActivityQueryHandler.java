@@ -7,6 +7,7 @@ import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesB
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetArchivedActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradesOfActivityQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 
@@ -22,4 +23,6 @@ public interface ActivityQueryHandler {
     Page<ActivityDTO> handle(GetIncomingActivitiesByRealisationQuery getIncomingActivitiesByRealisationQuery);
 
     List<GradeOfActivityDTO> handle(GetGradesOfActivityQuery getGradesOfActivityQuery);
+
+    Page<ActivityDTO> handle(GetIncomingActivitiesQuery getIncomingActivitiesQuery);
 }

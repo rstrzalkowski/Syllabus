@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.authService.saveJWT(result)
       this.userService.getLoggedInUserObservable().subscribe((result) => {
         this.userService.user = result
-        this.router.navigate(['/'])
+        this.router.navigate(['/dashboard'])
       })
     }, error => {
       this.alertService.showAlert("danger", "Wrong credentials")

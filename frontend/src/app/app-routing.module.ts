@@ -19,15 +19,13 @@ import {ClassesComponent} from "./components/manage-school/classes/classes.compo
 import {UsersComponent} from "./components/manage-school/users/users.component";
 import {LevelsComponent} from "./components/manage-school/levels/levels.component";
 import {ManagementGuard} from "./guards/management.guard";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
     canActivate: [AuthenticationGuard],
-    data: {
-      title: "Dashboard"
-    },
     children: [
       {
         path: "profile",
@@ -35,6 +33,14 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard],
         data: {
           title: "Profile"
+        },
+      },
+      {
+        path: "dashboard",
+        component: DashboardComponent,
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "Dashboard"
         },
       },
       {

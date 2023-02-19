@@ -7,6 +7,8 @@ export interface ActivityPage {
 
 export interface Activity {
   activityId: number;
+  realisationId: number;
+  subjectName: string;
   weight: number;
   name: string;
   description: string;

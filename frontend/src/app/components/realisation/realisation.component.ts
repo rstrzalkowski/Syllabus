@@ -108,7 +108,7 @@ export class RealisationComponent implements OnInit {
 
   getActivities() {
     this.activitiesLoading = true
-    this.postsSubscription = this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
+    this.postsSubscription = this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
       this.activityPage = result
       this.activitiesLoading = false
     })
@@ -142,7 +142,7 @@ export class RealisationComponent implements OnInit {
   refreshActivities() {
     this.activityPageNumber = 0
     this.activityPageLoading = true
-    this.activityService.getIncomingActivities(this.realisationId, this.postPageNumber).subscribe((result) => {
+    this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.postPageNumber).subscribe((result) => {
       this.activityPage = result
       this.activityPageLoading = false
       this.createActivityOpened = false
@@ -175,7 +175,7 @@ export class RealisationComponent implements OnInit {
     if (!this.activityPage?.last) {
       this.activityPageLoading = true
       this.activityPageNumber++
-      this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
+      this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
         this.activityPage = result
         this.activityPageLoading = false
       })
@@ -186,7 +186,7 @@ export class RealisationComponent implements OnInit {
     if (this.activityPageNumber > 0) {
       this.activityPageLoading = true
       this.activityPageNumber--
-      this.activityService.getIncomingActivities(this.realisationId, this.activityPageNumber).subscribe((result) => {
+      this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
         this.activityPage = result
         this.activityPageLoading = false
       })

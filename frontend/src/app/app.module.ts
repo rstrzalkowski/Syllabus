@@ -50,6 +50,7 @@ import {
   EditRealisationComponent
 } from './components/manage-school/realisations/edit-realisation/edit-realisation.component';
 import {EditStudentsComponent} from './components/manage-school/classes/edit-students/edit-students.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import {EditStudentsComponent} from './components/manage-school/classes/edit-stu
     CreateRealisationComponent,
     EditRealisationComponent,
     EditStudentsComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

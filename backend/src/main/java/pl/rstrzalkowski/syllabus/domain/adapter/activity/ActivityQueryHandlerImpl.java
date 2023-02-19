@@ -2,6 +2,7 @@ package pl.rstrzalkowski.syllabus.domain.adapter.activity;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.dto.ActivityDTO;
 import pl.rstrzalkowski.syllabus.application.dto.GradeOfActivityDTO;
@@ -10,10 +11,12 @@ import pl.rstrzalkowski.syllabus.application.query.activity.GetActiveActivitiesB
 import pl.rstrzalkowski.syllabus.application.query.activity.GetActivityByIdQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetArchivedActivitiesByRealisationQuery;
 import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesByRealisationQuery;
+import pl.rstrzalkowski.syllabus.application.query.activity.GetIncomingActivitiesQuery;
 import pl.rstrzalkowski.syllabus.application.query.grade.GetGradesOfActivityQuery;
 import pl.rstrzalkowski.syllabus.domain.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
+import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.service.activity.ActivityQueryService;
 import pl.rstrzalkowski.syllabus.domain.service.grade.GradeQueryService;
 
@@ -60,5 +63,11 @@ public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
             }
         }));
         return gradesOfActivity;
+    }
+
+    @Override
+    public Page<ActivityDTO> handle(GetIncomingActivitiesQuery query) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return activityQueryService.getAllIncomingByStudent(user.getId(), query.pageable());
     }
 }

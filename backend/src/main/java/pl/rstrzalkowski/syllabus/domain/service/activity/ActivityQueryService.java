@@ -51,4 +51,9 @@ public class ActivityQueryService {
                 .map((student) -> new GradeOfActivityDTO(student, activityId))
                 .collect(Collectors.toList());
     }
+
+    public Page<ActivityDTO> getAllIncomingByStudent(Long id, Pageable pageable) {
+        return activityRepository.findByRealisation_SchoolClass_Students_IdAndArchivedAndDateGreaterThanEqual(id, false, LocalDateTime.now(), pageable)
+                .map(ActivityDTO::new);
+    }
 }

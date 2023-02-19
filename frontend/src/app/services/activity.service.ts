@@ -15,8 +15,12 @@ export class ActivityService {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=5&page=${page}&sort=createdAt`)
   }
 
-  getIncomingActivities(realisationId: number | undefined, page: number) {
+  getIncomingActivitiesByRealisation(realisationId: number | undefined, page: number) {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=3&page=${page}&sort=createdAt`)
+  }
+
+  getAllIncomingActivities(page: number) {
+    return this.http.get<ActivityPage>(`${environment.apiUrl}/activities/incoming?size=3&page=${page}&sort=date`)
   }
 
   createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined) {

@@ -18,6 +18,8 @@ public class ActivityDTO {
     private String name;
     private String description;
     private LocalDateTime date;
+    private String subjectName;
+    private Long realisationId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -29,5 +31,7 @@ public class ActivityDTO {
         this.date = activity.getDate();
         this.createdAt = activity.getCreatedAt();
         this.updatedAt = activity.getUpdatedAt();
+        this.subjectName = activity.getRealisation().getSubject().getName();
+        this.realisationId = activity.getRealisation().getId();
     }
 }

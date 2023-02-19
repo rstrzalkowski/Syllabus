@@ -13,4 +13,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     Page<Activity> findByRealisationIdAndArchived(Long realisationId, boolean archived, Pageable pageable);
 
     Page<Activity> findByRealisationIdAndArchivedAndDateAfter(Long realisationId, boolean archived, LocalDateTime date, Pageable pageable);
+
+    Page<Activity> findByRealisation_SchoolClass_Students_IdAndArchivedAndDateGreaterThanEqual(Long studentId, boolean archived, LocalDateTime date, Pageable pageable);
 }
