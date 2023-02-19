@@ -54,10 +54,10 @@ public class AuthService {
 
     public void register(RegisterCommand command) {
         RegistrationToken token = tokenRepository.findById(command.getRegistrationToken())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE));
 
         User user = new User();
-        user.setEmail(command.getUsername());
+        user.setEmail(command.getEmail());
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
         user.setPersonalId(command.getPersonalId());

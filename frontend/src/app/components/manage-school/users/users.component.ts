@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {SubjectService} from "../../../services/subject.service";
 import {AlertService} from "../../../services/alert.service";
@@ -55,6 +55,12 @@ export class UsersComponent implements OnInit {
     this.pageNumber$.subscribe(() => {
       this.getFilteredUsers()
     })
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.deleteModalOpen = false
+    }
   }
 
   getFilteredUsers() {

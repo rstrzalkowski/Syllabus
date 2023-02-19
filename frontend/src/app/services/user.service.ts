@@ -12,8 +12,7 @@ export class UserService {
 
   public user: User | undefined
 
-  constructor(private http: HttpClient,
-              private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     if (this.authService.authenticated.value) {
       this.getLoggedInUser()
     } else {
@@ -127,7 +126,19 @@ export class UserService {
     }, {observe: "response"})
   }
 
+  getUnassignedStudents() {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/unassigned?sort=lastName,firstName`)
+  }
+
   archiveUser(userId: number | undefined) {
     return this.http.delete(`${environment.apiUrl}/users/${userId}`)
+  }
+
+  unassignStudent(userId: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/users/${userId}/unassign`, {}, {observe: "response"})
+  }
+
+  assignStudent(userId: number | undefined, classId: number | undefined) {
+    return this.http.put(`${environment.apiUrl}/users/${userId}/assign`, {classId: classId}, {observe: "response"})
   }
 }

@@ -85,7 +85,6 @@
 @layer base {
   .btn-submit {
     @apply
-    flex
     justify-center
     py-2.5
     px-4

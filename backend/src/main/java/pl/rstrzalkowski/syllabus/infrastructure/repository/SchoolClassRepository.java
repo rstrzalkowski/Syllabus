@@ -12,7 +12,7 @@ import java.util.List;
 public interface SchoolClassRepository extends JpaRepository<SchoolClass, Long> {
     Page<SchoolClass> findAllByArchived(boolean archived, Pageable pageable);
 
-    boolean existsByArchivedAndNameAndLevelId(boolean archived, String name, Long levelId);
+    SchoolClass findByArchivedAndNameAndLevelId(boolean archived, String name, Long levelId);
 
     Integer countByArchivedAndLevelId(boolean archived, Long levelId);
 

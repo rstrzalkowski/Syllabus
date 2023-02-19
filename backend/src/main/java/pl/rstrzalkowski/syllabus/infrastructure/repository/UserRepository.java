@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findByArchivedAndRoleNot(boolean archived, Role role, Pageable pageable);
 
+    Page<User> findByArchivedAndRoleAndSchoolClassIsNull(boolean archived, Role role, Pageable pageable);
+
     Page<User> findByEmail(String email, Pageable pageable);
 
     Optional<User> findByEmail(String email);

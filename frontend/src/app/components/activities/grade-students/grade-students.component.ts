@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Activity} from "../../model/activity";
+import {Activity} from "../../../model/activity";
 import {Observable} from "rxjs";
-import {GradeService} from "../../services/grade.service";
-import {GradesOfActivity} from "../../model/grades-of-activity";
-import {AlertService} from "../../services/alert.service";
+import {GradeService} from "../../../services/grade.service";
+import {GradesOfActivity} from "../../../model/grades-of-activity";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
   selector: 'app-grade-students',

@@ -22,6 +22,7 @@ import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +38,8 @@ public class SchoolClassCommandService {
 
     public SchoolClass create(CreateSchoolClassCommand command) {
         String shortName = command.getShortName().trim();
-        if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, shortName, command.getLevelId())) {
+
+        if (schoolClassRepository.findByArchivedAndNameAndLevelId(false, shortName, command.getLevelId()) != null) {
             throw new SchoolClassAlreadyExistsException();
         }
 
@@ -62,10 +64,14 @@ public class SchoolClassCommandService {
                 .orElseThrow(SchoolClassNotFoundException::new);
 
         String newShortName = command.getShortName();
+        SchoolClass conflictingClass;
 
         if (newShortName != null) {
             newShortName = newShortName.trim();
-            if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, newShortName, schoolClass.getLevel().getId())) {
+            conflictingClass = schoolClassRepository
+                    .findByArchivedAndNameAndLevelId(false, newShortName, schoolClass.getLevel().getId());
+
+            if (!Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
                 throw new SchoolClassAlreadyExistsException();
             }
         }
@@ -73,7 +79,10 @@ public class SchoolClassCommandService {
         if (command.getLevelId() != null) {
             Level level = levelRepository.findById(command.getLevelId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-            if (schoolClassRepository.existsByArchivedAndNameAndLevelId(false, schoolClass.getName(), level.getId())) {
+            conflictingClass = schoolClassRepository
+                    .findByArchivedAndNameAndLevelId(false, schoolClass.getName(), level.getId());
+
+            if (!Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
                 throw new SchoolClassAlreadyExistsException();
             }
             schoolClass.setLevel(level);

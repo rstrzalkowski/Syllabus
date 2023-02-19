@@ -1,7 +1,7 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {AlertService} from "../../services/alert.service";
-import {Activity} from "../../model/activity";
-import {ActivityService} from "../../services/activity.service";
+import {AlertService} from "../../../services/alert.service";
+import {Activity} from "../../../model/activity";
+import {ActivityService} from "../../../services/activity.service";
 
 @Component({
   selector: 'app-edit-activity',

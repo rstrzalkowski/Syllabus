@@ -18,6 +18,7 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveT
 import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
@@ -50,15 +51,17 @@ public interface UserQueryHandler {
 
     Page<User> handle(GetArchivedDirectorsQuery query);
 
-    User handle(GetLoggedInUserQuery getLoggedInUserQuery);
+    User handle(GetLoggedInUserQuery query);
 
-    List<User> handle(GetNotSupervisingActiveTeachersQuery getNotSupervisingActiveTeachersQuery);
+    List<User> handle(GetNotSupervisingActiveTeachersQuery query);
 
-    Page<TokenDTO> handle(GetStudentTokensQuery getStudentTokensQuery);
+    Page<TokenDTO> handle(GetStudentTokensQuery query);
 
-    Page<TokenDTO> handle(GetTeacherTokensQuery getTeacherTokensQuery);
+    Page<TokenDTO> handle(GetTeacherTokensQuery query);
 
-    Page<TokenDTO> handle(GetOfficeTokensQuery getOfficeTokensQuery);
+    Page<TokenDTO> handle(GetOfficeTokensQuery query);
 
-    Page<TokenDTO> handle(GetDirectorTokensQuery getDirectorTokensQuery);
+    Page<TokenDTO> handle(GetDirectorTokensQuery query);
+
+    Page<User> handle(GetUnassignedStudentsQuery query);
 }

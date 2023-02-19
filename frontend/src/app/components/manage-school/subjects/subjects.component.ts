@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {SubjectService} from "../../../services/subject.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Subject, SubjectPage} from "../../../model/subject";
@@ -45,6 +45,12 @@ export class SubjectsComponent implements OnInit {
     this.pageNumber$.subscribe(() => {
       this.getFilteredSubjects()
     })
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.deleteModalOpen = false
+    }
   }
 
   getFilteredSubjects() {

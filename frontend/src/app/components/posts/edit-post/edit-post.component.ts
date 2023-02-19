@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PostService} from "../../services/post.service";
-import {AlertService} from "../../services/alert.service";
-import {Post} from "../../model/post";
+import {PostService} from "../../../services/post.service";
+import {AlertService} from "../../../services/alert.service";
+import {Post} from "../../../model/post";
 
 @Component({
   selector: 'app-edit-post',

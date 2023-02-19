@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.AssignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserCommandHandler;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
@@ -52,5 +54,18 @@ public class UserCommandController {
     @Secured({"DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         userCommandHandler.handle(new ArchiveUserCommand(id));
+    }
+
+    @PutMapping("/{id}/unassign")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public void unassignStudent(@PathVariable("id") Long id) {
+        userCommandHandler.handle(new UnassignCommand(id));
+    }
+
+    @PutMapping("/{id}/assign")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public void assignStudent(@PathVariable("id") Long id, @Valid @RequestBody AssignCommand command) {
+        command.setStudentId(id);
+        userCommandHandler.handle(command);
     }
 }

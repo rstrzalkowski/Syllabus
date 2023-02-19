@@ -1,6 +1,6 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {PostService} from "../../services/post.service";
-import {AlertService} from "../../services/alert.service";
+import {PostService} from "../../../services/post.service";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
   selector: 'app-create-post',

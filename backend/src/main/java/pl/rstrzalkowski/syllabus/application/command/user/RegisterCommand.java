@@ -19,7 +19,7 @@ public class RegisterCommand {
     private String lastName;
 
     @NotNull
-    private String username;
+    private String email;
 
     @NotNull
     private String personalId;
@@ -29,6 +29,4 @@ public class RegisterCommand {
 
     @NotNull
     private UUID registrationToken;
-
-    private Boolean isParent;
 }

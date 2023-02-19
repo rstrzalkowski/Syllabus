@@ -21,6 +21,7 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveT
 import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
@@ -124,5 +125,10 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
     @Override
     public Page<TokenDTO> handle(GetDirectorTokensQuery query) {
         return userQueryService.getTokensByRole(Role.DIRECTOR, query.pageable());
+    }
+
+    @Override
+    public Page<User> handle(GetUnassignedStudentsQuery query) {
+        return userQueryService.getUnassignedStudents(query.pageable());
     }
 }

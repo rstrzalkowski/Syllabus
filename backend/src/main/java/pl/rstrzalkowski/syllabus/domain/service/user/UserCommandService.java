@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.AssignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
+import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.user.InvalidPasswordException;
 import pl.rstrzalkowski.syllabus.domain.exception.user.PasswordNotAcceptableException;
 import pl.rstrzalkowski.syllabus.domain.exception.user.UserNotFoundException;
@@ -102,6 +105,33 @@ public class UserCommandService {
 
         String newPasswordEncoded = passwordEncoder.encode(newPassword);
         user.setPassword(newPasswordEncoded);
+        userRepository.save(user);
+    }
+
+    public void unassignStudent(UnassignCommand command) {
+        User user = userRepository.findById(command.id())
+                .orElseThrow(UserNotFoundException::new);
+
+        if (user.getRole() != Role.STUDENT || user.isArchived()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        user.setSchoolClass(null);
+
+        userRepository.save(user);
+    }
+
+    public void assignStudent(AssignCommand command) {
+        User user = userRepository.findById(command.getStudentId())
+                .orElseThrow(UserNotFoundException::new);
+
+        SchoolClass schoolClass = schoolClassRepository.findById(command.getClassId())
+                .orElseThrow(SchoolClassNotFoundException::new);
+
+        if (user.getRole() != Role.STUDENT || user.isArchived()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        user.setSchoolClass(schoolClass);
+
         userRepository.save(user);
     }
 }

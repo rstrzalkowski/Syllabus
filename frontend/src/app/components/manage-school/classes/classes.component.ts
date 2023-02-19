@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {AlertService} from "../../../services/alert.service";
 import {Class, ClassPage} from "../../../model/class";
 import {ClassService} from "../../../services/class.service";
-import {LevelService} from "../../../services/level.service";
-import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-classes',
@@ -30,6 +28,7 @@ export class ClassesComponent implements OnInit {
   deleteModalOpen: boolean = false
   createClassModalOpen: boolean = false
   editClassModalOpen: boolean = false
+  manageStudentWindow: boolean = false
   //end modals
 
 
@@ -41,15 +40,21 @@ export class ClassesComponent implements OnInit {
 
 
   constructor(private classService: ClassService,
-              private alertService: AlertService,
-              private levelService: LevelService,
-              private userService: UserService) {
+              private alertService: AlertService) {
   }
 
   ngOnInit(): void {
     this.pageNumber$.subscribe(() => {
       this.getFilteredClasses()
     })
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.createClassModalOpen = false
+      this.editClassModalOpen = false
+      this.deleteModalOpen = false
+    }
   }
 
   getFilteredClasses() {
@@ -105,6 +110,11 @@ export class ClassesComponent implements OnInit {
   showEditModal(schoolClass: Class) {
     this.editedClass = schoolClass
     this.editClassModalOpen = true
+  }
+
+  showManageStudentsWindow(schoolClass: Class) {
+    this.editedClass = schoolClass
+    this.manageStudentWindow = true
   }
 
 }

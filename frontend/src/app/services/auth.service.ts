@@ -27,6 +27,17 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/authorize`, {username, password}, {observe: "response"})
   }
 
+  register(email: string, password: string, firstName: string, lastName: string, personalId: string, registrationToken: string) {
+    return this.http.post(`${environment.apiUrl}/register`, {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      personalId: personalId,
+      registrationToken: registrationToken
+    }, {observe: "response"})
+  }
+
   logout() {
     this.clearJwt()
     this.authenticated.next(false)

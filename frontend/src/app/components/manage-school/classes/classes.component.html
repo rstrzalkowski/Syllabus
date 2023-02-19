@@ -25,7 +25,11 @@
       </div>
     </div>
   </div>
-
+  <app-edit-students *ngIf="manageStudentWindow"
+                     [class]="editedClass"
+                     (successAssign)="getFilteredClasses()"
+                     (successUnassign)="getFilteredClasses()">>
+  </app-edit-students>
   <div
     class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
     <div class="flex items-center mt-2 space-x-5 ml-0.5 mb-10">
@@ -76,6 +80,7 @@
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
               <button (click)="showEditModal(schoolClass)" class="btn-submit">Edit</button>
+              <button (click)="showManageStudentsWindow(schoolClass)" class="btn-edit">Manage students</button>
               <button (click)="showDeleteModal(schoolClass.id)" class="btn-del">Archive</button>
             </td>
           </tr>
@@ -89,7 +94,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

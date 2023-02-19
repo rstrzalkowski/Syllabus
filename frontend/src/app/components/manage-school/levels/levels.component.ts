@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {AlertService} from "../../../services/alert.service";
 import {Level, LevelPage} from "../../../model/level";
@@ -45,6 +45,12 @@ export class LevelsComponent implements OnInit {
     this.pageNumber$.subscribe(() => {
       this.getFilteredLevels()
     })
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.deleteModalOpen = false
+    }
   }
 
   getFilteredLevels() {

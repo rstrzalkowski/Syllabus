@@ -27,6 +27,7 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveT
 import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
@@ -147,5 +148,11 @@ public class UserQueryController {
     @Secured({"ADMIN"})
     public Page<TokenDTO> getDirectorTokens(Pageable pageable) {
         return userQueryHandler.handle(new GetDirectorTokensQuery(pageable));
+    }
+
+    @GetMapping("/unassigned")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public Page<User> getUnassignedStudents(Pageable pageable) {
+        return userQueryHandler.handle(new GetUnassignedStudentsQuery(pageable));
     }
 }

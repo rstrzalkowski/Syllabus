@@ -89,4 +89,8 @@ public class UserQueryService {
     public Page<TokenDTO> getTokensByRole(Role role, Pageable pageable) {
         return tokenRepository.findByRole(role, pageable).map(TokenDTO::new);
     }
+
+    public Page<User> getUnassignedStudents(Pageable pageable) {
+        return userRepository.findByArchivedAndRoleAndSchoolClassIsNull(false, Role.STUDENT, pageable);
+    }
 }
