@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   today = new Date()
 
-  url = 'https://leverageedu.com/blog/wp-content/uploads/2020/01/physical-education-class-12.jpg'
+  url = 'https://thumbsnap.com/s/mTmZ4rQj.jpg'
 
 
   monthNames = ["January", "February", "March", "April", "May", "June",

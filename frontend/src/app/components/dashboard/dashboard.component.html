@@ -25,8 +25,8 @@
             </div>
           </div>
         </div>
-        <div
-          class="bg-skin-base p-5 rounded-md shadow border-r-4 border-l-4 md:border-l-0 border-teal-600 rounded-lg w-full">
+        <div *ngIf="authService.getRole() == 'STUDENT'"
+             class="bg-skin-base p-5 rounded-md shadow border-r-4 border-l-4 md:border-l-0 border-teal-600 rounded-lg w-full">
           <span class="text-lg underline underline-offset-8">Incoming activities:</span>
           <div *ngIf="activities$ | async as activities; else loading">
             <div *ngIf="activities.content.length > 0">
@@ -55,9 +55,10 @@
         </div>
       </div>
     </div>
-    <div class="mb-5">
+    <div *ngIf="authService.getRole() == 'STUDENT'" class="mb-5">
       <div class="md:flex w-full space-x-0 md:space-x-5">
-        <div class="bg-skin-base rounded-lg min-h-60 p-5 md:w-1/2 md:border-r-0 border-r-4 border-l-4 border-teal-600">
+        <div
+          class="bg-skin-base rounded-lg min-h-60 p-5 md:w-1/2 md:border-r-0 border-r-4 border-l-4 border-teal-600 mb-5 md:mb-0">
           <span class="text-lg underline underline-offset-8">Recent grades:</span>
           <div *ngIf="grades$ | async as grades; else loading">
             <div *ngIf="grades.content.length > 0">
@@ -121,14 +122,15 @@
           <div class="rounded-lg">
             <div>
               <div routerLink="/realisation/{{subject.realisationId}}"
-                   [ngClass]="{
-                   'history': subject.subjectName == 'History',
-                   'english': subject.subjectName == 'English',
-                   'pe': subject.subjectName == 'Physical education',
-                   'biology': subject.subjectName == 'Biology'}"
-                   class="text-white brightness-75 bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
-                <span
-                  class="bg-black text-white rounded-lg p-2 bg-opacity-50">{{subject.subjectAbbreviation}}</span>
+                   [ngClass]="subject.imageUrl? 'brightness-75': ''"
+                   class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+                <img *ngIf="subject.imageUrl" [src]="subject.imageUrl" class="absolute w-full h-full rounded-lg"
+                     alt="image">
+                <div
+                  class="z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+                  {{subject.subjectAbbreviation}}<span
+                  *ngIf="authService.getRole() == 'TEACHER'"> {{subject.schoolClassName}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -137,7 +139,6 @@
     </div>
   </div>
 </div>
-
 
 <ng-template #loading>
   <app-loading></app-loading>

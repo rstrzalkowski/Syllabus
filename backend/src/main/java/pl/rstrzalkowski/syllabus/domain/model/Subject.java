@@ -18,7 +18,9 @@ public class Subject extends AbstractEntity {
     private String abbreviation;
 
     private boolean archived;
-    
+
+    private String imageUrl;
+
     @Transient
     private Integer activeRealisationsCount;
 }

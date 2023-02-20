@@ -3,4 +3,5 @@ export interface RealisedSubject {
   subjectName: string
   subjectAbbreviation: string
   schoolClassName: string
+  imageUrl: string
 }

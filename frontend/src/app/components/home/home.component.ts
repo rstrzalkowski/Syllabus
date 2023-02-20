@@ -26,10 +26,13 @@ export class HomeComponent implements OnInit {
               private userService: UserService,
               private realisationService: RealisationService,
               private router: Router) {
-    
   }
 
   ngOnInit(): void {
+    if (this.router.url == '/') {
+      this.router.navigate(['dashboard'])
+    }
+
     if (window.innerWidth > 1023) {
       this.sidebarHidden = false;
     }

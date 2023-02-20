@@ -16,6 +16,8 @@ public class SubjectDTO {
 
     private String subjectAbbreviation;
 
+    private String imageUrl;
+
     private String schoolClassName;
 
     public SubjectDTO(Realisation realisation) {
@@ -23,5 +25,6 @@ public class SubjectDTO {
         this.subjectName = realisation.getSubject().getName();
         this.subjectAbbreviation = realisation.getSubject().getAbbreviation();
         this.schoolClassName = realisation.getSchoolClass().getSchoolClassName();
+        this.imageUrl = realisation.getSubject().getImageUrl();
     }
 }

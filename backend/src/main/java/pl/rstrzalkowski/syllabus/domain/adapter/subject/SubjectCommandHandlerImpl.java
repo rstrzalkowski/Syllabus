@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.rstrzalkowski.syllabus.application.command.subject.ArchiveSubjectCommand;
 import pl.rstrzalkowski.syllabus.application.command.subject.CreateSubjectCommand;
 import pl.rstrzalkowski.syllabus.application.command.subject.UpdateSubjectCommand;
+import pl.rstrzalkowski.syllabus.application.command.subject.UpdateSubjectImageCommand;
 import pl.rstrzalkowski.syllabus.application.handler.subject.SubjectCommandHandler;
 import pl.rstrzalkowski.syllabus.domain.service.subject.SubjectCommandService;
 
@@ -27,6 +28,11 @@ public class SubjectCommandHandlerImpl implements SubjectCommandHandler {
     @Override
     public void handle(ArchiveSubjectCommand command) {
         subjectCommandService.archiveById(command);
+    }
+
+    @Override
+    public void handle(UpdateSubjectImageCommand command) {
+        subjectCommandService.updateSubjectImage(command);
     }
 
 }

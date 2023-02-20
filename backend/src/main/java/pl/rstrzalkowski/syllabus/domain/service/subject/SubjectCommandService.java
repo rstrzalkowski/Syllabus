@@ -1,16 +1,20 @@
 package pl.rstrzalkowski.syllabus.domain.service.subject;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import pl.rstrzalkowski.syllabus.application.command.subject.ArchiveSubjectCommand;
 import pl.rstrzalkowski.syllabus.application.command.subject.CreateSubjectCommand;
 import pl.rstrzalkowski.syllabus.application.command.subject.UpdateSubjectCommand;
+import pl.rstrzalkowski.syllabus.application.command.subject.UpdateSubjectImageCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.subject.SubjectUpdateException;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 import pl.rstrzalkowski.syllabus.domain.model.Subject;
+import pl.rstrzalkowski.syllabus.domain.shared.ImageService;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SubjectRepository;
@@ -25,6 +29,7 @@ public class SubjectCommandService {
     private final SubjectRepository subjectRepository;
     private final RealisationRepository realisationRepository;
     private final GradeRepository gradeRepository;
+    private final ImageService imageService;
 
 
     public void create(CreateSubjectCommand command) {
@@ -71,6 +76,21 @@ public class SubjectCommandService {
             subjectRepository.save(subject);
         } catch (Exception e) {
             throw new SubjectUpdateException();
+        }
+    }
+
+
+    public void updateSubjectImage(UpdateSubjectImageCommand command) {
+        Subject subject = subjectRepository.findById(command.getId())
+                .orElseThrow(SubjectNotFoundException::new);
+
+        try {
+            String imageUrl = imageService.saveImage(command.getImage());
+            subject.setImageUrl(imageUrl);
+            subjectRepository.save(subject);
+
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
 }

@@ -28,10 +28,11 @@ export class SubjectService {
     return this.http.delete(`${environment.apiUrl}/subjects/${subjectId}`)
   }
 
-  createSubject(name: string | undefined, abbreviation: string | undefined) {
+  createSubject(name: string | undefined, abbreviation: string | undefined, image: any) {
     return this.http.post(`${environment.apiUrl}/subjects`, {
       name: name,
-      abbreviation: abbreviation
+      abbreviation: abbreviation,
+      image: image
     }, {observe: "response"})
   }
 

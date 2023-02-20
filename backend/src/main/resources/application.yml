@@ -14,6 +14,11 @@ spring:
       ddl-auto: create-drop
     defer-datasource-initialization: true
 
+  servlet:
+    multipart:
+      max-file-size: 48MB
+      max-request-size: 48MB
+
 server:
   servlet:
     context-path: /api
@@ -22,4 +27,3 @@ jwt:
   expiration:
     time: 900000000
   secret: "ufi4f3u3472h7fh327gfhjeifjouojri32f"
-
