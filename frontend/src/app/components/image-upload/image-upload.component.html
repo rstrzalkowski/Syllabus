@@ -1,1 +1,55 @@
-<p>image-upload works!</p>
+<div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity"></div>
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
+      <div
+        class="relative overflow-hidden rounded-lg bg-skin-base text-left shadow-xl md:my-8 w-full md:w-3/4">
+        <div class="top-4 right-4 absolute cursor-pointer border rounded" (click)="closeModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <div class="md:flex justify-between p-5">
+          <div class="bg-skin-base">
+            <div class="md:flex md:items-start">
+              <div class="mt-3 text-center sm:mt-0 sm:ml-4 md:text-left w-full">
+                <p class="text-3xl mb-3">Choose an image</p>
+                <form>
+                  <label>
+                    <input #imageInput accept="image/jpeg" type="file" name="Choose image"
+                           (change)="processFile(imageInput)"
+                           class="text-sm text-grey-500
+                                  file:mr-5 file:py-2 file:px-6
+                                  file:rounded-full file:border-0
+                                  file:text-sm file:font-medium
+                                  file:bg-blue-50 file:text-blue-700
+                                  hover:file:cursor-pointer hover:file:bg-amber-50
+                                  hover:file:text-amber-700
+                                "/>
+                  </label>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="m-10">
+            <img *ngIf="selectedFile?.src" [src]="selectedFile?.src" width="300" height="300" class="rounded-md">
+            <img *ngIf="subject?.imageUrl && !selectedFile?.src" [src]="subject?.imageUrl" width="300" height="300"
+                 class="rounded-md">
+          </div>
+        </div>
+        <div class="flex justify-end mx-5 mb-5">
+          <button *ngIf="!loading" class="btn-submit" (click)="save()">Save</button>
+          <button *ngIf="loading" type="submit" class="btn-submit hover:none flex justify-center" disabled>
+            <svg class="h-5 w-5 animate-spin" viewBox="3 3 18 18">
+              <path class="fill-gray-900"
+                    d="M12 5C8.13401 5 5 8.13401 5 12c0 3.866 3.13401 7 7 7 3.866.0 7-3.134 7-7 0-3.86599-3.134-7-7-7zM3 12c0-4.97056 4.02944-9 9-9 4.9706.0 9 4.02944 9 9 0 4.9706-4.0294 9-9 9-4.97056.0-9-4.0294-9-9z"></path>
+              <path class="fill-gray-50"
+                    d="M16.9497 7.05015c-2.7336-2.73367-7.16578-2.73367-9.89945.0-.39052.39052-1.02369.39052-1.41421.0-.39053-.39053-.39053-1.02369.0-1.41422 3.51472-3.51472 9.21316-3.51472 12.72796.0C18.7545 6.02646 18.7545 6.65962 18.364 7.05015c-.390599999999999.39052-1.0237.39052-1.4143.0z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

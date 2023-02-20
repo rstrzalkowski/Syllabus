@@ -9,6 +9,7 @@ export interface Subject {
   id: number;
   createdAt: Date;
   updatedAt: Date;
+  imageUrl: string
   name: string;
   activeRealisationsCount: number
   abbreviation: string;

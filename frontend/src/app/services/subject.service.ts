@@ -28,12 +28,17 @@ export class SubjectService {
     return this.http.delete(`${environment.apiUrl}/subjects/${subjectId}`)
   }
 
-  createSubject(name: string | undefined, abbreviation: string | undefined, image: any) {
+  createSubject(name: string | undefined, abbreviation: string | undefined) {
     return this.http.post(`${environment.apiUrl}/subjects`, {
       name: name,
       abbreviation: abbreviation,
-      image: image
     }, {observe: "response"})
+  }
+
+  updateSubjectImage(subjectId: number | undefined, image: any) {
+    const formData = new FormData();
+    formData.append("image", image)
+    return this.http.put(`${environment.apiUrl}/subjects/${subjectId}/image`, formData, {observe: "response"})
   }
 
   updateSubject(subjectId: number | undefined, name: string | undefined, abbreviation: string | undefined) {

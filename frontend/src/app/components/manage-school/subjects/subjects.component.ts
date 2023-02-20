@@ -27,12 +27,14 @@ export class SubjectsComponent implements OnInit {
   deleteModalOpen: boolean = false
   createSubjectModalOpen: boolean = false
   editSubjectModalOpen: boolean = false
+  editImageModalOpen: boolean = false
   //end modals
 
 
   //Data passed to children
   subjectIdToBeArchived: number | undefined
   editedSubject: Subject | undefined
+  editedImageSubject: Subject | undefined
 
   //end data
 
@@ -50,6 +52,9 @@ export class SubjectsComponent implements OnInit {
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     if (event.key === "Escape") {
       this.deleteModalOpen = false
+      this.editImageModalOpen = false
+      this.createSubjectModalOpen = false
+      this.editImageModalOpen = false
     }
   }
 
@@ -106,5 +111,10 @@ export class SubjectsComponent implements OnInit {
   showEditModal(subject: Subject) {
     this.editedSubject = subject
     this.editSubjectModalOpen = true
+  }
+
+  showEditImageModal(subject: Subject) {
+    this.editedImageSubject = subject
+    this.editImageModalOpen = true
   }
 }

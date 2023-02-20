@@ -21,13 +21,6 @@
                 Abbreviation* (max 5 characters)
                 <input required [(ngModel)]="abbreviation" type="text" maxlength="5" name="abbreviation"
                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-                <label class="image-upload-container btn btn-bwm">
-                  <span>Select Image</span>
-                  <input #imageInput
-                         type="file"
-                         accept="image/jpeg"
-                         (change)="processFile(imageInput)">
-                </label>
               </form>
               <div class="text-left">* field is required</div>
             </div>
