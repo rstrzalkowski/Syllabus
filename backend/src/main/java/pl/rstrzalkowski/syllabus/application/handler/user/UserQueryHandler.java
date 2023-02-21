@@ -19,8 +19,8 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUserByKeywordQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public interface UserQueryHandler {
 
     Page<User> handle(GetArchivedUsersQuery getArchivedUsersQuery);
 
-    Page<User> handle(GetUserByEmailContainingQuery query);
+    Page<User> handle(GetUserByKeywordQuery query);
 
     Page<User> handle(GetActiveStudentsQuery query);
 

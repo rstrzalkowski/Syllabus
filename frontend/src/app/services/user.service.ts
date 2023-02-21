@@ -119,6 +119,10 @@ export class UserService {
     return this.http.get<User>(`${environment.apiUrl}/users/${userId}`)
   }
 
+  searchUsers(keyword: string) {
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/search?keyword=${keyword}&size=5`)
+  }
+
   updateAbout(newAbout: string) {
     return this.http.put(`${environment.apiUrl}/users/me/description`, {description: newAbout}, {observe: "response"})
   }

@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {RealisationService} from "../../services/realisation.service";
 import {RealisedSubject} from "../../model/realised.subject";
+import {Observable} from "rxjs";
+import {UserPage} from "../../model/user";
 
 @Component({
   selector: 'app-home',
@@ -16,6 +18,12 @@ export class HomeComponent implements OnInit {
   subjectsHidden = false;
   defaultTouch = {x: 0, y: 0, time: 0};
   logoutModal = false;
+  searchInputHidden = true;
+  searchResultsHidden = true;
+  searchInput = "";
+
+
+  foundUsers$: Observable<UserPage> | undefined
 
 
   subjects: RealisedSubject[] = []
@@ -97,5 +105,29 @@ export class HomeComponent implements OnInit {
 
   get user() {
     return this.userService.user
+  }
+
+  switchSearchInput() {
+    this.searchInputHidden = !this.searchInputHidden
+  }
+
+  search() {
+    if (this.searchInput === '') {
+      this.foundUsers$ = undefined
+    } else {
+      this.foundUsers$ = this.userService.searchUsers(this.searchInput)
+    }
+  }
+
+  showResults() {
+    setTimeout(() => {
+      this.searchResultsHidden = false
+    }, 100)
+  }
+
+  hideResults() {
+    setTimeout(() => {
+      this.searchResultsHidden = true
+    }, 100)
   }
 }

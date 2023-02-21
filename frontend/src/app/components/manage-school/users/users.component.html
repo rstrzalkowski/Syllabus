@@ -121,7 +121,6 @@
                     class="text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
                 View
               </span>
-              <button (click)="showEditModal(user)" class="btn-submit">Edit</button>
               <button *ngIf="authService.canArchive()" (click)="showDeleteModal(user.id)" class="btn-del">Archive
               </button>
             </td>

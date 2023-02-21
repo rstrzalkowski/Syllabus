@@ -22,8 +22,8 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUserByKeywordQuery;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.domain.service.user.UserQueryService;
@@ -53,8 +53,8 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
     }
 
     @Override
-    public Page<User> handle(GetUserByEmailContainingQuery query) {
-        return userQueryService.getByEmailContaining(query.email(), query.pageable());
+    public Page<User> handle(GetUserByKeywordQuery query) {
+        return userQueryService.getByKeywordContaining(query.email(), query.pageable());
     }
 
     @Override

@@ -28,8 +28,8 @@ import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUserByEmailContainingQuery;
 import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.GetUserByKeywordQuery;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class UserQueryController {
 
 
     @GetMapping("/{id}")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
     public User getUserById(@PathVariable("id") Long id) {
         return userQueryHandler.handle(new GetUserByIdQuery(id));
     }
@@ -55,9 +55,9 @@ public class UserQueryController {
     }
 
     @GetMapping("/search")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
-    public Page<User> getUserByEmailContaining(@PathParam("email") String email, Pageable pageable) {
-        return userQueryHandler.handle(new GetUserByEmailContainingQuery(email, pageable));
+    @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
+    public Page<User> searchForUser(@PathParam("keyword") String keyword, Pageable pageable) {
+        return userQueryHandler.handle(new GetUserByKeywordQuery(keyword, pageable));
     }
 
     @GetMapping

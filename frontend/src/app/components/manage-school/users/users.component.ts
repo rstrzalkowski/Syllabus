@@ -174,10 +174,6 @@ export class UsersComponent implements OnInit {
     this.deleteModalOpen = true
   }
 
-  showEditModal(user: User) {
-    this.editedUser = user
-    this.editSubjectModalOpen = true
-  }
 
   onGeneratedTokens() {
     this.codesComponent?.getFilteredTokens()

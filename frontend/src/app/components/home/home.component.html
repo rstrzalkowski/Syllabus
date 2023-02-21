@@ -205,17 +205,34 @@
                 <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
             </div>
-
-            <input
-              id="search"
-              type="text"
-              name="search"
-              class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-300 w-full h-10 focus:outline-none"
-              placeholder="Search..."
-            />
+            <div (focusin)="showResults()"
+                 (focusout)="hideResults()">
+              <input
+                autocomplete="off"
+                id="search"
+                type="text"
+                name="search"
+                class="bg-skin-base text-skin-base sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-300 w-full h-10 focus:outline-none"
+                placeholder="Search user.."
+                [(ngModel)]="searchInput"
+                (input)="search()"
+              />
+              <div *ngIf="foundUsers$ | async as users">
+                <div *ngIf="!searchResultsHidden"
+                     class="flex flex-col absolute top-9 left-5 rounded whitespace-nowrap w-full">
+                  <ul *ngIf="users.content.length > 0" class="bg-skin-muted border border-gray-100 w-full mt-2 ">
+                    <li *ngFor="let user of users.content" routerLink="/profile/{{user.id}}"
+                        class="pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+                      {{user.firstName}} {{user.lastName}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="flex md:hidden">
-            <a href="#" class="flex items-center justify-center h-10 w-10 border-transparent">
+            <a (click)="switchSearchInput()"
+               class="flex items-center justify-center h-10 w-10 border-transparent cursor-pointer ml-3">
               <svg
                 class="h-6 w-6 text-gray-500"
                 fill="none"
@@ -231,7 +248,7 @@
           </div>
         </form>
         <div *ngIf="user" class="flex ml-auto">
-          <a href class="flex flex-row items-center">
+          <a routerLink="/profile" class="flex flex-row items-center cursor-pointer">
             <img
               [src]="user.imageUrl"
               alt
@@ -247,6 +264,46 @@
       </div>
     </header>
     <div>
+      <div *ngIf="!searchInputHidden" class="flex md:hidden relative mx-3 mt-2">
+        <div
+          class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <input (focusin)="showResults()"
+               (focusout)="hideResults()"
+               autocomplete="false"
+               id="searchSm"
+               type="text"
+               name="searchSm"
+               class="bg-skin-base text-skin-base w-full pl-10 sm:text-base placeholder-gray-500 pr-4 rounded-lg border border-gray-300 h-10 focus:outline-none"
+               placeholder="Search user.."
+               [(ngModel)]="searchInput"
+               (input)="search()"
+        />
+        <div *ngIf="foundUsers$ | async as users">
+          <div *ngIf="!searchResultsHidden"
+               class="flex flex-col absolute top-9 left-0 rounded whitespace-nowrap w-full">
+            <ul *ngIf="users.content.length > 0" class="bg-skin-muted border border-gray-100 w-full mt-2 ">
+              <li *ngFor="let user of users.content" routerLink="/profile/{{user.id}}"
+                  class="pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+                {{user.firstName}} {{user.lastName}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <router-outlet></router-outlet>
       <app-footer></app-footer>
     </div>

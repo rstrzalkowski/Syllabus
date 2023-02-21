@@ -44,8 +44,8 @@ public class UserQueryService {
         return userRepository.findByArchivedAndRoleNot(true, Role.ADMIN, pageable);
     }
 
-    public Page<User> getByEmailContaining(String email, Pageable pageable) {
-        return userRepository.findByEmail(email, pageable);
+    public Page<User> getByKeywordContaining(String keyword, Pageable pageable) {
+        return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(keyword, keyword, pageable);
     }
 
     public Page<User> getAllActiveStudents(Pageable pageable) {
