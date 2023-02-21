@@ -40,7 +40,7 @@ public class SchoolClassCommandController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         schoolClassCommandHandler.handle(new ArchiveSchoolClassCommand(id));
     }

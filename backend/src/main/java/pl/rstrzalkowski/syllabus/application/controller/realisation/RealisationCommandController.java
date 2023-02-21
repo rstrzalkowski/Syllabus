@@ -40,7 +40,7 @@ public class RealisationCommandController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
+    @Secured({"DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         realisationCommandHandler.handle(new ArchiveRealisationCommand(id));
     }

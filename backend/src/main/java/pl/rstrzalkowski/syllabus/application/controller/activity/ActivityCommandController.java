@@ -43,7 +43,7 @@ public class ActivityCommandController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"TEACHER", "DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         activityCommandHandler.handle(new ArchiveActivityCommand(id));
     }

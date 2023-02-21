@@ -21,12 +21,13 @@ INSERT INTO public.level (created_at, updated_at, version, archived, value) VALU
 INSERT INTO public.level (created_at, updated_at, version, archived, value) VALUES ('2023-01-30 21:06:26.530000', '2023-01-30 21:06:26.530000', 0, false, 8);
 
 
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:09:30.282000', '2023-01-30 21:09:30.282000', 0, 'MATH', false, 'Mathematics');
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:09:48.860000', '2023-01-30 21:09:48.860000', 0, 'EN', false, 'English');
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:10:15.045000', '2023-01-30 21:10:15.045000', 0, 'HIS', false, 'History');
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:10:24.809000', '2023-01-30 21:10:24.809000', 0, 'BIO', false, 'Biology');
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:10:50.751000', '2023-01-30 21:10:50.751000', 0, 'PHY', false, 'Physics');
-INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name) VALUES ('2023-01-30 21:11:25.809000', '2023-01-30 21:11:25.809000', 0, 'PE', false, 'Physical education');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:09:30.282000', '2023-01-30 21:09:30.282000', 0, 'MATH', false, 'Mathematics', 'https://png.pngtree.com/thumb_back/fh260/background/20200530/pngtree-cute-hand-drawn-style-mathematics-education-pink-plaid-background-image_337364.jpg');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:09:48.860000', '2023-01-30 21:09:48.860000', 0, 'EN', false, 'English', 'https://cdn.britannica.com/25/4825-004-F1975B92/Flag-United-Kingdom.jpg');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:10:15.045000', '2023-01-30 21:10:15.045000', 0, 'HIS', false, 'History', 'https://media.istockphoto.com/id/936911748/photo/old-hourglass-and-ancient-book.jpg?s=612x612&w=0&k=20&c=jQX5TjGDgXEDSKfY2cHEL4x7oc7pH4B_ApO0Q4aXMaI=');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:10:24.809000', '2023-01-30 21:10:24.809000', 0, 'BIO', false, 'Biology', 'https://media.istockphoto.com/id/1206633490/photo/cells-and-biological-chain-molecules-and-abstract-conception-3d-rendering.jpg?s=612x612&w=0&k=20&c=i6A1aKLqoTVvteXSTen0PAUjo3XRlfXhkj6S2OwI8LY=');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:10:50.751000', '2023-01-30 21:10:50.751000', 0, 'PHY', false, 'Physics', 'https://t4.ftcdn.net/jpg/02/14/56/75/360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:11:25.809000', '2023-01-30 21:11:25.809000', 0, 'PE', false, 'Physical education', 'https://leverageedu.com/blog/wp-content/uploads/2020/01/physical-education-class-12.jpg');
+INSERT INTO public.subject (created_at, updated_at, version, abbreviation, archived, name, image_url) VALUES ('2023-01-30 21:11:25.809000', '2023-01-30 21:11:25.809000', 0, 'IT', false, 'Information technology', 'https://us.123rf.com/450wm/monsitj/monsitj1810/monsitj181000003/110689411-science-formula-and-math-equation-abstract-background-concept-of-machine-learning-and-artificial.jpg?ver=6');
 
 
 INSERT INTO public.school_class (created_at, updated_at, version, archived, level_id, supervising_teacher_id, name, full_name) VALUES ('2023-01-30 21:17:50.795000', '2023-01-30 21:17:50.795000', 0, false, 1, 2, 'TIN', 'Technik informatyk');
@@ -59,6 +60,9 @@ INSERT INTO public.realisation (created_at, updated_at, version, archived, year,
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:55.043000', '2023-01-30 21:34:55.043000', 0, false, 2023, 3, 2, 1);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:58.539000', '2023-01-30 21:34:58.539000', 0, false, 2023, 3, 3, 1);
 INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:35:02.417000', '2023-01-30 21:35:02.417000', 0, false, 2023, 3, 4, 2);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:34:58.539000', '2023-01-30 21:34:58.539000', 0, false, 2023, 3, 1, 5);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:35:02.417000', '2023-01-30 21:35:02.417000', 0, false, 2023, 3, 5, 6);
+INSERT INTO public.realisation (created_at, updated_at, version, archived, year, school_class_id, subject_id, teacher_id) VALUES ('2023-01-30 21:35:02.417000', '2023-01-30 21:35:02.417000', 0, false, 2023, 3, 7, 8);
 
 
 INSERT INTO public.activity (created_at, updated_at, version, archived, date, description, edited, name, weight, realisation_id, teacher_id) VALUES ('2023-01-30 21:42:11.415000', '2023-01-30 00:00:00.000000', 0, false, '2023-02-15', 'Test of geometry', false, 'Test geometry', 4, 8, 4);

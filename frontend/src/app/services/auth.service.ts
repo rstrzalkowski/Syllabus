@@ -68,4 +68,8 @@ export class AuthService {
       return null
     }
   }
+
+  canArchive() {
+    return this.getRole() == 'DIRECTOR' || this.getRole() == 'ADMIN'
+  }
 }

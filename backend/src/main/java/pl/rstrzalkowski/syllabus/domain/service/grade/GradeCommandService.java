@@ -13,6 +13,7 @@ import pl.rstrzalkowski.syllabus.domain.exception.grade.GradeNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Grade;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.domain.shared.AccessGuard;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.GradeRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
@@ -27,6 +28,7 @@ public class GradeCommandService {
     private final GradeRepository gradeRepository;
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
+    private final AccessGuard accessGuard;
 
 
     public Grade create(CreateGradeCommand command) {
@@ -62,6 +64,8 @@ public class GradeCommandService {
     public void archiveById(ArchiveGradeCommand command) {
         Grade grade = gradeRepository.findById(command.id())
                 .orElseThrow(GradeNotFoundException::new);
+
+        accessGuard.checkAccessToActivity(grade.getActivity().getId());
 
         grade.setArchived(true);
         gradeRepository.save(grade);

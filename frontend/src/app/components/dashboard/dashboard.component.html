@@ -124,15 +124,170 @@
               <div routerLink="/realisation/{{subject.realisationId}}"
                    [ngClass]="subject.imageUrl? 'brightness-75': ''"
                    class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
-                <img *ngIf="subject.imageUrl" [src]="subject.imageUrl" class="absolute w-full h-full rounded-lg"
+                <img *ngIf="subject.imageUrl" [src]="subject.imageUrl"
+                     class="h-full w-full object-cover overflow-hidden rounded-lg"
                      alt="image">
                 <div
-                  class="z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+                  class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
                   {{subject.subjectAbbreviation}}<span
                   *ngIf="authService.getRole() == 'TEACHER'"> {{subject.schoolClassName}}</span>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div>
+          <div class="rounded-lg">
+            <div>
+              <div routerLink="/profile"
+                   class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+                <img
+                  src="https://thumbs.dreamstime.com/b/user-profile-icon-abstract-blue-background-illustration-dark-blue-digital-texture-grunge-elegant-paint-modern-design-concept-user-167078251.jpg"
+                  class="h-full w-full object-cover overflow-hidden rounded-lg"
+                  alt="image">
+                <div
+                  class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+                  <span>Profile</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="rounded-lg">
+            <div>
+              <div routerLink="/settings"
+                   class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+                <img src="https://wallpapercave.com/wp/wp2474807.jpg"
+                     class="h-full w-full object-cover overflow-hidden rounded-lg"
+                     alt="image">
+                <div
+                  class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+                  <span>Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="authService.getRole() == 'OFFICE' || authService.getRole() == 'DIRECTOR' || authService.getRole() == 'ADMIN'"
+  class="p-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid w-full gap-5">
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/subjects"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img
+            src="https://media.istockphoto.com/id/1335708681/photo/stacks-of-books-for-teaching-knowledge-college-library-green-background.jpg?b=1&s=170667a&w=0&k=20&c=_-kpFpVyUWgiCafriJgZ6Wr_kLQ2kt19SSCZvlWK63Y="
+            class="h-full w-full object-cover overflow-hidden rounded-lg"
+            alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Subjects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/realisations"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img
+            src="https://xello.world/wp-content/uploads/reignite-student-engagement-1024x760.jpg"
+            class="h-full w-full object-cover overflow-hidden rounded-lg"
+            alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Realisations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/classes"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2xhc3Nyb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+            class="h-full w-full object-cover overflow-hidden rounded-lg"
+            alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Classes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/users"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img src="http://zslchrobry.lezajsk.pl/wp-content/uploads/2017/11/users.png"
+               class="h-full w-full object-cover overflow-hidden rounded-lg"
+               alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Users</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/levels"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img src="https://s3-eu-west-1.amazonaws.com/lfwaaudio/images/BLOG/CEFR-Levels/cefr-blog-levels.jpg"
+               class="h-full w-full object-cover overflow-hidden rounded-lg"
+               alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Levels</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/profile"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img
+            src="https://thumbs.dreamstime.com/b/user-profile-icon-abstract-blue-background-illustration-dark-blue-digital-texture-grunge-elegant-paint-modern-design-concept-user-167078251.jpg"
+            class="h-full w-full object-cover overflow-hidden rounded-lg"
+            alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Profile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="rounded-lg">
+      <div>
+        <div routerLink="/settings"
+             class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
+          <img src="https://wallpapercave.com/wp/wp2474807.jpg"
+               class="h-full w-full object-cover overflow-hidden rounded-lg"
+               alt="image">
+          <div
+            class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
+            <span>Settings</span>
           </div>
         </div>
       </div>

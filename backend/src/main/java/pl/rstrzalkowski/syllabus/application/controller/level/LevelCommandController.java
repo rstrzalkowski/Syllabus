@@ -39,7 +39,7 @@ public class LevelCommandController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         levelCommandHandler.handle(new ArchiveLevelCommand(id));
     }

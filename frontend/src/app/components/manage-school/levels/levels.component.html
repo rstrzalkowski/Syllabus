@@ -6,7 +6,7 @@
         <span class="text-xl text-skin-base">Levels</span>
       </div>
       <p class="mt-5">
-        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
         > Levels</p>
     </div>
   </div>
@@ -55,7 +55,7 @@
             <th *ngIf="!showArchived" class="px-6 py-3 text-center">
               Active classes
             </th>
-            <th *ngIf="!showArchived" class="px-6 py-3 text-center">
+            <th *ngIf="!showArchived && authService.canArchive()" class="px-6 py-3 text-center">
               Action
             </th>
           </tr>
@@ -68,7 +68,8 @@
             <td *ngIf="!showArchived" class="px-6 py-4 text-center">
               {{level.activeSchoolClasses}}
             </td>
-            <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
+            <td *ngIf="!showArchived && authService.canArchive()"
+                class="px-6 py-4 text-center flex justify-center space-x-3">
               <button (click)="showDeleteModal(level)" class="btn-del">
                 Archive
               </button>

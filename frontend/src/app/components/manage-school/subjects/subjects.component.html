@@ -6,7 +6,7 @@
         <span class="text-xl text-skin-base">Subjects</span>
       </div>
       <p class="mt-5">
-        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
         > Subjects</p>
     </div>
   </div>
@@ -76,7 +76,8 @@
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
               <button (click)="showEditModal(subject)" class="btn-submit">Edit</button>
-              <button (click)="showDeleteModal(subject.id)" class="btn-del">Archive</button>
+              <button *ngIf="authService.canArchive()" (click)="showDeleteModal(subject.id)" class="btn-del">Archive
+              </button>
               <button (click)="showEditImageModal(subject)" class="btn-edit">Image</button>
             </td>
           </tr>

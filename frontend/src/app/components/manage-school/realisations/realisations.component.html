@@ -6,7 +6,7 @@
         <span class="text-xl text-skin-base">Realisations</span>
       </div>
       <p class="mt-5">
-        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
         > Realisations</p>
     </div>
   </div>
@@ -82,8 +82,16 @@
               {{realisation.year}}
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
+
+              <span routerLink="/realisation/{{realisation.id}}"
+                    class="text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
+                View
+              </span>
+
               <button (click)="showEditModal(realisation)" class="btn-submit">Edit</button>
-              <button (click)="showDeleteModal(realisation.id)" class="btn-del">Archive</button>
+              <button *ngIf="authService.canArchive()" (click)="showDeleteModal(realisation.id)" class="btn-del">
+                Archive
+              </button>
             </td>
           </tr>
           </tbody>

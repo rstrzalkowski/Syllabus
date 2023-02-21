@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {AlertService} from "../../../services/alert.service";
 import {RealisationInfo, RealisationInfoPage} from "../../../model/realisation.info";
 import {RealisationService} from "../../../services/realisation.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-realisations',
@@ -38,7 +39,8 @@ export class RealisationsComponent implements OnInit {
 
 
   constructor(private realisationService: RealisationService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

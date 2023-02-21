@@ -9,6 +9,7 @@ import {PostPage} from "../../model/post";
 import {ActivityPage} from "../../model/activity";
 import {AuthService} from "../../services/auth.service";
 import {Title} from "@angular/platform-browser";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-realisation',
@@ -60,7 +61,8 @@ export class RealisationComponent implements OnInit {
               private postService: PostService,
               private activityService: ActivityService,
               public authService: AuthService,
-              private titleService: Title) {
+              private titleService: Title,
+              public themeService: ThemeService) {
   }
 
   ngOnInit(): void {

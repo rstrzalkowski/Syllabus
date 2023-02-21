@@ -14,4 +14,5 @@ export interface RealisationInfo {
   teacherLastName: string
   schoolClassName: string
   subjectAbbreviation: string
+  imageUrl: string
 }

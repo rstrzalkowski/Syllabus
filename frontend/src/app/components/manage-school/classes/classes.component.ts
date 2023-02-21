@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {AlertService} from "../../../services/alert.service";
 import {Class, ClassPage} from "../../../model/class";
 import {ClassService} from "../../../services/class.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-classes',
@@ -40,7 +41,8 @@ export class ClassesComponent implements OnInit {
 
 
   constructor(private classService: ClassService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

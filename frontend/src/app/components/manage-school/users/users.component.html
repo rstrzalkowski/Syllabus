@@ -6,7 +6,7 @@
         <span class="text-xl text-skin-base">Users</span>
       </div>
       <p class="mt-5">
-        <span routerLink="/" class="cursor-pointer font-bold truncate">Dashboard</span>
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
         > Users</p>
     </div>
   </div>
@@ -118,7 +118,8 @@
             <td *ngIf="!showArchived && authService.getRole() === 'DIRECTOR' || authService.getRole() === 'ADMIN'"
                 class="px-6 py-4 text-center flex justify-center space-x-3">
               <button (click)="showEditModal(user)" class="btn-submit">Edit</button>
-              <button (click)="showDeleteModal(user.id)" class="btn-del">Archive</button>
+              <button *ngIf="authService.canArchive()" (click)="showDeleteModal(user.id)" class="btn-del">Archive
+              </button>
             </td>
           </tr>
           </tbody>

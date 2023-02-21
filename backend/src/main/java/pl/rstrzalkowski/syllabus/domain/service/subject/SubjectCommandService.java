@@ -36,6 +36,7 @@ public class SubjectCommandService {
         Subject subject = new Subject();
         subject.setName(command.getName());
         subject.setAbbreviation(command.getAbbreviation());
+        subject.setImageUrl("https://media.istockphoto.com/id/1335708681/photo/stacks-of-books-for-teaching-knowledge-college-library-green-background.jpg?b=1&s=170667a&w=0&k=20&c=_-kpFpVyUWgiCafriJgZ6Wr_kLQ2kt19SSCZvlWK63Y=");
 
         subjectRepository.save(subject);
     }

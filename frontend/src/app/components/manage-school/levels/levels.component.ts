@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {AlertService} from "../../../services/alert.service";
 import {Level, LevelPage} from "../../../model/level";
 import {LevelService} from "../../../services/level.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-levels',
@@ -38,7 +39,8 @@ export class LevelsComponent implements OnInit {
 
 
   constructor(private levelService: LevelService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

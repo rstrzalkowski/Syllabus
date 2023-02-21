@@ -8,13 +8,17 @@ import pl.rstrzalkowski.syllabus.application.command.activity.ArchiveActivityCom
 import pl.rstrzalkowski.syllabus.application.command.activity.CreateActivityCommand;
 import pl.rstrzalkowski.syllabus.application.command.activity.UpdateActivityCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.activity.ActivityNotFoundException;
+import pl.rstrzalkowski.syllabus.domain.exception.activity.NotAffiliatedWithActivityException;
 import pl.rstrzalkowski.syllabus.domain.exception.realisation.RealisationNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.model.Activity;
 import pl.rstrzalkowski.syllabus.domain.model.Realisation;
+import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.ActivityRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.RealisationRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +63,11 @@ public class ActivityCommandService {
     public void archiveById(ArchiveActivityCommand command) {
         Activity activity = activityRepository.findById(command.id())
                 .orElseThrow(ActivityNotFoundException::new);
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user.getRole() == Role.TEACHER && !Objects.equals(activity.getTeacher().getId(), user.getId())) {
+            throw new NotAffiliatedWithActivityException();
+        }
 
         activity.setArchived(true);
         activityRepository.save(activity);

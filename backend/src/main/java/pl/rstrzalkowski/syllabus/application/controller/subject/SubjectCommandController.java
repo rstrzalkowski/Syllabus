@@ -30,27 +30,27 @@ public class SubjectCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public void createSubject(@Valid @RequestBody CreateSubjectCommand command) {
         subjectCommandHandler.handle(command);
     }
 
     @PutMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public void updateSubject(@PathVariable("id") Long id, @Valid @RequestBody UpdateSubjectCommand command) {
         command.setId(id);
         subjectCommandHandler.handle(command);
     }
 
     @PutMapping("/{id}/image")
-    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public void updateSubjectImage(@PathVariable("id") Long id, @Valid @RequestParam("image") MultipartFile image) {
         subjectCommandHandler.handle(new UpdateSubjectImageCommand(id, image));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Secured({"DIRECTOR", "OFFICE", "ADMIN"})
+    @Secured({"DIRECTOR", "ADMIN"})
     public void archiveById(@PathVariable("id") Long id) {
         subjectCommandHandler.handle(new ArchiveSubjectCommand(id));
     }

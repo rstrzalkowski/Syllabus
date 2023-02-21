@@ -3,6 +3,7 @@ import {SubjectService} from "../../../services/subject.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Subject, SubjectPage} from "../../../model/subject";
 import {AlertService} from "../../../services/alert.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-subjects',
@@ -40,7 +41,8 @@ export class SubjectsComponent implements OnInit {
 
 
   constructor(private subjectService: SubjectService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

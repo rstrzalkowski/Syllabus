@@ -17,5 +17,8 @@ export class TeacherGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.getRole() === 'TEACHER'
+      || this.authService.getRole() === 'OFFICE'
+      || this.authService.getRole() === 'DIRECTOR'
+      || this.authService.getRole() === 'ADMIN'
   }
 }

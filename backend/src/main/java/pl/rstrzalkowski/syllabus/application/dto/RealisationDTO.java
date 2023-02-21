@@ -20,6 +20,7 @@ public class RealisationDTO {
     private String teacherLastName;
     private String schoolClassName;
     private String subjectAbbreviation;
+    private String imageUrl;
 
     public RealisationDTO(Realisation realisation) {
         this.id = realisation.getId();
@@ -30,5 +31,6 @@ public class RealisationDTO {
         this.teacherLastName = realisation.getTeacher().getLastName();
         this.schoolClassName = realisation.getSchoolClass().getSchoolClassName();
         this.subjectAbbreviation = realisation.getSubject().getAbbreviation();
+        this.imageUrl = realisation.getSubject().getImageUrl();
     }
 }
