@@ -13,6 +13,7 @@ import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateProfileImageCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.domain.exception.schoolclass.SchoolClassNotFoundException;
 import pl.rstrzalkowski.syllabus.domain.exception.user.InvalidPasswordException;
@@ -22,6 +23,7 @@ import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 import pl.rstrzalkowski.syllabus.domain.model.Role;
 import pl.rstrzalkowski.syllabus.domain.model.SchoolClass;
 import pl.rstrzalkowski.syllabus.domain.model.User;
+import pl.rstrzalkowski.syllabus.domain.shared.ImageService;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.SchoolClassRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.TokenRepository;
 import pl.rstrzalkowski.syllabus.infrastructure.repository.UserRepository;
@@ -38,6 +40,7 @@ public class UserCommandService {
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
     private final SchoolClassRepository schoolClassRepository;
+    private final ImageService imageService;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -133,5 +136,18 @@ public class UserCommandService {
         user.setSchoolClass(schoolClass);
 
         userRepository.save(user);
+    }
+
+    public void updateProfileImage(UpdateProfileImageCommand command) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        try {
+            String imageUrl = imageService.saveImage(command.getImage());
+            user.setImageUrl(imageUrl);
+            userRepository.save(user);
+
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }

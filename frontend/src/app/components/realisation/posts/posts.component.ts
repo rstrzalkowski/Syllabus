@@ -3,6 +3,7 @@ import {Post, PostPage} from "../../../model/post";
 import {UserService} from "../../../services/user.service";
 import {PostService} from "../../../services/post.service";
 import {AlertService} from "../../../services/alert.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-posts',
@@ -33,7 +34,8 @@ export class PostsComponent implements OnInit {
 
   constructor(public userService: UserService,
               private postService: PostService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

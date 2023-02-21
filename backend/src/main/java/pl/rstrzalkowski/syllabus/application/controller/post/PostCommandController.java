@@ -37,7 +37,7 @@ public class PostCommandController {
     @PutMapping("/{id}")
     @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public void updatePost(@PathVariable("id") Long id, @Valid @RequestBody UpdatePostCommand command) {
-        accessGuard.checkAccessToPost(command.getId());
+        accessGuard.checkAccessToPost(id);
         command.setId(id);
         postCommandHandler.handle(command);
     }

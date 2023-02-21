@@ -230,17 +230,17 @@
             </a>
           </div>
         </form>
-        <div class="flex ml-auto">
+        <div *ngIf="user" class="flex ml-auto">
           <a href class="flex flex-row items-center">
             <img
-              src="assets/avatar.png"
+              [src]="user.imageUrl"
               alt
-              class="h-10 w-10 bg-gray-200 border rounded-full border-none"
+              class="h-10 w-10 rounded-full border-none object-cover"
             />
             <span class="flex flex-col ml-2">
                   <span
-                    class="truncate w-40 text-skin-base font-semibold tracking-wide">{{user?.firstName}} {{user?.lastName}}</span>
-                  <span class="w-40 text-skin-base text-xs leading-none mt-1">{{user?.role}}</span>
+                    class="truncate w-40 text-skin-base font-semibold tracking-wide">{{user.firstName}} {{user.lastName}}</span>
+                  <span class="w-40 text-skin-base text-xs leading-none mt-1">{{user.role}}</span>
                 </span>
           </a>
         </div>

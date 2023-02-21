@@ -63,6 +63,7 @@ public class AuthService {
         user.setPersonalId(command.getPersonalId());
         user.setPassword(passwordEncoder.encode(command.getPassword()));
         user.setRole(token.getRole());
+        user.setImageUrl("https://cdn-icons-png.flaticon.com/512/149/149071.png");
 
         SchoolClass schoolClass = token.getSchoolClass();
         if (token.getRole() == Role.STUDENT && schoolClass != null) {

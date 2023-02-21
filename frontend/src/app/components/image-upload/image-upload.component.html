@@ -14,7 +14,7 @@
           <div class="bg-skin-base">
             <div class="md:flex md:items-start">
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 md:text-left w-full">
-                <p class="text-3xl mb-3">Choose an image (max 48 MB)</p>
+                <p class="text-3xl mb-6">Choose an image <br/>(max 48 MB)</p>
 
                 <form>
                   <label>
@@ -33,10 +33,17 @@
               </div>
             </div>
           </div>
-          <div class="m-10">
+          <div *ngIf="subject" class="m-10">
             <img *ngIf="selectedFile?.src" [src]="selectedFile?.src" width="300" height="300" class="rounded-md">
-            <img *ngIf="subject?.imageUrl && !selectedFile?.src" [src]="subject?.imageUrl" width="300" height="300"
+            <img *ngIf="subject.imageUrl && !selectedFile?.src" [src]="subject.imageUrl" width="300" height="300"
                  class="rounded-md">
+          </div>
+
+          <div *ngIf="user" class="m-10">
+            <img *ngIf="selectedFile?.src" [src]="selectedFile?.src"
+                 class="rounded-full object-cover h-60 w-60">
+            <img *ngIf="user.imageUrl && !selectedFile?.src" [src]="user.imageUrl"
+                 class="rounded-full object-cover h-60 w-60">
           </div>
         </div>
         <div class="flex justify-end mx-5 mb-5">

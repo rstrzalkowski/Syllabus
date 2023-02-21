@@ -16,7 +16,9 @@
               <p class="mt-6 text-base text-skin-base">{{post.content}}</p>
             </div>
           </div>
-          <div *ngIf="userService.user?.role === 'TEACHER'" class="space-y-8 flex flex-col justify-around">
+          <div
+            *ngIf="authService.getRole() == 'TEACHER' ||  authService.getRole() == 'OFFICE' || authService.getRole() == 'DIRECTOR' || authService.getRole() == 'ADMIN'"
+            class="space-y-8 flex flex-col justify-around">
             <div (click)="showEditModal(post)" class="cursor-pointer p-2 hover:bg-skin-muted rounded-lg">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-6 h-6">

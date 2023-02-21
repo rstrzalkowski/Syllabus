@@ -1,12 +1,12 @@
-<section>
+<section *ngIf="user">
   <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
     <div class="flex items-center">
       <img
-        src="assets/avatar.png"
+        [src]="user.imageUrl"
         alt
-        class="h-16 w-16 bg-gray-200 border rounded-full border-none"
+        class="h-16 w-16 rounded-full border-none object-cover"
       />
-      <span class="ml-5 text-2xl text-skin-base">{{user?.firstName}} {{user?.lastName}}</span>
+      <span class="ml-5 text-2xl text-skin-base">{{user.firstName}} {{user.lastName}}</span>
     </div>
     <p class="mt-5"><span routerLink="/dashboard" class="cursor-pointer font-bold">Dashboard</span> > Settings</p>
   </div>
@@ -44,7 +44,6 @@
 
 </section>
 
+<app-loading *ngIf="!user" class="h-screen flex items-center">
 
-<div>
-
-</div>
+</app-loading>

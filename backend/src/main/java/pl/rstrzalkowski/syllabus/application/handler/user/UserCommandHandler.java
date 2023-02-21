@@ -6,6 +6,7 @@ import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateProfileImageCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 
@@ -26,4 +27,6 @@ public interface UserCommandHandler {
     void handle(UnassignCommand unassignCommand);
 
     void handle(AssignCommand command);
+
+    void handle(UpdateProfileImageCommand updateProfileImageCommand);
 }

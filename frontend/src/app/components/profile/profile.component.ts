@@ -10,6 +10,7 @@ export class ProfileComponent implements OnInit {
 
   aboutChange = false
   newAbout = ""
+  changeImageModalOpen = false
 
   constructor(private userService: UserService,
               private alertService: AlertService) {
@@ -24,6 +25,13 @@ export class ProfileComponent implements OnInit {
     } else {
       this.newAbout = this.userService.user.description
     }
+  }
+
+  refreshUserData() {
+    this.userService.getLoggedInUserObservable().subscribe((result) => {
+      this.userService.user = result
+      this.newAbout = this.userService.user.description
+    })
   }
 
   saveAbout() {

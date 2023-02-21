@@ -8,6 +8,7 @@ import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateProfileImageCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateUserCommand;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserCommandHandler;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
@@ -55,5 +56,10 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
     @Override
     public void handle(AssignCommand command) {
         userCommandService.assignStudent(command);
+    }
+
+    @Override
+    public void handle(UpdateProfileImageCommand command) {
+        userCommandService.updateProfileImage(command);
     }
 }

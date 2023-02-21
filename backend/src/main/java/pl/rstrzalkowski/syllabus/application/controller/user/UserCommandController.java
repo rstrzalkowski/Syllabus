@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import pl.rstrzalkowski.syllabus.application.command.user.ArchiveUserCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.AssignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.ChangePasswordCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.GenerateRegistrationTokensCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UnassignCommand;
 import pl.rstrzalkowski.syllabus.application.command.user.UpdateDescriptionCommand;
+import pl.rstrzalkowski.syllabus.application.command.user.UpdateProfileImageCommand;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserCommandHandler;
 import pl.rstrzalkowski.syllabus.domain.model.RegistrationToken;
 
@@ -47,6 +50,12 @@ public class UserCommandController {
     @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
     public void changePassword(@Valid @RequestBody ChangePasswordCommand command) {
         userCommandHandler.handle(command);
+    }
+
+    @PutMapping("/me/image")
+    @Secured({"STUDENT", "TEACHER", "PARENT", "OFFICE", "DIRECTOR", "ADMIN"})
+    public void changeImage(@Valid @RequestParam("image") MultipartFile image) {
+        userCommandHandler.handle(new UpdateProfileImageCommand(image));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

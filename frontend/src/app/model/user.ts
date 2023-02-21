@@ -18,5 +18,6 @@ export interface User {
   locked: boolean;
   archived: boolean;
   role: string;
+  imageUrl: string;
   schoolClassName?: any;
 }

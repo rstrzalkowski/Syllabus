@@ -156,7 +156,7 @@
 <app-image-upload *ngIf="editImageModalOpen"
                   (close)="editImageModalOpen = false"
                   [subject]="editedImageSubject"
-                  (success)="getFilteredSubjects(); editImageModalOpen = false">
+                  (successSubject)="getFilteredSubjects(); editImageModalOpen = false">
 </app-image-upload>
 
 

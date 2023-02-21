@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public themeService: ThemeService,
               public authService: AuthService,
-              private userService: UserService,
+              public userService: UserService,
               private realisationService: RealisationService,
               private router: Router) {
   }

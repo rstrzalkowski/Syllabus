@@ -141,4 +141,10 @@ export class UserService {
   assignStudent(userId: number | undefined, classId: number | undefined) {
     return this.http.put(`${environment.apiUrl}/users/${userId}/assign`, {classId: classId}, {observe: "response"})
   }
+
+  updateProfileImage(image: any) {
+    const formData = new FormData();
+    formData.append("image", image)
+    return this.http.put(`${environment.apiUrl}/users/me/image`, formData, {observe: "response"})
+  }
 }
