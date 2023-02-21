@@ -115,6 +115,10 @@ export class UserService {
     })
   }
 
+  getUser(userId: number | undefined) {
+    return this.http.get<User>(`${environment.apiUrl}/users/${userId}`)
+  }
+
   updateAbout(newAbout: string) {
     return this.http.put(`${environment.apiUrl}/users/me/description`, {description: newAbout}, {observe: "response"})
   }

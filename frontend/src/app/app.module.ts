@@ -9,7 +9,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './components/home/home.component';
-import {ProfileComponent} from './components/profile/profile.component';
+import {OwnProfileComponent} from './components/own-profile/own-profile.component';
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import {SettingsComponent} from './components/settings/settings.component';
 import {AlertComponent} from './components/utilities/alert/alert.component';
@@ -50,8 +50,9 @@ import {
   EditRealisationComponent
 } from './components/manage-school/realisations/edit-realisation/edit-realisation.component';
 import {EditStudentsComponent} from './components/manage-school/classes/edit-students/edit-students.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ImageUploadComponent} from './components/image-upload/image-upload.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
     RegisterComponent,
     HomeComponent,
     HomeComponent,
-    ProfileComponent,
+    OwnProfileComponent,
     SettingsComponent,
     AlertComponent,
     RealisationComponent,
@@ -99,6 +100,7 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
     EditStudentsComponent,
     DashboardComponent,
     ImageUploadComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,9 +4,9 @@ import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
+  templateUrl: './own-profile.component.html',
 })
-export class ProfileComponent implements OnInit {
+export class OwnProfileComponent implements OnInit {
 
   aboutChange = false
   newAbout = ""

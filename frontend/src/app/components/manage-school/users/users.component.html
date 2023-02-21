@@ -117,6 +117,10 @@
             </td>
             <td *ngIf="!showArchived && authService.getRole() === 'DIRECTOR' || authService.getRole() === 'ADMIN'"
                 class="px-6 py-4 text-center flex justify-center space-x-3">
+              <span routerLink="/profile/{{user.id}}"
+                    class="text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
+                View
+              </span>
               <button (click)="showEditModal(user)" class="btn-submit">Edit</button>
               <button *ngIf="authService.canArchive()" (click)="showDeleteModal(user.id)" class="btn-del">Archive
               </button>

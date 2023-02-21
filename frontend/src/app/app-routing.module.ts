@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {AuthenticationGuard} from "./guards/authentication.guard";
-import {ProfileComponent} from "./components/profile/profile.component";
+import {OwnProfileComponent} from "./components/own-profile/own-profile.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {RealisationComponent} from "./components/realisation/realisation.component";
@@ -20,6 +20,7 @@ import {UsersComponent} from "./components/manage-school/users/users.component";
 import {LevelsComponent} from "./components/manage-school/levels/levels.component";
 import {ManagementGuard} from "./guards/management.guard";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 
 const routes: Routes = [
   {
@@ -29,7 +30,15 @@ const routes: Routes = [
     children: [
       {
         path: "profile",
-        component: ProfileComponent,
+        component: OwnProfileComponent,
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "Profile"
+        },
+      },
+      {
+        path: "profile/:id",
+        component: UserProfileComponent,
         canActivate: [AuthenticationGuard],
         data: {
           title: "Profile"
