@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {BehaviorSubject} from "rxjs";
 import jwt_decode from "jwt-decode";
+import {Router} from "@angular/router";
+import {AlertService} from "./alert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,9 @@ export class AuthService {
 
   authenticated = new BehaviorSubject<boolean>(false)
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router,
+              private alertService: AlertService) {
     let jwt = this.getJwtFromStorage()
     if (jwt == undefined) {
       return
@@ -41,6 +45,13 @@ export class AuthService {
   logout() {
     this.clearJwt()
     this.authenticated.next(false)
+  }
+
+  jwtExpired() {
+    this.clearJwt()
+    this.authenticated.next(false)
+    this.router.navigate(['/login'])
+    this.alertService.showAlert("info", "Your session has expired. Please log in again.")
   }
 
   saveJWT(result: any) {

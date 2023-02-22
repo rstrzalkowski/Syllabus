@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {catchError, Observable} from 'rxjs';
 import {AuthService} from "../services/auth.service";
 import {environment} from "../../environments/environment";
 
@@ -17,7 +17,12 @@ export class JwtInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${this.authService.getJwtFromStorage() || ""}`
         }
       })
-      return next.handle(cloned);
+      return next.handle(cloned).pipe(catchError(err => {
+        if (err.status === 401) {
+          this.authService.jwtExpired()
+        }
+        throw err
+      }));
     }
     return next.handle(request);
   }

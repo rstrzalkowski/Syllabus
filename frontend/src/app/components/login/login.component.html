@@ -19,7 +19,7 @@
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-skin-fill py-8 px-6 shadow-2xl rounded-lg sm:px-10">
-      <form class="mb-0 space-y-6" action="#" method="POST">
+      <form class="mb-0 space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-skin-base">Email address</label>
           <div class="mt-1">
@@ -35,12 +35,6 @@
                    required class="w-full bg-skin-muted text-skin-base"/>
           </div>
         </div>
-
-        <a href="#"
-           class="mx-16 flex justify-center font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500">
-          Forgot password?
-        </a>
-
         <div>
           <button *ngIf="!loading" (click)="login()" type="submit" class="w-full btn-submit focus:ring-0">Sign in
           </button>

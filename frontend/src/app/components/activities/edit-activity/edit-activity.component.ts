@@ -43,7 +43,7 @@ export class EditActivityComponent implements OnInit {
   }
 
   submit() {
-    if (this.name === '' || this.description === '' || this.weight < 1) {
+    if (this.name === '' || this.weight < 1) {
       this.alertService.showAlert('warning', 'Fill all the required fields.')
       return
     }

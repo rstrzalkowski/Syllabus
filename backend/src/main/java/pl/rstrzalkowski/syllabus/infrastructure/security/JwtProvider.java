@@ -37,12 +37,8 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String jwt) {
-        try {
-            parseJWT(jwt);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        parseJWT(jwt);
+        return true;
     }
 
     public String getToken(HttpServletRequest request) {

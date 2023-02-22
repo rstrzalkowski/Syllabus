@@ -18,7 +18,7 @@ export class GradeService {
   }
 
   getGradesOfRealisation(realisationId: number | undefined, page: number) {
-    return this.http.get<GradePage>(`${environment.apiUrl}/realisations/${realisationId}/grades?size=6&page=${page}&sort=createdAt`)
+    return this.http.get<GradePage>(`${environment.apiUrl}/realisations/${realisationId}/grades?size=6&page=${page}&sort=date`)
   }
 
   getGradesOfActivity(activityId: number | undefined) {
