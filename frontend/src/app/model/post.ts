@@ -13,6 +13,7 @@ export interface Post {
   content: string;
   subjectName: string;
   authorFirstName: string;
+  authorImageUrl: string;
   authorLastName: string;
   createdAt: Date;
   updatedAt: Date;

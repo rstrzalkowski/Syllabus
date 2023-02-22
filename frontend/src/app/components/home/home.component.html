@@ -222,7 +222,7 @@
                      class="flex flex-col absolute top-9 left-5 rounded whitespace-nowrap w-full">
                   <ul *ngIf="users.content.length > 0" class="bg-skin-muted border border-gray-100 w-full mt-2 ">
                     <li *ngFor="let user of users.content" routerLink="/profile/{{user.id}}"
-                        class="pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+                        class="truncate pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
                       {{user.firstName}} {{user.lastName}}
                     </li>
                   </ul>
@@ -296,7 +296,7 @@
                class="flex flex-col absolute top-9 left-0 rounded whitespace-nowrap w-full">
             <ul *ngIf="users.content.length > 0" class="bg-skin-muted border border-gray-100 w-full mt-2 ">
               <li *ngFor="let user of users.content" routerLink="/profile/{{user.id}}"
-                  class="pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+                  class="truncate pl-4 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
                 {{user.firstName}} {{user.lastName}}
               </li>
             </ul>

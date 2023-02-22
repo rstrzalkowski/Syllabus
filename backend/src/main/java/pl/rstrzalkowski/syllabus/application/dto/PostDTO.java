@@ -19,6 +19,7 @@ public class PostDTO {
     private String content;
     private String authorFirstName;
     private String authorLastName;
+    private String authorImageUrl;
     private String subjectName;
     private Timestamp createdAt;
     private Timestamp updatedAt;
@@ -36,5 +37,6 @@ public class PostDTO {
         this.title = post.getTitle();
         this.realisationId = post.getRealisation().getId();
         this.subjectName = post.getRealisation().getSubject().getName();
+        this.authorImageUrl = post.getTeacher().getImageUrl();
     }
 }

@@ -11,11 +11,11 @@
       </div>
       <div>
         <div class="flex justify-end">
-      <span
-        class="cursor-pointer text-lg text-skin-base truncate">{{realisationInfo?.teacherFirstName}} {{realisationInfo?.teacherLastName}}</span>
+      <span routerLink="/profile/{{realisationInfo?.teacherId}}"
+            class="cursor-pointer text-lg text-skin-base truncate">{{realisationInfo?.teacherFirstName}} {{realisationInfo?.teacherLastName}}</span>
         </div>
         <p class="mt-5 flex justify-end"><span
-          class="cursor-pointer font-bold text-sm">{{realisationInfo?.schoolClassName}}</span>
+          class="cursor-pointer font-bold">{{realisationInfo?.schoolClassName}}</span>
         </p>
       </div>
     </div>

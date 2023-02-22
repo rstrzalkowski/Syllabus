@@ -33,9 +33,16 @@ export class SettingsComponent implements OnInit {
     }
     this.userService.changePassword(this.oldPassword, this.newPassword).subscribe((result) => {
       this.alertService.showAlert("success", "Password changed successfully!")
+      this.clearChangePasswordForm()
     }, error => {
       this.alertService.showAlert("danger", "Password doesn't meet strength requirements.")
     })
+  }
+
+  clearChangePasswordForm() {
+    this.oldPassword = ""
+    this.newPassword = ""
+    this.repeatPassword = ""
   }
 
   saveAlertTimeout() {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {RealisationInfo} from "../../model/realisation.info";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RealisationService} from "../../services/realisation.service";
@@ -76,6 +76,13 @@ export class ActivitiesComponent implements OnInit {
       this.getRealisationInfo(this.realisationId)
       this.getActivities(this.realisationId)
     })
+  }
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.editModalOpened = false
+      this.deleteModalOpened = false
+    }
   }
 
   clearSubscriptions() {

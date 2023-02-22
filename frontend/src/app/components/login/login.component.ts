@@ -11,7 +11,7 @@ import {UserService} from "../../services/user.service";
 })
 export class LoginComponent implements OnInit {
 
-  username = "";
+  email = "";
   password = "";
   loading = false;
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe((result) => {
+    this.authService.login(this.email, this.password).subscribe((result) => {
       this.loading = true
       this.authService.saveJWT(result)
       this.userService.getLoggedInUserObservable().subscribe((result) => {
@@ -37,5 +37,11 @@ export class LoginComponent implements OnInit {
       this.alertService.showAlert("danger", "Wrong credentials")
       this.loading = false
     })
+  }
+
+  loginAs(email: string) {
+    this.email = email
+    this.password = "P@ssw0rd"
+    this.login()
   }
 }

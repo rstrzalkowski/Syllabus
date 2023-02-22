@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Activity} from "../../../model/activity";
 import {Observable} from "rxjs";
 import {GradeService} from "../../../services/grade.service";
@@ -34,6 +34,11 @@ export class GradeStudentsComponent implements OnInit {
 
   //end edit grade
 
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.closeGradeModal()
+    }
+  }
 
   constructor(private gradeService: GradeService,
               private alertService: AlertService) {
