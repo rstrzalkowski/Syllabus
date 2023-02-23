@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgresDB:5432/db
+    username: user
+    password: password
+
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+  servlet:
+    multipart:
+      max-file-size: 48MB
+      max-request-size: 48MB
+
+server:
+  servlet:
+    context-path: /api
+
+jwt:
+  expiration:
+    time: 3600000
+
+  secret: "ufi4f3u3472h7fh327gfhjeifjouojri32f"

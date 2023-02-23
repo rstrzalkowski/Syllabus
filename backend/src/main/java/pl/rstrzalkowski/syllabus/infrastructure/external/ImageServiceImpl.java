@@ -1,7 +1,7 @@
 package pl.rstrzalkowski.syllabus.infrastructure.external;
 
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ public class ImageServiceImpl implements ImageService {
     private final RestTemplate restTemplate = new RestTemplate();
 
 
-    public String saveImage(MultipartFile image) throws JSONException, IOException {
+    public String saveImage(MultipartFile image) throws IOException {
         LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         String url = "https://thumbsnap.com/api/upload";
 
@@ -36,8 +36,9 @@ public class ImageServiceImpl implements ImageService {
         HttpEntity<LinkedMultiValueMap<String, Object>> entity = new HttpEntity<>(map, headers);
 
         String body = restTemplate.postForEntity(url, entity, String.class).getBody();
-        JSONObject jsonObject = new JSONObject(body);
-        String imageId = jsonObject.getJSONObject("data").get("id").toString();
+        JsonObject json = new Gson().fromJson(body, JsonObject.class);
+
+        String imageId = json.getAsJsonObject("data").get("id").getAsString();
 
         return "https://thumbsnap.com/s/" + imageId + ".jpg";
     }
