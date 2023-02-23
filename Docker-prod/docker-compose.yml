@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  postgresDB:
-    container_name: postgresDB
+  postgres:
+    container_name: postgres-prod
     image: postgres
     environment:
       POSTGRES_DB: db
@@ -17,9 +17,9 @@ services:
 
 
   backend:
-    depends_on: [ postgresDB ]
-    container_name: backend
-    image: backend
+    depends_on: [ postgres ]
+    container_name: backend-prod
+    image: backend-prod
     build:
       context: ../backend
       dockerfile: ../backend/Dockerfile-prod
@@ -30,8 +30,8 @@ services:
 
 
   frontend:
-    container_name: frontend
-    image: frontend
+    container_name: frontend-prod
+    image: frontend-prod
     build:
       context: ../frontend
       dockerfile: ../frontend/Dockerfile-prod
