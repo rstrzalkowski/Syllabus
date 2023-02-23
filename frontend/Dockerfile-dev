@@ -14,4 +14,4 @@ COPY --chown=node:node . .
 
 EXPOSE 4200
 
-CMD ["npm", "dev"]
+CMD ["npm", "run", "dev"]
