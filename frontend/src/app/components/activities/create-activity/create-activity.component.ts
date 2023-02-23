@@ -49,6 +49,7 @@ export class CreateActivityComponent implements OnInit {
       this.success.emit()
     }, error => {
       this.alertService.showAlert('danger', 'Something went wrong during creating a activity. Make sure form is valid')
+      this.loading = false
     })
   }
 

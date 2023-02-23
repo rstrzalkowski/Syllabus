@@ -1,9 +1,6 @@
 package pl.rstrzalkowski.syllabus.domain.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
@@ -18,10 +15,6 @@ import lombok.Setter;
 @Table(name = "GRADE")
 @NoArgsConstructor
 public class Grade extends AbstractEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Min(1)
     @Max(5)

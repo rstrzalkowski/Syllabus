@@ -44,6 +44,7 @@ export class EditPostComponent implements OnInit {
       this.success.emit()
     }, error => {
       this.alertService.showAlert('danger', 'Something went wrong during updating a post. Try again later.')
+      this.loading = false
     })
   }
 

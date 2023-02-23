@@ -104,6 +104,7 @@ export class GradeStudentsComponent implements OnInit {
       this.closeGradeModal()
     }, error => {
       this.alertService.showAlert("danger", "Error during grading. Make sure form is valid!")
+      this.loading = false
     })
   }
 }

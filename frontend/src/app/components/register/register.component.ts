@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.email, this.password, this.firstName, this.lastName, this.personalId, this.token).subscribe((result) => {
       this.router.navigate(['/login'])
       this.alertService.showAlert("success", "You have successfully registered! You can log in now.")
+      this.loading = false
 
     }, error => {
       this.loading = false

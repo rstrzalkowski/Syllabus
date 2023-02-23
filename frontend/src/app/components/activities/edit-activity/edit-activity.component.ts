@@ -54,6 +54,7 @@ export class EditActivityComponent implements OnInit {
       this.success.emit()
     }, error => {
       this.alertService.showAlert('danger', 'Something went wrong during updating a activity. Try again later.')
+      this.loading = false
     })
   }
 
