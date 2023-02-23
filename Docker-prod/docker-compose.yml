@@ -4,6 +4,8 @@ services:
   postgres:
     container_name: postgres-prod
     image: postgres
+    mem_limit: 200m
+    mem_reservation: 100m
     environment:
       POSTGRES_DB: db
       POSTGRES_USER: user
@@ -20,6 +22,8 @@ services:
     depends_on: [ postgres ]
     container_name: backend-prod
     image: backend-prod
+    mem_limit: 500m
+    mem_reservation: 200m
     build:
       context: ../backend
       dockerfile: ../backend/Dockerfile-prod
@@ -32,6 +36,8 @@ services:
   frontend:
     container_name: frontend-prod
     image: frontend-prod
+    mem_limit: 1300m
+    mem_reservation: 600m
     build:
       context: ../frontend
       dockerfile: ../frontend/Dockerfile-prod
