@@ -27,4 +27,4 @@ jwt:
   expiration:
     time: 3600000
 
-  secret: "ufi4f3u3472h7fh327gfhjeifjouojri32f"
+  secret: ${JWT_SECRET:firjegurehg}
