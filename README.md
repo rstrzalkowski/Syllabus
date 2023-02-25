@@ -8,6 +8,8 @@ authorization. Frontend is built with
 Angular 14 with TailwindCSS for styling.
 Frontend application follows responsive web design and contains dark mode (switch in bottom right corner).
 
+Application has been deployed to VPS and is available on <a href="https://www.syllabus.edu.pl" target="_blank">www.syllabus.edu.pl</a>
+
 ##### There are following roles in the application:
 
 - STUDENT
