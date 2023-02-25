@@ -9,41 +9,11 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - "5432"
+      - "5432:5432"
     volumes:
       - postgres:/var/lib/postgresql/data
-    networks:
-      - syllabus-network
-
-
-  backend:
-    depends_on: [ postgres ]
-    container_name: backend-dev
-    image: backend-dev
-    build:
-      context: ../backend
-      dockerfile: ../backend/Dockerfile-dev
-    ports:
-      - "8080:8080"
-    networks:
-      - syllabus-network
-
-
-  frontend:
-    container_name: frontend-dev
-    image: frontend-dev
-    build:
-      context: ../frontend
-      dockerfile: ../frontend/Dockerfile-dev
-    ports:
-      - "4200:4200"
-    networks:
-      - syllabus-network
 
 volumes:
   postgres:
-
-networks:
-  syllabus-network: { }
 
 
