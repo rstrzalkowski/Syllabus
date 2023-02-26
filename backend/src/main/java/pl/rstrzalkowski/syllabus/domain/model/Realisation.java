@@ -1,5 +1,6 @@
 package pl.rstrzalkowski.syllabus.domain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -27,10 +28,11 @@ public class Realisation extends AbstractEntity {
     @ManyToOne
     private User teacher;
 
+    @Column(name = "realisation_year")
     private Year year;
 
     private boolean archived;
-    
+
     @OneToMany(mappedBy = "realisation")
     private Set<Post> posts = new LinkedHashSet<>();
 

@@ -1,5 +1,6 @@
 package pl.rstrzalkowski.syllabus.domain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -18,6 +19,7 @@ public class Grade extends AbstractEntity {
 
     @Min(1)
     @Max(5)
+    @Column(name = "grade_value")
     private Integer value;
 
     @ManyToOne
