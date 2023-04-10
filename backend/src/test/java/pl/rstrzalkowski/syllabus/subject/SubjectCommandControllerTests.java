@@ -23,7 +23,7 @@ public class SubjectCommandControllerTests {
     private MockMvc mockMvc;
 
 
-    //section POST /subjects
+    //region POST /subjects
     @Test
     @WithUserDetails("office")
     void shouldCreateSubjectAsOfficeWithSC201() throws Exception {
@@ -86,10 +86,9 @@ public class SubjectCommandControllerTests {
         mockMvc.perform(post("/subjects").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isBadRequest());
     }
-    //end section
+    //endregion
 
-
-    //section PUT /subjects/{id}
+    //region PUT /subjects/{id}
     @Test
     @WithUserDetails("office")
     void shouldUpdateSubjectAsOfficeWithSC200() throws Exception {
@@ -134,43 +133,42 @@ public class SubjectCommandControllerTests {
         mockMvc.perform(put("/subjects/1").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
                 .andExpect(status().isForbidden());
     }
-    //end section
+    //endregion
 
-
-    //section DELETE /subjects/{id}
+    //region DELETE /subjects/{id}
     @Test
     @WithUserDetails("director")
-    void shouldDeleteSubjectAsDirectorWithSC200() throws Exception {
+    void shouldArchiveSubjectAsDirectorWithSC204() throws Exception {
         mockMvc.perform(delete("/subjects/2"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     @WithUserDetails("admin")
-    void shouldDeleteSubjectAsAdminWithSC200() throws Exception {
+    void shouldArchiveSubjectAsAdminWithSC204() throws Exception {
         mockMvc.perform(delete("/subjects/3"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     @WithUserDetails("student")
-    void shouldFailDeletingSubjectAsStudentWithSC403() throws Exception {
+    void shouldFailArchivingSubjectAsStudentWithSC403() throws Exception {
         mockMvc.perform(delete("/subjects/4"))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     @WithUserDetails("teacher")
-    void shouldFailDeletingSubjectAsTeacherWithSC403() throws Exception {
+    void shouldFailArchivingSubjectAsTeacherWithSC403() throws Exception {
         mockMvc.perform(delete("/subjects/4"))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     @WithUserDetails("office")
-    void shouldFailDeletingSubjectAsOfficeWithSC403() throws Exception {
+    void shouldFailArchivingSubjectAsOfficeWithSC403() throws Exception {
         mockMvc.perform(delete("/subjects/4"))
                 .andExpect(status().isForbidden());
     }
-    //end section
+    //endregion
 }

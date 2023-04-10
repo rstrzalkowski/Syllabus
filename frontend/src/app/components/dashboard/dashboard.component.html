@@ -94,10 +94,10 @@
                 <div *ngFor="let post of posts.content"
                      class="flex flex-col shadow-xl text-center bg-skin-muted rounded-xl p-3 w-full">
                   <span class="font-bold text-xl">{{post.title}}</span>
-                  <span>{{post.authorFirstName}} {{post.authorLastName}}</span>
+                  <span>{{post.authorFirstName}} {{post.authorLastName}} > {{post.subjectName}}</span>
                   <span>{{post.createdAt | date:"short"}}</span>
-                  <span>{{post.content}}</span>
-                  <span>{{post.subjectName}}</span>
+                  <span class="my-2"></span>
+                  <span class="text-justify">{{post.content}}</span>
                   <p class="mt-5"><span routerLink="/realisation/{{post.realisationId}}"
                                         class="cursor-pointer font-bold text-teal-600">View</span>
                 </div>

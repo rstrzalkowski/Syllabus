@@ -1,14 +1,11 @@
 package pl.rstrzalkowski.syllabus.subject;
 
-import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.rstrzalkowski.syllabus.application.command.subject.CreateSubjectCommand;
-import pl.rstrzalkowski.syllabus.domain.service.subject.SubjectCommandService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,17 +18,8 @@ public class SubjectQueryControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private SubjectCommandService subjectCommandService;
 
-
-    @PostConstruct
-    void init() {
-        subjectCommandService.create(new CreateSubjectCommand("testName", "TEST"));
-    }
-
-
-    //section /subjects
+    //region GET /subjects
     @Test
     @WithUserDetails("office")
     void shouldReturnSubjectsAsOfficeWithSC200() throws Exception {
@@ -72,10 +60,9 @@ public class SubjectQueryControllerTests {
         mockMvc.perform(get("/subjects"))
                 .andExpect(status().isForbidden());
     }
-    //end section
+    //endregion
 
-
-    //section /subjects/archived
+    //region GET /subjects/archived
     @Test
     @WithUserDetails("office")
     void shouldReturnArchivedSubjectsAsOfficeWithSC200() throws Exception {
@@ -117,10 +104,9 @@ public class SubjectQueryControllerTests {
                 .andExpect(status().isForbidden());
     }
 
-    //end section
+    //endregion
 
-
-    //section /subjects/{id}
+    //region GET /subjects/{id}
     @Test
     @WithUserDetails("office")
     void shouldReturnSubjectByIdAsOfficeWithSC200() throws Exception {
@@ -168,5 +154,5 @@ public class SubjectQueryControllerTests {
         mockMvc.perform(get("/subjects/9999"))
                 .andExpect(status().isNotFound());
     }
-    //end section
+    //endregion
 }
