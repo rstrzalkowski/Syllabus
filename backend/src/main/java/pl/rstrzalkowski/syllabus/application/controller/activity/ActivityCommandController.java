@@ -37,6 +37,7 @@ public class ActivityCommandController {
     @PutMapping("/{id}")
     @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public void updateActivity(@PathVariable("id") Long id, @Valid @RequestBody UpdateActivityCommand command) {
+        accessGuard.checkAccessToRealisation(id);
         command.setId(id);
         activityCommandHandler.handle(command);
     }

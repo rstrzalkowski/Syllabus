@@ -30,6 +30,7 @@ public class ActivityQueryController {
     @GetMapping("/{id}")
     @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
     public Activity getActivityById(@PathVariable("id") Long id) {
+        accessGuard.checkAccessToActivity(id);
         return activityQueryHandler.handle(new GetActivityByIdQuery(id));
     }
 

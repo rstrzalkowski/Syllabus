@@ -34,9 +34,10 @@ public class GradeCommandController {
         gradeCommandHandler.handle(command);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
-    public void updateGrade(@Valid @RequestBody UpdateGradeCommand command) {
+    public void updateGrade(@PathVariable("id") Long id, @Valid @RequestBody UpdateGradeCommand command) {
+        command.setGradeId(id);
         gradeCommandHandler.handle(command);
     }
 

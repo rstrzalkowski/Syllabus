@@ -71,7 +71,7 @@ public class SchoolClassCommandService {
             conflictingClass = schoolClassRepository
                     .findByArchivedAndNameAndLevelId(false, newShortName, schoolClass.getLevel().getId());
 
-            if (!Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
+            if (conflictingClass != null && !Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
                 throw new SchoolClassAlreadyExistsException();
             }
         }
@@ -82,7 +82,7 @@ public class SchoolClassCommandService {
             conflictingClass = schoolClassRepository
                     .findByArchivedAndNameAndLevelId(false, schoolClass.getName(), level.getId());
 
-            if (!Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
+            if (conflictingClass != null && !Objects.equals(conflictingClass.getId(), schoolClass.getId())) {
                 throw new SchoolClassAlreadyExistsException();
             }
             schoolClass.setLevel(level);

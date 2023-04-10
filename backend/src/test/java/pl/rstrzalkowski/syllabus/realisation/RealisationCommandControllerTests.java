@@ -36,6 +36,8 @@ public class RealisationCommandControllerTests {
         jsonObject.put("classId", "1");
         jsonObject.put("year", "2023");
         jsonObject.put("subjectId", "8");
+        mockMvc.perform(post("/realisations").content(jsonObject.toString()).contentType(MediaType.parseMediaType("application/json")))
+                .andExpect(status().isCreated());
     }
 
     @Test
