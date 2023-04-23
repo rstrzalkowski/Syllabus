@@ -63,11 +63,13 @@ export class GradeStudentsComponent implements OnInit {
   getFilteredGrades(): GradesOfActivity[] | undefined {
     return this.grades?.filter((grade) => {
       let conditionUngraded = true
-      let conditionFilter
       if (this.onlyUngraded) {
         conditionUngraded = grade.grade === null
       }
-      conditionFilter = grade.studentFirstName.includes(this.filter) || grade.studentLastName.includes(this.filter) || grade.studentPersonalId.includes(this.filter);
+      let conditionFilter =
+        grade.studentFirstName.toLowerCase().includes(this.filter.toLowerCase()) ||
+        grade.studentLastName.toLowerCase().includes(this.filter.toLowerCase()) ||
+        grade.studentPersonalId.includes(this.filter);
       return conditionFilter && conditionUngraded
     })
   }
