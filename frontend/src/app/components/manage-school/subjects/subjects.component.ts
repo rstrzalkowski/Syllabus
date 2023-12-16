@@ -33,7 +33,7 @@ export class SubjectsComponent implements OnInit {
 
 
   //Data passed to children
-  subjectIdToBeArchived: number | undefined
+  subjectIdToBeArchived: string | undefined
   editedSubject: Subject | undefined
   editedImageSubject: Subject | undefined
 
@@ -105,7 +105,7 @@ export class SubjectsComponent implements OnInit {
     }
   }
 
-  showDeleteModal(id: number) {
+  showDeleteModal(id: string) {
     this.subjectIdToBeArchived = id
     this.deleteModalOpen = true
   }

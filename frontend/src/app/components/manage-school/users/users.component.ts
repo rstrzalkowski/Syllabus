@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
 
 
   //Data passed to children
-  userIdToBeArchived: number | undefined
+  userIdToBeArchived: string | undefined
   editedUser: User | undefined
 
   //end data
@@ -169,7 +169,7 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  showDeleteModal(id: number) {
+  showDeleteModal(id: string) {
     this.userIdToBeArchived = id
     this.deleteModalOpen = true
   }

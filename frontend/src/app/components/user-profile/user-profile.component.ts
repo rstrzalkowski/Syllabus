@@ -20,9 +20,8 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
-      const userIdString = params.get('id')!.toString();
-      const userId = Number(userIdString)
-      
+      const userId = params.get('id')!.toString();
+
       this.user$ = this.userService.getUser(userId)
         .pipe(catchError(err => {
           this.router.navigate(['/404'])

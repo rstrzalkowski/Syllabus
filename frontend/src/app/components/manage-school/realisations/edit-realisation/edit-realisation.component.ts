@@ -15,7 +15,7 @@ export class EditRealisationComponent implements OnInit {
 
   //Data
   year: number = new Date().getFullYear()
-  teacherId: number | undefined
+  teacherId: string | undefined
 
   teachers$: Observable<UserPage> = this.userService.getAllActiveTeachers()
   //end data

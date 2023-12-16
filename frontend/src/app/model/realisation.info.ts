@@ -6,9 +6,9 @@ export interface RealisationInfoPage {
 }
 
 export interface RealisationInfo {
-  id: number
+  id: string
   subjectName: string
-  teacherId: number
+  teacherId: string
   year: number
   teacherFirstName: string
   teacherLastName: string

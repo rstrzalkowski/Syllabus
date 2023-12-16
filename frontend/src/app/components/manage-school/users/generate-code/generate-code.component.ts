@@ -16,7 +16,7 @@ export class GenerateCodeComponent implements OnInit {
   //Data
   number: number = 1
   role: string = ""
-  classId: number | undefined = -1
+  classId: string | undefined;
   classes$: Observable<ClassPage> = this.classService.getAllActiveClasses()
   //end data
 
@@ -53,10 +53,6 @@ export class GenerateCodeComponent implements OnInit {
     if (this.number < 1 || this.number > 30) {
       this.alertService.showAlert('warning', 'Number of codes must be between 1 and 30')
       return
-    }
-
-    if (this.classId == -1) {
-      this.classId = undefined
     }
 
     this.loading = true

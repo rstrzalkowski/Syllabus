@@ -11,7 +11,7 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class PostsComponent implements OnInit {
 
-  @Input() realisationId: number | undefined;
+  @Input() realisationId: string | undefined;
 
   @Input() postPage: PostPage | undefined
 
@@ -22,7 +22,7 @@ export class PostsComponent implements OnInit {
 
   //Delete post
   deleteModalOpened = false
-  postIdToBeDeleted: number | undefined
+  postIdToBeDeleted: string | undefined
   //end delete
 
 
@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  showDeleteModal(postId: number) {
+  showDeleteModal(postId: string) {
     this.postIdToBeDeleted = postId
     this.deleteModalOpened = true
   }

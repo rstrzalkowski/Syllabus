@@ -15,7 +15,7 @@ export class ClassService {
     return this.http.get<ClassPage>(`${environment.apiUrl}/classes?sort=level.value,createdAt`)
   }
 
-  getClassById(id: number | undefined) {
+  getClassById(id: string | undefined) {
     return this.http.get<Class>(`${environment.apiUrl}/classes/${id}`)
   }
 
@@ -36,7 +36,7 @@ export class ClassService {
     }, {observe: "response"})
   }
 
-  updateClass(classId: number | undefined, shortName: string | undefined, fullName: string | undefined, levelId: number | undefined, teacherId: number | undefined) {
+  updateClass(classId: string | undefined, shortName: string | undefined, fullName: string | undefined, levelId: string | undefined, teacherId: string | undefined) {
     return this.http.put(`${environment.apiUrl}/classes/${classId}`, {
       shortName: shortName,
       fullName: fullName,
@@ -45,7 +45,7 @@ export class ClassService {
     }, {observe: "response"})
   }
 
-  archiveClass(levelId: number | undefined) {
+  archiveClass(levelId: string | undefined) {
     return this.http.delete(`${environment.apiUrl}/classes/${levelId}`)
   }
 }

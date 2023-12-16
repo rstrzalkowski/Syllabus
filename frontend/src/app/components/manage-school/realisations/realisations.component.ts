@@ -32,7 +32,7 @@ export class RealisationsComponent implements OnInit {
 
 
   //Data passed to children
-  realisationIdToBeArchived: number | undefined
+  realisationIdToBeArchived: string | undefined
   editedRealisation: RealisationInfo | undefined
 
   //end data
@@ -100,7 +100,7 @@ export class RealisationsComponent implements OnInit {
     }
   }
 
-  showDeleteModal(id: number) {
+  showDeleteModal(id: string) {
     this.realisationIdToBeArchived = id
     this.deleteModalOpen = true
   }

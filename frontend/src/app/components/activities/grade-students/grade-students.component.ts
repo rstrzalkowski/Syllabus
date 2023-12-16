@@ -27,7 +27,7 @@ export class GradeStudentsComponent implements OnInit {
   editModalOpened: boolean = false
   currentGrade: number | undefined
   currentComment: string | undefined
-  studentId: number | undefined
+  studentId: string | undefined
   studentFirstName: string | undefined
   studentLastName: string | undefined
   studentPersonalId: string | undefined
@@ -38,6 +38,8 @@ export class GradeStudentsComponent implements OnInit {
     if (event.key === "Escape") {
       this.closeGradeModal()
     }
+
+
   }
 
   constructor(private gradeService: GradeService,

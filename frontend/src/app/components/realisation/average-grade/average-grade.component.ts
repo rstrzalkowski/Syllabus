@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AverageGradeComponent implements OnInit {
 
 
-  @Input() realisationId: number | undefined;
+  @Input() realisationId: string | undefined;
   @Input() grade: number | undefined;
 
 

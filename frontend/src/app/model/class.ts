@@ -9,7 +9,7 @@ export interface ClassPage {
 }
 
 export interface Class {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   level: Level;

@@ -17,8 +17,8 @@ export class EditClassComponent implements OnInit {
   //Data
   shortName: string = ""
   fullName: string = ""
-  levelId: number | undefined
-  teacherId: number | undefined
+  levelId: string | undefined
+  teacherId: string | undefined
   levels$: Observable<LevelPage> = this.levelService.getAllActiveLevels()
   teachers$: Observable<User[]> = this.userService.getAllNotSupervisingActiveTeachers()
   //end data

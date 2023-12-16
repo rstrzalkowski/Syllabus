@@ -17,7 +17,7 @@ import {ThemeService} from "../../services/theme.service";
 })
 export class RealisationComponent implements OnInit {
 
-  realisationId: number | undefined
+  realisationId: string | undefined
 
   //Data from API
   realisationInfo: RealisationInfo | undefined
@@ -68,9 +68,7 @@ export class RealisationComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString();
-
-      this.realisationId = Number(realisationIdString)
+      this.realisationId = params.get('id')!.toString();
 
       if (this.authService.getRole() === 'STUDENT') {
         this.getAverageGrade();
@@ -116,7 +114,7 @@ export class RealisationComponent implements OnInit {
     })
   }
 
-  getRealisationInfo(realisationId: number) {
+  getRealisationInfo(realisationId: string) {
     this.realisationLoading = true
     this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
       this.realisationInfo = result

@@ -13,15 +13,15 @@ export class GradeService {
   constructor(private http: HttpClient) {
   }
 
-  getAverageGrade(realisationId: number | undefined) {
+  getAverageGrade(realisationId: string | undefined) {
     return this.http.get<AverageGrade>(`${environment.apiUrl}/realisations/${realisationId}/average`)
   }
 
-  getGradesOfRealisation(realisationId: number | undefined, page: number) {
+  getGradesOfRealisation(realisationId: string | undefined, page: number) {
     return this.http.get<GradePage>(`${environment.apiUrl}/realisations/${realisationId}/grades?size=6&page=${page}&sort=date`)
   }
 
-  getGradesOfActivity(activityId: number | undefined) {
+  getGradesOfActivity(activityId: string | undefined) {
     return this.http.get<GradesOfActivity[]>(`${environment.apiUrl}/activities/${activityId}/grades`)
   }
 
@@ -29,7 +29,7 @@ export class GradeService {
     return this.http.get<GradePage>(`${environment.apiUrl}/grades/own?size=3&page=${page}&sort=createdAt,desc`)
   }
 
-  updateGrade(activityId: number | undefined, studentId: number | undefined, value: number | undefined, comment: string | undefined) {
+  updateGrade(activityId: string | undefined, studentId: string | undefined, value: number | undefined, comment: string | undefined) {
     return this.http.post(`${environment.apiUrl}/grades`, {
       value: value,
       activityId: activityId,

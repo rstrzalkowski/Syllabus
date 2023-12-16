@@ -6,7 +6,7 @@ export interface LevelPage {
 }
 
 export interface Level {
-  id: number
+  id: string
   createdAt: Date
   updatedAt: Date
   value: number

@@ -34,7 +34,7 @@ export class ClassesComponent implements OnInit {
 
 
   //Data passed to children
-  classIdToBeArchived: number | undefined
+  classIdToBeArchived: string | undefined
   editedClass: Class | undefined
 
   //end data
@@ -104,7 +104,7 @@ export class ClassesComponent implements OnInit {
     }
   }
 
-  showDeleteModal(id: number) {
+  showDeleteModal(id: string) {
     this.classIdToBeArchived = id
     this.deleteModalOpen = true
   }

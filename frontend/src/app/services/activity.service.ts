@@ -11,11 +11,11 @@ export class ActivityService {
   constructor(private http: HttpClient) {
   }
 
-  getRealisationActivities(realisationId: number | undefined, page: number) {
+  getRealisationActivities(realisationId: string | undefined, page: number) {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities?size=5&page=${page}&sort=createdAt`)
   }
 
-  getIncomingActivitiesByRealisation(realisationId: number | undefined, page: number) {
+  getIncomingActivitiesByRealisation(realisationId: string | undefined, page: number) {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/realisations/${realisationId}/activities/incoming?size=3&page=${page}&sort=createdAt`)
   }
 
@@ -23,7 +23,7 @@ export class ActivityService {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/activities/incoming?size=3&page=${page}&sort=date`)
   }
 
-  createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined) {
+  createActivity(name: string, description: string, weight: number, date: any, realisationId: string | undefined) {
     return this.http.post(`${environment.apiUrl}/activities`, {
       name: name,
       description: description,
@@ -33,7 +33,7 @@ export class ActivityService {
     }, {observe: "response"})
   }
 
-  updateActivity(name: string, description: string, weight: number, date: any, activityId: number | undefined,) {
+  updateActivity(name: string, description: string, weight: number, date: any, activityId: string | undefined) {
     return this.http.put(`${environment.apiUrl}/activities/${activityId}`, {
       name: name,
       description: description,
@@ -42,7 +42,7 @@ export class ActivityService {
     }, {observe: "response"})
   }
 
-  deleteActivity(activityId: number) {
+  deleteActivity(activityId: string) {
     return this.http.delete(`${environment.apiUrl}/activities/${activityId}`)
   }
 }

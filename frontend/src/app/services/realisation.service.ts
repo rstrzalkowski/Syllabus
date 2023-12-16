@@ -12,7 +12,7 @@ export class RealisationService {
   constructor(private http: HttpClient) {
   }
 
-  createRealisation(classId: number | undefined, subjectId: number | undefined, teacherId: number | undefined, year: number | undefined) {
+  createRealisation(classId: string | undefined, subjectId: string | undefined, teacherId: string | undefined, year: number | undefined) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       year: year,
       classId: classId,
@@ -21,7 +21,7 @@ export class RealisationService {
     }, {observe: "response"})
   }
 
-  updateRealisation(realisationId: number | undefined, teacherId: number | undefined, year: number | undefined) {
+  updateRealisation(realisationId: string | undefined, teacherId: string | undefined, year: number | undefined) {
     return this.http.put(`${environment.apiUrl}/realisations/${realisationId}`, {
       year: year,
       teacherId: teacherId
@@ -40,11 +40,11 @@ export class RealisationService {
     return this.http.get<RealisedSubject[]>(`${environment.apiUrl}/realisations/me`)
   }
 
-  getRealisationInfo(id: number) {
+  getRealisationInfo(id: string) {
     return this.http.get<RealisationInfo>(`${environment.apiUrl}/realisations/${id}`)
   }
 
-  archiveRealisation(realisationId: number) {
+  archiveRealisation(realisationId: string) {
     return this.http.delete(`${environment.apiUrl}/realisations/${realisationId}`)
   }
 }

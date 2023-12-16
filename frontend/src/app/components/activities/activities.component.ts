@@ -13,7 +13,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ActivitiesComponent implements OnInit {
 
-  public realisationId: number | undefined;
+  public realisationId: string | undefined;
 
   //Data from API
   realisationInfo: RealisationInfo | undefined
@@ -41,7 +41,7 @@ export class ActivitiesComponent implements OnInit {
 
   //Delete activity
   deleteModalOpened = false
-  activityIdToBeDeleted: number | undefined
+  activityIdToBeDeleted: string | undefined
   //end delete
 
 
@@ -69,9 +69,7 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString()
-
-      this.realisationId = Number(realisationIdString)
+      this.realisationId = params.get('id')!.toString()
 
       this.getRealisationInfo(this.realisationId)
       this.getActivities(this.realisationId)
@@ -90,7 +88,7 @@ export class ActivitiesComponent implements OnInit {
     this.activitiesSubscription?.unsubscribe()
   }
 
-  getRealisationInfo(realisationId: number) {
+  getRealisationInfo(realisationId: string) {
     this.realisationLoading = true
     this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
       this.realisationInfo = result
@@ -101,7 +99,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
 
-  getActivities(realisationId: number) {
+  getActivities(realisationId: string) {
     this.activitiesLoading = true
     this.activitiesSubscription = this.activityService.getRealisationActivities(realisationId, this.pageNumber).subscribe((result) => {
       this.activities = result
@@ -153,7 +151,7 @@ export class ActivitiesComponent implements OnInit {
     }
   }
 
-  showDeleteModal(activityId: number) {
+  showDeleteModal(activityId: string) {
     this.activityIdToBeDeleted = activityId
     this.deleteModalOpened = true
   }

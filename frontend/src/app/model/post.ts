@@ -6,9 +6,9 @@ export interface PostPage {
 }
 
 export interface Post {
-  postId: number;
-  realisationId: number;
-  authorId: number;
+  postId: string;
+  realisationId: string;
+  authorId: string;
   title: string;
   content: string;
   subjectName: string;

@@ -18,7 +18,7 @@ export class CreatePostComponent implements OnInit {
   loading = false
   //end loading
 
-  @Input() realisationId: number | undefined
+  @Input() realisationId: string | undefined
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
 

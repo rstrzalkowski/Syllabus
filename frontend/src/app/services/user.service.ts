@@ -26,7 +26,7 @@ export class UserService {
     }
   }
 
-  generateCodes(amount: number, role: string, schoolClassId: number | undefined) {
+  generateCodes(amount: number, role: string, schoolClassId: string | undefined) {
     if (schoolClassId) {
       return this.http.post(`${environment.apiUrl}/users/tokens`, {
         amount: amount,
@@ -115,7 +115,7 @@ export class UserService {
     })
   }
 
-  getUser(userId: number | undefined) {
+  getUser(userId: string | undefined) {
     return this.http.get<User>(`${environment.apiUrl}/users/${userId}`)
   }
 
@@ -138,15 +138,15 @@ export class UserService {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/unassigned?sort=lastName,firstName`)
   }
 
-  archiveUser(userId: number | undefined) {
+  archiveUser(userId: string | undefined) {
     return this.http.delete(`${environment.apiUrl}/users/${userId}`)
   }
 
-  unassignStudent(userId: number | undefined) {
+  unassignStudent(userId: string | undefined) {
     return this.http.put(`${environment.apiUrl}/users/${userId}/unassign`, {}, {observe: "response"})
   }
 
-  assignStudent(userId: number | undefined, classId: number | undefined) {
+  assignStudent(userId: string | undefined, classId: string | undefined) {
     return this.http.put(`${environment.apiUrl}/users/${userId}/assign`, {classId: classId}, {observe: "response"})
   }
 

@@ -12,8 +12,8 @@ import {ClassService} from "../../../../services/class.service";
 })
 export class EditStudentsComponent implements OnInit {
 
-  studentIdToBeAdded: number | undefined
-  studentIdToBeUnassigned: number | undefined
+  studentIdToBeAdded: string | undefined
+  studentIdToBeUnassigned: string | undefined
 
   loading = false
 
@@ -78,7 +78,7 @@ export class EditStudentsComponent implements OnInit {
     this.unassignedStudents$ = this.userService.getUnassignedStudents()
   }
 
-  showDeleteModal(id: number) {
+  showDeleteModal(id: string) {
     this.studentIdToBeUnassigned = id
     this.deleteModalOpen = true
   }

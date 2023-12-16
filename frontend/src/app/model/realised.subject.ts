@@ -1,5 +1,5 @@
 export interface RealisedSubject {
-  realisationId: number
+  realisationId: string
   subjectName: string
   subjectAbbreviation: string
   schoolClassName: string

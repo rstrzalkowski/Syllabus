@@ -33,7 +33,7 @@ export class LevelsComponent implements OnInit {
 
 
   //Data passed to children
-  levelIdToBeArchived: number | undefined
+  levelIdToBeArchived: string | undefined
 
   //end data
 

@@ -17,9 +17,9 @@ export class CreateRealisationComponent implements OnInit {
 
   //Data
   year: number = new Date().getFullYear()
-  subjectId: number | undefined
-  classId: number | undefined
-  teacherId: number | undefined
+  subjectId: string | undefined
+  classId: string | undefined
+  teacherId: string | undefined
 
   subjects$: Observable<SubjectPage> = this.subjectService.getAllActiveSubjects()
   classes$: Observable<ClassPage> = this.classService.getAllActiveClasses()

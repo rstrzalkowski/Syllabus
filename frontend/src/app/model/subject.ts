@@ -6,7 +6,7 @@ export interface SubjectPage {
 }
 
 export interface Subject {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   imageUrl: string

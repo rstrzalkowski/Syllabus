@@ -27,11 +27,11 @@ export class LevelService {
     return this.http.post(`${environment.apiUrl}/levels`, {level: value}, {observe: "response"})
   }
 
-  updateLevel(levelId: number | undefined, value: number | undefined) {
+  updateLevel(levelId: string | undefined, value: number | undefined) {
     return this.http.put(`${environment.apiUrl}/levels/${levelId}`, {level: value})
   }
 
-  archiveLevel(levelId: number | undefined) {
+  archiveLevel(levelId: string | undefined) {
     return this.http.delete(`${environment.apiUrl}/levels/${levelId}`)
   }
 }

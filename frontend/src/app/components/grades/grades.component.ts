@@ -11,7 +11,7 @@ import {GradePage} from "../../model/grade";
 })
 export class GradesComponent implements OnInit {
 
-  public realisationId: number | undefined;
+  public realisationId: string | undefined;
 
   //Data from API
   realisationInfo: RealisationInfo | undefined
@@ -46,9 +46,7 @@ export class GradesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString()
-
-      this.realisationId = Number(realisationIdString)
+      this.realisationId = params.get('id')!.toString()
 
       this.getRealisationInfo(this.realisationId)
       this.getGrades(this.realisationId)
@@ -60,7 +58,7 @@ export class GradesComponent implements OnInit {
     this.gradesSubscription?.unsubscribe()
   }
 
-  getRealisationInfo(realisationId: number) {
+  getRealisationInfo(realisationId: string) {
     this.realisationLoading = true
     this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
       this.realisationInfo = result
@@ -71,7 +69,7 @@ export class GradesComponent implements OnInit {
   }
 
 
-  getGrades(realisationId: number) {
+  getGrades(realisationId: string) {
     this.gradesLoading = true
     this.gradesSubscription = this.gradeService.getGradesOfRealisation(realisationId, this.pageNumber).subscribe((result) => {
       this.grades = result

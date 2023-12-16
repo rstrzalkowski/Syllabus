@@ -6,7 +6,7 @@ export interface UserPage {
 }
 
 export interface User {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   email: string;

@@ -2,8 +2,8 @@ export interface GradesOfActivity {
   studentFirstName: string;
   studentLastName: string;
   studentPersonalId: string;
-  studentId: number;
-  activityId: number;
+  studentId: string;
+  activityId: string;
   grade?: number;
   comment?: any;
   createdAt?: Date;
