@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   firstName = ""
   lastName = ""
   personalId = ""
-  token = ""
   //end data
 
   loading = false
@@ -35,7 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (this.email == "" || this.password == "" || this.firstName == "" || this.lastName == "" || this.personalId == "" || this.token == "") {
+    if (this.email == "" || this.password == "" || this.firstName == "" || this.lastName == "" || this.personalId == "") {
       this.alertService.showAlert("danger", "Please fill all fields.")
       return
     }
@@ -51,17 +50,15 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true
-    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.personalId, this.token).subscribe((result) => {
+    this.authService.register(this.email, this.password, this.firstName, this.lastName, this.personalId).subscribe(() => {
       this.router.navigate(['/login'])
       this.alertService.showAlert("success", "You have successfully registered! You can log in now.")
       this.loading = false
 
     }, error => {
       this.loading = false
-      if (error.status === 406) {
-        this.alertService.showAlert("danger", "Invalid registration token.")
-      } else if (error.status === 409) {
-        this.alertService.showAlert("danger", "There is another account registered on this email.")
+      if (error.status === 409) {
+        this.alertService.showAlert("danger", "There is another account registered on this email or personal ID.")
       } else {
         this.alertService.showAlert("danger", "Provided data is invalid. Make sure form is properly filled.")
       }

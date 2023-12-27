@@ -66,10 +66,10 @@
           <tbody>
           <tr *ngFor="let subject of subjects?.content" class="border-b border-gray-400 text-lg text-skin-base">
             <td class="px-6 py-4">
-              {{subject.name}}
+              {{subject.subjectName}}
             </td>
             <td class="px-6 py-4">
-              {{subject.abbreviation}}
+              {{subject.subjectAbbreviation}}
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center">
               {{subject.activeRealisationsCount}}

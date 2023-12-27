@@ -32,7 +32,7 @@
                   <select [(ngModel)]="subjectId"
                           class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="subjectId">
                     <option *ngFor="let subject of subjects.content"
-                            value="{{subject.id}}">{{subject.name}}</option>
+                            value="{{subject.id}}">{{subject.subjectName}}</option>
                   </select>
                 </div>
                 <div *ngIf="teachers$ | async as teachers">

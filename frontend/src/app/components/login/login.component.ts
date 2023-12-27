@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   email = "";
   password = "";
   loading = false;
+  chooseRoleModalOpened = false;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -29,15 +30,43 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password).subscribe((result) => {
       this.loading = true
       this.authService.saveJWT(result)
-      this.router.navigate(['/dashboard'])
-      // this.userService.getLoggedInUserObservable().subscribe((result) => {
-      //   this.userService.user = result
-      //   this.router.navigate(['/dashboard'])
-      // })
+
+      const roles = this.getAppRolesFromJwt();
+      if (roles.length > 1) {
+        this.chooseRoleModalOpened = true;
+      } else {
+        this.roleHasBeenChosen(roles[0] || "")
+      }
+
     }, error => {
       this.alertService.showAlert("danger", "Wrong credentials")
       this.loading = false
     })
+  }
+
+  getAppRolesFromJwt(): string[] {
+    const decodedJWT = this.authService.decodeJWT(this.authService.getJwtFromStorage()!)
+    let roles: string[] = []
+    decodedJWT.realm_access.roles.forEach((role: string) => {
+      if (["STUDENT", "TEACHER", "OFFICE", "DIRECTOR", "ADMIN"].includes(role)) {
+        roles.push(role)
+      }
+    })
+    return roles;
+  }
+
+  roleHasBeenChosen(role: string) {
+    localStorage.setItem("role", role)
+    this.chooseRoleModalOpened = false;
+    this.userService.getLoggedInUserObservable().subscribe((result) => {
+      this.userService.user = result
+      this.router.navigate(['/dashboard'])
+    })
+  }
+
+  closeRoleModal() {
+    this.loading = false
+    this.chooseRoleModalOpened = false;
   }
 
   loginAs(email: string) {

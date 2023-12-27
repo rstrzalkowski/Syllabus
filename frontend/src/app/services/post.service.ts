@@ -28,7 +28,8 @@ export class PostService {
   }
 
   updatePost(title: string, content: string, postId: string | undefined) {
-    return this.http.put(`${environment.apiUrl}/posts/${postId}`, {
+    return this.http.put(`${environment.apiUrl}/posts`, {
+      id: postId,
       title: title,
       content: content,
     }, {observe: "response"})

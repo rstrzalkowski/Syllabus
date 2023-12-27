@@ -42,7 +42,8 @@ export class SubjectService {
   }
 
   updateSubject(subjectId: string | undefined, name: string | undefined, abbreviation: string | undefined) {
-    return this.http.put(`${environment.apiUrl}/subjects/${subjectId}`, {
+    return this.http.put(`${environment.apiUrl}/subjects`, {
+      subjectId: subjectId,
       name: name,
       abbreviation: abbreviation
     }, {observe: "response"})

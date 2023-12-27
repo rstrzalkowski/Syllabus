@@ -34,7 +34,8 @@ export class ActivityService {
   }
 
   updateActivity(name: string, description: string, weight: number, date: any, activityId: string | undefined) {
-    return this.http.put(`${environment.apiUrl}/activities/${activityId}`, {
+    return this.http.put(`${environment.apiUrl}/activities`, {
+      id: activityId,
       name: name,
       description: description,
       weight: weight,

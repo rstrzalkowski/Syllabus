@@ -53,6 +53,7 @@ import {EditStudentsComponent} from './components/manage-school/classes/edit-stu
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ImageUploadComponent} from './components/image-upload/image-upload.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ChooseRoleComponent } from './components/login/choose-role/choose-role.component';
 
 
 @NgModule({
@@ -101,6 +102,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     DashboardComponent,
     ImageUploadComponent,
     UserProfileComponent,
+    ChooseRoleComponent,
   ],
   imports: [
     BrowserModule,

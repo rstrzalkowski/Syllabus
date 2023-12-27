@@ -63,3 +63,8 @@
     </div>
   </div>
 </div>
+
+<app-choose-role *ngIf="chooseRoleModalOpened" (success)="roleHasBeenChosen($event)"
+                 (close)="closeRoleModal()">
+
+</app-choose-role>

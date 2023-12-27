@@ -10,8 +10,8 @@ export interface Subject {
   createdAt: Date;
   updatedAt: Date;
   imageUrl: string
-  name: string;
+  subjectName: string;
   activeRealisationsCount: number
-  abbreviation: string;
+  subjectAbbreviation: string;
   archived: boolean;
 }

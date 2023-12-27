@@ -22,11 +22,11 @@
                 Full name* (max 40 characters)
                 <input required [(ngModel)]="fullName" type="text" maxlength="40" name="fullName"
                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-                <div *ngIf="levels$ | async as levels">
+                <div>
                   Level*
-                  <select [(ngModel)]="levelId"
+                  <select [(ngModel)]="level"
                           class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="levelId">
-                    <option *ngFor="let level of levels.content" value="{{level.id}}">{{level.value}}</option>
+                    <option *ngFor="let level of levels" value="{{level}}">{{level}}</option>
                   </select>
                 </div>
                 <div *ngIf="teachers$ | async as teachers">

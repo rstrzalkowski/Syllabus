@@ -28,8 +28,8 @@ export class EditSubjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.name = this.subject?.name || ""
-    this.abbreviation = this.subject?.abbreviation || ""
+    this.name = this.subject?.subjectName || ""
+    this.abbreviation = this.subject?.subjectAbbreviation || ""
   }
 
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {

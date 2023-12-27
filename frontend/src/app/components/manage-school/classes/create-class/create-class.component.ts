@@ -16,7 +16,7 @@ export class CreateClassComponent implements OnInit {
   //Data
   shortName: string = ""
   fullName: string = ""
-  levelId: number | undefined
+  level: number | undefined
   teacherId: number | undefined
   levels$: Observable<LevelPage> = this.levelService.getAllActiveLevels()
   teachers$: Observable<User[]> = this.userService.getAllNotSupervisingActiveTeachers()
@@ -29,6 +29,7 @@ export class CreateClassComponent implements OnInit {
 
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
+  levels: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
   constructor(private alertService: AlertService,
               private classService: ClassService,
@@ -46,13 +47,13 @@ export class CreateClassComponent implements OnInit {
   }
 
   submit() {
-    if (this.shortName === '' || this.fullName === '' || this.levelId === undefined || this.teacherId === undefined) {
+    if (this.shortName === '' || this.fullName === '' || this.level === undefined || this.teacherId === undefined) {
       this.alertService.showAlert('warning', 'Fill all the required fields.')
       return
     }
 
     this.loading = true
-    this.classService.createClass(this.shortName, this.fullName, this.levelId, this.teacherId).subscribe((result) => {
+    this.classService.createClass(this.shortName, this.fullName, this.level, this.teacherId).subscribe((result) => {
       this.alertService.showAlert('success', 'Class has been successfully created!')
       this.success.emit()
     }, error => {

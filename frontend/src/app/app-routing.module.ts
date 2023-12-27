@@ -17,7 +17,6 @@ import {SubjectsComponent} from "./components/manage-school/subjects/subjects.co
 import {RealisationsComponent} from "./components/manage-school/realisations/realisations.component";
 import {ClassesComponent} from "./components/manage-school/classes/classes.component";
 import {UsersComponent} from "./components/manage-school/users/users.component";
-import {LevelsComponent} from "./components/manage-school/levels/levels.component";
 import {ManagementGuard} from "./guards/management.guard";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
@@ -105,14 +104,6 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard, ManagementGuard],
         data: {
           title: "Users"
-        },
-      },
-      {
-        path: "levels",
-        component: LevelsComponent,
-        canActivate: [AuthenticationGuard, ManagementGuard],
-        data: {
-          title: "Levels"
         },
       },
       {

@@ -1,0 +1,32 @@
+<div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity"></div>
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
+      <div
+        class="relative overflow-hidden rounded-lg bg-skin-base text-left shadow-xl sm:my-8 w-full sm:w-3/4">
+        <div class="top-4 right-4 absolute cursor-pointer border rounded" (click)="closeModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <div class="bg-skin-base px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+              <p class="text-3xl mb-1">Choose role</p>
+              <div class="flex justify-around font-bold">
+                <span *ngIf="roles.includes('STUDENT')" (click)="loginAs('STUDENT')" class="p-1 m-1 cursor-pointer">STUDENT</span>
+                <span *ngIf="roles.includes('TEACHER')" (click)="loginAs('TEACHER')" class="p-1 m-1 cursor-pointer">TEACHER</span>
+                <span *ngIf="roles.includes('OFFICE')" (click)="loginAs('OFFICE')"
+                      class="p-1 m-1 cursor-pointer">OFFICE</span>
+                <span *ngIf="roles.includes('DIRECTOR')" (click)="loginAs('DIRECTOR')" class="p-1 m-1 cursor-pointer">DIRECTOR</span>
+                <span *ngIf="roles.includes('ADMIN')" (click)="loginAs('ADMIN')"
+                      class="p-1 m-1 cursor-pointer">ADMIN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

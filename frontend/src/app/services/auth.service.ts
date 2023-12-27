@@ -31,14 +31,13 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/authorize`, {username, password}, {observe: "response"})
   }
 
-  register(email: string, password: string, firstName: string, lastName: string, personalId: string, registrationToken: string) {
-    return this.http.post(`${environment.apiUrl}/register`, {
+  register(email: string, password: string, firstName: string, lastName: string, personalId: string) {
+    return this.http.post(`${environment.apiUrl}/users`, {
       email: email,
       password: password,
       firstName: firstName,
       lastName: lastName,
-      personalId: personalId,
-      registrationToken: registrationToken
+      personalId: personalId
     }, {observe: "response"})
   }
 
@@ -68,8 +67,7 @@ export class AuthService {
   }
 
   getRole() {
-    let decoded = this.decodeJWT(this.getJwtFromStorage() || "")
-    return decoded.role
+    return localStorage.getItem("role")
   }
 
   decodeJWT(token: string): any {

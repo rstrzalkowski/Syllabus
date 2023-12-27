@@ -12,7 +12,7 @@ export class ClassService {
   }
 
   getAllActiveClasses() {
-    return this.http.get<ClassPage>(`${environment.apiUrl}/classes?sort=level.value,createdAt`)
+    return this.http.get<ClassPage>(`${environment.apiUrl}/classes?sort=level`)
   }
 
   getClassById(id: string | undefined) {
@@ -20,27 +20,28 @@ export class ClassService {
   }
 
   getActiveClasses(page: number | undefined) {
-    return this.http.get<ClassPage>(`${environment.apiUrl}/classes?page=${page}&size=6&sort=level.value,createdAt`)
+    return this.http.get<ClassPage>(`${environment.apiUrl}/classes?page=${page}&size=6&sort=level`)
   }
 
   getArchivedClasses(page: number | undefined) {
-    return this.http.get<ClassPage>(`${environment.apiUrl}/classes/archived?page=${page}&size=6&sort=level.value,createdAt`)
+    return this.http.get<ClassPage>(`${environment.apiUrl}/classes/archived?page=${page}&size=6&sort=level`)
   }
 
-  createClass(shortName: string | undefined, fullName: string | undefined, levelId: number | undefined, teacherId: number | undefined) {
+  createClass(shortName: string | undefined, fullName: string | undefined, level: number | undefined, teacherId: number | undefined) {
     return this.http.post(`${environment.apiUrl}/classes`, {
       shortName: shortName,
       fullName: fullName,
-      levelId: levelId,
+      level: level,
       teacherId: teacherId
     }, {observe: "response"})
   }
 
-  updateClass(classId: string | undefined, shortName: string | undefined, fullName: string | undefined, levelId: string | undefined, teacherId: string | undefined) {
-    return this.http.put(`${environment.apiUrl}/classes/${classId}`, {
+  updateClass(classId: string | undefined, shortName: string | undefined, fullName: string | undefined, level: string | undefined, teacherId: string | undefined) {
+    return this.http.put(`${environment.apiUrl}/classes`, {
+      id: classId,
       shortName: shortName,
       fullName: fullName,
-      levelId: levelId,
+      level: level,
       teacherId: teacherId
     }, {observe: "response"})
   }
